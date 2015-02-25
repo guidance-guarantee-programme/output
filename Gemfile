@@ -27,3 +27,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
+
+group :staging, :production do
+  gem 'rails_12factor'
+end
