@@ -3,6 +3,7 @@
 scss_files: 'app/assets/stylesheets/**/*.css.scss'
 
 exclude:
+  - 'node_modules/**/*'
   - 'vendor/assets/**/*'
   - 'vendor/bundle/**/*'
 
@@ -55,6 +56,9 @@ linters:
 
   HexValidation:
     enabled: true
+
+  IdSelector:
+      enabled: true
 
   IdWithExtraneousSelector:
     enabled: true
