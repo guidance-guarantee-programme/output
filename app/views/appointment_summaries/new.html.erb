@@ -1,0 +1,5 @@
+<%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 't-name' %>
+  <%= f.submit 'Submit', class: 't-submit' %>
+<% end %>
