@@ -1,0 +1,18 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'bin/*'
+    - 'vendor/**/*'
+
+Documentation:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Exclude:
+    - Rakefile
+
+Metrics/LineLength:
+  Max: 120
+
+Style/RescueModifier:
+  Enabled: false
