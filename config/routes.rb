@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root to: proc { [200, {}, ['Pension Wise - Record of Guidance']] }
+  root 'appointment_summaries#new'
 
   constraints format: 'html' do
+    resources :appointment_summaries, only: %i(new create)
+
     scope path: 'styleguide', controller: 'styleguide' do
       scope path: 'pages' do
         get 'input', action: 'pages_input'
