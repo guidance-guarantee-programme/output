@@ -42,6 +42,8 @@ GEM
       parser (>= 2.2.0.pre.3, < 3.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bugsnag (2.7.1)
+      multi_json (~> 1.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -214,6 +216,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bugsnag
   byebug
   coffee-rails (~> 4.1.0)
   cucumber-rails

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bugsnag'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'foreman'
 gem 'jquery-rails'
