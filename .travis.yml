@@ -5,6 +5,7 @@ cache:
   directories:
   - node_modules
   - tmp/cache/assets/test
+  - vendor/assets/bower_components
 env:
   global:
   - secure: OHty0sCWbCAsxw8vLWmQLe2uBu8aR7zwKXh4aO8XipkNqIQSyVF3Q/iNC2DOclOmomT/C2wp2XWLysazJ5oyYpkooTe0wh9Bl2I3J6JqF7aynLzmk8eT0BoP/MZwX0lbCI11Z2JVW349xipku/vBVoucN40P6j5FfgZjTJYm5JE=
