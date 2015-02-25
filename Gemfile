@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.1.0'
+gem 'foreman'
 gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '4.2.0'
