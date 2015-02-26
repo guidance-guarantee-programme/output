@@ -1,0 +1,7 @@
+{
+  "name": "record_of_guidance",
+  "private": true,
+  "dependencies": {
+    "normalize-css": "~3.0.0"
+  }
+}
