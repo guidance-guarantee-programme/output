@@ -6,9 +6,21 @@ class AppointmentSummariesController < ApplicationController
   def create
     @appointment_summary = AppointmentSummary.create(appointment_summary_params)
     if @appointment_summary.persisted?
-      redirect_to new_appointment_summary_path, notice: 'The appointment summary was saved'
+      redirect_to appointment_summary_path(@appointment_summary, format: :pdf)
     else
       render :new
+    end
+  end
+
+  def show
+    @appointment_summary = AppointmentSummary.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'pension_wise', encoding: 'utf-8',
+               template: 'appointment_summaries/show.html.erb'
+      end
     end
   end
 
