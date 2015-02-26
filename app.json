@@ -1,9 +1,13 @@
 {
+  "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
     "NEW_RELIC_LOG": "STDOUT",
     "SECRET_KEY_BASE": {
       "description": "Cryptographically secure secret key (typically used to generate a secret for cookie sessions)",
       "generator": "secret"
     }
+  },
+  "scripts": {
+    "postdeploy": "./bin/rake db:migrate"
   }
 }
