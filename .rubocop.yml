@@ -4,6 +4,7 @@ AllCops:
     - 'bin/*'
     - 'db/*'
     - 'vendor/**/*'
+    - 'db/schema.rb'
 
 Documentation:
   Enabled: false
