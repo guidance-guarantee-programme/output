@@ -10,6 +10,10 @@ class StyleguideController < ApplicationController
   end
 
   def pages_output
-    render template: 'styleguide/pages/output'
+    respond_to do |format|
+      format.pdf do
+        render pdf: 'pension_wise', encoding: 'utf-8', template: 'styleguide/pages/output'
+      end
+    end
   end
 end
