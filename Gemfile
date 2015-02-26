@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'autoprefixer-rails'
 gem 'bugsnag'
-gem 'coffee-rails', '~> 4.1.0'
 gem 'foreman'
 gem 'gaffe'
-gem 'jquery-rails'
 gem 'meta-tags'
 gem 'newrelic_rpm'
 gem 'pg'
