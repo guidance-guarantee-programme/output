@@ -12,6 +12,7 @@ gem 'rails', '4.2.0'
 gem 'rfc-822' # email validation
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'wicked_pdf'
 
 group :development, :test do
   gem 'byebug'
@@ -25,6 +26,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
+  gem 'wkhtmltopdf-binary'
 end
 
 group :test do
