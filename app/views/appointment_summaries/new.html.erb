@@ -7,7 +7,13 @@
 <% end %>
 
 <%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 't-name' %>
+  <div class="l-form-row">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 't-name' %>
+  </div>
+  <div class="l-form-row">
+    <%= f.label :email_address %>
+    <%= f.text_field :email_address, class: 't-email-address' %>
+  </div>
   <%= f.submit 'Submit', class: 't-submit' %>
 <% end %>

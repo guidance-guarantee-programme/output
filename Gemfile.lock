@@ -145,6 +145,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.4.2)
+    rfc-822 (0.4.0)
     rspec-core (3.2.1)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -232,6 +233,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.0)
   rails_12factor
+  rfc-822
   rspec-rails
   rubocop
   sass-rails (~> 5.0)
