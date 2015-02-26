@@ -25,3 +25,4 @@ deploy:
   app: ggp-record-of-guidance
   on:
     repo: guidance-guarantee-programme/record_of_guidance
+  run: "./bin/rake db:migrate"
