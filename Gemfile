@@ -32,6 +32,7 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'shoulda-matchers'
   gem 'site_prism'
 end
