@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'autoprefixer-rails'
 gem 'bugsnag'
 gem 'foreman'
 gem 'gaffe'
