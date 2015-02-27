@@ -13,13 +13,15 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def show
-    @appointment_summary = AppointmentSummary.find(params[:id])
+    appointment_summary = AppointmentSummary.find(params[:id])
+    output_document = OutputDocument.new(appointment_summary)
 
     respond_to do |format|
-      format.html
+      format.html { render html: output_document.html.html_safe }
       format.pdf do
-        render pdf: 'pension_wise', encoding: 'utf-8',
-               template: 'appointment_summaries/show.html.erb'
+        send_data output_document.pdf,
+                  filename: 'pension_wise.pdf', type: 'application/pdf',
+                  disposition: :inline
       end
     end
   end
