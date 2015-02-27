@@ -1,0 +1,119 @@
+<form>
+  <h1><%= title 'Record of Guidance builder' %></h1>
+
+  <h2>Personal Details</h2>
+
+  <div class="l-form-row">
+    <label for="name-c">Client's name:</label>
+    <input id="name-c" type="text"/>
+  </div>
+
+  <div class="l-form-row">
+    <label for="name-g">Appointment date:</label>
+    <input id="name-g" type="date"/>
+  </div>
+
+  <div class="l-form-row">
+    <label for="name-g">Guiders's name:</label>
+    <input id="name-g" type="text"/>
+  </div>
+
+  <div class="l-form-row">
+    <fieldset>
+      <legend>
+        <span>Your organisation:</span>
+      </legend>
+      <p>
+        <label for="cab">
+          <input id="cab" type="radio" name="organisation">
+          Citizen's Advice
+        </label>
+      </p>
+
+      <p>
+        <label for="tpas">
+          <input id="tpas" type="radio" name="organisation">
+          The Pensions Advisory Service
+        </label>
+      </p>
+    </fieldset>
+  </div>
+
+  <hr>
+
+  <h2>What you told us about your pension pot</h2>
+
+  <div class="l-form-row">
+    <label for="name-c">Value of DC pot:</label>
+    <input id="name-c" type="text"/>
+  </div>
+
+  <div class="l-form-row">
+    <fieldset>
+      <legend>
+        <span>Your retirement income:</span>
+      </legend>
+      <p>
+        <label for="income-only">
+          <input id="income-only" type="radio" name="income">
+          Your DC pot is your only income in retirement
+        </label>
+      </p>
+
+      <p>
+        <label for="income-other">
+          <input id="income-other" type="radio" name="income">
+          You have other income in retirement
+        </label>
+      </p>
+    </fieldset>
+  </div>
+
+  <hr/>
+
+  <h2>Your retirement and pension options</h2>
+
+  <div class="l-form-row">
+    <fieldset>
+      <legend>
+        <span>You plan too:</span>
+      </legend>
+      <p>
+        <label for="plan-1">
+          <input id="plan-1" type="checkbox" name="plan">
+          insert
+        </label>
+      </p>
+
+      <p>
+        <label for="plan-2">
+          <input id="plan-2" type="checkbox" name="plan">
+          insert
+        </label>
+      </p>
+
+      <p>
+        <label for="plan-3">
+          <input id="plan-3" type="checkbox" name="plan">
+          insert
+        </label>
+      </p>
+
+      <p>
+        <label for="plan-4">
+          <input id="plan-4" type="checkbox" name="plan">
+          insert
+        </label>
+      </p>
+
+      <p>
+        <label for="plan-5">
+          <input id="plan-5" type="checkbox" name="plan">
+          insert
+        </label>
+      </p>
+    </fieldset>
+  </div>
+
+  <input type="submit" value="Submit">
+</form>
