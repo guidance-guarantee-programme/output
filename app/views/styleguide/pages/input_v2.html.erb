@@ -4,8 +4,18 @@
   <h2>Personal Details</h2>
 
   <div class="l-form-row">
-    <label for="name-c">Client's name:</label>
+    <label for="name-c">Client name:</label>
     <input id="name-c" type="text"/>
+  </div>
+
+  <div class="l-form-row">
+    <label for="email">Client email:</label>
+    <input id="email" type="email"/>
+  </div>
+
+  <div class="l-form-row">
+    <label for="address">Client postal address:</label>
+    <textarea name="" id="address" cols="40" rows="6"></textarea>
   </div>
 
   <div class="l-form-row">
@@ -14,7 +24,7 @@
   </div>
 
   <div class="l-form-row">
-    <label for="name-g">Guiders's name:</label>
+    <label for="name-g">Guider name:</label>
     <input id="name-g" type="text"/>
   </div>
 
@@ -44,26 +54,26 @@
   <h2>What you told us about your pension pot</h2>
 
   <div class="l-form-row">
-    <label for="name-c">Value of DC pot:</label>
+    <label for="name-c">Pension pot amount:</label>
     <input id="name-c" type="text"/>
   </div>
 
   <div class="l-form-row">
     <fieldset>
       <legend>
-        <span>Your retirement income:</span>
+        <span>Post retirement income options:</span>
       </legend>
       <p>
         <label for="income-only">
           <input id="income-only" type="radio" name="income">
-          Your DC pot is your only income in retirement
+          Defined contribution pot is their only source of income
         </label>
       </p>
 
       <p>
         <label for="income-other">
           <input id="income-other" type="radio" name="income">
-          You have other income in retirement
+          Other income available in retirement
         </label>
       </p>
     </fieldset>
@@ -76,40 +86,52 @@
   <div class="l-form-row">
     <fieldset>
       <legend>
-        <span>You plan too:</span>
+        <span>Personal Circumstances:</span>
       </legend>
       <p>
         <label for="plan-1">
           <input id="plan-1" type="checkbox" name="plan">
-          insert
+          Continue working for a while
         </label>
       </p>
 
       <p>
         <label for="plan-2">
           <input id="plan-2" type="checkbox" name="plan">
-          insert
+          Unsure about your plans in retirement
         </label>
       </p>
 
       <p>
         <label for="plan-3">
           <input id="plan-3" type="checkbox" name="plan">
-          insert
+          Wants to leave money to someone after you die
         </label>
       </p>
 
       <p>
         <label for="plan-4">
           <input id="plan-4" type="checkbox" name="plan">
-          insert
+          Flexibility when taking money
+        </label>
+      </p>
+      <p>
+        <label for="plan-5">
+          <input id="plan-5" type="checkbox" name="plan">
+          Guaranteed income
+        </label>
+      </p>
+      <p>
+        <label for="plan-5">
+          <input id="plan-5" type="checkbox" name="plan">
+          Requires a certain amount of money now
         </label>
       </p>
 
       <p>
         <label for="plan-5">
           <input id="plan-5" type="checkbox" name="plan">
-          insert
+          In poor health
         </label>
       </p>
     </fieldset>
