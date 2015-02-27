@@ -6,6 +6,7 @@ class AppointmentSummariesController < ApplicationController
   def create
     @appointment_summary = AppointmentSummary.create(appointment_summary_params)
     if @appointment_summary.persisted?
+      IssueOutputDocument.new(@appointment_summary).call
       redirect_to appointment_summary_path(@appointment_summary, format: :pdf)
     else
       render :new
