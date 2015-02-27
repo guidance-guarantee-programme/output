@@ -12,6 +12,7 @@ Record of guidance from [Pension Wise].
 * [Node.js][Node]
 * [NPM]
 * [PostgreSQL]
+* [Redis]
 * [Ruby 2.2.0][Ruby]
 
 
@@ -54,4 +55,5 @@ Please see the [contributing guidelines](/CONTRIBUTING.md).
 [npm]: https://www.npmjs.org
 [pension wise]: https://www.gov.uk/pensionwise
 [postgresql]: http://www.postgresql.org
+[redis]: http://redis.io
 [ruby]: http://www.ruby-lang.org/en
