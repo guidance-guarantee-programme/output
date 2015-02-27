@@ -14,6 +14,7 @@ class AppointmentSummariesController < ApplicationController
 
   def show
     @appointment_summary = AppointmentSummary.find(params[:id])
+    OutputDocumentMailer.guidance_record(@appointment_summary).deliver_later
 
     respond_to do |format|
       format.html
