@@ -1,42 +1,49 @@
 <form>
-  <h1><%= title 'Record of Guidance builder' %></h1>
+  <h1><%= title 'Record of guidance builder' %></h1>
 
-  <h2>Personal Details</h2>
+  <p class="intro">Use this form to enter the visitor or caller's personal details provided during
+    the guidance appointment and to create a personalised output document.</p>
+
+  <h2>Visitor or caller details</h2>
 
   <div class="l-form-row">
-    <label for="name-c">Client name:</label>
-    <input id="name-c" type="text"/>
+    <label for="name">Name:</label>
+    <input id="name" type="text"/>
   </div>
 
   <div class="l-form-row">
-    <label for="email">Client email:</label>
+    <label for="email">Email:</label>
     <input id="email" type="email"/>
   </div>
 
   <div class="l-form-row">
-    <label for="address">Client postal address:</label>
+    <label for="address">Postal address:</label>
     <textarea name="" id="address" cols="40" rows="6"></textarea>
   </div>
 
   <div class="l-form-row">
-    <label for="name-g">Appointment date:</label>
-    <input id="name-g" type="date"/>
+    <label for="date">Appointment date:</label>
+    <input id="date" type="date">
   </div>
 
+  <hr>
+
+  <h2>Guider details</h2>
+
   <div class="l-form-row">
-    <label for="name-g">Guider name:</label>
-    <input id="name-g" type="text"/>
+    <label for="name-g"><span class="visually-hidden">Guider </span>Name:</label>
+    <input id="name-g" type="text">
   </div>
 
   <div class="l-form-row">
     <fieldset>
       <legend>
-        <span>Your organisation:</span>
+        <span>Organisation:</span>
       </legend>
       <p>
         <label for="cab">
           <input id="cab" type="radio" name="organisation">
-          Citizen's Advice
+          Citizens Advice
         </label>
       </p>
 
@@ -51,17 +58,17 @@
 
   <hr>
 
-  <h2>What you told us about your pension pot</h2>
+  <h2>Pension pot details</h2>
 
   <div class="l-form-row">
-    <label for="name-c">Pension pot amount:</label>
-    <input id="name-c" type="text"/>
+    <label for="amount">Pension pot amount:</label>
+    <input id="amount" type="text">
   </div>
 
   <div class="l-form-row">
     <fieldset>
       <legend>
-        <span>Post retirement income options:</span>
+        <span>Income in retirement:</span>
       </legend>
       <p>
         <label for="income-only">
@@ -73,65 +80,67 @@
       <p>
         <label for="income-other">
           <input id="income-other" type="radio" name="income">
-          Other income available in retirement
+          Other income is available in retirement
         </label>
       </p>
     </fieldset>
   </div>
 
-  <hr/>
+  <hr>
 
-  <h2>Your retirement and pension options</h2>
+  <h2>Retirement plans and pension options</h2>
 
   <div class="l-form-row">
     <fieldset>
       <legend>
-        <span>Personal Circumstances:</span>
+        <span>Circumstances and preferences:</span>
       </legend>
       <p>
         <label for="plan-1">
           <input id="plan-1" type="checkbox" name="plan">
-          Continue working for a while
+          Plans to continue working for a while
         </label>
       </p>
 
       <p>
         <label for="plan-2">
           <input id="plan-2" type="checkbox" name="plan">
-          Unsure about your plans in retirement
+          Unsure about plans in retirement
         </label>
       </p>
 
       <p>
         <label for="plan-3">
           <input id="plan-3" type="checkbox" name="plan">
-          Wants to leave money to someone after you die
+          Plans to leave money to someone
         </label>
       </p>
 
       <p>
         <label for="plan-4">
           <input id="plan-4" type="checkbox" name="plan">
-          Flexibility when taking money
-        </label>
-      </p>
-      <p>
-        <label for="plan-5">
-          <input id="plan-5" type="checkbox" name="plan">
-          Guaranteed income
-        </label>
-      </p>
-      <p>
-        <label for="plan-5">
-          <input id="plan-5" type="checkbox" name="plan">
-          Requires a certain amount of money now
+          Wants flexibility when taking money
         </label>
       </p>
 
       <p>
         <label for="plan-5">
           <input id="plan-5" type="checkbox" name="plan">
-          In poor health
+          Wants a guaranteed income
+        </label>
+      </p>
+
+      <p>
+        <label for="plan-6">
+          <input id="plan-6" type="checkbox" name="plan">
+          Needs a certain amount of money now
+        </label>
+      </p>
+
+      <p>
+        <label for="plan-7">
+          <input id="plan-7" type="checkbox" name="plan">
+          Has poor health
         </label>
       </p>
     </fieldset>
