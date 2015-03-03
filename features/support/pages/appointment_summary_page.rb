@@ -3,5 +3,6 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :name, '.t-name'
   element :email_address, '.t-email-address'
+  element :date_of_appointment, '.t-date-of-appointment'
   element :submit, '.t-submit'
 end

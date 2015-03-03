@@ -1,19 +1,33 @@
-<% if @appointment_summary.errors.any? %>
-  <ul>
-    <% @appointment_summary.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
+  <h1><%= title 'Record of guidance builder' %></h1>
+
+  <% if @appointment_summary.errors.any? %>
+    <ul>
+      <% @appointment_summary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p class="intro">Use this form to enter the visitor or caller's personal details provided during
+    the guidance appointment and to create a personalised output document.</p>
+
+  <h2>Visitor or caller details</h2>
+
   <div class="l-form-row">
     <%= f.label :name %>
     <%= f.text_field :name, class: 't-name' %>
   </div>
+
   <div class="l-form-row">
     <%= f.label :email_address %>
     <%= f.text_field :email_address, class: 't-email-address' %>
   </div>
+
+  <div class="l-form-row">
+    <%= f.label :date_of_appointment %>
+    <%= f.date_field :date_of_appointment, class: 't-date-of-appointment' %>
+  </div>
+
   <%= f.submit 'Submit', class: 't-submit' %>
 <% end %>
