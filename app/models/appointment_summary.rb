@@ -6,4 +6,6 @@ class AppointmentSummary < ActiveRecord::Base
                                                 type: :date }
   validates :value_of_pension_pots, presence: true, numericality: true
   validates :income_in_retirement, inclusion: { in: %w(pension other) }
+  validates :guider_name, presence: true
+  validates :guider_organisation, inclusion: { in: %w(tpas cab) }
 end
