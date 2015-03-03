@@ -8,8 +8,6 @@ class IssueOutputDocument
   def call
     return unless @appointment_summary.email_address.present?
 
-    output_document = OutputDocument.new(@appointment_summary)
-    OutputDocumentMailer.issue(@appointment_summary, output_document.pdf)
-      .deliver_later
+    OutputDocumentMailerJob.perform_later(@appointment_summary)
   end
 end
