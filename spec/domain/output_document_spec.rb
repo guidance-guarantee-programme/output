@@ -4,7 +4,10 @@ RSpec.describe OutputDocument do
   let(:name) { 'Joe Bloggs' }
   let(:output_document) { described_class.new(appointment_summary) }
   let(:appointment_summary) do
-    instance_double(AppointmentSummary, name: name, date_of_appointment: Date.today)
+    instance_double(AppointmentSummary,
+                    name: name,
+                    date_of_appointment: Date.today,
+                    value_of_pension_pots: 35_000)
   end
 
   describe '#html' do
