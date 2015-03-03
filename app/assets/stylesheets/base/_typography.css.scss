@@ -1,6 +1,7 @@
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
+  padding-bottom: 100px;
 }
 
 h1,
@@ -11,4 +12,8 @@ h5,
 h6 {
   font-family: "Open Sans", sans-serif;
   color: $color-heading-default;
+}
+
+.intro {
+  max-width: 30em;
 }
