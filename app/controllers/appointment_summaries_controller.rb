@@ -31,6 +31,7 @@ class AppointmentSummariesController < ApplicationController
 
   def appointment_summary_params
     params.require(:appointment_summary).permit(:name, :email_address, :date_of_appointment,
-                                                :value_of_pension_pots, :income_in_retirement)
+                                                :value_of_pension_pots, :income_in_retirement,
+                                                :guider_name, :guider_organisation)
   end
 end

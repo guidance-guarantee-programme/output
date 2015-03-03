@@ -8,6 +8,8 @@ When(/^appointment details are captured$/) do
   page.date_of_appointment.set '05/02/2015'
   page.value_of_pension_pots.set 35_000
   page.income_in_retirement_pension.set true
+  page.guider_name.set 'Alex Leahy'
+  page.guider_organisation_tpas.set true
   page.submit.click
 
   appointment_summary = AppointmentSummary.last
