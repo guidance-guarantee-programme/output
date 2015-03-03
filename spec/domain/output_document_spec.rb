@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OutputDocument do
   let(:name) { 'Joe Bloggs' }
-  let(:appointment_summary) { instance_double(AppointmentSummary, name: name) }
   let(:output_document) { described_class.new(appointment_summary) }
+  let(:appointment_summary) do
+    instance_double(AppointmentSummary, name: name, date_of_appointment: Date.today)
+  end
 
   describe '#html' do
     subject { output_document.html }
