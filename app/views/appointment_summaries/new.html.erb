@@ -29,5 +29,14 @@
     <%= f.date_field :date_of_appointment, class: 't-date-of-appointment' %>
   </div>
 
+  <hr>
+
+  <h2>Pension pot details</h2>
+
+  <div class="l-form-row">
+    <%= f.label :value_of_pension_pots %>
+    <%= f.number_field :value_of_pension_pots, class: 't-value-of-pension-pots' %>
+  </div>
+
   <%= f.submit 'Submit', class: 't-submit' %>
 <% end %>
