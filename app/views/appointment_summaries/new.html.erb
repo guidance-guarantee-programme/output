@@ -38,5 +38,26 @@
     <%= f.number_field :value_of_pension_pots, class: 't-value-of-pension-pots' %>
   </div>
 
+  <div class="l-form-row">
+    <fieldset>
+      <legend>
+        <span>Income in retirement:</span>
+      </legend>
+      <p>
+        <%= f.label :income_in_retirement do %>
+          <%= f.radio_button :income_in_retirement, 'pension',
+                             class: 't-income-in-retirement-pension' %>
+          Defined contribution pot is their only source of income
+        <% end %>
+
+        <%= f.label :income_in_retirement do %>
+          <%= f.radio_button :income_in_retirement, 'other',
+                             class: 't-income-in-retirement-other' %>
+          Other income is available in retirement
+        <% end %>
+      </p>
+    </fieldset>
+  </div>
+
   <%= f.submit 'Submit', class: 't-submit' %>
 <% end %>
