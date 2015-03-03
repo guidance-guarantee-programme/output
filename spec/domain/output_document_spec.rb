@@ -8,7 +8,9 @@ RSpec.describe OutputDocument do
                     name: name,
                     date_of_appointment: Date.today,
                     value_of_pension_pots: 35_000,
-                    income_in_retirement: :pension)
+                    income_in_retirement: :pension,
+                    guider_name: 'A Guider',
+                    guider_organisation: 'tpas')
   end
 
   describe '#html' do

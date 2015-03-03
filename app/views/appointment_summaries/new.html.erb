@@ -31,6 +31,39 @@
 
   <hr>
 
+  <h2>Guider details</h2>
+
+  <div class="l-form-row">
+    <%= f.label :guider_name %>
+    <%= f.text_field :guider_name, class: 't-guider-name' %>
+  </div>
+
+  <div class="l-form-row">
+    <fieldset>
+      <legend>
+        <span>Organisation:</span>
+      </legend>
+
+      <p>
+        <%= f.label :guider_organisation do %>
+          <%= f.radio_button :guider_organisation, 'cab',
+                             class: 't-guider-organisation-cab' %>
+          Citizens Advice
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :guider_organisation do %>
+          <%= f.radio_button :guider_organisation, 'tpas',
+                             class: 't-guider-organisation-tpas' %>
+          The Pensions Advisory Service
+        <% end %>
+      </p>
+    </fieldset>
+  </div>
+
+  <hr>
+
   <h2>Pension pot details</h2>
 
   <div class="l-form-row">
