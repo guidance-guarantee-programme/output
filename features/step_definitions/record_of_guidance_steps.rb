@@ -1,6 +1,4 @@
 When(/^appointment details are captured$/) do
-  allow(OutputDocument).to receive(:new).and_return(double(pdf: ''))
-
   page = AppointmentSummaryPage.new
   page.load
   page.name.set 'Joe Bloggs'
