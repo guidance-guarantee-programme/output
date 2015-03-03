@@ -16,4 +16,12 @@ class StyleguideController < ApplicationController
       end
     end
   end
+
+  def pages_input_v2
+    render template: 'styleguide/pages/input_v2'
+  end
+
+  def pages_output_v2
+    render template: 'styleguide/pages/output_v2'
+  end
 end
