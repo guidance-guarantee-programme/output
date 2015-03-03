@@ -1,4 +1,6 @@
 class OutputDocument
+  include ActionView::Helpers::NumberHelper
+
   attr_accessor :appointment_summary
 
   def initialize(appointment_summary)
