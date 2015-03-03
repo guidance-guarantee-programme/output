@@ -156,6 +156,17 @@
 
     <p><b>If you have more than one pot this is their combined value.</b></p>
 
+    <% if @appointment_summary.income_in_retirement == 'pension' %>
+      <p>
+        You told us that your defined contribution pot is your only income in retirement.
+      </p>
+    <% elsif @appointment_summary.income_in_retirement == 'other' %>
+      <p>
+        You told us that you have other income in retirement, eg from a defined benefit pension
+        (final salary pension), savings, rental income etc. 
+      </p>
+    <% end %>
+
     <p>Most people are entitled to the State Pension. Find out how much State
       Pension you’ll get at <a href="https://www.gov.uk/state-pension-statement">
       gov.uk/state-pension-statement</a></p>

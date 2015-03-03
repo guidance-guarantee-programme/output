@@ -5,4 +5,5 @@ class AppointmentSummary < ActiveRecord::Base
                                                 on_or_after: Date.new(2015),
                                                 type: :date }
   validates :value_of_pension_pots, presence: true, numericality: true
+  validates :income_in_retirement, inclusion: { in: %w(pension other) }
 end
