@@ -7,7 +7,8 @@ RSpec.describe OutputDocument do
     instance_double(AppointmentSummary,
                     name: name,
                     date_of_appointment: Date.today,
-                    value_of_pension_pots: 35_000)
+                    value_of_pension_pots: 35_000,
+                    income_in_retirement: :pension)
   end
 
   describe '#html' do

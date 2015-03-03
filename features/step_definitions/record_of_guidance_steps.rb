@@ -7,6 +7,7 @@ When(/^appointment details are captured$/) do
   page.email_address.set 'joe.bloggs@example.com'
   page.date_of_appointment.set '05/02/2015'
   page.value_of_pension_pots.set 35_000
+  page.income_in_retirement_pension.set true
   page.submit.click
 
   appointment_summary = AppointmentSummary.last
