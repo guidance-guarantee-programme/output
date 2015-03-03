@@ -126,10 +126,20 @@
   <p class="data"><%= @appointment_summary.date_of_appointment.to_s(:long) %></p>
 
   <p class="data-label">Pensions guidance specialist</p>
-  <p class="data">{Insert Guider Name}</p>
+
+  <p class="data"><%= @appointment_summary.guider_name %></p>
 
   <p class="data-label">From</p>
-  <p class="data">{Insert Organisation}</p>
+
+  <p class="data">
+    <% if @appointment_summary.guider_organisation == 'tpas' %>
+      The Pensions Advisory Service
+    <% elsif @appointment_summary.guider_organisation == 'cab' %>
+      Citizens Advice
+    <% else %>
+      Designated delivery partner
+    <% end %>
+  </p>
 
 </div>
 
