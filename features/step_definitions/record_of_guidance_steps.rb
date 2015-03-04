@@ -8,6 +8,13 @@ When(/^appointment details are captured$/) do
   page.income_in_retirement_pension.set true
   page.guider_name.set 'Alex Leahy'
   page.guider_organisation_tpas.set true
+  page.continue_working.set true
+  page.unsure.set true
+  page.leave_inheritance.set true
+  page.wants_flexibility.set true
+  page.wants_security.set true
+  page.wants_lump_sum.set true
+  page.poor_health.set true
   page.submit.click
 
   appointment_summary = AppointmentSummary.last

@@ -10,5 +10,12 @@ class AppointmentSummaryPage < SitePrism::Page
   element :guider_name, '.t-guider-name'
   element :guider_organisation_tpas, '.t-guider-organisation-tpas'
   element :guider_organisation_cab, '.t-guider-organisation-cab'
+  element :continue_working, '.t-continue-working'
+  element :unsure, '.t-unsure'
+  element :leave_inheritance, '.t-leave-inheritance'
+  element :wants_flexibility, '.t-wants-flexibility'
+  element :wants_security, '.t-wants-security'
+  element :wants_lump_sum, '.t-wants-lump-sum'
+  element :poor_health, '.t-poor-health'
   element :submit, '.t-submit'
 end
