@@ -92,5 +92,65 @@
     </fieldset>
   </div>
 
+  <hr>
+
+  <h2>Retirement plans and pension options</h2>
+
+  <div class="l-form-row">
+    <fieldset>
+      <legend>
+        <span>Circumstances and preferences:</span>
+      </legend>
+      <p>
+        <%= f.label :continue_working do %>
+          <%= f.check_box :continue_working, class: 't-continue-working' %>
+          Plans to continue working for a while
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :unsure do %>
+          <%= f.check_box :unsure, class: 't-unsure' %>
+          Unsure about plans in retirement
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :leave_inheritance do %>
+          <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
+          Plans to leave money to someone
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :wants_flexibility do %>
+          <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
+          Wants flexibility when taking money
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :wants_security do %>
+          <%= f.check_box :wants_security, class: 't-wants-security' %>
+          Wants a guaranteed income
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :wants_lump_sum do %>
+          <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
+          Needs a certain amount of money now
+        <% end %>
+      </p>
+
+      <p>
+        <%= f.label :poor_health do %>
+          <%= f.check_box :poor_health, class: 't-poor-health' %>
+          Has poor health
+        <% end %>
+      </p>
+    </fieldset>
+  </div>
+
   <%= f.submit 'Submit', class: 't-submit' %>
 <% end %>
