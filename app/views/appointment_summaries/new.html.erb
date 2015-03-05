@@ -50,7 +50,7 @@
       </legend>
 
       <p>
-        <%= f.label :guider_organisation do %>
+        <%= f.label :guider_organisation, value: 'cab' do %>
           <%= f.radio_button :guider_organisation, 'cab',
                              class: 't-guider-organisation-cab' %>
           Citizens Advice
@@ -58,7 +58,7 @@
       </p>
 
       <p>
-        <%= f.label :guider_organisation do %>
+        <%= f.label :guider_organisation, value: 'tpas' do %>
           <%= f.radio_button :guider_organisation, 'tpas',
                              class: 't-guider-organisation-tpas' %>
           The Pensions Advisory Service
@@ -82,13 +82,13 @@
         <span>Income in retirement:</span>
       </legend>
       <p>
-        <%= f.label :income_in_retirement do %>
+        <%= f.label :income_in_retirement, value: 'pension' do %>
           <%= f.radio_button :income_in_retirement, 'pension',
                              class: 't-income-in-retirement-pension' %>
           Defined contribution pot is their only source of income
         <% end %>
 
-        <%= f.label :income_in_retirement do %>
+        <%= f.label :income_in_retirement, value: 'other' do %>
           <%= f.radio_button :income_in_retirement, 'other',
                              class: 't-income-in-retirement-other' %>
           Other income is available in retirement
