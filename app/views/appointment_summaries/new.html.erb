@@ -1,5 +1,5 @@
 <%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
-  <h1><%= title 'Record of guidance builder' %></h1>
+  <h2><%= title 'New appointment summary' %></h2>
 
   <% if @appointment_summary.errors.any? %>
     <ul>
@@ -10,7 +10,7 @@
   <% end %>
 
   <p class="intro">Use this form to enter the visitor or caller's personal details provided during
-    the guidance appointment and to create a personalised output document.</p>
+    the guidance appointment and to issue a personalised record of guidance.</p>
 
   <h2>Visitor or caller details</h2>
 
