@@ -1,7 +1,8 @@
-@import "normalize-css/normalize";
+@import "govuk_admin_template";
 
-@import "lib/variables";
-@import "base/typography";
-@import "base/forms";
-@import "helpers/visually_hidden";
-@import "layout/common_page_structure";
+legend {
+  border: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
