@@ -20,6 +20,8 @@ end
 Rails.application.routes.draw do
   root 'appointment_summaries#new'
 
+  devise_for :users
+
   resources :appointment_summaries, only: %i(new create show)
 
   scope path: 'styleguide', controller: 'styleguide' do
