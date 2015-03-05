@@ -1,69 +1,81 @@
 <%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
-  <h2><%= title 'New appointment summary' %></h2>
+  <div class="page-header">
+    <h1><%= title 'New appointment summary' %></h1>
+  </div>
+
+  <p class="lead">Use this form to enter the visitor or caller's personal details provided during
+    the guidance appointment and to issue a personalised record of guidance.</p>
 
   <% if @appointment_summary.errors.any? %>
-    <ul>
-      <% @appointment_summary.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+    <div class="alert alert-danger" role="alert">
+      <ul>
+        <% @appointment_summary.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-
-  <p class="intro">Use this form to enter the visitor or caller's personal details provided during
-    the guidance appointment and to issue a personalised record of guidance.</p>
 
   <h2>Visitor or caller details</h2>
 
-  <div class="l-form-row">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 't-name' %>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: %w(form-control t-name) %>
+    </div>
   </div>
 
-  <div class="l-form-row">
-    <%= f.label :email_address %>
-    <%= f.text_field :email_address, class: 't-email-address' %>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <%= f.label :email_address %>
+      <%= f.text_field :email_address, class: %w(form-control t-email-address) %>
+    </div>
   </div>
 
-  <div class="l-form-row">
-    <%= f.label :address, 'Postal address' %>
-    <%= f.text_area :address, cols: 40, rows: 6, class: 't-address' %>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <%= f.label :address, 'Postal address' %>
+      <%= f.text_area :address, cols: 40, rows: 6, class: %w(form-control t-address) %>
+    </div>
   </div>
 
-  <div class="l-form-row">
-    <%= f.label :date_of_appointment %>
-    <%= f.date_field :date_of_appointment, class: 't-date-of-appointment' %>
+  <div class="row">
+    <div class="form-group col-xs-3">
+      <%= f.label :date_of_appointment %>
+      <%= f.date_field :date_of_appointment, class: %w(form-control t-date-of-appointment) %>
+    </div>
   </div>
-
-  <hr>
 
   <h2>Guider details</h2>
 
-  <div class="l-form-row">
-    <%= f.label :guider_name %>
-    <%= f.text_field :guider_name, class: 't-guider-name' %>
+  <div class="row">
+    <div class="form-group col-xs-6">
+      <%= f.label :guider_name %>
+      <%= f.text_field :guider_name, class: %w(form-control t-guider-name) %>
+    </div>
   </div>
 
-  <div class="l-form-row">
+  <div class="form-group">
     <fieldset>
       <legend>
         <span>Organisation:</span>
       </legend>
 
-      <p>
+      <div class="radio">
         <%= f.label :guider_organisation, value: 'cab' do %>
           <%= f.radio_button :guider_organisation, 'cab',
                              class: 't-guider-organisation-cab' %>
           Citizens Advice
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="radio">
         <%= f.label :guider_organisation, value: 'tpas' do %>
           <%= f.radio_button :guider_organisation, 'tpas',
                              class: 't-guider-organisation-tpas' %>
           The Pensions Advisory Service
         <% end %>
-      </p>
+      </div>
     </fieldset>
   </div>
 
@@ -71,29 +83,33 @@
 
   <h2>Pension pot details</h2>
 
-  <div class="l-form-row">
-    <%= f.label :value_of_pension_pots %>
-    <%= f.text_field :value_of_pension_pots, class: 't-value-of-pension-pots' %>
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <%= f.label :value_of_pension_pots %>
+      <%= f.text_field :value_of_pension_pots, class: %w(form-control t-value-of-pension-pots) %>
+    </div>
   </div>
 
-  <div class="l-form-row">
+  <div class="form-group">
     <fieldset>
       <legend>
         <span>Income in retirement:</span>
       </legend>
-      <p>
+      <div class="radio">
         <%= f.label :income_in_retirement, value: 'pension' do %>
           <%= f.radio_button :income_in_retirement, 'pension',
                              class: 't-income-in-retirement-pension' %>
           Defined contribution pot is their only source of income
         <% end %>
+      </div>
 
+      <div class="radio">
         <%= f.label :income_in_retirement, value: 'other' do %>
           <%= f.radio_button :income_in_retirement, 'other',
                              class: 't-income-in-retirement-other' %>
           Other income is available in retirement
         <% end %>
-      </p>
+      </div>
     </fieldset>
   </div>
 
@@ -101,61 +117,63 @@
 
   <h2>Retirement plans and pension options</h2>
 
-  <div class="l-form-row">
+  <div class="form-group">
     <fieldset>
       <legend>
         <span>Circumstances and preferences:</span>
       </legend>
-      <p>
+      <div class="checkbox">
         <%= f.label :continue_working do %>
           <%= f.check_box :continue_working, class: 't-continue-working' %>
           Plans to continue working for a while
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="checkbox">
         <%= f.label :unsure do %>
           <%= f.check_box :unsure, class: 't-unsure' %>
           Unsure about plans in retirement
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="checkbox">
         <%= f.label :leave_inheritance do %>
           <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
           Plans to leave money to someone
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="checkbox">
         <%= f.label :wants_flexibility do %>
           <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
           Wants flexibility when taking money
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="checkbox">
         <%= f.label :wants_security do %>
           <%= f.check_box :wants_security, class: 't-wants-security' %>
           Wants a guaranteed income
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="checkbox">
         <%= f.label :wants_lump_sum do %>
           <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
           Needs a certain amount of money now
         <% end %>
-      </p>
+      </div>
 
-      <p>
+      <div class="checkbox">
         <%= f.label :poor_health do %>
           <%= f.check_box :poor_health, class: 't-poor-health' %>
           Has poor health
         <% end %>
-      </p>
+      </div>
     </fieldset>
   </div>
 
-  <%= f.submit 'Submit', class: 't-submit' %>
+  <p>
+    <%= f.submit 'Submit', class: %w(btn-success t-submit btn-lg) %>
+  </p>
 <% end %>
