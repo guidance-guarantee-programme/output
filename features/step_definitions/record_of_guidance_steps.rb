@@ -3,6 +3,7 @@ When(/^appointment details are captured$/) do
   page.load
   page.name.set 'Joe Bloggs'
   page.email_address.set 'joe.bloggs@example.com'
+  page.address.set "HM Treasury\n1 Horse Guards Road\nLondon\nSW1A 2HQ"
   page.date_of_appointment.set '05/02/2015'
   page.value_of_pension_pots.set 35_000
   page.income_in_retirement_pension.set true

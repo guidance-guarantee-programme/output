@@ -25,6 +25,11 @@
   </div>
 
   <div class="l-form-row">
+    <%= f.label :address, 'Postal address' %>
+    <%= f.text_area :address, cols: 40, rows: 6, class: 't-address' %>
+  </div>
+
+  <div class="l-form-row">
     <%= f.label :date_of_appointment %>
     <%= f.date_field :date_of_appointment, class: 't-date-of-appointment' %>
   </div>
