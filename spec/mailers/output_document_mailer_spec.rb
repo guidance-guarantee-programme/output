@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OutputDocumentMailer, '.issue', type: :mailer do
   let(:email) { 'a@b.com' }
-  let(:appointment_summary) { instance_double(AppointmentSummary, email_address: email) }
+  let(:appointment_summary) { AppointmentSummary.new(email_address: email, date_of_appointment: Date.today) }
   let(:output_document) { 'output document' }
   let(:deliveries) { ActionMailer::Base.deliveries }
   let(:sent_mail) { deliveries.first }
