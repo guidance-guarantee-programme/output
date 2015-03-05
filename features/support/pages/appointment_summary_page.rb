@@ -3,6 +3,7 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :name, '.t-name'
   element :email_address, '.t-email-address'
+  element :address, '.t-address'
   element :date_of_appointment, '.t-date-of-appointment'
   element :value_of_pension_pots, '.t-value-of-pension-pots'
   element :income_in_retirement_pension, '.t-income-in-retirement-pension'
