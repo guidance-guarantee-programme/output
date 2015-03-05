@@ -1,14 +1,22 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <h2><%= title 'Log in' %></h2>
-
-  <div class="l-form-row">
-    <%= f.label :email %><br/>
-    <%= f.email_field :email, autofocus: true, class: 't-email' %>
+  <div class="page-header">
+    <h2><%= title 'Log in' %></h2>
   </div>
 
-  <div class="l-form-row">
+
+
+  <div class="row">
+    <div class="form-group col-xs-4">
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autofocus: true, class: %w(form-control t-email) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-xs-4">
     <%= f.label :password %><br/>
-    <%= f.password_field :password, autocomplete: 'off', class: 't-password' %>
+    <%= f.password_field :password, autocomplete: 'off', class: %w(form-control t-password) %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? -%>
