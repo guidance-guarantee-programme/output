@@ -9,6 +9,10 @@
 <body>
 
 <div class="l-page-container">
+  <h1>Pension Wise record of guidance</h1>
+  <% if user_signed_in? %>
+    <p><%= link_to 'Logout', destroy_user_session_path %></p>
+  <% end %>
   <%= render 'shared/alerts' %>
   <%= yield %>
 </div>

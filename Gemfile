@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'autoprefixer-rails'
 gem 'bugsnag'
+gem 'devise'
 gem 'foreman'
 gem 'gaffe'
 gem 'jc-validates_timeliness'
