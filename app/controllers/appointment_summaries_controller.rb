@@ -1,4 +1,6 @@
 class AppointmentSummariesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @appointment_summary = AppointmentSummary.new
   end
