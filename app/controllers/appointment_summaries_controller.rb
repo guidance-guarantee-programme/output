@@ -3,7 +3,8 @@ class AppointmentSummariesController < ApplicationController
 
   def new
     @appointment_summary = AppointmentSummary.new(guider_name: current_user.name,
-                                                  guider_organisation: current_user.organisation)
+                                                  guider_organisation: current_user.organisation,
+                                                  date_of_appointment: DateTime.now)
   end
 
   def create
