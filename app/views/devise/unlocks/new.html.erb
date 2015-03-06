@@ -1,16 +1,20 @@
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <h2><%= title 'Resend unlock instructions' %></h2>
+  <div class="page-header">
+    <h2><%= title 'Resend unlock instructions' %></h2>
+  </div>
 
   <%= devise_error_messages! %>
 
-  <div class="l-form-row">
-    <%= f.label :email %><br/>
-    <%= f.email_field :email, autofocus: true %>
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, class: %w(form-control t-email) %>
+    </div>
   </div>
 
-  <div class="l-form-row">
-    <%= f.submit 'Resend unlock instructions' %>
-  </div>
+  <p>
+    <%= f.submit 'Resend unlock instructions', class: %w(t-submit) %>
+  </p>
 <% end %>
 
 <%= render 'devise/shared/links' %>
