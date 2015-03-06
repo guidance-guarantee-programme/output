@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306153657) do
+ActiveRecord::Schema.define(version: 20150306165110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,10 @@ ActiveRecord::Schema.define(version: 20150306153657) do
     t.boolean  "wants_lump_sum"
     t.boolean  "poor_health"
     t.text     "address"
+    t.integer  "user_id"
   end
+
+  add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                default: "", null: false
