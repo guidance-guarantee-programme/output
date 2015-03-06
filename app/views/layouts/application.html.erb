@@ -11,6 +11,9 @@
   <% end %>
 <% end %>
 
-<%= render 'shared/alerts' %>
+<%= content_for(:content) do %>
+  <%= render 'shared/alerts' %>
+  <%= yield %>
+<% end %>
 
 <%= render template: 'layouts/govuk_admin_template' %>
