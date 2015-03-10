@@ -2,7 +2,7 @@ AllCops:
   RunRailsCops: true
   Exclude:
     - 'bin/*'
-    - 'db/*'
+    - 'db/**/*'
     - 'vendor/**/*'
 
 Documentation:
