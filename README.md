@@ -13,7 +13,7 @@ Record of guidance from [Pension Wise].
 * [NPM]
 * [PostgreSQL]
 * [Redis]
-* [Ruby 2.2.0][Ruby]
+* [Ruby 2.2.1][Ruby]
 
 
 ## Installation

@@ -13,6 +13,8 @@ env:
   - DATABASE_URL=postgres://postgres@localhost:5432/travis_ci_test
 node_js:
 - '0.10'
+rvm:
+- '2.2.1'
 before_script:
 - npm install
 - ./bin/rake db:setup RAILS_ENV=test
