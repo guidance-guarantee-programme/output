@@ -76,6 +76,14 @@
           The Pensions Advisory Service
         <% end %>
       </div>
+
+      <div class="radio">
+        <%= f.label :guider_organisation, value: 'dwp' do %>
+          <%= f.radio_button :guider_organisation, 'dwp',
+                             class: 't-guider-organisation-dwp' %>
+          The Department of Work and Pensions
+        <% end %>
+      </div>
     </fieldset>
   </div>
 
