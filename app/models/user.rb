@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :confirmable, :lockable, :timeoutable, :trackable, :validatable
+  devise :invitable, :database_authenticatable, :confirmable, :lockable, :timeoutable, :trackable, :validatable
 
   has_many :appointment_summaries
 
