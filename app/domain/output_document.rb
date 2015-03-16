@@ -10,7 +10,7 @@ class OutputDocument
   end
 
   def pdf
-    WickedPdf.new.pdf_from_string(html)
+    Princely.new.pdf_from_string(html)
   end
 
   private
