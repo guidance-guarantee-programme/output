@@ -16,8 +16,8 @@ en:
         submit_button: "Set my password"
     mailer:
       invitation_instructions:
-        subject: "Invitation instructions"
-        hello: "Hello %{email}"
-        someone_invited_you: "Someone has invited you to %{url}, you can accept it through the link below."
-        accept: "Accept invitation"
-        ignore: "If you don't want to accept the invitation, please ignore this email.<br />Your account won't be created until you access the link above and set your password."
+        subject: "Activate you Pension Wise Record Of Guidance account"
+        hello: "Hello %{name}"
+        someone_invited_you: "An account has been created for you on the Pension Wise Record Of Guidance system (<a href='%{url}'>%{url}</a>). You can activate it and set a password through the link below."
+        accept: "Activate account."
+        ignore: "The activation link will be valid for one week. If you encounter any problems please contact your line manager.<br /><br />If you have received this email in error, please delete and disregard it."
