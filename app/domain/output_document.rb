@@ -9,10 +9,6 @@ class OutputDocument
     ERB.new(template).result(binding)
   end
 
-  def pdf
-    WickedPdf.new.pdf_from_string(html)
-  end
-
   private
 
   def template
