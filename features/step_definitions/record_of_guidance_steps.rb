@@ -1,7 +1,9 @@
 When(/^appointment details are captured$/) do
   page = AppointmentSummaryPage.new
   page.load
-  page.name.set 'Joe Bloggs'
+  page.title.select 'Mr'
+  page.first_name.set 'Joe'
+  page.last_name.set 'Bloggs'
   page.email_address.set 'joe.bloggs@example.com'
   page.address_line_1.set 'HM Treasury'
   page.address_line_2.set '1 Horse Guards Road'
@@ -24,7 +26,9 @@ When(/^appointment details are captured$/) do
 
   appointment_summary = AppointmentSummary.last
 
-  expect(appointment_summary.name).to eql('Joe Bloggs')
+  expect(appointment_summary.title).to eql('Mr')
+  expect(appointment_summary.first_name).to eql('Joe')
+  expect(appointment_summary.last_name).to eql('Bloggs')
   expect(appointment_summary.email_address).to eql('joe.bloggs@example.com')
   expect(appointment_summary.address_line_1).to eql('HM Treasury')
   expect(appointment_summary.address_line_2).to eql('1 Horse Guards Road')
