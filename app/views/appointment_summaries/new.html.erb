@@ -32,12 +32,41 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="form-group col-xs-6">
-      <%= f.label :address, 'Postal address' %>
-      <%= f.text_area :address, cols: 40, rows: 6, class: %w(form-control t-address) %>
-    </div>
+  <h3>Postal address</h3>
+
+  <div class="form-group">
+    <%= f.label :address_line_1 do %>
+      Building and street <span class="visuallyhidden">line 1</span>
+      <%= f.text_field :address_line_1, class: %w(form-control input-md-3 t-address-line-1) %>
+    <% end %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :address_line_2, 'Building and street line 2', class: 'visuallyhidden' %>
+    <%= f.text_field :address_line_2, class: %w(form-control input-md-3 t-address-line-2) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address_line_3, 'Building and street line 3', class: 'visuallyhidden' %>
+    <%= f.text_field :address_line_3, class: %w(form-control input-md-3 t-address-line-3) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :town, 'Town or city' %>
+    <%= f.text_field :town, class: %w(form-control input-md-3 t-town) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :county, 'County (optional)' %>
+    <%= f.text_field :county, class: %w(form-control input-md-3 t-county) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :postcode %>
+    <%= f.text_field :postcode, class: %w(form-control input-md-2 t-postcode) %>
+  </div>
+
+  <h3>Appointment</h3>
 
   <div class="row">
     <div class="form-group col-xs-3">
