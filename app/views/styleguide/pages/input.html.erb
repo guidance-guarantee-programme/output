@@ -1,10 +1,336 @@
-<form>
-<h1><%= title 'Output builder' %></h1>
+<div class="page-header">
+  <h1><%= title 'New appointment summary' %></h1>
+</div>
 
-<h2>Personal Details</h2>
-  <div class="l-form-row">
-    <label for="name">Client's name:</label>
-    <input id="name" type="text"/>
+<p class="lead">Use this form to enter the visitor or caller's personal details provided during
+  the guidance appointment and to issue a personalised record of guidance.</p>
+
+<div id="consent">
+  <p class="highlight highlight-orange">Has visitor consented to sharing data for purpose of creating and sending record of guidance?</p>
+</div>
+
+<div class="display_if_consent">
+  <h2>Visitor or caller details</h2>
+
+  <div class="form-group">
+    <label for="appointment_summary_title">Title</label>
+    <select class="form-control input-md-2" name="appointment_summary[name]" id="appointment_summary_title">
+      <option value="">Please select</option>
+      <option value="Mr">Mr</option>
+      <option value="Mrs">Mrs</option>
+      <option value="Miss">Miss</option>
+      <option value="Ms">Ms</option>
+      <option value="Dr">Dr</option>
+      <option value="Professor">Professor</option>
+      <option value="Admiral">Admiral</option>
+      <option value="Sir">Sir</option>
+      <option value="Lady">Lady</option>
+      <option value="Dame">Dame</option>
+      <option value="Admiral Sir">Admiral Sir</option>
+      <option value="Air Chief Marshal">Air Chief Marshal</option>
+      <option value="Air Commodore">Air Commodore</option>
+      <option value="Air Vice Marshal">Air Vice Marshal</option>
+      <option value="The Duchess of ">The Duchess of </option>
+      <option value="General">General</option>
+      <option value="General Sir">General Sir</option>
+      <option value="Group Captain">Group Captain</option>
+      <option value="Lieutenant General">Lieutenant General</option>
+      <option value="The Reverend">The Reverend</option>
+      <option value="Squadron Leader">Squadron Leader</option>
+      <option value="The Viscount">The Viscount</option>
+      <option value="The Viscountess">The Viscountess</option>
+      <option value="Lt Commander">Lt Commander</option>
+      <option value="Major The Hon">Major The Hon</option>
+      <option value="Captain Viscount">Captain Viscount</option>
+      <option value="The Rt Hon">The Rt Hon</option>
+      <option value=" Lt"> Lt</option>
+      <option value="Captain The Hon Sir ">Captain The Hon Sir </option>
+      <option value="Prince">Prince</option>
+      <option value="Captain The Jonkheer">Captain The Jonkheer</option>
+      <option value="Viscount">Viscount</option>
+      <option value="Viscountess">Viscountess</option>
+      <option value="The Hon Lady">The Hon Lady</option>
+      <option value="Hon Mrs">Hon Mrs</option>
+      <option value="Hon">Hon</option>
+      <option value="Countess">Countess</option>
+      <option value="Earl">Earl</option>
+      <option value="Lord">Lord</option>
+      <option value="Commodore">Commodore</option>
+      <option value="Air Marshal">Air Marshal</option>
+      <option value="Flight Lieutenant">Flight Lieutenant</option>
+      <option value="The Lord">The Lord</option>
+      <option value="The Lady">The Lady</option>
+      <option value="Baron">Baron</option>
+      <option value="The Baroness">The Baroness</option>
+      <option value="Brigadier">Brigadier</option>
+      <option value="Captain">Captain</option>
+      <option value="Commander">Commander</option>
+      <option value="Count">Count</option>
+      <option value="The Hon">The Hon</option>
+      <option value="The Hon Mrs">The Hon Mrs</option>
+      <option value="Colonel">Colonel</option>
+      <option value="Major">Major</option>
+      <option value="Major General">Major General</option>
+      <option value="His Honour Judge">His Honour Judge</option>
+      <option value="Lt Colonel">Lt Colonel</option>
+      <option value="Rear Admiral">Rear Admiral</option>
+      <option value="Wing Commander">Wing Commander</option>
+      <option value="Vice Admiral">Vice Admiral</option>
+    </select>
   </div>
-  <input type="submit" value="Submit"/>
-</form>
+
+  <div class="form-group">
+    <label for="appointment_summary_first_name">First name</label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[name]" id="appointment_summary_first_name" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_last_name">Last name</label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[name]" id="appointment_summary_last_name" />
+  </div>
+
+  <h3>Postal address</h3>
+
+  <div class="form-group">
+    <label for="appointment_summary_address1">Building and street <span class="visuallyhidden">line 1</span></label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[address1]" id="appointment_summary_address1" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_address2" class="visuallyhidden">Building and street line 2</label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[address2]" id="appointment_summary_address2" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_address3" class="visuallyhidden">Building and street line 3</label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[address3]" id="appointment_summary_address3" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_town">Town or city</label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[town]" id="appointment_summary_town" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_county">County (optional)</label>
+    <input class="form-control input-md-3" type="text" name="appointment_summary[county]" id="appointment_summary_county" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_postcode">Postcode</label>
+    <input class="form-control input-md-2" type="text" name="appointment_summary[postcode]" id="appointment_summary_postcode" />
+  </div>
+
+  <h3>Appointment</h3>
+  <div class="form-group">
+    <label for="appointment_summary_date_of_appointment">Date of appointment</label>
+    <input class="form-control input-md-2" value="2015-03-12" type="date" name="appointment_summary[date_of_appointment]" id="appointment_summary_date_of_appointment" />
+  </div>
+
+  <div class="form-group">
+    <label for="appointment_summary_reference_number">Booking reference number</label>
+    <input class="form-control input-md-2" type="text" name="appointment_summary[reference_number]" id="appointment_summary_reference_number" />
+  </div>
+
+  <h2>Guider details</h2>
+
+  <div class="form-group">
+    <label for="appointment_summary_guider_name">Guider first name</label>
+    <input class="form-control input-md-4" type="text" name="appointment_summary[guider_name]" id="appointment_summary_guider_name" />
+  </div>
+
+  <div class="form-group">
+    <fieldset>
+      <legend>
+        <span>Organisation:</span>
+      </legend>
+
+      <div class="radio">
+        <label for="appointment_summary_guider_organisation_cab">
+          <input class="t-guider-organisation-cab" type="radio" value="cab" name="appointment_summary[guider_organisation]" id="appointment_summary_guider_organisation_cab" />
+          Citizens Advice
+        </label>
+      </div>
+      <div class="radio">
+        <label for="appointment_summary_guider_organisation_tpas">
+          <input class="t-guider-organisation-tpas" type="radio" value="tpas" name="appointment_summary[guider_organisation]" id="appointment_summary_guider_organisation_tpas" />
+          The Pensions Advisory Service
+        </label>
+      </div>
+      <div class="radio">
+        <label for="appointment_summary_guider_organisation_dwp">
+          <input class="t-guider-organisation-dwp" type="radio" value="dwp" name="appointment_summary[guider_organisation]" id="appointment_summary_guider_organisation_dwp" />
+          The Department of Work and Pensions
+        </label>
+      </div>
+    </fieldset>
+  </div>
+
+  <hr>
+
+  <h2>Pension pot details</h2>
+
+  <div class="form-group">
+    <fieldset>
+      <legend>
+        <span>Does visitor/caller have a Defined Contribution pension:</span>
+      </legend>
+      <div class="radio">
+        <label for="appointment_summary_eligibility_yes">
+          <input class="t-income-in-retirement-pension" type="radio" value="yes" name="appointment_summary[eligibility]" id="appointment_summary_eligibility_yes" />
+          Yes
+        </label>
+      </div>
+      <div class="radio">
+        <label for="appointment_summary_eligibility_no">
+          <input class="t-income-in-retirement-other" type="radio" value="no" name="appointment_summary[eligibility]" id="appointment_summary_eligibility_no" />
+          No
+        </label>
+      </div>
+      <div class="radio">
+        <label for="appointment_summary_eligibility_unknown">
+          <input class="t-income-in-retirement-other" type="radio" value="unknown" name="appointment_summary[eligibility]" id="appointment_summary_eligibility_unknown" />
+          Don't know
+        </label>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="display_if_eligible">
+    <div class="row">
+      <div class="col-md-8" id="col-pension-pot-value">
+        <div class="form-group form-inline">
+          <label for="appointment_summary_value_of_pension_pots">
+            Value of pension pots
+            <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
+          </label><br />
+          £ <input placeholder="27500" class="form-control input-md-2 js-numbers-only" type="text" name="appointment_summary[value_of_pension_pots]" id="appointment_summary_value_of_pension_pots" />
+
+          <span class="display_if_range">
+            to
+            <label for="appointment_summary_value_of_pension_pots_max" class="visuallyhidden">Max value of pension pots (optional)</label>
+            £ <input class="form-control input-md-2 js-numbers-only" type="text" name="appointment_summary[value_of_pension_pots]" id="appointment_summary_value_of_pension_pots_max" />
+            <span class="hide-with-js"> (optional)</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Sources of income in retirement:</span>
+        </legend>
+        <div class="radio">
+          <label for="appointment_summary_income_in_retirement_pension">
+            <input class="t-income-in-retirement-pension" type="radio" value="pension" name="appointment_summary[income_in_retirement]" id="appointment_summary_income_in_retirement_pension" />
+            Defined contribution pension and state pension (if eligible) only
+          </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_income_in_retirement_other">
+            <input class="t-income-in-retirement-other" type="radio" value="other" name="appointment_summary[income_in_retirement]" id="appointment_summary_income_in_retirement_other" />
+            Other income is available
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <hr>
+
+    <h2>Retirement plans and pension options</h2>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Circumstances and preferences:</span>
+        </legend>
+        <p>Leave blank if none apply</p>
+
+        <div class="checkbox">
+          <label for="appointment_summary_continue_working">
+            <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[continue_working]" id="appointment_summary_continue_working" />
+            Plans to continue working for a while
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label for="appointment_summary_unsure">
+            <input class="t-unsure" type="checkbox" value="1" name="appointment_summary[unsure]" id="appointment_summary_unsure" />
+            Unsure about plans in retirement
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label for="appointment_summary_leave_inheritance">
+            <input class="t-leave-inheritance" type="checkbox" value="1" name="appointment_summary[leave_inheritance]" id="appointment_summary_leave_inheritance" />
+            Plans to leave money to someone
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label for="appointment_summary_wants_flexibility">
+            <input class="t-wants-flexibility" type="checkbox" value="1" name="appointment_summary[wants_flexibility]" id="appointment_summary_wants_flexibility" />
+            Wants flexibility when taking money
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label for="appointment_summary_wants_security">
+            <input class="t-wants-security" type="checkbox" value="1" name="appointment_summary[wants_security]" id="appointment_summary_wants_security" />
+            Wants a guaranteed income
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label for="appointment_summary_wants_lump_sum">
+            <input class="t-wants-lump-sum" type="checkbox" value="1" name="appointment_summary[wants_lump_sum]" id="appointment_summary_wants_lump_sum" />
+            Needs a certain amount of money now
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label for="appointment_summary_poor_health">
+            <input class="t-poor-health" type="checkbox" value="1" name="appointment_summary[poor_health]" id="appointment_summary_poor_health" />
+            Has poor health
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Record of guidance</h2>
+
+  <div class="form-group">
+    <fieldset>
+      <legend>
+        <span>Format preference:</span>
+      </legend>
+      <div class="radio">
+        <label for="appointment_summary_format_preferences_large_standard">
+          <input type="radio" checked="checked" value="standard" name="appointment_summary[format_preferences]" id="appointment_summary_format_preferences_large_standard" />
+          Standard
+        </label>
+      </div>
+      <div class="radio">
+        <label for="appointment_summary_format_preferences_large_text">
+          <input type="radio" value="large" name="appointment_summary[format_preferences]" id="appointment_summary_format_preferences_large_text" />
+          Large Text
+        </label>
+      </div>
+      <div class="radio">
+        <label for="appointment_summary_format_preferences_braille">
+          <input type="radio" value="braille" name="appointment_summary[format_preferences]" id="appointment_summary_format_preferences_braille" />
+          Braille
+        </label>
+      </div>
+    </fieldset>
+  </div>
+
+  <p>
+    <input type="submit" name="commit" value="Submit" class="btn-success t-submit btn-lg" />
+  </p>
+
+</div>
