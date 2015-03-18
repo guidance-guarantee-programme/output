@@ -18,10 +18,4 @@ RSpec.describe OutputDocument do
 
     it { is_expected.to include(name) }
   end
-
-  describe '#pdf' do
-    subject { PDF::Inspector::Text.analyze(output_document.pdf).strings.join }
-
-    it { is_expected.to include(name) }
-  end
 end

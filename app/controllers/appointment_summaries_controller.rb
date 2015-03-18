@@ -10,7 +10,7 @@ class AppointmentSummariesController < ApplicationController
   def create
     @appointment_summary = AppointmentSummary.create(appointment_summary_params.merge(user: current_user))
     if @appointment_summary.persisted?
-      IssueOutputDocument.new(@appointment_summary).call
+      render :create
     else
       render :new
     end
@@ -20,14 +20,7 @@ class AppointmentSummariesController < ApplicationController
     appointment_summary = AppointmentSummary.find(params[:id])
     output_document = OutputDocument.new(appointment_summary)
 
-    respond_to do |format|
-      format.html { render html: output_document.html.html_safe }
-      format.pdf do
-        send_data output_document.pdf,
-                  filename: 'pension_wise.pdf', type: 'application/pdf',
-                  disposition: :inline
-      end
-    end
+    render html: output_document.html.html_safe
   end
 
   private
