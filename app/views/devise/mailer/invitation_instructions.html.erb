@@ -15,22 +15,37 @@
     /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
     /* End reset */
 
-    #govuk-email-content {
-      max-width: 580px;
-    }
-
-    #pensionwise-email-header {
+    .outer-container {
       width: 100%;
-      background-color: #f4f5f5;
     }
 
     td {
       padding:0 0 0 15px;
     }
 
-    #govuk-masthead tr td,
-    #pensionwise-masthead tr td{
+    .inner-container tr td{
       padding:0;
+    }
+
+    .email-content {
+      max-width: 580px;
+    }
+
+    table.separator {
+      width: 100%;
+      height: 1px;
+      line-height:1px;
+      font-size:1px;
+    }
+
+    table.separator td {
+      background:none;
+      border-top:solid 1px #bfc1c3;
+      border-width:1px 0 0 0;
+      height:1px;
+      line-height:1px;
+      font-size:1px;
+      width:100%;
     }
 
     h1, h2, h3, h4, h5, h6, p {
@@ -59,6 +74,11 @@
       font-size: 20px;
       line-height: 1.111111111;
       padding: 15px 0;
+    }
+
+    .emphasize {
+      font-size: 20px;
+      font-weight: bold;
     }
 
     hr {
@@ -153,62 +173,40 @@
 </head>
 <body style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;margin: 0;padding: 0;width: 100% !important;">
 
-<table id="pensionwise-email-header" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;background-color: #f4f5f5;">
-  <tr>
-    <td style="padding: 0 0 0 15px;border-collapse: collapse;">
-
-      <table id="pensionwise-masthead" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
-        <tr>
-          <td style="padding: 0;border-collapse: collapse;">
-            <img src="https://www.pensionwise.gov.uk/email/pensionwise_logotype.png" width="138" height="82" alt="Pension Wise" style="outline: none;text-decoration: none;display: block;-ms-interpolation-mode: bicubic;">
-          </td>
-        </tr>
-      </table>
-
-    </td>
-  </tr>
-</table>
-
-<table id="govuk-email-content" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;max-width: 580px;">
-  <tr>
-    <td style="padding: 0 0 0 15px;border-collapse: collapse;">
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;">Dear <%= @appointment_summary.name %></p>
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;">
-        You recently had a Pension Wise guidance appointment with <%= @appointment_summary.guider_name %> at <%= @appointment_summary.guider_organisation %> on <%= @appointment_summary.date_of_appointment.to_s(:long) %>.
-      </p>
-
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;">
-        Please see the attached record of your appointment. This contains information about:
-      </p>
-
-      <ul style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin-top: 15px;margin-bottom: 15px;font-size: 16px;line-height: 1.315789474;">
-        <li>your pension pot value</li>
-        <li>your personal circumstances and retirement plans</li>
-        <li>the pension pot options discussed in the appointment</li>
-        <li>the next steps you can take</li>
-        <li>useful contact numbers</li>
-      </ul>
-
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;">Choosing what to do with your pension pot is an important financial decision.
-        You should take your time and consider speaking to an independent financial
-        advisor to help you.</p>
-
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;"><strong>Pension Wise is an impartial government service. We don’t
-        recommend any products or tell you what to do with your money.</strong></p>
-
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;">Yours sincerely,</p>
-
-      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;">Pension Wise</p>
-    </td>
-  </tr>
-</table>
-
-<table class="outer-container" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+<table class="outer-container" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
   <tr>
     <td style="padding: 0 0 0 15px;border-collapse: collapse;">
       <table class="inner-container" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
         <tr>
-          <td style="padding: 0 0 0 15px;border-collapse: collapse;">
+          <td style="padding: 0;border-collapse: collapse;">
+            <img src="https://www.pensionwise.gov.uk/email/pw.gif" width="183" height="100" alt="Pension Wise" style="outline: none;text-decoration: none;display: block;-ms-interpolation-mode: bicubic;">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table class="email-content" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;max-width: 580px;">
+  <tr>
+    <td style="padding: 0 0 0 15px;border-collapse: collapse;">
+      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;"><%= t("devise.mailer.invitation_instructions.hello", name: (@resource.name || @resource.email)) %></p>
+
+      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;"><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url).html_safe %></p>
+
+      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;"><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, :invitation_token => @token) %></p>
+
+      <p style="color: #0B0C0C;font-family: Helvetica, Arial, sans-serif;margin: 15px 0;font-size: 16px;line-height: 1.315789474;"><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+    </td>
+  </tr>
+</table>
+
+<table class="outer-container" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 100%;">
+  <tr>
+    <td style="padding: 0 0 0 15px;border-collapse: collapse;">
+      <table class="inner-container" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+        <tr>
+          <td style="padding: 0;border-collapse: collapse;">
             <img src="https://www.pensionwise.gov.uk/email/hmg.gif" width="166" height="100" alt="HM Government" style="outline: none;text-decoration: none;display: block;-ms-interpolation-mode: bicubic;">
           </td>
         </tr>

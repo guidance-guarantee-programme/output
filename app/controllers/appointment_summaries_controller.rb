@@ -10,7 +10,7 @@ class AppointmentSummariesController < ApplicationController
   def create
     @appointment_summary = AppointmentSummary.create(appointment_summary_params.merge(user: current_user))
     if @appointment_summary.persisted?
-      IssueOutputDocument.new(@appointment_summary).call
+      render :create
     else
       render :new
     end
@@ -20,24 +20,19 @@ class AppointmentSummariesController < ApplicationController
     appointment_summary = AppointmentSummary.find(params[:id])
     output_document = OutputDocument.new(appointment_summary)
 
-    respond_to do |format|
-      format.html { render html: output_document.html.html_safe }
-      format.pdf do
-        send_data output_document.pdf,
-                  filename: 'pension_wise.pdf', type: 'application/pdf',
-                  disposition: :inline
-      end
-    end
+    render html: output_document.html.html_safe
   end
 
   private
 
   def appointment_summary_params
-    params.require(:appointment_summary).permit(:name, :email_address, :address,
-                                                :date_of_appointment, :value_of_pension_pots,
-                                                :income_in_retirement, :guider_name,
-                                                :guider_organisation, :continue_working, :unsure,
-                                                :leave_inheritance, :wants_flexibility,
-                                                :wants_security, :wants_lump_sum, :poor_health)
+    params.require(:appointment_summary).permit(:name, :email_address, :address_line_1,
+                                                :address_line_2, :address_line_3, :town, :county,
+                                                :postcode, :date_of_appointment, :reference_number,
+                                                :value_of_pension_pots, :income_in_retirement,
+                                                :guider_name, :guider_organisation,
+                                                :continue_working, :unsure, :leave_inheritance,
+                                                :wants_flexibility, :wants_security,
+                                                :wants_lump_sum, :poor_health)
   end
 end
