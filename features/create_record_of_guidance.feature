@@ -1,4 +1,3 @@
-@wip
 Feature: Create record of guidance
   As a Pension Wise customer
   I want a record of my guidance appointment
