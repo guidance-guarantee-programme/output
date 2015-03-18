@@ -1,5 +1,7 @@
 @import "govuk_admin_template";
 
+@import "lib/*";
 @import "base/*";
 @import "helpers/*";
+@import "components/*";
 @import "layout";
