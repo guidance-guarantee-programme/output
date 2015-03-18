@@ -25,9 +25,7 @@ When(/^appointment details are captured$/) do
 end
 
 Then(/^a record of guidance document is created$/) do
-  text = PDF::Inspector::Text.analyze(page.source).strings.join
-
-  expect(page.response_headers['Content-Type']).to eql('application/pdf')
+  text = page.source
   expect(text).to include('Joe Bloggs')
   expect(text).to include('February 5, 2015')
   expect(text).to include('£35,000')
