@@ -1,0 +1,33 @@
+<%= @output_document.html.html_safe %>
+
+<%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
+  <%= f.hidden_field :title %>
+  <%= f.hidden_field :first_name %>
+  <%= f.hidden_field :last_name %>
+  <%= f.hidden_field :address_line_1 %>
+  <%= f.hidden_field :address_line_2 %>
+  <%= f.hidden_field :address_line_3 %>
+  <%= f.hidden_field :town %>
+  <%= f.hidden_field :county %>
+  <%= f.hidden_field :postcode %>
+  <%= f.hidden_field :date_of_appointment %>
+  <%= f.hidden_field :reference_number %>
+  <%= f.hidden_field :guider_name %>
+  <%= f.hidden_field :guider_organisation %>
+  <%= f.hidden_field :has_defined_contribution_pension %>
+  <%= f.hidden_field :value_of_pension_pots %>
+  <%= f.hidden_field :upper_value_of_pension_pots %>
+  <%= f.hidden_field :income_in_retirement %>
+  <%= f.hidden_field :continue_working %>
+  <%= f.hidden_field :unsure %>
+  <%= f.hidden_field :leave_inheritance %>
+  <%= f.hidden_field :wants_flexibility %>
+  <%= f.hidden_field :wants_security %>
+  <%= f.hidden_field :wants_lump_sum %>
+  <%= f.hidden_field :poor_health %>
+  <%= f.hidden_field :format_preference %>
+
+  <p>
+    <%= f.submit 'Confirm', class: %w(btn-success t-confirm btn-lg) %>
+  </p>
+<% end %>
