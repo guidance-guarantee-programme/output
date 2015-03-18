@@ -2,5 +2,6 @@
   "name": "record_of_guidance",
   "private": true,
   "dependencies": {
+    "jquery-tiny-pubsub": "https://github.com/cowboy/jquery-tiny-pubsub.git"
   }
 }
