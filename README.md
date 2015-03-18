@@ -1,8 +1,8 @@
-# Record of Guidance
+# Output
 
-[![Build Status](https://travis-ci.org/guidance-guarantee-programme/record_of_guidance.svg)](https://travis-ci.org/guidance-guarantee-programme/record_of_guidance)
+[![Build Status](https://travis-ci.org/guidance-guarantee-programme/output.svg)](https://travis-ci.org/guidance-guarantee-programme/output)
 
-Record of guidance from [Pension Wise].
+Issue [Pension Wise] appointment output.
 
 
 ## Prerequisites
@@ -21,7 +21,7 @@ Record of guidance from [Pension Wise].
 Clone the repository:
 
 ```sh
-$ git clone https://github.com/guidance-guarantee-programme/record_of_guidance.git
+$ git clone https://github.com/guidance-guarantee-programme/output.git
 ```
 
 Setup the application:
