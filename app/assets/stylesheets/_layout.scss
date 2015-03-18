@@ -1,3 +1,11 @@
 .container {
   max-width: 960px;
 }
+
+.js .consent p,
+.js .display_if_consent,
+.js .display_if_eligible,
+.js .display_if_range,
+.js .hide-with-js {
+  display: none;
+}

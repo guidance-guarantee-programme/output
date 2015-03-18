@@ -5,7 +5,7 @@
 <p class="lead">Use this form to enter the visitor or caller's personal details provided during
   the guidance appointment and to issue a personalised record of guidance.</p>
 
-<div id="consent">
+<div class="consent">
   <p class="highlight highlight-orange">Has visitor consented to sharing data for purpose of creating and sending record of guidance?</p>
 </div>
 
@@ -90,6 +90,13 @@
   </div>
 
   <h3>Postal address</h3>
+
+  <!-- postode lookup field will be inserted by vendor plugin -->
+  <div class="form-group form-inline postcode-lookup">
+    <label for="appointment_summary_lookup" class="visuallyhidden">Postcode to find address for</label><br>
+    <input class="form-control input-md-2 add-right-margin" placeholder="Enter your postcode" type="text" name="appointment_summary[lookup]" id="appointment_summary_lookup" />
+    <button class="btn-success btn-sm" onclick="return false">Find UK address</button>
+  </div>
 
   <div class="form-group">
     <label for="appointment_summary_address1">Building and street <span class="visuallyhidden">line 1</span></label>
@@ -334,3 +341,70 @@
   </p>
 
 </div>
+
+<script type="text/html" id="consent">
+  <div class="checkbox">
+    <label for="appointment_summary_consent">
+      <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[consent]" id="appointment_summary_consent" />
+      Visitor/caller has consented to sharing data for purpose of creating and sending record of guidance
+    </label>
+  </div>
+</script>
+
+<script type="text/html" id="pension_pot_accuracy">
+  <div class="col-md-3 col-accuracy">
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>How accurate is the value given by the vistor/calller?</span>
+        </legend>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_1">
+            <input class="t-income-in-retirement-pension" checked="checked" type="radio" value="exact" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_1" />
+            Exact
+          </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_2">
+            <input class="t-income-in-retirement-other" type="radio" value="approximate" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_2" />
+            Approximate
+          </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_3">
+            <input class="t-income-in-retirement-other" type="radio" value="range" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_3" />
+            A range
+        </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_4">
+            <input class="t-income-in-retirement-other" type="radio" value="notprovided" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_4" />
+            Not provided
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="pension_pot_input_error">
+  <span id="errmsg" class="error"></span>
+</script>
+
+<script type="text/html" id="pension_pot_preview">
+  <div class="preview">
+    <div class="preview__context">Document preview</div>
+    <p class="preview__heading">What you told us about your pension pot</p>
+
+    <p class="preview__intro">This is your personal or workplace pension based on how much has been paid<br />
+      into your pot (defined contribution pension).</p>
+
+    <p class="preview__label">Total value of your pension pot:</p>
+    <p class="preview__amount">£</p>
+    <p class="preview__note">If you have more than one pot this is their combined value.</p>
+  </div>
+</script>
+
+<% content_for :body_end do %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
