@@ -10,7 +10,7 @@ require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
 
-module RecordOfGuidance
+module Output
   class Application < Rails::Application
     config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'] }
     config.active_job.queue_adapter = :sidekiq
