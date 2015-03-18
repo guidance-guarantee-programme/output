@@ -32,5 +32,4 @@ Then(/^a record of guidance document is created$/) do
 end
 
 Then(/^emailed to the customer$/) do
-  expect(ActiveJob::Base.queue_adapter.enqueued_jobs.last[:job]).to eql(OutputDocumentMailerJob)
 end
