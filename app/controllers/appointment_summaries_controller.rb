@@ -7,6 +7,15 @@ class AppointmentSummariesController < ApplicationController
                                                   date_of_appointment: DateTime.now)
   end
 
+  def preview
+    @appointment_summary = AppointmentSummary.new(appointment_summary_params)
+    if @appointment_summary.valid?
+      @output_document = OutputDocument.new(@appointment_summary)
+    else
+      render :new
+    end
+  end
+
   def create
     @appointment_summary = AppointmentSummary.create(appointment_summary_params.merge(user: current_user))
     if @appointment_summary.persisted?

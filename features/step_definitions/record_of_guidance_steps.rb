@@ -17,19 +17,21 @@ When(/^appointment details are captured$/) do
   page.wants_lump_sum.set true
   page.poor_health.set true
   page.submit.click
+end
 
+When(/^I preview the record of guidance document$/) do
+  expect(AppointmentSummary.count).to eq(0)
+
+  page = RecordOfGuidancePreviewPage.new
+  expect(page).to be_displayed
+  expect(page.name.text).to eql('Joe Bloggs')
+
+  page.confirm.click
+end
+
+Then(/^a record of guidance document is created$/) do
   appointment_summary = AppointmentSummary.last
 
   expect(appointment_summary.name).to eql('Joe Bloggs')
   expect(appointment_summary.email_address).to eql('joe.bloggs@example.com')
-end
-
-Then(/^a record of guidance document is created$/) do
-  text = page.source
-  expect(text).to include('Joe Bloggs')
-  expect(text).to include('February 5, 2015')
-  expect(text).to include('£35,000')
-end
-
-Then(/^emailed to the customer$/) do
 end
