@@ -6,274 +6,292 @@
   <p class="lead">Use this form to enter the caller's personal details provided during the guidance
     appointment and to issue a personalised record of guidance.</p>
 
-  <% if @appointment_summary.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <ul>
-        <% @appointment_summary.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+  <div class="consent">
+    <p class="highlight highlight-orange">Has caller consented to sharing data for purpose of creating and sending record of guidance?</p>
+  </div>
+
+  <div class="display_if_consent">
+    <% if @appointment_summary.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <ul>
+          <% @appointment_summary.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2>Caller details</h2>
+
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.select :title, AppointmentSummary::TITLES,
+                   { prompt: true }, { class: %w(form-control input-md-2 t-title) } %>
     </div>
-  <% end %>
 
-  <h2>Caller details</h2>
+    <div class="form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.select :title, AppointmentSummary::TITLES,
-                 { prompt: true }, { class: %w(form-control input-md-2 t-title) } %>
-  </div>
+    <div class="form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name) %>
-  </div>
+    <h3 id="postal-address-heading">Postal address</h3>
 
-  <div class="form-group">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :address_line_1 do %>Building and street <span class="visuallyhidden">line 1</span><% end %>
+      <%= f.text_field :address_line_1, class: %w(form-control input-md-3 t-address-line-1) %>
+    </div>
 
-  <h3 id="postal-address-heading">Postal address</h3>
+    <div class="form-group">
+      <%= f.label :address_line_2, 'Building and street line 2', class: 'visuallyhidden' %>
+      <%= f.text_field :address_line_2, class: %w(form-control input-md-3 t-address-line-2) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :address_line_1 do %>Building and street <span class="visuallyhidden">line 1</span><% end %>
-    <%= f.text_field :address_line_1, class: %w(form-control input-md-3 t-address-line-1) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :address_line_3, 'Building and street line 3', class: 'visuallyhidden' %>
+      <%= f.text_field :address_line_3, class: %w(form-control input-md-3 t-address-line-3) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :address_line_2, 'Building and street line 2', class: 'visuallyhidden' %>
-    <%= f.text_field :address_line_2, class: %w(form-control input-md-3 t-address-line-2) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :town, 'Town or city' %>
+      <%= f.text_field :town, class: %w(form-control input-md-3 t-town) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :address_line_3, 'Building and street line 3', class: 'visuallyhidden' %>
-    <%= f.text_field :address_line_3, class: %w(form-control input-md-3 t-address-line-3) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :county, 'County (optional)' %>
+      <%= f.text_field :county, class: %w(form-control input-md-3 t-county) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :town, 'Town or city' %>
-    <%= f.text_field :town, class: %w(form-control input-md-3 t-town) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :postcode %>
+      <%= f.text_field :postcode, class: %w(form-control input-md-2 t-postcode) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :county, 'County (optional)' %>
-    <%= f.text_field :county, class: %w(form-control input-md-3 t-county) %>
-  </div>
+    <h3>Appointment</h3>
 
-  <div class="form-group">
-    <%= f.label :postcode %>
-    <%= f.text_field :postcode, class: %w(form-control input-md-2 t-postcode) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :date_of_appointment %>
+      <%= f.date_field :date_of_appointment,
+                       class: %w(form-control input-md-2 t-date-of-appointment) %>
+    </div>
 
-  <h3>Appointment</h3>
+    <div class="form-group">
+      <%= f.label :reference_number, 'Booking reference number' %>
+      <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :date_of_appointment %>
-    <%= f.date_field :date_of_appointment,
-                     class: %w(form-control input-md-2 t-date-of-appointment) %>
-  </div>
+    <h2>Guider details</h2>
 
-  <div class="form-group">
-    <%= f.label :reference_number, 'Booking reference number' %>
-    <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number) %>
-  </div>
+    <div class="form-group">
+      <%= f.label :guider_name, 'First name of guider' %>
+      <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name) %>
+    </div>
 
-  <h2>Guider details</h2>
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Organisation:</span>
+        </legend>
 
-  <div class="form-group">
-    <%= f.label :guider_name, 'First name of guider' %>
-    <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name) %>
-  </div>
+        <div class="radio">
+          <%= f.label :guider_organisation, value: 'tpas' do %>
+            <%= f.radio_button :guider_organisation, 'tpas',
+                               class: 't-guider-organisation-tpas' %>
+            The Pensions Advisory Service
+          <% end %>
+        </div>
 
-  <div class="form-group">
-    <fieldset>
-      <legend>
-        <span>Organisation:</span>
-      </legend>
+        <div class="radio">
+          <%= f.label :guider_organisation, value: 'dwp' do %>
+            <%= f.radio_button :guider_organisation, 'dwp',
+                               class: 't-guider-organisation-dwp' %>
+            The Department of Work and Pensions
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
 
-      <div class="radio">
-        <%= f.label :guider_organisation, value: 'tpas' do %>
-          <%= f.radio_button :guider_organisation, 'tpas',
-                             class: 't-guider-organisation-tpas' %>
-          The Pensions Advisory Service
+    <hr>
+
+    <h2>Pension pot details</h2>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Does caller have a Defined Contribution pension?</span>
+        </legend>
+        <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
+          <%= f.radio_button :has_defined_contribution_pension, 'yes',
+                             class: 't-has-defined-contribution-pension-yes' %>
+          Yes
         <% end %>
-      </div>
-
-      <div class="radio">
-        <%= f.label :guider_organisation, value: 'dwp' do %>
-          <%= f.radio_button :guider_organisation, 'dwp',
-                             class: 't-guider-organisation-dwp' %>
-          The Department of Work and Pensions
+        <%= f.label :has_defined_contribution_pension, value: 'no' do %>
+          <%= f.radio_button :has_defined_contribution_pension, 'no',
+                             class: 't-has-defined-contribution-pension-no' %>
+          No
         <% end %>
-      </div>
-    </fieldset>
-  </div>
+        <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
+          <%= f.radio_button :has_defined_contribution_pension, 'unknown',
+                             class: 't-has-defined-contribution-pension-unknown' %>
+          Don't know
+        <% end %>
+      </fieldset>
+    </div>
 
-  <hr>
-
-  <h2>Pension pot details</h2>
-
-  <div class="form-group">
-    <fieldset>
-      <legend>
-        <span>Does caller have a Defined Contribution pension?</span>
-      </legend>
-      <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
-        <%= f.radio_button :has_defined_contribution_pension, 'yes',
-                           class: 't-has-defined-contribution-pension-yes' %>
-        Yes
+    <div class="form-group">
+      <%= f.label :value_of_pension_pots do %>
+        Value of pension pots
+        <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
+        <%= f.text_field :value_of_pension_pots,
+                         class: %w(form-control input-md-2 t-value-of-pension-pots) %>
       <% end %>
-      <%= f.label :has_defined_contribution_pension, value: 'no' do %>
-        <%= f.radio_button :has_defined_contribution_pension, 'no',
-                           class: 't-has-defined-contribution-pension-no' %>
-        No
+    </div>
+
+    <div class="form-group">
+      <%= f.label :upper_value_of_pension_pots do %>
+        Upper value of pension pots (optional)
+        <span class="input-help">Only use numbers, do not include pence, e.g 30000</span>
+        <%= f.text_field :upper_value_of_pension_pots,
+                         class: %w(form-control input-md-2 t-upper-value-of-pension-pots) %>
       <% end %>
-      <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
-        <%= f.radio_button :has_defined_contribution_pension, 'unknown',
-                           class: 't-has-defined-contribution-pension-unknown' %>
-        Don't know
-      <% end %>
-    </fieldset>
+    </div>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Income in retirement:</span>
+        </legend>
+        <div class="radio">
+          <%= f.label :income_in_retirement, value: 'pension' do %>
+            <%= f.radio_button :income_in_retirement, 'pension',
+                               class: 't-income-in-retirement-pension' %>
+            Defined contribution pot is their only source of income
+          <% end %>
+        </div>
+
+        <div class="radio">
+          <%= f.label :income_in_retirement, value: 'other' do %>
+            <%= f.radio_button :income_in_retirement, 'other',
+                               class: 't-income-in-retirement-other' %>
+            Other income is available in retirement
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+
+    <hr>
+
+    <h2>Retirement plans and pension options</h2>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Circumstances and preferences:</span>
+        </legend>
+        <div class="checkbox">
+          <%= f.label :continue_working do %>
+            <%= f.check_box :continue_working, class: 't-continue-working' %>
+            Plans to continue working for a while
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :unsure do %>
+            <%= f.check_box :unsure, class: 't-unsure' %>
+            Unsure about plans in retirement
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :leave_inheritance do %>
+            <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
+            Plans to leave money to someone
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :wants_flexibility do %>
+            <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
+            Wants flexibility when taking money
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :wants_security do %>
+            <%= f.check_box :wants_security, class: 't-wants-security' %>
+            Wants a guaranteed income
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :wants_lump_sum do %>
+            <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
+            Needs a certain amount of money now
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :poor_health do %>
+            <%= f.check_box :poor_health, class: 't-poor-health' %>
+            Has poor health
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+
+    <h2>Record of guidance</h2>
+
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Format preference:</span>
+        </legend>
+        <div class="radio">
+          <%= f.label :format_preference, value: 'standard' do %>
+            <%= f.radio_button :format_preference, 'standard',
+                               class: 't-format-preference-standard' %>
+            Standard
+          <% end %>
+        </div>
+        <div class="radio">
+          <%= f.label :format_preference, value: 'large_text' do %>
+            <%= f.radio_button :format_preference, 'large_text',
+                               class: 't-format-preference-large-text' %>
+            Large Text
+          <% end %>
+        </div>
+        <div class="radio">
+          <%= f.label :format_preference, value: 'braille' do %>
+            <%= f.radio_button :format_preference, 'braille',
+                               class: 't-format-preference-braille' %>
+            Braille
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+
+    <p>
+      <%= f.submit 'Submit', class: %w(btn-success t-submit btn-lg) %>
+    </p>
+
   </div>
+<% end %>
 
-  <div class="form-group">
-    <%= f.label :value_of_pension_pots do %>
-      Value of pension pots
-      <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
-      <%= f.text_field :value_of_pension_pots,
-                       class: %w(form-control input-md-2 t-value-of-pension-pots) %>
-    <% end %>
+<script type="text/html" id="consent">
+  <div class="checkbox">
+    <label for="appointment_summary_consent">
+      <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[consent]" id="appointment_summary_consent" />
+      Caller has consented to sharing data for purpose of creating and sending record of guidance
+    </label>
   </div>
+</script>
 
-  <div class="form-group">
-    <%= f.label :upper_value_of_pension_pots do %>
-      Upper value of pension pots (optional)
-      <span class="input-help">Only use numbers, do not include pence, e.g 30000</span>
-      <%= f.text_field :upper_value_of_pension_pots,
-                       class: %w(form-control input-md-2 t-upper-value-of-pension-pots) %>
-    <% end %>
-  </div>
-
-  <div class="form-group">
-    <fieldset>
-      <legend>
-        <span>Income in retirement:</span>
-      </legend>
-      <div class="radio">
-        <%= f.label :income_in_retirement, value: 'pension' do %>
-          <%= f.radio_button :income_in_retirement, 'pension',
-                             class: 't-income-in-retirement-pension' %>
-          Defined contribution pot is their only source of income
-        <% end %>
-      </div>
-
-      <div class="radio">
-        <%= f.label :income_in_retirement, value: 'other' do %>
-          <%= f.radio_button :income_in_retirement, 'other',
-                             class: 't-income-in-retirement-other' %>
-          Other income is available in retirement
-        <% end %>
-      </div>
-    </fieldset>
-  </div>
-
-  <hr>
-
-  <h2>Retirement plans and pension options</h2>
-
-  <div class="form-group">
-    <fieldset>
-      <legend>
-        <span>Circumstances and preferences:</span>
-      </legend>
-      <div class="checkbox">
-        <%= f.label :continue_working do %>
-          <%= f.check_box :continue_working, class: 't-continue-working' %>
-          Plans to continue working for a while
-        <% end %>
-      </div>
-
-      <div class="checkbox">
-        <%= f.label :unsure do %>
-          <%= f.check_box :unsure, class: 't-unsure' %>
-          Unsure about plans in retirement
-        <% end %>
-      </div>
-
-      <div class="checkbox">
-        <%= f.label :leave_inheritance do %>
-          <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
-          Plans to leave money to someone
-        <% end %>
-      </div>
-
-      <div class="checkbox">
-        <%= f.label :wants_flexibility do %>
-          <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
-          Wants flexibility when taking money
-        <% end %>
-      </div>
-
-      <div class="checkbox">
-        <%= f.label :wants_security do %>
-          <%= f.check_box :wants_security, class: 't-wants-security' %>
-          Wants a guaranteed income
-        <% end %>
-      </div>
-
-      <div class="checkbox">
-        <%= f.label :wants_lump_sum do %>
-          <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
-          Needs a certain amount of money now
-        <% end %>
-      </div>
-
-      <div class="checkbox">
-        <%= f.label :poor_health do %>
-          <%= f.check_box :poor_health, class: 't-poor-health' %>
-          Has poor health
-        <% end %>
-      </div>
-    </fieldset>
-  </div>
-
-  <hr>
-
-  <h2>Record of guidance</h2>
-
-  <div class="form-group">
-    <fieldset>
-      <legend>
-        <span>Format preference:</span>
-      </legend>
-      <div class="radio">
-        <%= f.label :format_preference, value: 'standard' do %>
-          <%= f.radio_button :format_preference, 'standard',
-                             class: 't-format-preference-standard' %>
-          Standard
-        <% end %>
-      </div>
-      <div class="radio">
-        <%= f.label :format_preference, value: 'large_text' do %>
-          <%= f.radio_button :format_preference, 'large_text',
-                             class: 't-format-preference-large-text' %>
-          Large Text
-        <% end %>
-      </div>
-      <div class="radio">
-        <%= f.label :format_preference, value: 'braille' do %>
-          <%= f.radio_button :format_preference, 'braille',
-                             class: 't-format-preference-braille' %>
-          Braille
-        <% end %>
-      </div>
-    </fieldset>
-  </div>
-
-  <p>
-    <%= f.submit 'Submit', class: %w(btn-success t-submit btn-lg) %>
-  </p>
+<% content_for :body_end do %>
+  <%= javascript_include_tag 'application' %>
 <% end %>
 
 <script type="text/html" id="postcode-lookup-template">
