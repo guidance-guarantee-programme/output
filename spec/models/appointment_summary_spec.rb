@@ -42,6 +42,11 @@ RSpec.describe AppointmentSummary, type: :model do
 
   it do
     is_expected
+      .to validate_inclusion_of(:has_defined_contribution_pension).in_array(%w(yes no unknown))
+  end
+
+  it do
+    is_expected
       .to validate_inclusion_of(:format_preference).in_array(%w(standard large_text braille))
   end
 end

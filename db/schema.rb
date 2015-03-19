@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319134751) do
+ActiveRecord::Schema.define(version: 20150319141613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointment_summaries", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.date     "date_of_appointment"
     t.string   "value_of_pension_pots"
     t.string   "income_in_retirement"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150319134751) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "format_preference"
+    t.string   "has_defined_contribution_pension"
   end
 
   add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
