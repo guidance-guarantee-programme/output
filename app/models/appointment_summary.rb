@@ -51,5 +51,6 @@ class AppointmentSummary < ActiveRecord::Base
   validates :town, presence: true
   validates :postcode, presence: true, postcode: true
 
+  validates :has_defined_contribution_pension, inclusion: { in: %w(yes no unknown) }
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
 end
