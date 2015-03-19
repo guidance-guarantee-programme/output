@@ -142,22 +142,16 @@
       </fieldset>
     </div>
 
-    <div class="form-group">
-      <%= f.label :value_of_pension_pots do %>
-        Value of pension pots
-        <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
-        <%= f.text_field :value_of_pension_pots,
-                         class: %w(form-control input-md-2 t-value-of-pension-pots) %>
-      <% end %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :upper_value_of_pension_pots do %>
-        Upper value of pension pots (optional)
-        <span class="input-help">Only use numbers, do not include pence, e.g 30000</span>
-        <%= f.text_field :upper_value_of_pension_pots,
-                         class: %w(form-control input-md-2 t-upper-value-of-pension-pots) %>
-      <% end %>
+    <div class="row">
+      <div class="col-md-8" id="col-pension-pot-value">
+        <div class="form-group form-inline">
+          <%= f.label :value_of_pension_pots do %>
+            Value of pension pots
+            <span class="input-help">Only use numbers, do not include pence, e.g 27500</span><br />
+            £ <%= f.text_field :value_of_pension_pots, class: %w(form-control t-value-of-pension-pots) %>
+          <% end %>
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
@@ -290,10 +284,6 @@
   </div>
 </script>
 
-<% content_for :body_end do %>
-  <%= javascript_include_tag 'application' %>
-<% end %>
-
 <script type="text/html" id="postcode-lookup-template">
   <div class="form-group form-inline postcode-lookup" id="postcode-lookup">
     <label for="appointment_summary_lookup" class="visuallyhidden">Postcode or address to search for</label><br>
@@ -303,3 +293,43 @@
   <div class="form-group form-inline" id="postcode-lookup-results-container">
   </div>
 </script>
+
+<script type="text/html" id="pension_pot_accuracy">
+  <div class="col-md-3 col-accuracy">
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>How accurate is the value given by the caller?</span>
+        </legend>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_1">
+            <input class="t-income-in-retirement-pension" checked="checked" type="radio" value="exact" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_1" />
+            Exact
+          </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_2">
+            <input class="t-income-in-retirement-other" type="radio" value="approximate" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_2" />
+            Approximate
+          </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_3">
+            <input class="t-income-in-retirement-other" type="radio" value="range" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_3" />
+            A range
+        </label>
+        </div>
+        <div class="radio">
+          <label for="appointment_summary_accuracy_4">
+            <input class="t-income-in-retirement-other" type="radio" value="notprovided" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_4" />
+            Not provided
+          </label>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</script>
+
+<% content_for :body_end do %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
