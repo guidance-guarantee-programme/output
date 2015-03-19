@@ -124,64 +124,72 @@
         <legend>
           <span>Does caller have a Defined Contribution pension?</span>
         </legend>
-        <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
-          <%= f.radio_button :has_defined_contribution_pension, 'yes',
-                             class: 't-has-defined-contribution-pension-yes' %>
-          Yes
-        <% end %>
-        <%= f.label :has_defined_contribution_pension, value: 'no' do %>
-          <%= f.radio_button :has_defined_contribution_pension, 'no',
-                             class: 't-has-defined-contribution-pension-no' %>
-          No
-        <% end %>
-        <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
-          <%= f.radio_button :has_defined_contribution_pension, 'unknown',
-                             class: 't-has-defined-contribution-pension-unknown' %>
-          Don't know
-        <% end %>
+        <div class="radio">
+          <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
+            <%= f.radio_button :has_defined_contribution_pension, 'yes',
+                               class: 't-has-defined-contribution-pension-yes' %>
+            Yes
+          <% end %>
+        </div>
+        <div class="radio">
+          <%= f.label :has_defined_contribution_pension, value: 'no' do %>
+            <%= f.radio_button :has_defined_contribution_pension, 'no',
+                               class: 't-has-defined-contribution-pension-no' %>
+            No
+          <% end %>
+        </div>
+        <div class="radio">
+          <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
+            <%= f.radio_button :has_defined_contribution_pension, 'unknown',
+                               class: 't-has-defined-contribution-pension-unknown' %>
+            Don't know
+          <% end %>
+        </div>
       </fieldset>
     </div>
 
-    <div class="row">
-      <div class="col-md-8" id="col-pension-pot-value">
-        <div class="form-group form-inline">
-          <%= f.label :value_of_pension_pots do %>
-            Value of pension pots
-            <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
-          <% end %><br />
-          £ <%= f.text_field :value_of_pension_pots, class: %w(form-control t-value-of-pension-pots input-md-2 js-numbers-only), placeholder: 27500 %>
+    <div class="display_if_eligible">
+      <div class="row">
+        <div class="col-md-8" id="col-pension-pot-value">
+          <div class="form-group form-inline">
+            <%= f.label :value_of_pension_pots do %>
+              Value of pension pots
+              <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
+            <% end %><br />
+            £ <%= f.text_field :value_of_pension_pots, class: %w(form-control t-value-of-pension-pots input-md-2 js-numbers-only), placeholder: 27500 %>
 
-          <span class="display_if_range">
+            <span class="display_if_range">
             to
             <label for="appointment_summary_value_of_pension_pots_max" class="visuallyhidden">Max value of pension pots (optional)</label>
             £ <input class="form-control input-md-2 js-numbers-only" type="text" name="appointment_summary[value_of_pension_pots]" id="appointment_summary_value_of_pension_pots_max" />
             <span class="hide-with-js"> (optional)</span>
           </span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <fieldset>
-        <legend>
-          <span>Income in retirement:</span>
-        </legend>
-        <div class="radio">
-          <%= f.label :income_in_retirement, value: 'pension' do %>
-            <%= f.radio_button :income_in_retirement, 'pension',
-                               class: 't-income-in-retirement-pension' %>
-            Defined contribution pot is their only source of income
-          <% end %>
-        </div>
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Income in retirement:</span>
+          </legend>
+          <div class="radio">
+            <%= f.label :income_in_retirement, value: 'pension' do %>
+              <%= f.radio_button :income_in_retirement, 'pension',
+                                 class: 't-income-in-retirement-pension' %>
+              Defined contribution pot is their only source of income
+            <% end %>
+          </div>
 
-        <div class="radio">
-          <%= f.label :income_in_retirement, value: 'other' do %>
-            <%= f.radio_button :income_in_retirement, 'other',
-                               class: 't-income-in-retirement-other' %>
-            Other income is available in retirement
-          <% end %>
-        </div>
-      </fieldset>
+          <div class="radio">
+            <%= f.label :income_in_retirement, value: 'other' do %>
+              <%= f.radio_button :income_in_retirement, 'other',
+                                 class: 't-income-in-retirement-other' %>
+              Other income is available in retirement
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
     </div>
 
     <hr>
