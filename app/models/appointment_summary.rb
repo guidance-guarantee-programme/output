@@ -50,4 +50,6 @@ class AppointmentSummary < ActiveRecord::Base
   validates :address_line_1, presence: true
   validates :town, presence: true
   validates :postcode, presence: true, postcode: true
+
+  validates :format_preference, inclusion: { in: %w(standard large_text braille) }
 end
