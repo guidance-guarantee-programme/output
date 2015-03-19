@@ -7,6 +7,7 @@
     init: function () {
       this.cache();
       this.bindEvents();
+      this.ensureCorrectState();
     },
     cache: function () {
       this.$wrapper = $('.display_if_eligible');
@@ -22,6 +23,11 @@
         }
         $.publish('eligibilityChange', this.value);
       });
+    },
+    ensureCorrectState: function() {
+      if (this.$input.is(':checked')) {
+        this.$input.filter(':checked').trigger('change');
+      }
     }
   };
 
