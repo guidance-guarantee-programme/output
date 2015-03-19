@@ -12,9 +12,6 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to allow_value('Mr').for(:title) }
   it { is_expected.to_not allow_value('Alien').for(:title) }
 
-  it { is_expected.to allow_value('joe.bloggs@example.com').for(:email_address) }
-  it { is_expected.to_not allow_value('joe @ example.com').for(:email_address) }
-
   it { is_expected.to allow_value('2015-02-10').for(:date_of_appointment) }
   it { is_expected.to allow_value('12/02/2015').for(:date_of_appointment) }
   it { is_expected.to_not allow_value('10/02/2012').for(:date_of_appointment) }
