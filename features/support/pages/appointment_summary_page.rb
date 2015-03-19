@@ -25,5 +25,8 @@ class AppointmentSummaryPage < SitePrism::Page
   element :wants_security, '.t-wants-security'
   element :wants_lump_sum, '.t-wants-lump-sum'
   element :poor_health, '.t-poor-health'
+  element :format_preference_standard, '.t-format-preference-standard'
+  element :format_preference_large_text, '.t-format-preference-large-text'
+  element :format_preference_braille, '.t-format-preference-braille'
   element :submit, '.t-submit'
 end
