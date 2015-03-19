@@ -3,8 +3,8 @@
     <h1><%= title 'New appointment summary' %></h1>
   </div>
 
-  <p class="lead">Use this form to enter the visitor or caller's personal details provided during
-    the guidance appointment and to issue a personalised record of guidance.</p>
+  <p class="lead">Use this form to enter the caller's personal details provided during the guidance
+    appointment and to issue a personalised record of guidance.</p>
 
   <% if @appointment_summary.errors.any? %>
     <div class="alert alert-danger" role="alert">
@@ -16,7 +16,7 @@
     </div>
   <% end %>
 
-  <h2>Visitor or caller details</h2>
+  <h2>Caller details</h2>
 
   <div class="form-group">
     <%= f.label :title %>
