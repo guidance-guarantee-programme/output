@@ -28,7 +28,7 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_inclusion_of(:income_in_retirement).in_array(%w(pension other)) }
 
   it { is_expected.to validate_presence_of(:guider_name) }
-  it { is_expected.to validate_inclusion_of(:guider_organisation).in_array(%w(tpas cab dwp)) }
+  it { is_expected.to validate_inclusion_of(:guider_organisation).in_array(%w(tpas dwp)) }
 
   it { is_expected.to validate_presence_of(:address_line_1) }
   it { is_expected.to_not validate_presence_of(:address_line_2) }

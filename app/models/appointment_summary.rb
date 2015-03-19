@@ -46,7 +46,7 @@ class AppointmentSummary < ActiveRecord::Base
   validates :value_of_pension_pots, presence: true
   validates :income_in_retirement, inclusion: { in: %w(pension other) }
   validates :guider_name, presence: true
-  validates :guider_organisation, inclusion: { in: %w(tpas cab dwp) }
+  validates :guider_organisation, inclusion: { in: %w(tpas dwp) }
 
   validates :address_line_1, presence: true
   validates :town, presence: true
