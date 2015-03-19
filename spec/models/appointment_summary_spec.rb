@@ -39,4 +39,9 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to allow_value(' SW1A 2HQ    ').for(:postcode) }
   it { is_expected.to_not allow_value('SW1A2H').for(:postcode) }
   it { is_expected.to_not allow_value('SWIA2HQ').for(:postcode) }
+
+  it do
+    is_expected
+      .to validate_inclusion_of(:format_preference).in_array(%w(standard large_text braille))
+  end
 end
