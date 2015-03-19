@@ -30,6 +30,7 @@ class AppointmentSummariesController < ApplicationController
                                                 :address_line_1, :address_line_2, :address_line_3,
                                                 :town, :county, :postcode, :date_of_appointment,
                                                 :reference_number, :value_of_pension_pots,
+                                                :upper_value_of_pension_pots,
                                                 :income_in_retirement, :guider_name,
                                                 :guider_organisation, :continue_working, :unsure,
                                                 :leave_inheritance, :wants_flexibility,
