@@ -11,6 +11,7 @@ When(/^appointment details are captured$/) do
   page.date_of_appointment.set '05/02/2015'
   page.reference_number.set '98212'
   page.value_of_pension_pots.set 35_000
+  page.upper_value_of_pension_pots.set 55_000
   page.income_in_retirement_pension.set true
   page.guider_name.set 'Alex Leahy'
   page.guider_organisation_tpas.set true
@@ -37,6 +38,8 @@ When(/^appointment details are captured$/) do
   expect(appointment_summary.reference_number).to eql('98212')
   expect(appointment_summary.has_defined_contribution_pension).to eql('yes')
   expect(appointment_summary.format_preference).to eql('standard')
+  expect(appointment_summary.value_of_pension_pots).to eql(35_000)
+  expect(appointment_summary.upper_value_of_pension_pots).to eql(55_000)
 end
 
 Then(/^a record of guidance document is created$/) do

@@ -143,7 +143,17 @@
     <%= f.label :value_of_pension_pots do %>
       Value of pension pots
       <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
-      <%= f.text_field :value_of_pension_pots, class: %w(form-control t-value-of-pension-pots) %>
+      <%= f.text_field :value_of_pension_pots,
+                       class: %w(form-control input-md-2 t-value-of-pension-pots) %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :upper_value_of_pension_pots do %>
+      Upper value of pension pots (optional)
+      <span class="input-help">Only use numbers, do not include pence, e.g 30000</span>
+      <%= f.text_field :upper_value_of_pension_pots,
+                       class: %w(form-control input-md-2 t-upper-value-of-pension-pots) %>
     <% end %>
   </div>
 
