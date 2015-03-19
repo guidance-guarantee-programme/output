@@ -23,7 +23,6 @@
     subscribe: function () {
       var that = this;
       $.subscribe('accuracyChange', function (e, value) {
-
         if (value === 'range') {
           that.$wrapper.fadeIn();
         } else {
@@ -33,6 +32,15 @@
         }
 
         if (value === 'notprovided') {
+          that.$input1.val('');
+          that.$input1.trigger('keyup');
+          that.$input2.val('');
+          that.$input2.trigger('keyup');
+        }
+      });
+
+      $.subscribe('eligibilityChange', function (e, value) {
+        if (value === 'no') {
           that.$input1.val('');
           that.$input1.trigger('keyup');
           that.$input2.val('');
