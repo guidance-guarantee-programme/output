@@ -4,7 +4,6 @@ class AppointmentSummaryPage < SitePrism::Page
   element :title, '.t-title'
   element :first_name, '.t-first-name'
   element :last_name, '.t-last-name'
-  element :email_address, '.t-email-address'
   element :address_line_1, '.t-address-line-1'
   element :address_line_2, '.t-address-line-2'
   element :address_line_3, '.t-address-line-3'
