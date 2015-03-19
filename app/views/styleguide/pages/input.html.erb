@@ -2,15 +2,15 @@
   <h1><%= title 'New appointment summary' %></h1>
 </div>
 
-<p class="lead">Use this form to enter the visitor or caller's personal details provided during
+<p class="lead">Use this form to enter the caller's personal details provided during
   the guidance appointment and to issue a personalised record of guidance.</p>
 
 <div class="consent">
-  <p class="highlight highlight-orange">Has visitor consented to sharing data for purpose of creating and sending record of guidance?</p>
+  <p class="highlight highlight-orange">Has caller consented to sharing data for purpose of creating and sending record of guidance?</p>
 </div>
 
 <div class="display_if_consent">
-  <h2>Visitor or caller details</h2>
+  <h2>Caller details</h2>
 
   <div class="form-group">
     <label for="appointment_summary_title">Title</label>
@@ -151,13 +151,6 @@
       <legend>
         <span>Organisation:</span>
       </legend>
-
-      <div class="radio">
-        <label for="appointment_summary_guider_organisation_cab">
-          <input class="t-guider-organisation-cab" type="radio" value="cab" name="appointment_summary[guider_organisation]" id="appointment_summary_guider_organisation_cab" />
-          Citizens Advice
-        </label>
-      </div>
       <div class="radio">
         <label for="appointment_summary_guider_organisation_tpas">
           <input class="t-guider-organisation-tpas" type="radio" value="tpas" name="appointment_summary[guider_organisation]" id="appointment_summary_guider_organisation_tpas" />
@@ -180,7 +173,7 @@
   <div class="form-group">
     <fieldset>
       <legend>
-        <span>Does visitor/caller have a Defined Contribution pension:</span>
+        <span>Does caller have a Defined Contribution pension:</span>
       </legend>
       <div class="radio">
         <label for="appointment_summary_eligibility_yes">
@@ -346,7 +339,7 @@
   <div class="checkbox">
     <label for="appointment_summary_consent">
       <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[consent]" id="appointment_summary_consent" />
-      Visitor/caller has consented to sharing data for purpose of creating and sending record of guidance
+      Caller has consented to sharing data for purpose of creating and sending record of guidance
     </label>
   </div>
 </script>
@@ -356,7 +349,7 @@
     <div class="form-group">
       <fieldset>
         <legend>
-          <span>How accurate is the value given by the vistor/calller?</span>
+          <span>How accurate is the value given by the caller?</span>
         </legend>
         <div class="radio">
           <label for="appointment_summary_accuracy_1">
