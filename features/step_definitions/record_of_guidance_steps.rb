@@ -14,6 +14,7 @@ When(/^appointment details are captured$/) do
   page.income_in_retirement_pension.set true
   page.guider_name.set 'Alex Leahy'
   page.guider_organisation_tpas.set true
+  page.has_defined_contribution_pension_yes.set true
   page.continue_working.set true
   page.unsure.set true
   page.leave_inheritance.set true
@@ -34,6 +35,7 @@ When(/^appointment details are captured$/) do
   expect(appointment_summary.town).to eql('London')
   expect(appointment_summary.postcode).to eql('SW1A 2HQ')
   expect(appointment_summary.reference_number).to eql('98212')
+  expect(appointment_summary.has_defined_contribution_pension).to eql('yes')
   expect(appointment_summary.format_preference).to eql('standard')
 end
 
