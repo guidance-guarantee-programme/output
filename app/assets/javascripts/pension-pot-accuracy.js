@@ -14,7 +14,6 @@
       $('#col-pension-pot-value').before(html);
     },
     cache: function () {
-      this.$wrapper = $('.display_if_range');
       this.$input = $('input[name="appointment_summary[accuracy]"]');
     },
     bindEvents: function () {
