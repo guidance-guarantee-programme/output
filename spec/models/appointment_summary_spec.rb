@@ -1,7 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentSummary, type: :model do
-  subject { described_class.new }
+  let(:continue_working) { false }
+  let(:has_defined_contribution_pension) { 'no' }
+  let(:params) do
+    {
+      has_defined_contribution_pension: has_defined_contribution_pension,
+      continue_working: continue_working
+    }
+  end
+
+  subject { described_class.new(params) }
 
   it { is_expected.to belong_to(:user) }
 
@@ -48,5 +57,29 @@ RSpec.describe AppointmentSummary, type: :model do
   it do
     is_expected
       .to validate_inclusion_of(:format_preference).in_array(%w(standard large_text braille))
+  end
+
+  context 'when ineligible for guidance' do
+    it { is_expected.to_not be_eligible_for_guidance }
+    it { is_expected.to_not be_generic_guidance }
+    it { is_expected.to_not be_custom_guidance }
+  end
+
+  context 'when eligible for guidance' do
+    let(:has_defined_contribution_pension) { 'yes' }
+
+    context 'and no retirement circumstances given' do
+      it { is_expected.to be_eligible_for_guidance }
+      it { is_expected.to be_generic_guidance }
+      it { is_expected.to_not be_custom_guidance }
+    end
+
+    context 'and retirement circumstances given' do
+      let(:continue_working) { true }
+
+      it { is_expected.to be_eligible_for_guidance }
+      it { is_expected.to_not be_generic_guidance }
+      it { is_expected.to be_custom_guidance }
+    end
   end
 end
