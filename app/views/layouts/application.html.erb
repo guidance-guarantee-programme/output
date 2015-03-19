@@ -2,8 +2,8 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
 <% end %>
 
-<%= content_for :app_title, 'Pension Wise Output' %>
-<%= content_for :page_title, title %>
+<% content_for :app_title, 'Pension Wise Output' %>
+<% content_for :page_title, title %>
 
 <% if user_signed_in? %>
   <%= content_for :navbar_right do %>
@@ -14,9 +14,13 @@
   <% end %>
 <% end %>
 
-<%= content_for(:content) do %>
+<% content_for(:content) do %>
   <%= render 'shared/alerts' %>
   <%= yield %>
+<% end %>
+
+<% content_for :body_end do %>
+  <%= javascript_include_tag 'application' %>
 <% end %>
 
 <%= render template: 'layouts/govuk_admin_template' %>
