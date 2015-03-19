@@ -37,5 +37,6 @@ Rails.application.routes.draw do
     get '(/:action)'
   end
 
+  mount JasmineRails::Engine => '/specs'
   mount Sidekiq::Web => '/sidekiq'
 end

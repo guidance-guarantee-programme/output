@@ -1,3 +1,5 @@
+//= require jquery
+//= require jquery_ujs
 //= require tiny-pubsub
 //= require consent
 //= require eligibility
