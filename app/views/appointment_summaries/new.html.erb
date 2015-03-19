@@ -117,6 +117,29 @@
   <h2>Pension pot details</h2>
 
   <div class="form-group">
+    <fieldset>
+      <legend>
+        <span>Does caller have a Defined Contribution pension?</span>
+      </legend>
+      <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
+        <%= f.radio_button :has_defined_contribution_pension, 'yes',
+                           class: 't-has-defined-contribution-pension-yes' %>
+        Yes
+      <% end %>
+      <%= f.label :has_defined_contribution_pension, value: 'no' do %>
+        <%= f.radio_button :has_defined_contribution_pension, 'no',
+                           class: 't-has-defined-contribution-pension-no' %>
+        No
+      <% end %>
+      <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
+        <%= f.radio_button :has_defined_contribution_pension, 'unknown',
+                           class: 't-has-defined-contribution-pension-unknown' %>
+        Don't know
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div class="form-group">
     <%= f.label :value_of_pension_pots do %>
       Value of pension pots
       <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
