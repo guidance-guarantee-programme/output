@@ -20,6 +20,7 @@
         } else {
           that.$wrapper.fadeOut();
         }
+        $.publish('eligibilityChange', this.value);
       });
     }
   };
