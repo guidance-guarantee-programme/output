@@ -23,7 +23,8 @@ gem 'sinatra', require: nil # Sidekiq UI
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'byebug'
+  gem 'launchy'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'scss-lint'
   gem 'web-console', '~> 2.0'
