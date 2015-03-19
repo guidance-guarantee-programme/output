@@ -33,6 +33,7 @@ class AppointmentSummariesController < ApplicationController
                                                 :income_in_retirement, :guider_name,
                                                 :guider_organisation, :continue_working, :unsure,
                                                 :leave_inheritance, :wants_flexibility,
-                                                :wants_security, :wants_lump_sum, :poor_health)
+                                                :wants_security, :wants_lump_sum, :poor_health,
+                                                :format_preference)
   end
 end
