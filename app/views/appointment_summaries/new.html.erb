@@ -77,27 +77,22 @@
 
   <h3>Appointment</h3>
 
-  <div class="row">
-    <div class="form-group col-xs-3">
-      <%= f.label :date_of_appointment %>
-      <%= f.date_field :date_of_appointment, class: %w(form-control t-date-of-appointment) %>
-    </div>
+  <div class="form-group">
+    <%= f.label :date_of_appointment %>
+    <%= f.date_field :date_of_appointment,
+                     class: %w(form-control input-md-2 t-date-of-appointment) %>
   </div>
 
-  <div class="row">
-    <div class="form-group col-xs-3">
-      <%= f.label :reference_number %>
-      <%= f.text_field :reference_number, class: %w(form-control t-reference-number) %>
-    </div>
+  <div class="form-group">
+    <%= f.label :reference_number %>
+    <%= f.text_field :reference_number, class: %w(form-control input-md-3 t-reference-number) %>
   </div>
 
   <h2>Guider details</h2>
 
-  <div class="row">
-    <div class="form-group col-xs-6">
-      <%= f.label :guider_name %>
-      <%= f.text_field :guider_name, class: %w(form-control t-guider-name) %>
-    </div>
+  <div class="form-group">
+    <%= f.label :guider_name, 'First name of guider' %>
+    <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name) %>
   </div>
 
   <div class="form-group">
@@ -136,11 +131,12 @@
 
   <h2>Pension pot details</h2>
 
-  <div class="row">
-    <div class="form-group col-xs-4">
-      <%= f.label :value_of_pension_pots %>
+  <div class="form-group">
+    <%= f.label :value_of_pension_pots do %>
+      Value of pension pots
+      <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
       <%= f.text_field :value_of_pension_pots, class: %w(form-control t-value-of-pension-pots) %>
-    </div>
+    <% end %>
   </div>
 
   <div class="form-group">
