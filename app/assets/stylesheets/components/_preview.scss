@@ -1,0 +1,35 @@
+.preview {
+  color: $color-preview-text;
+  border: 1px solid $color-grey;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.preview__context {
+  color: $color-preview-context;
+  font-weight: 12px;
+}
+
+.preview__heading {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.preview__intro {
+  font-size: 16px;
+}
+
+.preview__label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.preview__amount {
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.preview__note {
+  margin-bottom: 16px;
+}
