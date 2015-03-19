@@ -8,6 +8,7 @@
       this.insertHTML();
       this.cache();
       this.bindEvents();
+      this.ensureCorrectState();
     },
     insertHTML: function () {
       var html = $('#consent').text();
@@ -16,6 +17,7 @@
     cache: function () {
       this.$wrapper = $('.display_if_consent');
       this.$input = $('input[name="appointment_summary[consent]"]');
+      this.$errors = $('.alert');
     },
     bindEvents: function () {
       var that = this;
@@ -26,6 +28,11 @@
           that.$wrapper.fadeOut();
         }
       });
+    },
+    ensureCorrectState: function () {
+      if (this.$errors.length) {
+        this.$input.trigger('click');
+      }
     }
   };
 
