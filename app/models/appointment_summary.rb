@@ -54,4 +54,26 @@ class AppointmentSummary < ActiveRecord::Base
 
   validates :has_defined_contribution_pension, inclusion: { in: %w(yes no unknown) }
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
+
+  def eligible_for_guidance?
+    %w(yes unknown).include?(has_defined_contribution_pension)
+  end
+
+  def generic_guidance?
+    eligible_for_guidance? && !retirement_circumstances?
+  end
+
+  def custom_guidance?
+    eligible_for_guidance? && retirement_circumstances?
+  end
+
+  private
+
+  # rubocop:disable CyclomaticComplexity
+  def retirement_circumstances?
+    continue_working? || unsure? || leave_inheritance? || \
+      wants_flexibility? || wants_security? || wants_lump_sum? || \
+      poor_health?
+  end
+  # rubocop:enable CyclomaticComplexity
 end
