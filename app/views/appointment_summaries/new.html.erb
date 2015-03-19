@@ -341,6 +341,20 @@
   <span id="errmsg" class="error"></span>
 </script>
 
+<script type="text/html" id="pension_pot_preview">
+  <div class="preview">
+    <div class="preview__context">Document preview</div>
+    <p class="preview__heading">What you told us about your pension pot</p>
+
+    <p class="preview__intro">This is your personal or workplace pension based on how much has been paid<br />
+      into your pot (defined contribution pension).</p>
+
+    <p class="preview__label">Total value of your pension pot:</p>
+    <p class="preview__amount">£</p>
+    <p class="preview__note">If you have more than one pot this is their combined value.</p>
+  </div>
+</script>
+
 <% content_for :body_end do %>
   <%= javascript_include_tag 'application' %>
 <% end %>
