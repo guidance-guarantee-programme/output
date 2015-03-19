@@ -21,6 +21,7 @@ When(/^appointment details are captured$/) do
   page.wants_security.set true
   page.wants_lump_sum.set true
   page.poor_health.set true
+  page.format_preference_standard.set true
   page.submit.click
 
   appointment_summary = AppointmentSummary.last
@@ -33,6 +34,7 @@ When(/^appointment details are captured$/) do
   expect(appointment_summary.town).to eql('London')
   expect(appointment_summary.postcode).to eql('SW1A 2HQ')
   expect(appointment_summary.reference_number).to eql('98212')
+  expect(appointment_summary.format_preference).to eql('standard')
 end
 
 Then(/^a record of guidance document is created$/) do
