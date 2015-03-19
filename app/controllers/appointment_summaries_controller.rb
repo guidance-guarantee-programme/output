@@ -26,7 +26,7 @@ class AppointmentSummariesController < ApplicationController
   private
 
   def appointment_summary_params
-    params.require(:appointment_summary).permit(:title, :first_name, :last_name, :email_address,
+    params.require(:appointment_summary).permit(:title, :first_name, :last_name,
                                                 :address_line_1, :address_line_2, :address_line_3,
                                                 :town, :county, :postcode, :date_of_appointment,
                                                 :reference_number, :value_of_pension_pots,
