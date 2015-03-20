@@ -25,7 +25,18 @@ When(/^appointment details are captured$/) do
   page.poor_health.set true
   page.format_preference_standard.set true
   page.submit.click
+end
 
+When(/^I preview the record of guidance document$/) do
+  expect(AppointmentSummary.count).to eq(0)
+  page = RecordOfGuidancePreviewPage.new
+  expect(page).to be_displayed
+  expect(page.name.text).to eql('Mr Joe Bloggs')
+
+  page.confirm.click
+end
+
+Then(/^a record of guidance document is created$/) do
   appointment_summary = AppointmentSummary.last
 
   expect(appointment_summary.title).to eql('Mr')
@@ -40,10 +51,4 @@ When(/^appointment details are captured$/) do
   expect(appointment_summary.format_preference).to eql('standard')
   expect(appointment_summary.value_of_pension_pots).to eql(35_000)
   expect(appointment_summary.upper_value_of_pension_pots).to eql(55_000)
-end
-
-Then(/^a record of guidance document is created$/) do
-end
-
-Then(/^emailed to the customer$/) do
 end
