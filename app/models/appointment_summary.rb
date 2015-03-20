@@ -42,9 +42,13 @@ class AppointmentSummary < ActiveRecord::Base
                                                 on_or_after: Date.new(2015),
                                                 type: :date }
   validates :reference_number, numericality: true, presence: true
-  validates :value_of_pension_pots, numericality: true, allow_blank: true
-  validates :upper_value_of_pension_pots, numericality: true, allow_blank: true
-  validates :income_in_retirement, inclusion: { in: %w(pension other) }
+
+  with_options numericality: true, allow_blank: true, if: :eligible_for_guidance? do |eligible|
+    eligible.validates :value_of_pension_pots
+    eligible.validates :upper_value_of_pension_pots
+  end
+
+  validates :income_in_retirement, inclusion: { in: %w(pension other) }, if: :eligible_for_guidance?
   validates :guider_name, presence: true
   validates :guider_organisation, inclusion: { in: %w(tpas dwp) }
 
