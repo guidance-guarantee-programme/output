@@ -13,7 +13,7 @@
       this.subscribe();
     },
     insertHTML: function () {
-      var html = $('#pension_pot_preview').text();
+      var html = $('#pension-pot-preview').text();
       $('#col-pension-pot-value').append(html);
     },
     cache: function () {
