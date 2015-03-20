@@ -16,7 +16,7 @@ en:
         submit_button: "Set my password"
     mailer:
       invitation_instructions:
-        subject: "Activate you Pension Wise Record Of Guidance account"
+        subject: "Activate your Pension Wise Record Of Guidance account"
         hello: "Hello %{name}"
         someone_invited_you: "An account has been created for you on the Pension Wise Record Of Guidance system (<a href='%{url}'>%{url}</a>). You can activate it and set a password through the link below."
         accept: "Activate account."
