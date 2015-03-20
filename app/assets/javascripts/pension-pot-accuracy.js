@@ -10,7 +10,7 @@
       this.bindEvents();
     },
     insertHTML: function () {
-      var html = $('#pension_pot_accuracy').text();
+      var html = $('#pension-pot-accuracy').text();
       $('#col-pension-pot-value').before(html);
     },
     cache: function () {

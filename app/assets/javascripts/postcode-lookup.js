@@ -14,7 +14,7 @@
       var html = $('#postcode-lookup-template').text();
       $('#postal-address-heading').after(html);
     },
-    initPostcodeLookup: function() {
+    initPostcodeLookup: function () {
       $('#postcode-lookup').setupPostcodeLookup({
         address_search: 20,
         api_key: 'ak_i7dldo8cLN8H59JMUiERpXDPWuFR6',
