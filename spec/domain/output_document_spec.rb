@@ -53,27 +53,6 @@ RSpec.describe OutputDocument do
   describe '#html' do
     it { is_expected.to include("#{title} #{first_name} #{last_name}") }
 
-    context 'with one pension pot value' do
-      let(:value_of_pension_pots) { 35_000 }
-      let(:upper_value_of_pension_pots) { nil }
-
-      it { is_expected.to include('£35,000') }
-    end
-
-    context 'with two pension pot values' do
-      let(:value_of_pension_pots) { 35_000 }
-      let(:upper_value_of_pension_pots) { 55_000 }
-
-      it { is_expected.to include('£35,000 - £55,000') }
-    end
-
-    context 'with now pension pot values' do
-      let(:value_of_pension_pots) { nil }
-      let(:upper_value_of_pension_pots) { nil }
-
-      it { is_expected.to include('Unknown') }
-    end
-
     context 'when ineligible for guidance' do
       before do
         allow(appointment_summary).to receive(:eligible_for_guidance?).and_return(false)
@@ -87,6 +66,27 @@ RSpec.describe OutputDocument do
     context 'when eligible for guidance' do
       before do
         allow(appointment_summary).to receive(:eligible_for_guidance?).and_return(true)
+      end
+
+      context 'with one pension pot value' do
+        let(:value_of_pension_pots) { 35_000 }
+        let(:upper_value_of_pension_pots) { nil }
+
+        it { is_expected.to include('£35,000') }
+      end
+
+      context 'with two pension pot values' do
+        let(:value_of_pension_pots) { 35_000 }
+        let(:upper_value_of_pension_pots) { 55_000 }
+
+        it { is_expected.to include('£35,000 - £55,000') }
+      end
+
+      context 'with no pension pot values' do
+        let(:value_of_pension_pots) { nil }
+        let(:upper_value_of_pension_pots) { nil }
+
+        it { is_expected.to include('Unknown') }
       end
 
       context 'and generic guidance was given' do
