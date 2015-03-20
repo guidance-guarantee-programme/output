@@ -2,6 +2,7 @@
   "name": "record_of_guidance",
   "private": true,
   "dependencies": {
-    "jquery-tiny-pubsub": "https://github.com/cowboy/jquery-tiny-pubsub.git"
+    "jquery-tiny-pubsub": "https://github.com/cowboy/jquery-tiny-pubsub.git",
+    "jquery.postcodes": "https://github.com/ideal-postcodes/jquery.postcodes.git"
   }
 }
