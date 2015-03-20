@@ -24,7 +24,7 @@ deploy:
   provider: heroku
   api_key:
     secure: St3obQR6V1Ym4bB8VX0kZncM3twf9JymThAi7rIOLFn6Ipp1Z/WuLZBwClVWt1jShJ38ZZtTvr6dGflABpFteh00Z1atLq4R5T3+k1MG9oeL21ejsM+4BbU7zMNcQsaHNkj/YFhCtOhG/ZZkRq+0QgACFO9zMNMkbAL1bGg/Lf8=
-  app: ggp-record-of-guidance
+  app: staging-output-pensionwise
   on:
-    repo: guidance-guarantee-programme/record_of_guidance
+    repo: guidance-guarantee-programme/output
   run: "./bin/rake db:migrate"
