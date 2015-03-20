@@ -40,7 +40,7 @@
       var val2 = this.value2;
 
       if (this.accuracy === 'notprovided') {
-        displayText = 'No value provided';
+        displayText = 'No value given';
       } else {
         if (val1 === '') {
           displayText = '£';
