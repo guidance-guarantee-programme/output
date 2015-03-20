@@ -190,66 +190,67 @@
           </div>
         </fieldset>
       </div>
-    </div>
 
-    <hr>
 
-    <h2>Retirement plans and pension options</h2>
+      <hr>
 
-    <div class="form-group">
-      <fieldset>
-        <legend>
-          <span>Circumstances and preferences:</span>
-        </legend>
-        <div class="checkbox">
-          <%= f.label :continue_working do %>
-            <%= f.check_box :continue_working, class: 't-continue-working' %>
-            Plans to continue working for a while
-          <% end %>
-        </div>
+      <h2>Retirement plans and pension options</h2>
 
-        <div class="checkbox">
-          <%= f.label :unsure do %>
-            <%= f.check_box :unsure, class: 't-unsure' %>
-            Unsure about plans in retirement
-          <% end %>
-        </div>
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Circumstances and preferences:</span>
+          </legend>
+          <div class="checkbox">
+            <%= f.label :continue_working do %>
+              <%= f.check_box :continue_working, class: 't-continue-working' %>
+              Plans to continue working for a while
+            <% end %>
+          </div>
 
-        <div class="checkbox">
-          <%= f.label :leave_inheritance do %>
-            <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
-            Plans to leave money to someone
-          <% end %>
-        </div>
+          <div class="checkbox">
+            <%= f.label :unsure do %>
+              <%= f.check_box :unsure, class: 't-unsure' %>
+              Unsure about plans in retirement
+            <% end %>
+          </div>
 
-        <div class="checkbox">
-          <%= f.label :wants_flexibility do %>
-            <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
-            Wants flexibility when taking money
-          <% end %>
-        </div>
+          <div class="checkbox">
+            <%= f.label :leave_inheritance do %>
+              <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
+              Plans to leave money to someone
+            <% end %>
+          </div>
 
-        <div class="checkbox">
-          <%= f.label :wants_security do %>
-            <%= f.check_box :wants_security, class: 't-wants-security' %>
-            Wants a guaranteed income
-          <% end %>
-        </div>
+          <div class="checkbox">
+            <%= f.label :wants_flexibility do %>
+              <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
+              Wants flexibility when taking money
+            <% end %>
+          </div>
 
-        <div class="checkbox">
-          <%= f.label :wants_lump_sum do %>
-            <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
-            Needs a certain amount of money now
-          <% end %>
-        </div>
+          <div class="checkbox">
+            <%= f.label :wants_security do %>
+              <%= f.check_box :wants_security, class: 't-wants-security' %>
+              Wants a guaranteed income
+            <% end %>
+          </div>
 
-        <div class="checkbox">
-          <%= f.label :poor_health do %>
-            <%= f.check_box :poor_health, class: 't-poor-health' %>
-            Has poor health
-          <% end %>
-        </div>
-      </fieldset>
+          <div class="checkbox">
+            <%= f.label :wants_lump_sum do %>
+              <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
+              Needs a certain amount of money now
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :poor_health do %>
+              <%= f.check_box :poor_health, class: 't-poor-health' %>
+              Has poor health
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
     </div>
 
     <h2>Record of guidance</h2>
