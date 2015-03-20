@@ -1,16 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentSummary, type: :model do
-  let(:continue_working) { false }
-  let(:has_defined_contribution_pension) { 'no' }
-  let(:params) do
-    {
-      has_defined_contribution_pension: has_defined_contribution_pension,
-      continue_working: continue_working
-    }
+  subject do
+    described_class.new(continue_working: continue_working,
+                        has_defined_contribution_pension: has_defined_contribution_pension)
   end
 
-  subject { described_class.new(params) }
+  let(:continue_working) { false }
+  let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }
 
@@ -66,9 +63,21 @@ RSpec.describe AppointmentSummary, type: :model do
   end
 
   context 'when ineligible for guidance' do
+    let(:has_defined_contribution_pension) { 'no' }
+
     it { is_expected.to_not be_eligible_for_guidance }
     it { is_expected.to_not be_generic_guidance }
     it { is_expected.to_not be_custom_guidance }
+
+    it { is_expected.to_not validate_presence_of(:value_of_pension_pots) }
+    it { is_expected.to_not validate_presence_of(:upper_value_of_pension_pots) }
+
+    it { is_expected.to_not validate_numericality_of(:value_of_pension_pots) }
+    it { is_expected.to_not validate_numericality_of(:upper_value_of_pension_pots) }
+
+    it do
+      is_expected.to_not validate_inclusion_of(:income_in_retirement).in_array(%w(pension other))
+    end
   end
 
   context 'when eligible for guidance' do
