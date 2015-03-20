@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :appointment_summaries, only: %i(new create show)
+  resources :appointment_summaries, only: %i(new create) do
+    post :preview, on: :collection
+  end
 
   scope path: 'styleguide', controller: 'styleguide' do
     scope path: 'pages' do

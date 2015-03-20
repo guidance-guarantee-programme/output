@@ -3,8 +3,8 @@ Feature: Create record of guidance
   I want a record of my guidance appointment
   So that I can review my appointment in my own time without relying on memory or my own notes
 
-  Scenario: Capture and email a record of guidance
+  Scenario: Capture a record of guidance
     Given a new, authenticated user
     When appointment details are captured
+    And I preview the record of guidance document
     Then a record of guidance document is created
-    And emailed to the customer
