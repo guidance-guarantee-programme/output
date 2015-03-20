@@ -16,6 +16,7 @@
     },
     initPostcodeLookup: function() {
       $('#postcode-lookup').setupPostcodeLookup({
+        address_search: 20,
         api_key: 'iddqd',
         input: '#postcode-lookup-input',
         button: '#postcode-lookup-button',
