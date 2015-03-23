@@ -17,7 +17,7 @@
     cache: function () {
       this.$wrapper = $('.display_if_consent');
       this.$input = $('input[name="appointment_summary[consent]"]');
-      this.$errors = $('.alert');
+      this.$errors = $('.alert-danger');
     },
     bindEvents: function () {
       var that = this;
