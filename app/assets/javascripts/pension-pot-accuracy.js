@@ -10,11 +10,10 @@
       this.bindEvents();
     },
     insertHTML: function () {
-      var html = $('#pension_pot_accuracy').text();
+      var html = $('#pension-pot-accuracy').text();
       $('#col-pension-pot-value').before(html);
     },
     cache: function () {
-      this.$wrapper = $('.display_if_range');
       this.$input = $('input[name="appointment_summary[accuracy]"]');
     },
     bindEvents: function () {

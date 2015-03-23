@@ -13,7 +13,7 @@
       this.subscribe();
     },
     insertHTML: function () {
-      var html = $('#pension_pot_preview').text();
+      var html = $('#pension-pot-preview').text();
       $('#col-pension-pot-value').append(html);
     },
     cache: function () {
@@ -40,7 +40,7 @@
       var val2 = this.value2;
 
       if (this.accuracy === 'notprovided') {
-        displayText = 'No value provided';
+        displayText = 'No value given';
       } else {
         if (val1 === '') {
           displayText = '£';
