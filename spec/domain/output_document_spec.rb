@@ -79,14 +79,14 @@ RSpec.describe OutputDocument do
         let(:value_of_pension_pots) { 35_000 }
         let(:upper_value_of_pension_pots) { 55_000 }
 
-        it { is_expected.to include('£35,000 - £55,000') }
+        it { is_expected.to include('£35,000 to £55,000') }
       end
 
       context 'with no pension pot values' do
         let(:value_of_pension_pots) { nil }
         let(:upper_value_of_pension_pots) { nil }
 
-        it { is_expected.to include('Unknown') }
+        it { is_expected.to include('No value given') }
       end
 
       context 'and generic guidance was given' do
