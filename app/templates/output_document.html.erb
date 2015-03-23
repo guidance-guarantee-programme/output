@@ -165,11 +165,11 @@
 
     <p class="data">
       <% if @appointment_summary.value_of_pension_pots.blank? %>
-        Unknown
+        No value given
       <% elsif @appointment_summary.upper_value_of_pension_pots.blank? %>
         <%= number_to_currency @appointment_summary.value_of_pension_pots, precision: 0 %>
       <% else %>
-        <%= number_to_currency(@appointment_summary.value_of_pension_pots, precision: 0) + ' - ' +
+        <%= number_to_currency(@appointment_summary.value_of_pension_pots, precision: 0) + ' to ' +
                 number_to_currency(@appointment_summary.upper_value_of_pension_pots, precision: 0) %>
       <% end %>
     </p>
