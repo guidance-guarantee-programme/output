@@ -11,7 +11,7 @@
       this.bindEvents();
     },
     insertHTML: function () {
-      var html = $('#pension_pot_input_error').text();
+      var html = $('#pension-pot-input-error').text();
       $('.display_if_range').after(html);
     },
     cache: function () {
@@ -23,7 +23,6 @@
     subscribe: function () {
       var that = this;
       $.subscribe('accuracyChange', function (e, value) {
-
         if (value === 'range') {
           that.$wrapper.fadeIn();
         } else {
@@ -33,6 +32,15 @@
         }
 
         if (value === 'notprovided') {
+          that.$input1.val('');
+          that.$input1.trigger('keyup');
+          that.$input2.val('');
+          that.$input2.trigger('keyup');
+        }
+      });
+
+      $.subscribe('eligibilityChange', function (e, value) {
+        if (value === 'no') {
           that.$input1.val('');
           that.$input1.trigger('keyup');
           that.$input2.val('');
