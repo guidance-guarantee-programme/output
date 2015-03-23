@@ -7,10 +7,11 @@
     init: function () {
       this.cache();
       this.bindEvents();
+      this.ensureCorrectState();
     },
     cache: function () {
       this.$wrapper = $('.display_if_eligible');
-      this.$input = $('input[name="appointment_summary[eligibility]"]');
+      this.$input = $('input[name="appointment_summary[has_defined_contribution_pension]"]');
     },
     bindEvents: function () {
       var that = this;
@@ -20,7 +21,13 @@
         } else {
           that.$wrapper.fadeOut();
         }
+        $.publish('eligibilityChange', this.value);
       });
+    },
+    ensureCorrectState: function() {
+      if (this.$input.is(':checked')) {
+        this.$input.filter(':checked').trigger('change');
+      }
     }
   };
 

@@ -2,7 +2,7 @@
   <h1><%= title 'New appointment summary' %></h1>
 </div>
 
-<p class="lead">Use this form to enter the caller's personal details provided during
+<p class="lead">Use this form to enter the caller's personal details given during
   the guidance appointment and to issue a personalised record of guidance.</p>
 
 <div class="consent">
@@ -89,14 +89,7 @@
     <input class="form-control input-md-3" type="text" name="appointment_summary[name]" id="appointment_summary_last_name" />
   </div>
 
-  <h3>Postal address</h3>
-
-  <!-- postode lookup field will be inserted by vendor plugin -->
-  <div class="form-group form-inline postcode-lookup">
-    <label for="appointment_summary_lookup" class="visuallyhidden">Postcode or address to search for</label><br>
-    <input class="form-control input-md-3 add-right-margin" placeholder="Enter postcode or address" type="text" name="appointment_summary[lookup]" id="appointment_summary_lookup" />
-    <button class="btn-success btn-sm" onclick="return false">Find UK address</button>
-  </div>
+  <h3 id="postal-address-heading">Postal address</h3>
 
   <div class="form-group">
     <label for="appointment_summary_address1">Building and street <span class="visuallyhidden">line 1</span></label>
@@ -142,7 +135,7 @@
   <h2>Guider details</h2>
 
   <div class="form-group">
-    <label for="appointment_summary_guider_name">Guider first name</label>
+    <label for="appointment_summary_guider_name">First name of guider</label>
     <input class="form-control input-md-4" type="text" name="appointment_summary[guider_name]" id="appointment_summary_guider_name" />
   </div>
 
@@ -173,23 +166,23 @@
   <div class="form-group">
     <fieldset>
       <legend>
-        <span>Does caller have a Defined Contribution pension:</span>
+        <span>Does caller have a defined contribution pension:</span>
       </legend>
       <div class="radio">
         <label for="appointment_summary_eligibility_yes">
-          <input class="t-income-in-retirement-pension" type="radio" value="yes" name="appointment_summary[eligibility]" id="appointment_summary_eligibility_yes" />
+          <input class="t-income-in-retirement-pension" type="radio" value="yes" name="appointment_summary[has_defined_contribution_pension]" id="appointment_summary_eligibility_yes" />
           Yes
         </label>
       </div>
       <div class="radio">
         <label for="appointment_summary_eligibility_no">
-          <input class="t-income-in-retirement-other" type="radio" value="no" name="appointment_summary[eligibility]" id="appointment_summary_eligibility_no" />
+          <input class="t-income-in-retirement-other" type="radio" value="no" name="appointment_summary[has_defined_contribution_pension]" id="appointment_summary_eligibility_no" />
           No
         </label>
       </div>
       <div class="radio">
         <label for="appointment_summary_eligibility_unknown">
-          <input class="t-income-in-retirement-other" type="radio" value="unknown" name="appointment_summary[eligibility]" id="appointment_summary_eligibility_unknown" />
+          <input class="t-income-in-retirement-other" type="radio" value="unknown" name="appointment_summary[has_defined_contribution_pension]" id="appointment_summary_eligibility_unknown" />
           Don't know
         </label>
       </div>
@@ -202,7 +195,7 @@
         <div class="form-group form-inline">
           <label for="appointment_summary_value_of_pension_pots">
             Value of pension pots
-            <span class="input-help">Only use numbers, do not include pence, e.g 27500</span>
+            <span class="input-help">Only use numbers, don't include pence, e.g 27500</span>
           </label><br />
           £ <input placeholder="27500" class="form-control input-md-2 js-numbers-only" type="text" name="appointment_summary[value_of_pension_pots]" id="appointment_summary_value_of_pension_pots" />
 
@@ -219,12 +212,12 @@
     <div class="form-group">
       <fieldset>
         <legend>
-          <span>Sources of income in retirement:</span>
+          <span>Sources of income in retirement</span>
         </legend>
         <div class="radio">
           <label for="appointment_summary_income_in_retirement_pension">
             <input class="t-income-in-retirement-pension" type="radio" value="pension" name="appointment_summary[income_in_retirement]" id="appointment_summary_income_in_retirement_pension" />
-            Defined contribution pension and state pension (if eligible) only
+            Only defined contribution pension(s) and State Pension (if eligible)
           </label>
         </div>
         <div class="radio">
@@ -243,7 +236,7 @@
     <div class="form-group">
       <fieldset>
         <legend>
-          <span>Circumstances and preferences:</span>
+          <span>Circumstances and preferences</span>
         </legend>
         <p>Leave blank if none apply</p>
 
@@ -306,7 +299,7 @@
   <div class="form-group">
     <fieldset>
       <legend>
-        <span>Format preference:</span>
+        <span>Format preference</span>
       </legend>
       <div class="radio">
         <label for="appointment_summary_format_preferences_large_standard">
@@ -317,7 +310,7 @@
       <div class="radio">
         <label for="appointment_summary_format_preferences_large_text">
           <input type="radio" value="large" name="appointment_summary[format_preferences]" id="appointment_summary_format_preferences_large_text" />
-          Large Text
+          Large text
         </label>
       </div>
       <div class="radio">
@@ -344,7 +337,17 @@
   </div>
 </script>
 
-<script type="text/html" id="pension_pot_accuracy">
+<script type="text/html" id="postcode-lookup-template">
+  <div class="form-group form-inline postcode-lookup" id="postcode-lookup">
+    <label for="appointment_summary_lookup" class="visuallyhidden">Postcode or address to search for</label><br>
+    <input class="form-control input-md-3 add-right-margin" placeholder="Enter postcode or address" type="text" id="postcode-lookup-input" />
+    <button class="btn-success btn-sm" onclick="return false" id="postcode-lookup-button">Find UK address</button>
+  </div>
+  <div class="form-group form-inline" id="postcode-lookup-results-container">
+  </div>
+</script>
+
+<script type="text/html" id="pension-pot-accuracy">
   <div class="col-md-3 col-accuracy">
     <div class="form-group">
       <fieldset>
@@ -380,11 +383,11 @@
   </div>
 </script>
 
-<script type="text/html" id="pension_pot_input_error">
+<script type="text/html" id="pension-pot-input-error">
   <span id="errmsg" class="error"></span>
 </script>
 
-<script type="text/html" id="pension_pot_preview">
+<script type="text/html" id="pension-pot-preview">
   <div class="preview">
     <div class="preview__context">Document preview</div>
     <p class="preview__heading">What you told us about your pension pot</p>
