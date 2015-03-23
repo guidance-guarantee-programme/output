@@ -23,7 +23,7 @@ When(/^appointment details are captured$/) do
   page.wants_security.set true
   page.wants_lump_sum.set true
   page.poor_health.set true
-  page.format_preference_standard.set true
+  page.format_preference_braille.set true
   page.submit.click
 end
 
@@ -48,7 +48,7 @@ Then(/^a record of guidance document is created$/) do
   expect(appointment_summary.postcode).to eql('SW1A 2HQ')
   expect(appointment_summary.reference_number).to eql('98212')
   expect(appointment_summary.has_defined_contribution_pension).to eql('yes')
-  expect(appointment_summary.format_preference).to eql('standard')
+  expect(appointment_summary.format_preference).to eql('braille')
   expect(appointment_summary.value_of_pension_pots).to eql(35_000)
   expect(appointment_summary.upper_value_of_pension_pots).to eql(55_000)
 end
