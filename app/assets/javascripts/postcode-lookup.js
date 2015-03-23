@@ -11,7 +11,7 @@
       this.initPostcodeLookup();
     },
     insertHTML: function () {
-      var html = $('#postcode-lookup-template').text();
+      var html = $('#postcode-lookup-template').html();
       $('#postal-address-heading').after(html);
     },
     initPostcodeLookup: function () {

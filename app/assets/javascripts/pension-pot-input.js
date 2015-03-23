@@ -11,7 +11,7 @@
       this.bindEvents();
     },
     insertHTML: function () {
-      var html = $('#pension-pot-input-error').text();
+      var html = $('#pension-pot-input-error').html();
       $('.display_if_range').after(html);
     },
     cache: function () {
