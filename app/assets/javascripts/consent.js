@@ -11,7 +11,7 @@
       this.ensureCorrectState();
     },
     insertHTML: function () {
-      var html = $('#consent').text();
+      var html = $('#consent').html();
       $('.consent').append(html);
     },
     cache: function () {
