@@ -1,6 +1,11 @@
+<div class="confirm">
+  <p class="highlight highlight-orange">Check the details below and click Submit if they're correct</p>
+</div>
+
 <%= @output_document.html.html_safe %>
 
 <%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
+
   <%= f.hidden_field :title %>
   <%= f.hidden_field :first_name %>
   <%= f.hidden_field :last_name %>
@@ -27,7 +32,8 @@
   <%= f.hidden_field :poor_health %>
   <%= f.hidden_field :format_preference %>
 
-  <p>
-    <%= f.submit 'Confirm', class: %w(btn-success t-confirm btn-lg) %>
-  </p>
+
+  <div class="fixed-bar">
+    <%= f.submit 'Submit', class: %w(btn btn-success t-confirm btn-lg) %>
+  </div>
 <% end %>
