@@ -321,5 +321,59 @@
   </div>
 <% end %>
 
+<% if !@appointment_summary.eligible_for_guidance? %>
+<div class="page-break"></div>
+<p class="header">ineligible</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.generic_guidance? %>
+<div class="page-break"></div>
+<p class="header">generic guidance</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.continue_working? %>
+<div class="page-break"></div>
+<p class="header">continue_working</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.unsure? %>
+<div class="page-break"></div>
+<p class="header">unsure</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.leave_inheritance? %>
+<div class="page-break"></div>
+<p class="header">leave_inheritance</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.wants_flexibility? %>
+<div class="page-break"></div>
+<p class="header">wants_flexibility</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.wants_security? %>
+<div class="page-break"></div>
+<p class="header">wants_security</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.wants_lump_sum? %>
+<div class="page-break"></div>
+<p class="header">wants_lump_sum</p>
+</div>
+<% end %>
+
+<% if @appointment_summary.custom_guidance? && @appointment_summary.poor_health? %>
+<div class="page-break"></div>
+<p class="header">poor_health</p>
+</div>
+<% end %>
+
 </body>
 </html>
