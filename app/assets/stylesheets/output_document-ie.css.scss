@@ -1,0 +1,8 @@
+.fixed-bar {
+  background:transparent;
+  /* IE 6/7 */
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000);
+  /* IE8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000)";
+  zoom: 1;
+}
