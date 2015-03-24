@@ -39,13 +39,26 @@ class AppointmentSummary < ActiveRecord::Base
 
   validates :income_in_retirement, inclusion: { in: %w(pension other) }, if: :eligible_for_guidance?
   validates :guider_name, presence: true
-  validates :guider_organisation, inclusion: { in: %w(tpas dwp) }
+  validates :guider_organisation,
+            presence: true,
+            inclusion: {
+              in: %w(tpas dwp),
+              allow_blank: true,
+              message: '%{value} is not a valid organisation'
+            }
 
   validates :address_line_1, presence: true
   validates :town, presence: true
   validates :postcode, presence: true, postcode: true
 
-  validates :has_defined_contribution_pension, inclusion: { in: %w(yes no unknown) }
+  validates :has_defined_contribution_pension,
+            presence: true,
+            inclusion: {
+              in: %w(yes no unknown),
+              allow_blank: true,
+              message: '%{value} is not a valid value'
+            }
+
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
 
   def format_preference
