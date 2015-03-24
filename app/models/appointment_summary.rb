@@ -30,7 +30,7 @@ class AppointmentSummary < ActiveRecord::Base
   validates :date_of_appointment, timeliness: { on_or_before: -> { Date.current },
                                                 on_or_after: Date.new(2015),
                                                 type: :date }
-  validates :reference_number, numericality: true, presence: true
+  validates :reference_number, numericality: { only_integer: true, allow_blank: true }, presence: true
 
   with_options numericality: true, allow_blank: true, if: :eligible_for_guidance? do |eligible|
     eligible.validates :value_of_pension_pots
