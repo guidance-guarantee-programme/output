@@ -20,15 +20,15 @@ RSpec.describe OutputDocument do
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }
-  let(:ineligible_text) { 'ineligible' }
-  let(:generic_guidance_text) { 'generic guidance' }
-  let(:continue_working_text) { 'continue_working' }
-  let(:unsure_text) { 'unsure' }
-  let(:leave_inheritance_text) { 'leave_inheritance' }
-  let(:wants_flexibility_text) { 'wants_flexibility' }
-  let(:wants_security_text) { 'wants_security' }
-  let(:wants_lump_sum_text) { 'wants_lump_sum' }
-  let(:poor_health_text) { 'poor_health' }
+  let(:ineligible_text) { 't-ineligible' }
+  let(:generic_guidance_text) { 't-generic' }
+  let(:continue_working_text) { 't-continue-working' }
+  let(:unsure_text) { 't-unsure' }
+  let(:leave_inheritance_text) { 't-leave-inheritance' }
+  let(:wants_flexibility_text) { 't-wants-flexibility' }
+  let(:wants_security_text) { 't-wants-security' }
+  let(:wants_lump_sum_text) { 't-wants-lump-sum' }
+  let(:poor_health_text) { 't-poor-health' }
 
   subject { described_class.new(appointment_summary).html }
 
