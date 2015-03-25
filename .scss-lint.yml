@@ -29,7 +29,10 @@ linters:
     enabled: true
 
   DuplicateProperty:
-    enabled: true
+    enabled: false
+    exclude:
+    - app/assets/stylesheets/output_document-ie.css.scss
+    - app/assets/stylesheets/output_document.css.scss
 
   ElsePlacement:
     enabled: true
@@ -129,6 +132,8 @@ linters:
   SpaceAfterPropertyColon:
     enabled: true
     style: one_space # or 'no_space', or 'at_least_one_space', or 'aligned'
+    exclude:
+    - app/assets/stylesheets/output_document-ie.css.scss
 
   SpaceAfterPropertyName:
     enabled: true
@@ -168,7 +173,8 @@ linters:
     enabled: true
     identifier_list: base
     include: []
-    exclude: []
+    exclude:
+    - app/assets/stylesheets/output_document-ie.css.scss
 
   ZeroUnit:
     enabled: true
