@@ -1,0 +1,157 @@
+//*------------ variables ------------*/
+
+$color-black: #000;
+$color-white: #fff;
+$color-blue: #00385d;
+$color-violet: #ae398a;
+$color-grey-jumbo: #7a7a7f;
+$color-grey-dusty: #999;
+
+$color-text: $color-black;
+$color-heading: $color-blue;
+$color-link: $color-violet;
+$color-header: $color-grey-jumbo;
+
+
+//*------------ default typography ------------*/
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
+  color: $color-text;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 20px;
+  color: $color-heading;
+}
+
+h1,
+.h1,
+h2 {
+  font-size: 25px;
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+h4 {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+li,
+th,
+td {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 600px;
+}
+
+.output-document a,
+.output-document a:link,
+.output-document a:visited,
+.output-document main a:visited,
+.output-document a:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: $color-link;
+}
+
+//*------------ layout ------------*/
+.l-details {
+  width: 130px;
+  margin-top: 32px;
+}
+
+.l-impartial {
+  margin-top: 40px;
+  width: 440px;
+}
+
+.l-grid-row {
+  margin-top: 40px;
+  overflow: hidden;
+  zoom: 1;
+}
+
+.l-column-1 {
+  width: 260px;
+  float: left;
+  margin-right: 30px;
+}
+
+.l-column-2 {
+  width: 420px;
+  float: left;
+}
+
+.l-text-max {
+  width: 500px;
+}
+
+.l-text-narrow {
+  width: 260px;
+}
+
+//*------------ components ------------*/
+.header {
+  font-size: 10pt;
+  font-weight: bold;
+  color: $color-header;
+}
+
+.callout {
+  font-size: 12pt;
+  line-height: 15pt;
+  font-weight: bold;
+}
+
+.page-break {
+  border-top: 1px solid $color-grey-dusty;
+  margin: 5em 0;
+}
+
+.name {
+  margin-top: 40px;
+  font-size: 18pt;
+}
+
+.data {
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.emphasize {
+  font-weight: bold;
+}
+
+.fixed-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: $color-white;
+  width: 100%;
+  padding: 10px 0;
+  background-color: rgb(152, 152, 152);
+  background-color: rgba(152, 152, 152, .7);
+  text-align: center;
+}
