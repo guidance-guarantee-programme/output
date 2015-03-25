@@ -1,13 +1,30 @@
-/*------------ default typography ------------*/
+//*------------ variables ------------*/
+
+$color-black: #000;
+$color-white: #fff;
+$color-blue: #00385d;
+$color-violet: #ae398a;
+$color-grey-jumbo: #7a7a7f;
+$color-grey-dusty: #999;
+
+$color-text: $color-black;
+$color-heading: $color-blue;
+$color-link: $color-violet;
+$color-header: $color-grey-jumbo;
+
+
+//*------------ default typography ------------*/
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0;
-  color: #000000;
+  color: $color-text;
 }
 
-h1, h2, h3 {
-  margin: 0 0 20px 0;
-  color: #00385d;
+h1,
+h2,
+h3 {
+  margin: 0 0 20px;
+  color: $color-heading;
 }
 
 h1,
@@ -34,7 +51,9 @@ p {
   margin-bottom: 20px;
 }
 
-li, th, td {
+li,
+th,
+td {
   font-size: 14px;
   line-height: 1.25;
 }
@@ -54,10 +73,10 @@ li {
 .output-document a:hover {
   text-decoration: none;
   font-weight: bold;
-  color: #AE398A;
+  color: $color-link;
 }
 
-/*------------ layout ------------*/
+//*------------ layout ------------*/
 .l-details {
   width: 130px;
   margin-top: 32px;
@@ -93,11 +112,11 @@ li {
   width: 260px;
 }
 
-/*------------ components ------------*/
+//*------------ components ------------*/
 .header {
   font-size: 10pt;
   font-weight: bold;
-  color: #7A7A7F;
+  color: $color-header;
 }
 
 .callout {
@@ -107,7 +126,7 @@ li {
 }
 
 .page-break {
-  border-top: 1px solid #999;
+  border-top: 1px solid $color-grey-dusty;
   margin: 5em 0;
 }
 
@@ -129,10 +148,10 @@ li {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: #fff;
+  background: $color-white;
   width: 100%;
   padding: 10px 0;
-  background-color: rgb(152,152,152) ;
-  background-color: rgba(152,152,152, 0.7);
+  background-color: rgb(152, 152, 152);
+  background-color: rgba(152, 152, 152, .7);
   text-align: center;
 }
