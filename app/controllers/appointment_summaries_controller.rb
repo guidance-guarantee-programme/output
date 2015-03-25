@@ -2,7 +2,7 @@ class AppointmentSummariesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @appointment_summary = AppointmentSummary.new(guider_name: current_user.name,
+    @appointment_summary = AppointmentSummary.new(guider_name: current_user.first_name,
                                                   guider_organisation: current_user.organisation,
                                                   date_of_appointment: DateTime.now)
   end
