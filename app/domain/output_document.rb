@@ -11,6 +11,10 @@ class OutputDocument
     ERB.new(template).result(binding)
   end
 
+  def csv
+    'c,s,v'
+  end
+
   private
 
   def template
