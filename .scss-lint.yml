@@ -115,6 +115,8 @@ linters:
   SelectorFormat:
     enabled: true
     convention: BEM
+    exclude:
+        - app/assets/stylesheets/output_document.css.scss
 
   Shorthand:
     enabled: true
@@ -148,7 +150,7 @@ linters:
     spaces: 0
 
   StringQuotes:
-    enabled: true
+    enabled: false
     style: double_quotes
 
   TrailingSemicolon:
