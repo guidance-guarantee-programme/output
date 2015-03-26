@@ -111,4 +111,10 @@ RSpec.describe OutputDocument do
       end
     end
   end
+
+  describe '#csv' do
+    subject { described_class.new(appointment_summary).csv }
+
+    it { is_expected.to_not be_empty }
+  end
 end
