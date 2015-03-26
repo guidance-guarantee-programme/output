@@ -13,3 +13,15 @@
 .js .hide-with-js {
   display: none;
 }
+
+.fixed-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: $color-white;
+  width: 100%;
+  padding: 10px 0;
+  background-color: rgb(152, 152, 152);
+  background-color: rgba(152, 152, 152, .7);
+  text-align: center;
+}
