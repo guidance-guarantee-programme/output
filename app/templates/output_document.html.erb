@@ -19,7 +19,7 @@
   <div class="l-details">
     <p class="data-label">Date of your appointment</p>
 
-    <p class="data"><%= @appointment_summary.date_of_appointment.to_s(:long) %></p>
+    <p class="data"><%= appointment_date %></p>
 
     <p class="data-label">Your guidance specialist was</p>
 
@@ -1061,7 +1061,7 @@
         Pension Wise
       <% end %>
 
-      on <%= @appointment_summary.date_of_appointment.to_s(:long) %>.</p>
+      on <%= appointment_date %>.</p>
 
     <p>In the appointment we found out that you have a defined benefit or 'final
       salary' pension. Pension Wise only provides guidance on what you can do

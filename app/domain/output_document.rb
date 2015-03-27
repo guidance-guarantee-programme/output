@@ -11,6 +11,10 @@ class OutputDocument
     "#{appointment_summary.title} #{appointment_summary.first_name} #{appointment_summary.last_name}".squish
   end
 
+  def appointment_date
+    appointment_summary.date_of_appointment.to_s(:long)
+  end
+
   def html
     ERB.new(template).result(binding)
   end
