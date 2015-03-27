@@ -37,7 +37,7 @@
   </div>
 
   <p class="name">
-    <%= @appointment_summary.title %> <%= @appointment_summary.first_name %> <%= @appointment_summary.last_name %>
+    <%= attendee_name %>
   </p>
 
   <p class="h1">Record of your Pension Wise appointment</p>
@@ -1032,7 +1032,7 @@
   <div class="l-text-max t-ineligible">
 
     <p>
-      <%= @appointment_summary.title %> <%= @appointment_summary.first_name %> <%= @appointment_summary.last_name %>
+      <%= attendee_name %>
       <br/>
       <% if @appointment_summary.address_line_2 !='' %>
         <%= @appointment_summary.address_line_2 %><br/>
@@ -1049,7 +1049,7 @@
       <%= @appointment_summary.postcode %>
     </p>
 
-    <p>Dear <%= @appointment_summary.title %> <%= @appointment_summary.first_name %> <%= @appointment_summary.last_name %>
+    <p>Dear <%= attendee_name %>
       ,</p>
 
     <p class="emphasize">You recently had a Pension Wise guidance appointment

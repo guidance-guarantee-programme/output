@@ -4,6 +4,7 @@ RSpec.describe OutputDocument do
   let(:title) { 'Mr' }
   let(:first_name) { 'Joe' }
   let(:last_name) { 'Bloggs' }
+  let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
   let(:value_of_pension_pots) { nil }
   let(:upper_value_of_pension_pots) { nil }
   let(:params) do
@@ -30,7 +31,7 @@ RSpec.describe OutputDocument do
   let(:wants_lump_sum_text) { 't-wants-lump-sum' }
   let(:poor_health_text) { 't-poor-health' }
 
-  subject { described_class.new(appointment_summary).html }
+  subject(:output_document) { described_class.new(appointment_summary) }
 
   def only_includes_circumstance(circumstance)
     circumstances = %i(continue_working unsure leave_inheritance
@@ -50,8 +51,12 @@ RSpec.describe OutputDocument do
     only_includes_circumstance('')
   end
 
+  specify { expect(output_document.attendee_name).to eq(attendee_name) }
+
   describe '#html' do
-    it { is_expected.to include("#{title} #{first_name} #{last_name}") }
+    subject { output_document.html }
+
+    it { is_expected.to include(attendee_name) }
 
     context 'when ineligible for guidance' do
       before do
@@ -113,7 +118,7 @@ RSpec.describe OutputDocument do
   end
 
   describe '#csv' do
-    subject { described_class.new(appointment_summary).csv }
+    subject { output_document.csv }
 
     it { is_expected.to_not be_empty }
   end
