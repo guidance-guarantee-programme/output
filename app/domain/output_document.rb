@@ -51,6 +51,10 @@ class OutputDocument
   def greeting
   end
 
+  def appointment_reference
+    appointment_summary.reference_number
+  end
+
   def html
     ERB.new(template).result(binding)
   end
