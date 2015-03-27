@@ -133,6 +133,41 @@ RSpec.describe OutputDocument do
     it 'needs details'
   end
 
+  describe '#pages_to_render' do
+    let(:variant) { 'tailored' }
+
+    before do
+      allow(output_document).to receive(:variant).and_return(variant)
+    end
+
+    subject { output_document.pages_to_render }
+
+    context 'with "tailored" variant' do
+      %i(continue_working unsure leave_inheritance wants_flexibility wants_security
+         wants_lump_sum poor_health).each do |circumstance|
+        context "for '#{circumstance}'" do
+          before do
+            allow(appointment_summary).to receive("#{circumstance}?".to_sym).and_return(true)
+          end
+
+          it { is_expected.to eq([:introduction, circumstance, :other_information]) }
+        end
+      end
+    end
+
+    context 'with "generic" variant' do
+      let(:variant) { 'generic' }
+
+      it { is_expected.to eq(%w(introduction generic_guidance other_information)) }
+    end
+
+    context 'with "other" variant' do
+      let(:variant) { 'other' }
+
+      it { is_expected.to eq(%w(ineligible)) }
+    end
+  end
+
   describe '#html' do
     subject { output_document.html }
 
