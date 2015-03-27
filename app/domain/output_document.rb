@@ -48,6 +48,9 @@ class OutputDocument
     end
   end
 
+  def greeting
+  end
+
   def html
     ERB.new(template).result(binding)
   end
