@@ -28,11 +28,7 @@
     <p class="data-label">from</p>
 
     <p class="data">
-      <% if @appointment_summary.guider_organisation == 'tpas' %>
-        The Pensions Advisory Service
-      <% else %>
-        Pension Wise
-      <% end %>
+      <%= guider_organisation %>
     </p>
   </div>
 
@@ -1055,11 +1051,7 @@
     <p class="emphasize">You recently had a Pension Wise guidance appointment
       with <%= @appointment_summary.guider_name %> from
 
-      <% if @appointment_summary.guider_organisation == 'tpas' %>
-        The Pensions Advisory Service
-      <% else %>
-        Pension Wise
-      <% end %>
+      <%= guider_organisation %>
 
       on <%= appointment_date %>.</p>
 

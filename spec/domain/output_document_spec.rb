@@ -7,6 +7,7 @@ RSpec.describe OutputDocument do
   let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
   let(:value_of_pension_pots) { nil }
   let(:upper_value_of_pension_pots) { nil }
+  let(:guider_organisation) { 'tpas' }
   let(:params) do
     {
       title: title,
@@ -17,7 +18,7 @@ RSpec.describe OutputDocument do
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       income_in_retirement: :pension,
       guider_name: 'A Guider',
-      guider_organisation: 'tpas'
+      guider_organisation: guider_organisation
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }
@@ -52,6 +53,20 @@ RSpec.describe OutputDocument do
   end
 
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
+
+  describe '#guider_organisation' do
+    subject { output_document.guider_organisation }
+
+    context 'when TPAS' do
+      it { is_expected.to eq('The Pensions Advisory Service') }
+    end
+
+    context 'when PensionWise' do
+      let(:guider_organisation) { 'pw' }
+
+      it { is_expected.to eq('Pension Wise') }
+    end
+  end
 
   describe '#html' do
     subject { output_document.html }
