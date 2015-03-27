@@ -3,6 +3,15 @@ class OutputDocument
 
   attr_accessor :appointment_summary
 
+  delegate :id, :guider_name, :income_in_retirement, :continue_working, :unsure,
+           :leave_inheritance, :wants_flexibility, :wants_security,
+           :wants_lump_sum, :poor_health,
+           to: :appointment_summary
+
+  delegate :address_line_1, :address_line_2, :address_line_3, :town, :county,
+           :postcode,
+           to: :appointment_summary, prefix: :attendee
+
   def initialize(appointment_summary)
     @appointment_summary = appointment_summary
   end
