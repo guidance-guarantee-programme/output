@@ -36,6 +36,18 @@ class OutputDocument
     end
   end
 
+  def variant
+    if appointment_summary.eligible_for_guidance?
+      if appointment_summary.custom_guidance?
+        'tailored'
+      else
+        'generic'
+      end
+    else
+      'other'
+    end
+  end
+
   def html
     ERB.new(template).result(binding)
   end
