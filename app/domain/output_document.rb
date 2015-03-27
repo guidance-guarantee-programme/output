@@ -23,6 +23,19 @@ class OutputDocument
     end
   end
 
+  def value_of_pension_pots
+    return 'No value given' if appointment_summary.value_of_pension_pots.blank?
+
+    pension_pot = number_to_currency(appointment_summary.value_of_pension_pots, precision: 0)
+
+    if appointment_summary.upper_value_of_pension_pots.blank?
+      pension_pot
+    else
+      pension_pot + ' to ' + \
+        number_to_currency(appointment_summary.upper_value_of_pension_pots, precision: 0)
+    end
+  end
+
   def html
     ERB.new(template).result(binding)
   end
