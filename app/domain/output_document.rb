@@ -92,7 +92,13 @@ class OutputDocument
   private
 
   def template
+    [:header, pages_to_render, :footer].flatten.reduce('') do |result, section|
+      result << template_for(section) << "\n\n"
+    end
+  end
+
+  def template_for(section)
     File.read(
-      File.join(Rails.root, 'app', 'templates', 'output_document.html.erb'))
+      Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
   end
 end
