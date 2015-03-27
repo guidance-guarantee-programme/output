@@ -64,6 +64,23 @@ class OutputDocument
     appointment_summary.reference_number
   end
 
+  def pages_to_render
+    case variant
+    when 'tailored'
+      circumstances = %i(continue_working unsure leave_inheritance
+                         wants_flexibility wants_security wants_lump_sum
+                         poor_health).select do |c|
+        appointment_summary.public_send("#{c}?".to_sym)
+      end
+
+      [:introduction, circumstances, :other_information].flatten
+    when 'generic'
+      %w(introduction generic_guidance other_information)
+    when 'other'
+      %w(ineligible)
+    end
+  end
+
   def html
     ERB.new(template).result(binding)
   end
