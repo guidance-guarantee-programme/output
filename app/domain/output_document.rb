@@ -7,6 +7,10 @@ class OutputDocument
     @appointment_summary = appointment_summary
   end
 
+  def attendee_name
+    "#{appointment_summary.title} #{appointment_summary.first_name} #{appointment_summary.last_name}".squish
+  end
+
   def html
     ERB.new(template).result(binding)
   end
