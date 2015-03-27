@@ -14,6 +14,7 @@ class AppointmentSummaryPage < SitePrism::Page
   element :reference_number, '.t-reference-number'
   element :value_of_pension_pots, '.t-value-of-pension-pots'
   element :upper_value_of_pension_pots, '.t-upper-value-of-pension-pots'
+  element :value_of_pension_pots_is_approximate, '.t-value-of-pension-pots-is-approximate'
   element :income_in_retirement_pension, '.t-income-in-retirement-pension'
   element :income_in_retirement_other, '.t-income-in-retirement-other'
   element :guider_name, '.t-guider-name'
