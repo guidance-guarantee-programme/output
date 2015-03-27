@@ -23,7 +23,7 @@
 
     <p class="data-label">Your guidance specialist was</p>
 
-    <p class="data"><%= @appointment_summary.guider_name %></p>
+    <p class="data"><%= guider_name %></p>
 
     <p class="data-label">from</p>
 
@@ -69,12 +69,12 @@
   <div class="l-grid-row">
     <div class="l-column-1">
 
-      <% if @appointment_summary.income_in_retirement == 'pension' %>
+      <% if income_in_retirement == 'pension' %>
         <p>
           You told us that your defined contribution pot is your only income in
           retirement.
         </p>
-      <% elsif @appointment_summary.income_in_retirement == 'other' %>
+      <% elsif income_in_retirement == 'other' %>
         <p>
           You told us that you have other income in retirement, eg from a
           defined benefit pension
@@ -108,7 +108,7 @@
       <div class="l-text-narrow emphasize">
         <h3>Things to talk about</h3>
 
-        <% if @appointment_summary.income_in_retirement == 'pension' %>
+        <% if income_in_retirement == 'pension' %>
           <p>How much tax you’ll pay - the tax-free Personal Allowance for the
             2015/16 tax year is £10,600. </p>
 
@@ -126,7 +126,7 @@
             might be eligible for and how to claim.</p>
 
 
-        <% elsif @appointment_summary.income_in_retirement == 'other' %>
+        <% elsif income_in_retirement == 'other' %>
           <p>Tax you pay when taking additional income from your pension.</p>
 
           <p>How long your money needs to last - on average, people aged 55
@@ -1023,26 +1023,16 @@
     <p>
       <%= attendee_name %>
       <br/>
-      <% if @appointment_summary.address_line_2 !='' %>
-        <%= @appointment_summary.address_line_2 %><br/>
-      <% end %>
-      <% if @appointment_summary.address_line_3 !='' %>
-        <%= @appointment_summary.address_line_3 %><br/>
-      <% end %>
-      <% if @appointment_summary.town %>
-        <%= @appointment_summary.town %><br/>
-      <% end %>
-      <% if @appointment_summary.county !='' %>
-        <%= @appointment_summary.county %><br/>
-      <% end %>
-      <%= @appointment_summary.postcode %>
+      <%= [attendee_address_line_2, attendee_address_line_3, attendee_town, attendee_county].reject(&:blank?).join("<br/>\n") %>
+      <br/>
+      <%= attendee_postcode %>
     </p>
 
     <p>Dear <%= attendee_name %>
       ,</p>
 
     <p class="emphasize">You recently had a Pension Wise guidance appointment
-      with <%= @appointment_summary.guider_name %> from
+      with <%= guider_name %> from
 
       <%= guider_organisation %>
 
