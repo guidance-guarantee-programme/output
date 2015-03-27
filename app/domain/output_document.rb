@@ -15,6 +15,14 @@ class OutputDocument
     appointment_summary.date_of_appointment.to_s(:long)
   end
 
+  def guider_organisation
+    if appointment_summary.guider_organisation == 'tpas'
+      'The Pensions Advisory Service'
+    else
+      'Pension Wise'
+    end
+  end
+
   def html
     ERB.new(template).result(binding)
   end
