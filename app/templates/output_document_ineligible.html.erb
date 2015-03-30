@@ -1,0 +1,43 @@
+<div class="l-text-max t-ineligible">
+
+  <p>
+    <%= attendee_name %>
+    <br/>
+    <%= [attendee_address_line_2, attendee_address_line_3, attendee_town, attendee_county].reject(&:blank?).join("<br/>\n") %>
+    <br/>
+    <%= attendee_postcode %>
+  </p>
+
+  <p>Dear <%= attendee_name %>
+    ,</p>
+
+  <p class="emphasize">You recently had a Pension Wise guidance appointment
+    with <%= guider_name %> from
+
+    <%= guider_organisation %>
+
+    on <%= appointment_date %>.</p>
+
+  <p>In the appointment we found out that you have a defined benefit or 'final
+    salary' pension. Pension Wise only provides guidance on what you can do
+    with a defined contribution pension. We apologise if this wasn't made
+    clear before the appointment.</p>
+
+  <p>A defined benefit pension is a secure way to provide you with an income
+    in retirement. If you have any questions about your pension you should
+    contact your provider directly. You can usually find their details on your
+    pension statements.</p>
+
+  <p>You can get help with defined benefit pensions from The Pensions Advisory
+    Service. Visit their website at pensionsadvisoryservice.org.uk or phone
+    0300 123 1047 for independent and impartial advice.</p>
+
+  <p>Most people are eligible for the State Pension paid by the government.
+    Phone 0845 600 4274 to apply for a State Pension statement to find out how
+    much you’ll get.</p>
+
+  <p>Yours sincerely,</p>
+
+  <p><b>Pension wise</b></p>
+
+</div>

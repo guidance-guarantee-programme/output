@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <style>
+    <%= Sass.compile(File.read(Rails.root.join('app', 'assets', 'stylesheets', 'output_document.css.scss'))).html_safe %>
+  </style>
+  <!--[if lt IE 9]>
+  <style type="text/css">
+    <%= Sass.compile(File.read(Rails.root.join('app', 'assets', 'stylesheets', 'output_document-ie.css.scss'))).html_safe %>
+  </style>
+  <![endif]-->
+</head>
+<body class="output-document">
