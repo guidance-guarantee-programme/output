@@ -37,11 +37,16 @@ class OutputDocument
 
     pension_pot = number_to_currency(appointment_summary.value_of_pension_pots, precision: 0)
 
-    if appointment_summary.upper_value_of_pension_pots.blank?
-      pension_pot
+    unless appointment_summary.upper_value_of_pension_pots.blank?
+      upper_limit = number_to_currency(
+        appointment_summary.upper_value_of_pension_pots, precision: 0)
+      return "#{pension_pot} to #{upper_limit}"
+    end
+
+    if appointment_summary.value_of_pension_pots_is_approximate?
+      "#{pension_pot} (approximately)"
     else
-      pension_pot + ' to ' + \
-        number_to_currency(appointment_summary.upper_value_of_pension_pots, precision: 0)
+      pension_pot
     end
   end
 
