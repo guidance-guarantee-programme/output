@@ -7,6 +7,7 @@ RSpec.describe OutputDocument do
   let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
   let(:value_of_pension_pots) { nil }
   let(:upper_value_of_pension_pots) { nil }
+  let(:value_of_pension_pots_is_approximate) { false }
   let(:guider_organisation) { 'tpas' }
   let(:params) do
     {
@@ -16,6 +17,7 @@ RSpec.describe OutputDocument do
       date_of_appointment: Date.today,
       value_of_pension_pots: value_of_pension_pots,
       upper_value_of_pension_pots: upper_value_of_pension_pots,
+      value_of_pension_pots_is_approximate: value_of_pension_pots_is_approximate,
       income_in_retirement: :pension,
       guider_name: 'A Guider',
       guider_organisation: guider_organisation
@@ -76,6 +78,12 @@ RSpec.describe OutputDocument do
       let(:upper_value_of_pension_pots) { nil }
 
       it { is_expected.to eq('£35,000') }
+
+      context 'and it is approximate' do
+        let(:value_of_pension_pots_is_approximate) { true }
+
+        it { is_expected.to eq('£35,000 (approximately)') }
+      end
     end
 
     context 'with two pension pot values' do
