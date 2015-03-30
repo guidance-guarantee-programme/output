@@ -13,7 +13,7 @@ RSpec.describe OutputDocument do
       title: title,
       first_name: first_name,
       last_name: last_name,
-      date_of_appointment: Date.today,
+      date_of_appointment: Date.new(2015, 3, 30),
       value_of_pension_pots: value_of_pension_pots,
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       income_in_retirement: :pension,
@@ -129,8 +129,10 @@ RSpec.describe OutputDocument do
     end
   end
 
-  describe '#greeting' do
-    it 'needs details'
+  describe '#lead' do
+    subject { output_document.lead }
+
+    it { is_expected.to eq('You recently had a Pension Wise guidance appointment with A Guider from The Pensions Advisory Service on March 30, 2015') }
   end
 
   describe '#pages_to_render' do
