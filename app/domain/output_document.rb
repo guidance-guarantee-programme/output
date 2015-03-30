@@ -33,20 +33,15 @@ class OutputDocument
   end
 
   def value_of_pension_pots
-    return 'No value given' if appointment_summary.value_of_pension_pots.blank?
+    pension_pot = to_currency(appointment_summary.value_of_pension_pots)
+    upper_limit = to_currency(appointment_summary.upper_value_of_pension_pots)
+    is_approximate = appointment_summary.value_of_pension_pots_is_approximate?
 
-    pension_pot = number_to_currency(appointment_summary.value_of_pension_pots, precision: 0)
-
-    unless appointment_summary.upper_value_of_pension_pots.blank?
-      upper_limit = number_to_currency(
-        appointment_summary.upper_value_of_pension_pots, precision: 0)
-      return "#{pension_pot} to #{upper_limit}"
-    end
-
-    if appointment_summary.value_of_pension_pots_is_approximate?
-      "#{pension_pot} (approximately)"
-    else
-      pension_pot
+    case
+    when pension_pot.blank?   then 'No value given'
+    when upper_limit.present? then "#{pension_pot} to #{upper_limit}"
+    when is_approximate       then "#{pension_pot} (approximately)"
+    else pension_pot
     end
   end
 
@@ -105,5 +100,11 @@ class OutputDocument
   def template_for(section)
     File.read(
       Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
+  end
+
+  def to_currency(number)
+    return '' if number.blank?
+
+    number_to_currency(number, precision: 0)
   end
 end
