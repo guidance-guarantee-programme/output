@@ -11,12 +11,14 @@ RSpec.describe OutputDocument do
   let(:guider_name) { 'James' }
   let(:date_of_appointment) { Date.new(2015, 3, 30) }
   let(:guider_organisation) { 'tpas' }
+  let(:reference_number) { '123456789' }
   let(:params) do
     {
       title: title,
       first_name: first_name,
       last_name: last_name,
       date_of_appointment: date_of_appointment,
+      reference_number: reference_number,
       value_of_pension_pots: value_of_pension_pots,
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       value_of_pension_pots_is_approximate: value_of_pension_pots_is_approximate,
@@ -147,6 +149,18 @@ RSpec.describe OutputDocument do
         'You recently had a Pension Wise guidance appointment with James ' \
         'from The Pensions Advisory Service on 30 March 2015'
       )
+    end
+  end
+
+  describe '#appointment_reference' do
+    let(:id) { 'internal-id' }
+
+    before do
+      allow(appointment_summary).to receive(:id).and_return(id)
+    end
+
+    it 'provides a unique reference even for duplicate `reference_number`s' do
+      expect(output_document.appointment_reference).to eq("#{id}/#{reference_number}")
     end
   end
 

@@ -63,7 +63,7 @@ class OutputDocument
   end
 
   def appointment_reference
-    appointment_summary.reference_number
+    "#{appointment_summary.id}/#{appointment_summary.reference_number}"
   end
 
   def pages_to_render
