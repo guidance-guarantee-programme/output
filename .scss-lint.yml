@@ -31,7 +31,6 @@ linters:
   DuplicateProperty:
     enabled: false
     exclude:
-    - app/assets/stylesheets/output_document-ie.css.scss
     - app/assets/stylesheets/output_document.css.scss
 
   ElsePlacement:
@@ -135,7 +134,7 @@ linters:
     enabled: true
     style: one_space # or 'no_space', or 'at_least_one_space', or 'aligned'
     exclude:
-    - app/assets/stylesheets/output_document-ie.css.scss
+    - app/assets/stylesheets/components/_fixed-bar.scss
 
   SpaceAfterPropertyName:
     enabled: true
@@ -176,7 +175,7 @@ linters:
     identifier_list: base
     include: []
     exclude:
-    - app/assets/stylesheets/output_document-ie.css.scss
+    - app/assets/stylesheets/components/_fixed-bar.scss
 
   ZeroUnit:
     enabled: true
