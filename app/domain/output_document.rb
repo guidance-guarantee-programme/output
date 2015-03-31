@@ -83,6 +83,13 @@ class OutputDocument
     end
   end
 
+  def stylesheet(filename)
+    css = Sass.compile(ERB.new(
+      File.read(Rails.root.join('app', 'assets', 'stylesheets', filename))
+    ).result(binding))
+    "<style>\n#{css}\n</style>".html_safe
+  end
+
   def html
     ERB.new(template).result(binding)
   end
