@@ -1,6 +1,34 @@
+label {
+  display: block;
+  margin-bottom: .5em;
+  font-weight: bold;
+}
+
+p label {
+  font-weight: normal;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  width: 20em;
+  padding: .5em;
+}
+
+input[type="date"] {
+  width: 11em;
+  padding: .5em;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 legend {
   border: 0;
-  margin-bottom: .25em;
+  margin-bottom: -6px;
   font-size: 14px;
   font-weight: bold;
 }
