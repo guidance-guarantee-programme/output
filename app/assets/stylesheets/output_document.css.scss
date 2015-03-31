@@ -189,7 +189,6 @@ p {
 p,
 td {
   line-height: 1.3;
-  letter-spacing: .0145em;
 }
 
 a {
@@ -207,6 +206,17 @@ a {
 address {
   font-style: normal;
   margin: 84px 0 44px;
+}
+
+ul {
+  margin-bottom: 20px;
+  margin-left: 0;
+  padding-left: 0;
+  list-style-position: inside;
+
+  li {
+    margin-bottom: 16px;
+  }
 }
 
 //*------------ tax table ------------*/
@@ -382,12 +392,22 @@ td {
   margin-top: 16px;
 }
 
+.l-logo-pw-arrows {
+  position: absolute;
+  top: 800px;
+  left: 432px;
+}
+
 //*------------ helpers ------------*/
 .emphasize {
   font-family: "HelveticaNeueLTStd-Md";
 
   p {
     margin-bottom: 18px;
+  }
+
+  .page-cover-letter & {
+    margin-bottom: 26px;
   }
 }
 
@@ -401,9 +421,6 @@ td {
 }
 
 //*------------ components ------------*/
-.intro {
-  font-size: 16px;
-}
 
 .letter-intro {
   font-family: "Gotham-Book";
@@ -473,7 +490,6 @@ td {
 }
 
 //*---- total-value ----*/
-
 .total-value__label {
   font-size: 16px;
   margin-bottom: 6px;
@@ -491,7 +507,6 @@ td {
 .total-value__note {
   margin-bottom: 10px;
 }
-
 
 //*------------ Page - margin, header and footer ------------*/
 @page {
@@ -526,6 +541,7 @@ td {
   }
 
   @bottom-right {
+    counter-reset: page;
     content: counter(page);
     font-family: "Gotham-Bold";
     font-size: 14px;
@@ -534,7 +550,7 @@ td {
   }
 }
 
-@page cover {
+@page intro {
   margin-top: 48px;
 
   @top-center {
@@ -550,10 +566,6 @@ td {
   }
 }
 
-.page-cover {
-  page: cover;
-}
-
 @page ineligible {
   margin: 90px 90px 107px;
 
@@ -566,16 +578,35 @@ td {
   }
 }
 
+@page cover-letter {
+  margin: 90px 90px 107px;
+
+  @top-center {
+    content: '';
+  }
+
+  @bottom-left {
+    background-image: none;
+  }
+
+  @bottom-right {
+    content: '';
+  }
+}
+
+.page-intro {
+  page: intro;
+  counter-reset: page 1;
+}
+
+.page-cover-letter {
+  page: cover-letter;
+}
+
 .page-ineligible {
   page: ineligible;
 }
 
 .page {
   position: relative;
-}
-
-.l-logo-pw-arrows {
-  position: absolute;
-  top: 800px;
-  left: 432px;
 }
