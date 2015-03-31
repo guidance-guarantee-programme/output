@@ -28,6 +28,7 @@ RSpec.describe OutputDocument do
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }
+  let(:cover_letter_text) { 't-cover-letter' }
   let(:ineligible_text) { 't-ineligible' }
   let(:generic_guidance_text) { 't-generic' }
   let(:continue_working_text) { 't-continue-working' }
@@ -181,7 +182,7 @@ RSpec.describe OutputDocument do
             allow(appointment_summary).to receive("#{circumstance}?".to_sym).and_return(true)
           end
 
-          it { is_expected.to eq([:introduction, circumstance, :other_information]) }
+          it { is_expected.to eq([:cover_letter, :introduction, circumstance, :other_information]) }
         end
       end
     end
@@ -189,7 +190,7 @@ RSpec.describe OutputDocument do
     context 'with "generic" variant' do
       let(:variant) { 'generic' }
 
-      it { is_expected.to eq(%w(introduction generic_guidance other_information)) }
+      it { is_expected.to eq(%w(cover_letter introduction generic_guidance other_information)) }
     end
 
     context 'with "other" variant' do
@@ -211,6 +212,7 @@ RSpec.describe OutputDocument do
 
       it { is_expected.to include(ineligible_text) }
       it { is_expected.to_not include(generic_guidance_text) }
+      it { is_expected.to_not include(cover_letter_text) }
       it { excludes_all_circumstances }
     end
 
@@ -222,6 +224,7 @@ RSpec.describe OutputDocument do
       context 'and generic guidance was given' do
         it { is_expected.to include(generic_guidance_text) }
         it { is_expected.to_not include(ineligible_text) }
+        it { is_expected.to include(cover_letter_text) }
         it { excludes_all_circumstances }
       end
 
@@ -235,6 +238,7 @@ RSpec.describe OutputDocument do
 
             it { is_expected.to_not include(generic_guidance_text) }
             it { is_expected.to_not include(ineligible_text) }
+            it { is_expected.to include(cover_letter_text) }
             it { only_includes_circumstance(circumstance) }
           end
         end
