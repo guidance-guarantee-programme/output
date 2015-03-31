@@ -21,7 +21,7 @@ class OutputDocument
   end
 
   def appointment_date
-    appointment_summary.date_of_appointment.to_s(:long)
+    appointment_summary.date_of_appointment.to_s(:gov_uk)
   end
 
   def guider_organisation
