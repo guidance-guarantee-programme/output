@@ -1,5 +1,7 @@
 class OutputDocument
   class HTMLRenderer
+    include ActionView::Helpers::TextHelper
+
     attr_accessor :output_document
 
     def initialize(output_document)
