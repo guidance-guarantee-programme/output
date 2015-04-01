@@ -3,4 +3,5 @@ class PreviewPage < SitePrism::Page
 
   element :name, '.name'
   element :confirm, '.t-confirm'
+  element :back, '.t-back'
 end

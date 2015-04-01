@@ -1,0 +1,12 @@
+<%= form_for local_assigns.fetch(:appointment_summary),
+  url: local_assigns.fetch(:url),
+  method: local_assigns.fetch(:method) { :post } do |f| %>
+
+  <% (AppointmentSummary.columns.map(&:name) - [:id, :created_at, :updated_at, :user_id, :name, :address]).each do |field| %>
+    <%= f.hidden_field field %>
+  <% end %>
+
+  <%= f.submit local_assigns.fetch(:submit_button_text),
+    class: (%w(btn btn-lg) | Array(local_assigns[:submit_button_classes])) %>
+
+<% end %>
