@@ -66,6 +66,10 @@ class OutputDocument
     "#{appointment_summary.id}/#{appointment_summary.reference_number}"
   end
 
+  def format
+    appointment_summary.format_preference
+  end
+
   def pages_to_render
     case variant
     when 'tailored'
