@@ -4,13 +4,10 @@
 
 <%= @output_document.html.html_safe %>
 
-<%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
+<div class="fixed-bar">
+  <%= render 'preview_form', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
+    submit_button_text: 'Back', submit_button_classes: %w(t-back) %>
 
-  <% (AppointmentSummary.columns.map(&:name) - %w(id created_at updated_at user_id)).each do |field| %>
-    <%= f.hidden_field field %>
-  <% end %>
-
-  <div class="fixed-bar">
-    <%= f.submit 'Submit', class: %w(btn btn-success t-confirm btn-lg) %>
-  </div>
-<% end %>
+  <%= render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
+    submit_button_text: 'Submit', submit_button_classes: %w(btn-success t-confirm) %>
+</div>
