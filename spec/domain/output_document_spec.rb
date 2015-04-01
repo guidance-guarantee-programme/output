@@ -28,36 +28,8 @@ RSpec.describe OutputDocument do
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }
-  let(:cover_letter_text) { 't-cover-letter' }
-  let(:ineligible_text) { 't-ineligible' }
-  let(:generic_guidance_text) { 't-generic' }
-  let(:continue_working_text) { 't-continue-working' }
-  let(:unsure_text) { 't-unsure' }
-  let(:leave_inheritance_text) { 't-leave-inheritance' }
-  let(:wants_flexibility_text) { 't-wants-flexibility' }
-  let(:wants_security_text) { 't-wants-security' }
-  let(:wants_lump_sum_text) { 't-wants-lump-sum' }
-  let(:poor_health_text) { 't-poor-health' }
 
   subject(:output_document) { described_class.new(appointment_summary) }
-
-  def only_includes_circumstance(circumstance)
-    circumstances = %i(continue_working unsure leave_inheritance
-                       wants_flexibility wants_security
-                       wants_lump_sum poor_health)
-
-    unless circumstance.empty?
-      expect(subject).to include(send("#{circumstance}_text"))
-    end
-
-    (circumstances - [circumstance]).each do |non_applicable_circumstance|
-      expect(subject).to_not include(send("#{non_applicable_circumstance}_text"))
-    end
-  end
-
-  def excludes_all_circumstances
-    only_includes_circumstance('')
-  end
 
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
 
@@ -165,85 +137,19 @@ RSpec.describe OutputDocument do
     end
   end
 
-  describe '#pages_to_render' do
-    let(:variant) { 'tailored' }
-
-    before do
-      allow(output_document).to receive(:variant).and_return(variant)
-    end
-
-    subject { output_document.pages_to_render }
-
-    context 'with "tailored" variant' do
-      %i(continue_working unsure leave_inheritance wants_flexibility wants_security
-         wants_lump_sum poor_health).each do |circumstance|
-        context "for '#{circumstance}'" do
-          before do
-            allow(appointment_summary).to receive("#{circumstance}?".to_sym).and_return(true)
-          end
-
-          it { is_expected.to eq([:cover_letter, :introduction, circumstance, :other_information]) }
-        end
-      end
-    end
-
-    context 'with "generic" variant' do
-      let(:variant) { 'generic' }
-
-      it { is_expected.to eq(%w(cover_letter introduction generic_guidance other_information)) }
-    end
-
-    context 'with "other" variant' do
-      let(:variant) { 'other' }
-
-      it { is_expected.to eq(%w(ineligible)) }
-    end
-  end
-
   describe '#html' do
+    let(:html) { 'html' }
+    let(:renderer) { double(render: html) }
+
     subject { output_document.html }
 
-    it { is_expected.to include(attendee_name) }
-
-    context 'when ineligible for guidance' do
-      before do
-        allow(appointment_summary).to receive(:eligible_for_guidance?).and_return(false)
-      end
-
-      it { is_expected.to include(ineligible_text) }
-      it { is_expected.to_not include(generic_guidance_text) }
-      it { is_expected.to_not include(cover_letter_text) }
-      it { excludes_all_circumstances }
+    before do
+      allow(OutputDocument::HTMLRenderer).to receive(:new)
+        .with(output_document)
+        .and_return(renderer)
     end
 
-    context 'when eligible for guidance' do
-      before do
-        allow(appointment_summary).to receive(:eligible_for_guidance?).and_return(true)
-      end
-
-      context 'and generic guidance was given' do
-        it { is_expected.to include(generic_guidance_text) }
-        it { is_expected.to_not include(ineligible_text) }
-        it { is_expected.to include(cover_letter_text) }
-        it { excludes_all_circumstances }
-      end
-
-      context 'and custom guidance was given' do
-        %i(continue_working unsure leave_inheritance wants_flexibility wants_security
-           wants_lump_sum poor_health).each do |circumstance|
-          context "for '#{circumstance}'" do
-            before do
-              allow(appointment_summary).to receive("#{circumstance}?".to_sym).and_return(true)
-            end
-
-            it { is_expected.to_not include(generic_guidance_text) }
-            it { is_expected.to_not include(ineligible_text) }
-            it { is_expected.to include(cover_letter_text) }
-            it { only_includes_circumstance(circumstance) }
-          end
-        end
-      end
-    end
+    it { is_expected.to eq(html) }
   end
 
   describe '#csv' do
