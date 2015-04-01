@@ -59,7 +59,7 @@ class OutputDocument
 
   def lead
     "You recently had a Pension Wise guidance appointment with #{guider_name} " \
-      "from #{guider_organisation} on #{appointment_date}"
+      "from #{guider_organisation} on #{appointment_date}."
   end
 
   def appointment_reference
