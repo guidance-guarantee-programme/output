@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326152759) do
+ActiveRecord::Schema.define(version: 20150401110927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointment_summaries", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.date     "date_of_appointment"
@@ -32,7 +31,6 @@ ActiveRecord::Schema.define(version: 20150326152759) do
     t.boolean  "wants_security"
     t.boolean  "wants_lump_sum"
     t.boolean  "poor_health"
-    t.text     "address"
     t.integer  "user_id"
     t.string   "reference_number"
     t.string   "address_line_1"
