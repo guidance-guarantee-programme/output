@@ -79,7 +79,7 @@ class OutputDocument
   end
 
   def csv
-    'c,s,v'
+    CSVRenderer.new(self).render
   end
 
   private
