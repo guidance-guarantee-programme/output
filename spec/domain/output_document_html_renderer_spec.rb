@@ -27,7 +27,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
       wants_flexibility: false,
       wants_security: false,
       wants_lump_sum: false,
-      poor_health: false,
+      poor_health: false
     }
   end
   let(:output_document) { instance_double(OutputDocument, attributes) }
