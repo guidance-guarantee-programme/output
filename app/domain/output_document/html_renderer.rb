@@ -1,10 +1,9 @@
 class OutputDocument
-  class HTMLRenderer < SimpleDelegator
+  class HTMLRenderer
     attr_accessor :output_document
 
     def initialize(output_document)
       @output_document = output_document
-      __setobj__(output_document)
     end
 
     def pages_to_render

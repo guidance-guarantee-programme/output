@@ -1,30 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe OutputDocument::HTMLRenderer do
-  let(:attendee_name) { 'Mr Joe Bloggs' }
-  let(:value_of_pension_pots) { '£30,000' }
-  let(:guider_first_name) { 'James' }
-  let(:appointment_date) { Date.new(2015, 3, 30) }
-  let(:guider_organisation) { 'Pension Wise' }
-  let(:appointment_reference) { '100/123456789' }
   let(:variant) { 'tailored' }
-  let(:appointment_summary) { AppointmentSummary.new }
   let(:attributes) do
     {
-      attendee_name: attendee_name,
-      appointment_date: appointment_date,
-      appointment_reference: appointment_reference,
-      value_of_pension_pots: value_of_pension_pots,
-      guider_first_name: guider_first_name,
-      guider_organisation: guider_organisation,
+      id: '',
+      format: '',
       variant: variant,
+      attendee_name: '',
+      attendee_address_line_1: '',
+      attendee_address_line_2: '',
+      attendee_address_line_3: '',
+      attendee_town: '',
+      attendee_county: '',
+      attendee_postcode: '',
+      lead: '',
+      guider_first_name: '',
+      guider_organisation: '',
+      appointment_reference: '',
+      appointment_date: '',
+      value_of_pension_pots: '',
+      income_in_retirement: '',
+      continue_working: false,
+      unsure: false,
+      leave_inheritance: false,
+      wants_flexibility: false,
+      wants_security: false,
+      wants_lump_sum: false,
+      poor_health: false,
     }
   end
-  let(:output_document) { OutputDocument.new(appointment_summary) }
-
-  before do
-    allow(output_document).to receive_messages(attributes)
-  end
+  let(:output_document) { instance_double(OutputDocument, attributes) }
 
   subject(:html_renderer) { described_class.new(output_document) }
 
@@ -88,8 +94,6 @@ RSpec.describe OutputDocument::HTMLRenderer do
     end
 
     subject { html_renderer.render }
-
-    it { is_expected.to include(attendee_name) }
 
     context 'when ineligible for guidance' do
       let(:variant) { 'other' }
