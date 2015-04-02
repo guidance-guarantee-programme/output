@@ -3,7 +3,7 @@ class OutputDocument
 
   attr_accessor :appointment_summary
 
-  delegate :id, :guider_name, :income_in_retirement, :continue_working, :unsure,
+  delegate :id, :income_in_retirement, :continue_working, :unsure,
            :leave_inheritance, :wants_flexibility, :wants_security,
            :wants_lump_sum, :poor_health,
            to: :appointment_summary
@@ -58,12 +58,20 @@ class OutputDocument
   end
 
   def lead
-    "You recently had a Pension Wise guidance appointment with #{guider_name} " \
+    "You recently had a Pension Wise guidance appointment with #{guider_first_name} " \
       "from #{guider_organisation} on #{appointment_date}."
   end
 
   def appointment_reference
     "#{appointment_summary.id}/#{appointment_summary.reference_number}"
+  end
+
+  def format
+    appointment_summary.format_preference
+  end
+
+  def guider_first_name
+    appointment_summary.guider_name
   end
 
   def pages_to_render
@@ -107,8 +115,7 @@ class OutputDocument
   end
 
   def template_for(section)
-    File.read(
-      Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
+    File.read(Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
   end
 
   def to_currency(number)
