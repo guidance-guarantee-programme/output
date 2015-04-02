@@ -115,8 +115,7 @@ class OutputDocument
   end
 
   def template_for(section)
-    File.read(
-      Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
+    File.read(Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
   end
 
   def to_currency(number)
