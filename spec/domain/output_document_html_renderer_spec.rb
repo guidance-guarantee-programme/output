@@ -40,7 +40,10 @@ RSpec.describe OutputDocument::HTMLRenderer do
             attributes[circumstance] = true
           end
 
-          it { is_expected.to eq([:cover_letter, :introduction, circumstance, :other_information]) }
+          it do
+            is_expected.to eq([:cover_letter, :introduction, :pension_pot, :options_overview,
+                               circumstance, :other_information])
+          end
         end
       end
     end
@@ -48,7 +51,10 @@ RSpec.describe OutputDocument::HTMLRenderer do
     context 'with "generic" variant' do
       let(:variant) { 'generic' }
 
-      it { is_expected.to eq(%w(cover_letter introduction generic_guidance other_information)) }
+      it do
+        is_expected.to eq(%w(cover_letter introduction pension_pot options_overview
+                             generic_guidance other_information))
+      end
     end
 
     context 'with "other" variant' do
