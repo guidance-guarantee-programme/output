@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OutputDocument::CSVRenderer, '#render' do
+RSpec.describe OutputDocument::CSVRowRenderer, '#render' do
   let(:attributes) do
     {
       id: 'id',
@@ -37,7 +37,7 @@ RSpec.describe OutputDocument::CSVRenderer, '#render' do
     "value_of_pension_pots|income_in_retirement|false|false|false|false|false|false|false\n"
   end
 
-  subject(:csv_renderer) { described_class.new(output_document).render }
+  subject { described_class.new(output_document).render }
 
   it { is_expected.to eq(csv) }
 end

@@ -200,7 +200,7 @@ RSpec.describe OutputDocument do
     subject { output_document.csv }
 
     before do
-      allow(OutputDocument::CSVRenderer).to receive(:new)
+      allow(OutputDocument::CSVRowRenderer).to receive(:new)
         .with(output_document)
         .and_return(renderer)
     end
