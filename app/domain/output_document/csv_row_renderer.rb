@@ -1,7 +1,7 @@
 require 'csv'
 
 class OutputDocument
-  class CSVRenderer
+  class CSVRowRenderer
     attr_accessor :output_document
 
     FIELDS = %i(id format variant attendee_name attendee_address_line_1
