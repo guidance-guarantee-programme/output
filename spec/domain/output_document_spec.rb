@@ -4,6 +4,12 @@ RSpec.describe OutputDocument do
   let(:title) { 'Mr' }
   let(:first_name) { 'Joe' }
   let(:last_name) { 'Bloggs' }
+  let(:address_line_1) { 'HM Treasury' }
+  let(:address_line_2) { '1 Horse Guards Road' }
+  let(:address_line_3) { 'Whitehall' }
+  let(:town) { 'London' }
+  let(:county) { '' }
+  let(:postcode) { 'SW1A 2HQ' }
   let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
   let(:value_of_pension_pots) { nil }
   let(:upper_value_of_pension_pots) { nil }
@@ -17,6 +23,12 @@ RSpec.describe OutputDocument do
       title: title,
       first_name: first_name,
       last_name: last_name,
+      address_line_1: address_line_1,
+      address_line_2: address_line_2,
+      address_line_3: address_line_3,
+      town: town,
+      county: county,
+      postcode: postcode,
       date_of_appointment: date_of_appointment,
       reference_number: reference_number,
       value_of_pension_pots: value_of_pension_pots,
@@ -32,6 +44,35 @@ RSpec.describe OutputDocument do
   subject(:output_document) { described_class.new(appointment_summary) }
 
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
+
+  describe '#attendee_address' do
+    subject { output_document.attendee_address }
+
+    let(:title) { 'Mr' }
+    let(:first_name) { 'Joe' }
+    let(:last_name) { 'Bloggs' }
+    let(:address_line_1) { 'HM Treasury' }
+    let(:address_line_2) { '1 Horse Guards Road' }
+    let(:address_line_3) { 'Whitehall' }
+    let(:town) { 'London' }
+    let(:county) { '' }
+    let(:postcode) { 'SW1A 2HQ' }
+
+    context 'when lines are blank' do
+      let(:address_line_3) { '' }
+
+      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nLondon\nSW1A 2HQ") }
+    end
+
+    context 'when lines contain leading or tailing whitespace' do
+      let(:address_line_2) { '1 Horse Guards Road            ' }
+      let(:address_line_3) { '' }
+      let(:town) { '               London' }
+      let(:postcode) { 'SW1A                         2HQ' }
+
+      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nLondon\nSW1A 2HQ") }
+    end
+  end
 
   describe '#guider_organisation' do
     subject { output_document.guider_organisation }
