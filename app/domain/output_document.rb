@@ -88,7 +88,7 @@ class OutputDocument
   end
 
   def csv
-    CSVRenderer.new(self).render
+    CSVRowRenderer.new(self).render
   end
 
   private
