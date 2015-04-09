@@ -101,4 +101,36 @@ RSpec.describe AppointmentSummary, type: :model do
       it { is_expected.to be_custom_guidance }
     end
   end
+
+  describe '.unprocessed' do
+    subject { described_class.unprocessed }
+
+    def create_appointment_summary
+      AppointmentSummary.create(
+        title: 'Mr', last_name: 'Bloggs', date_of_appointment: Date.today,
+        reference_number: '123', guider_name: 'Jimmy', guider_organisation: 'tpas',
+        address_line_1: '29 Acacia Road', town: 'Beanotown', postcode: 'BT7 3AP',
+        has_defined_contribution_pension: 'yes', income_in_retirement: 'pension')
+    end
+
+    context 'with no unprocessed items' do
+      let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
+      let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context 'with unprocessed items' do
+      let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
+
+      it { is_expected.to eq(appointment_summaries) }
+    end
+
+    context 'with processed and unprocessed items' do
+      let!(:appointment_summaries) { 4.times.map { create_appointment_summary } }
+      let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries[0..1]) }
+
+      it { is_expected.to eq(appointment_summaries[2, 3]) }
+    end
+  end
 end
