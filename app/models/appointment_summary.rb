@@ -2,6 +2,11 @@ require 'json'
 require 'uri'
 
 class AppointmentSummary < ActiveRecord::Base
+  scope :unprocessed, lambda {
+    includes(:appointment_summaries_batches)
+      .where(appointment_summaries_batches: { appointment_summary_id: nil })
+  }
+
   PostcodeValidator = Class.new(ActiveModel::EachValidator) do
     def validate_each(record, attribute, value)
       return if value.blank?
