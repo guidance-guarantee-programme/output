@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401110927) do
+ActiveRecord::Schema.define(version: 20150408152646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20150401110927) do
   end
 
   add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
+
+  create_table "appointment_summaries_batches", force: :cascade do |t|
+    t.integer "appointment_summary_id"
+    t.integer "batch_id"
+  end
+
+  add_index "appointment_summaries_batches", ["appointment_summary_id"], name: "index_appointment_summaries_batches_on_appointment_summary_id", using: :btree
+  add_index "appointment_summaries_batches", ["batch_id"], name: "index_appointment_summaries_batches_on_batch_id", using: :btree
+
+  create_table "batches", force: :cascade do |t|
+    t.datetime "processed_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -88,4 +102,6 @@ ActiveRecord::Schema.define(version: 20150401110927) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "appointment_summaries_batches", "appointment_summaries"
+  add_foreign_key "appointment_summaries_batches", "batches"
 end

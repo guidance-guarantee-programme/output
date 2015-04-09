@@ -2,6 +2,11 @@ require 'json'
 require 'uri'
 
 class AppointmentSummary < ActiveRecord::Base
+  scope :unprocessed, lambda {
+    includes(:appointment_summaries_batches)
+      .where(appointment_summaries_batches: { appointment_summary_id: nil })
+  }
+
   PostcodeValidator = Class.new(ActiveModel::EachValidator) do
     def validate_each(record, attribute, value)
       return if value.blank?
@@ -24,6 +29,7 @@ class AppointmentSummary < ActiveRecord::Base
   TITLES = %w(Mr Mrs Miss Ms Mx Dr)
 
   belongs_to :user
+  has_many :appointment_summaries_batches
 
   validates :title, presence: true, inclusion: { in: TITLES, allow_blank: true }
   validates :last_name, presence: true
