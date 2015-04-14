@@ -35,14 +35,18 @@ RSpec.describe OutputDocument::HTMLRenderer do
     context 'with "tailored" variant' do
       %i(continue_working unsure leave_inheritance wants_flexibility wants_security
          wants_lump_sum poor_health).each do |circumstance|
-        context "for '#{circumstance}'" do
-          before do
-            attributes[circumstance] = true
-          end
+        context "for circumstance '#{circumstance}'" do
+          before { attributes[circumstance] = true }
 
-          it do
-            is_expected.to eq([:cover_letter, :introduction, :pension_pot, :options_overview,
-                               circumstance, :other_information])
+          %i(pension other).each do |source_of_income|
+            context "and income in retirement: '#{source_of_income}'" do
+              before { attributes[:income_in_retirement] = source_of_income }
+
+              it do
+                is_expected.to eq([:cover_letter, :introduction, :"pension_pot_#{source_of_income}", :options_overview,
+                                   circumstance, :other_information])
+              end
+            end
           end
         end
       end
@@ -51,16 +55,22 @@ RSpec.describe OutputDocument::HTMLRenderer do
     context 'with "generic" variant' do
       let(:variant) { 'generic' }
 
-      it do
-        is_expected.to eq(%w(cover_letter introduction pension_pot options_overview
-                             generic_guidance other_information))
+      %i(pension other).each do |source_of_income|
+        context "and income in retirement: '#{source_of_income}'" do
+          before { attributes[:income_in_retirement] = source_of_income }
+
+          it do
+            is_expected.to eq([:cover_letter, :introduction, :"pension_pot_#{source_of_income}", :options_overview,
+                               :generic_guidance, :other_information])
+          end
+        end
       end
     end
 
     context 'with "other" variant' do
       let(:variant) { 'other' }
 
-      it { is_expected.to eq(%w(ineligible)) }
+      it { is_expected.to eq([:ineligible]) }
     end
   end
 
