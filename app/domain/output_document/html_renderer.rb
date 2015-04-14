@@ -17,9 +17,9 @@ class OutputDocument
           output_document.public_send(c)
         end
 
-        [:cover_letter, :introduction, circumstances, :other_information].flatten
+        [:cover_letter, :introduction, :pension_pot, :options_overview, circumstances, :other_information].flatten
       when 'generic'
-        %w(cover_letter introduction generic_guidance other_information)
+        %w(cover_letter introduction pension_pot options_overview generic_guidance other_information)
       when 'other'
         %w(ineligible)
       end
