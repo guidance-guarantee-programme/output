@@ -65,6 +65,11 @@ linters:
   IdWithExtraneousSelector:
     enabled: true
 
+  ImportantRule:
+    enabled: true
+    exclude:
+      - app/assets/stylesheets/layout/_preview.scss
+
   ImportPath:
     enabled: true
     leading_underscore: false
