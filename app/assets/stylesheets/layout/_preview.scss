@@ -1,0 +1,23 @@
+.page-footer {
+  display: none; // hide this everywhere as looks confusing in preview
+}
+
+.l-logo-pw-arrows {
+  display: none;
+}
+
+.l-address {
+  position: absolute;
+  top: -160px !important; // override output_document.css which comes afterwards
+}
+
+.l-pw-logo-letter {
+  position: absolute;
+  top: -150px !important; // override output_document.css which comes afterwards
+}
+
+.page-covering-letter {
+  border-bottom: 1px solid $color-grey;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
