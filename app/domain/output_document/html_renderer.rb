@@ -11,17 +11,13 @@ class OutputDocument
     def pages_to_render
       case output_document.variant
       when 'tailored'
-        circumstances = %i(continue_working unsure leave_inheritance
-                           wants_flexibility wants_security wants_lump_sum
-                           poor_health).select do |c|
-          output_document.public_send(c)
-        end
-
-        [:cover_letter, :introduction, :pension_pot, :options_overview, circumstances, :other_information].flatten
+        [:cover_letter, :introduction, pension_pot_version, :options_overview,
+         applicable_circumstances, :other_information].flatten
       when 'generic'
-        %w(cover_letter introduction pension_pot options_overview generic_guidance other_information)
+        [:cover_letter, :introduction, pension_pot_version, :options_overview,
+         :generic_guidance, :other_information]
       when 'other'
-        %w(ineligible)
+        [:ineligible]
       end
     end
 
@@ -37,6 +33,20 @@ class OutputDocument
     end
 
     private
+
+    def applicable_circumstances
+      %i(continue_working unsure leave_inheritance
+         wants_flexibility wants_security wants_lump_sum
+         poor_health).select do |c|
+        output_document.public_send(c)
+      end
+    end
+
+    def pension_pot_version
+      return :pension_pot_pension if output_document.income_in_retirement.blank? # sensible default
+
+      :"pension_pot_#{output_document.income_in_retirement}"
+    end
 
     def template
       [:header, pages_to_render, :footer].flatten.reduce('') do |result, section|
