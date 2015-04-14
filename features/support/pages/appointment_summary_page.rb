@@ -1,3 +1,4 @@
+# rubocop:disable ClassLength
 class AppointmentSummaryPage < SitePrism::Page
   set_url '/appointment_summaries/new'
 
@@ -34,4 +35,86 @@ class AppointmentSummaryPage < SitePrism::Page
   element :format_preference_large_text, '.t-format-preference-large-text'
   element :format_preference_braille, '.t-format-preference-braille'
   element :submit, '.t-submit'
+
+  def fill_in(appointment_summary)
+    fill_in_customer_details(appointment_summary)
+    fill_in_appointment_audit_details(appointment_summary)
+    fill_in_pension_pot_details(appointment_summary)
+    fill_in_income_in_retirement_details(appointment_summary)
+    fill_in_guider_details(appointment_summary)
+    fill_in_has_defined_contribution_pension(appointment_summary)
+    fill_in_circumstances(appointment_summary)
+    fill_in_format_preference(appointment_summary)
+  end
+
+  private
+
+  # rubocop:disable AbcSize
+  def fill_in_customer_details(appointment_summary)
+    title.select appointment_summary.title
+    first_name.set appointment_summary.first_name
+    last_name.set appointment_summary.last_name
+    address_line_1.set appointment_summary.address_line_1
+    address_line_2.set appointment_summary.address_line_2
+    address_line_3.set appointment_summary.address_line_3
+    town.set appointment_summary.town
+    county.set appointment_summary.county
+    postcode.set appointment_summary.postcode
+  end
+  # rubocop:enable AbcSize
+
+  def fill_in_appointment_audit_details(appointment_summary)
+    date_of_appointment.set appointment_summary.date_of_appointment
+    reference_number.set appointment_summary.reference_number
+  end
+
+  def fill_in_pension_pot_details(appointment_summary)
+    value_of_pension_pots.set appointment_summary.value_of_pension_pots
+    upper_value_of_pension_pots.set appointment_summary.upper_value_of_pension_pots
+    value_of_pension_pots_is_approximate.set appointment_summary.value_of_pension_pots_is_approximate?
+  end
+
+  def fill_in_income_in_retirement_details(appointment_summary)
+    case appointment_summary.income_in_retirement
+    when 'pension' then income_in_retirement_pension.set true
+    when 'other' then income_in_retirement_other.set true
+    end
+  end
+
+  def fill_in_guider_details(appointment_summary)
+    guider_name.set appointment_summary.guider_name
+    case appointment_summary.guider_organisation
+    when 'tpas' then guider_organisation_tpas.set true
+    when 'dwp' then guider_organisation_dwp.set true
+    end
+  end
+
+  def fill_in_has_defined_contribution_pension(appointment_summary)
+    case appointment_summary.has_defined_contribution_pension
+    when 'yes' then has_defined_contribution_pension_yes.set true
+    when 'no' then has_defined_contribution_pension_no.set true
+    when 'unknown' then has_defined_contribution_pension_unknown.set true
+    end
+  end
+
+  # rubocop:disable AbcSize
+  def fill_in_circumstances(appointment_summary)
+    continue_working.set appointment_summary.continue_working?
+    unsure.set appointment_summary.unsure?
+    leave_inheritance.set appointment_summary.leave_inheritance?
+    wants_flexibility.set appointment_summary.wants_flexibility?
+    wants_security.set appointment_summary.wants_security?
+    wants_lump_sum.set appointment_summary.wants_lump_sum?
+    poor_health.set appointment_summary.poor_health?
+  end
+  # rubocop:enable AbcSize
+
+  def fill_in_format_preference(appointment_summary)
+    case appointment_summary.format_preference
+    when 'standard' then format_preference_standard.set true
+    when 'large_text' then format_preference_large_text.set true
+    when 'braille' then format_preference_braille.set true
+    end
+  end
 end
+# rubocop:enable ClassLength
