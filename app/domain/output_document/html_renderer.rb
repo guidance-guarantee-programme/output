@@ -11,10 +11,10 @@ class OutputDocument
     def pages_to_render
       case output_document.variant
       when 'tailored'
-        [:cover_letter, :introduction, pension_pot_version, :options_overview,
+        [:covering_letter, :introduction, pension_pot_version, :options_overview,
          applicable_circumstances, :other_information].flatten
       when 'generic'
-        [:cover_letter, :introduction, pension_pot_version, :options_overview,
+        [:covering_letter, :introduction, pension_pot_version, :options_overview,
          :generic_guidance, :other_information]
       when 'other'
         [:ineligible]

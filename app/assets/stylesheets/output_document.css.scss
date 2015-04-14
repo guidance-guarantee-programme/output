@@ -392,7 +392,7 @@ td {
     margin-bottom: 18px;
   }
 
-  .page-cover-letter & {
+  .page-covering-letter & {
     margin-bottom: 26px;
   }
 }
@@ -564,7 +564,7 @@ td {
   }
 }
 
-@page cover-letter {
+@page covering-letter {
   margin: 90px 90px 107px;
 
   @top-center {
@@ -585,8 +585,8 @@ td {
   counter-reset: page 1;
 }
 
-.page-cover-letter {
-  page: cover-letter;
+.page-covering-letter {
+  page: covering-letter;
 }
 
 .page-ineligible {
