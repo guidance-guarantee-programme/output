@@ -11,12 +11,14 @@ env:
   - secure: OHty0sCWbCAsxw8vLWmQLe2uBu8aR7zwKXh4aO8XipkNqIQSyVF3Q/iNC2DOclOmomT/C2wp2XWLysazJ5oyYpkooTe0wh9Bl2I3J6JqF7aynLzmk8eT0BoP/MZwX0lbCI11Z2JVW349xipku/vBVoucN40P6j5FfgZjTJYm5JE=
   - secure: SVw7sxOncYt1Tp9QoPLmKSw2IxpF1u3UyfmxIG3hqjkCVrNjYTehBfnS/pxoGVugrq8q9PQ9uJPZlmOp5IKIlJhyZ6kdpq2LjRxjgAPC935qOEgsu4OM1olE0G1oqdyDBv/tePmJFmr0ViUfCIIv464g+cYd81kFzcwaeXgKjOM=
   - DATABASE_URL=postgres://postgres@localhost:5432/travis_ci_test
+  - PATH=/home/travis/.local/bin:$PATH
 node_js:
 - '0.10'
 rvm:
 - '2.2.1'
 before_script:
 - npm install
+- pip install --install-option='--user' git+https://github.com/stevenwilkin/sftpserver.git@swallow-eof-error
 - ./bin/rake db:setup RAILS_ENV=test
 after_script:
 - "./node_modules/.bin/travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY"
