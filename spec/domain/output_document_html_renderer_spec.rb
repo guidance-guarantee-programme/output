@@ -43,8 +43,8 @@ RSpec.describe OutputDocument::HTMLRenderer do
               before { attributes[:income_in_retirement] = source_of_income }
 
               it do
-                is_expected.to eq([:cover_letter, :introduction, :"pension_pot_#{source_of_income}", :options_overview,
-                                   circumstance, :other_information])
+                is_expected.to eq([:covering_letter, :introduction, :"pension_pot_#{source_of_income}",
+                                   :options_overview, circumstance, :other_information])
               end
             end
           end
@@ -60,7 +60,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
           before { attributes[:income_in_retirement] = source_of_income }
 
           it do
-            is_expected.to eq([:cover_letter, :introduction, :"pension_pot_#{source_of_income}", :options_overview,
+            is_expected.to eq([:covering_letter, :introduction, :"pension_pot_#{source_of_income}", :options_overview,
                                :generic_guidance, :other_information])
           end
         end
@@ -75,7 +75,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
   end
 
   describe '#render' do
-    let(:cover_letter_text) { 't-cover-letter' }
+    let(:covering_letter_text) { 't-covering-letter' }
     let(:ineligible_text) { 't-ineligible' }
     let(:generic_guidance_text) { 't-generic' }
     let(:continue_working_text) { 't-continue-working' }
@@ -111,7 +111,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
 
       it { is_expected.to include(ineligible_text) }
       it { is_expected.to_not include(generic_guidance_text) }
-      it { is_expected.to_not include(cover_letter_text) }
+      it { is_expected.to_not include(covering_letter_text) }
       it { excludes_all_circumstances }
     end
 
@@ -121,7 +121,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
 
         it { is_expected.to include(generic_guidance_text) }
         it { is_expected.to_not include(ineligible_text) }
-        it { is_expected.to include(cover_letter_text) }
+        it { is_expected.to include(covering_letter_text) }
         it { excludes_all_circumstances }
       end
 
@@ -137,7 +137,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
 
             it { is_expected.to_not include(generic_guidance_text) }
             it { is_expected.to_not include(ineligible_text) }
-            it { is_expected.to include(cover_letter_text) }
+            it { is_expected.to include(covering_letter_text) }
             it { only_includes_circumstance(circumstance) }
           end
         end
