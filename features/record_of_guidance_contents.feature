@@ -41,7 +41,6 @@ Scenario Outline: Guidance is tailored based on applicable circumstances
     | Needs a certain amount of money now   |
     | Has poor health                       |
 
-@todo
 Scenario Outline: "Pension pot" section is tailored based on the range of income sources available to the customer
   Given the customer has access to income during retirement from <sources-of-income>
   When we send them their record of guidance

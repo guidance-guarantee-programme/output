@@ -110,14 +110,16 @@ Given(/^the customer has access to income during retirement from (.*?)$/) do |so
   end
 end
 
-# Then(/^the "pension pot" section should be the "(.*?)" version$/) do |version|
-#   version = case version
-#             when 'only their DC pot and state pension' then 'pension'
-#             when 'multiple sources'                    then 'other'
-#             end
+Then(/^the "pension pot" section should be the "(.*?)" version$/) do |version|
+  version = case version
+            when 'only their DC pot and state pension' then 'pension'
+            when 'multiple sources'                    then 'other'
+            end
 
-#   expect(page).to include_output_document_section('pension pot').at_version(version)
-# end
+  rows = read_uploaded_csv
+  expect(rows.count).to eq(1)
+  expect(rows.first[:income_in_retirement]).to eq(version)
+end
 
 Given(/^(?:I|we) have captured the customer's details in an appointment summary$/) do
   @appointment_summary = fixture(:populated_appointment_summary)
