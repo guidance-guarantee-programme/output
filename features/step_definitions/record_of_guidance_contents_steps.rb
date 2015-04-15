@@ -22,35 +22,42 @@ Given(/^(?:I|we) don't know that any of the predefined circumstances apply to th
   end
 end
 
-# When(/^(?:I|we) send (?:them their|a) record of guidance$/) do
-#   appointment_summary_page = AppointmentSummaryPage.new
-#   appointment_summary_page.load
-#   appointment_summary_page.fill_in(@appointment_summary)
-#   appointment_summary_page.submit.click
+When(/^(?:I|we) send (?:them their|a) record of guidance$/) do
+  appointment_summary_page = AppointmentSummaryPage.new
+  appointment_summary_page.load
+  appointment_summary_page.fill_in(@appointment_summary)
+  appointment_summary_page.submit.click
 
-#   preview_page = RecordOfGuidancePreviewPage.new
-#   preview_page.confirm.click
-# end
+  preview_page = RecordOfGuidancePreviewPage.new
+  preview_page.confirm.click
 
-# Then(/^the sections it includes should be \(in order\):$/) do |table|
-#   sections = table.raw.flatten
+  ProcessOutputDocuments.new.call
+end
 
-#   if (index = sections.index('detail about applicable circumstances'))
-#     circumstances = []
-#     circumstances << 'continue working' if @appointment_summary.continue_working?
-#     circumstances << 'unsure' if @appointment_summary.unsure?
-#     circumstances << 'leave inheritance' if @appointment_summary.leave_inheritance?
-#     circumstances << 'wants flexibility' if @appointment_summary.wants_flexibility?
-#     circumstances << 'wants security' if @appointment_summary.wants_security?
-#     circumstances << 'wants lump sum' if @appointment_summary.wants_lump_sum?
-#     circumstances << 'poor health' if @appointment_summary.poor_health?
+Then(/^the sections it includes should be:$/) do |table|
+  sections = table.raw.flatten
 
-#     sections[index] = circumstances
-#     sections.flatten!
-#   end
+  variant = case
+            when sections.include?('detail about applicable circumstances') then 'tailored'
+            when sections.include?('detail about each option')              then 'generic'
+            else fail "Cannot determine expected variant from sections: #{sections}"
+            end
 
-#   expect(page).to include_output_document_sections(sections)
-# end
+  expected = {
+    variant: variant,
+    continue_working: @appointment_summary.continue_working?,
+    unsure: @appointment_summary.unsure?,
+    leave_inheritance: @appointment_summary.leave_inheritance?,
+    wants_flexibility: @appointment_summary.wants_flexibility?,
+    wants_security: @appointment_summary.wants_security?,
+    wants_lump_sum: @appointment_summary.wants_lump_sum?,
+    poor_health: @appointment_summary.poor_health?
+  }
+
+  rows = read_uploaded_csv
+  expect(rows.count).to eq(1)
+  expect(rows.first.to_hash).to include(expected)
+end
 
 Given(/^"(.*?)" applies to the customer$/) do |circumstance|
   @appointment_summary = fixture(:populated_appointment_summary).tap do |as|
