@@ -58,9 +58,7 @@ Then(/^the sections it includes should be:$/) do |table|
       fail "Cannot determine expected variant from sections: #{sections}"
     end
 
-  rows = read_uploaded_csv
-  expect(rows.count).to eq(1)
-  expect(rows.first.to_hash).to include(expected)
+  expect_uploaded_csv_to_include(expected)
 end
 
 Given(/^"(.*?)" applies to the customer$/) do |circumstance|
@@ -96,9 +94,7 @@ Then(/^it should include information about "(.*?)"$/) do |circumstance|
            when 'Has poor health'                       then :poor_health
            end
 
-  rows = read_uploaded_csv
-  expect(rows.count).to eq(1)
-  expect(rows.first[column]).to eq('true')
+  expect_uploaded_csv_to_include(column => true)
 end
 
 Given(/^the customer has access to income during retirement from (.*?)$/) do |sources_of_income|
@@ -116,9 +112,7 @@ Then(/^the "pension pot" section should be the "(.*?)" version$/) do |version|
             when 'multiple sources'                    then 'other'
             end
 
-  rows = read_uploaded_csv
-  expect(rows.count).to eq(1)
-  expect(rows.first[:income_in_retirement]).to eq(version)
+  expect_uploaded_csv_to_include(income_in_retirement: version)
 end
 
 Given(/^(?:I|we) have captured the customer's details in an appointment summary$/) do
@@ -133,9 +127,7 @@ Then(/^the record of guidance should include their details$/) do
     value_of_pension_pots: output_document.value_of_pension_pots
   }
 
-  rows = read_uploaded_csv
-  expect(rows.count).to eq(1)
-  expect(rows.first.to_hash).to include(expected)
+  expect_uploaded_csv_to_include(expected)
 end
 
 Given(/^(?:I|we) have captured appointment details in an appointment summary$/) do
@@ -151,9 +143,8 @@ Then(/^the record of guidance should include the details of the appointment$/) d
     guider_organisation: output_document.guider_organisation
   }
 
-  rows = read_uploaded_csv
-  expect(rows.count).to eq(1)
-  expect(rows.first.to_hash).to include(expected)
+  expect_uploaded_csv_to_include(expected)
 
-  expect(rows.first[:appointment_reference]).to match(/^\d+#{output_document.appointment_reference}/)
+  appointment_reference = read_uploaded_csv.first[:appointment_reference]
+  expect(appointment_reference).to match(/^\d+#{output_document.appointment_reference}/)
 end
