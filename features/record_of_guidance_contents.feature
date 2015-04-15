@@ -26,7 +26,6 @@ Scenario: Generic record of guidance
     | detail about each option |
     | other information        |
 
-@todo
 Scenario Outline: Guidance is tailored based on applicable circumstances
   Given "<circumstance>" applies to the customer
   When we send them their record of guidance

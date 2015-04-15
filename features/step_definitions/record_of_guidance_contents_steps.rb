@@ -85,19 +85,21 @@ Given(/^"(.*?)" applies to the customer$/) do |circumstance|
   end
 end
 
-# Then(/^it should include information about "(.*?)"$/) do |circumstance|
-#   section = case circumstance
-#             when 'Plans to continue working for a while' then 'continue working'
-#             when 'Unsure about plans in retirement'      then 'unsure'
-#             when 'Plans to leave money to someone'       then 'leave inheritance'
-#             when 'Wants flexibility when taking money'   then 'wants flexibility'
-#             when 'Wants a guaranteed income'             then 'wants security'
-#             when 'Needs a certain amount of money now'   then 'wants lump sum'
-#             when 'Has poor health'                       then 'poor health'
-#             end
+Then(/^it should include information about "(.*?)"$/) do |circumstance|
+  column = case circumstance
+           when 'Plans to continue working for a while' then :continue_working
+           when 'Unsure about plans in retirement'      then :unsure
+           when 'Plans to leave money to someone'       then :leave_inheritance
+           when 'Wants flexibility when taking money'   then :wants_flexibility
+           when 'Wants a guaranteed income'             then :wants_security
+           when 'Needs a certain amount of money now'   then :wants_lump_sum
+           when 'Has poor health'                       then :poor_health
+           end
 
-#   expect(page).to include_output_document_section(section)
-# end
+  rows = read_uploaded_csv
+  expect(rows.count).to eq(1)
+  expect(rows.first[column]).to eq('true')
+end
 
 Given(/^the customer has access to income during retirement from (.*?)$/) do |sources_of_income|
   @appointment_summary = fixture(:populated_appointment_summary).tap do |as|
