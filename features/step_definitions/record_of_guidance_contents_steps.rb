@@ -142,11 +142,18 @@ Given(/^(?:I|we) have captured appointment details in an appointment summary$/) 
   @appointment_summary = fixture(:populated_appointment_summary)
 end
 
-# Then(/^the record of guidance should include the details of the appointment$/) do
-#   output_document = OutputDocument.new(@appointment_summary)
+Then(/^the record of guidance should include the details of the appointment$/) do
+  output_document = OutputDocument.new(@appointment_summary)
 
-#   expect(page).to have_content(output_document.appointment_date)
-#   expect(page).to have_content(output_document.appointment_reference)
-#   expect(page).to have_content(output_document.guider_first_name)
-#   expect(page).to have_content(output_document.guider_organisation)
-# end
+  expected = {
+    appointment_date: output_document.appointment_date,
+    guider_first_name: output_document.guider_first_name,
+    guider_organisation: output_document.guider_organisation
+  }
+
+  rows = read_uploaded_csv
+  expect(rows.count).to eq(1)
+  expect(rows.first.to_hash).to include(expected)
+
+  expect(rows.first[:appointment_reference]).to match(/^\d+#{output_document.appointment_reference}/)
+end
