@@ -18,7 +18,7 @@ class CSVRenderer
   end
 
   def header_row
-    CSV.generate(col_sep: '|', encoding: 'iso-8859-1') do |csv|
+    CSV.generate(col_sep: '|', encoding: 'utf-8') do |csv|
       csv << self.class.headers
     end
   end

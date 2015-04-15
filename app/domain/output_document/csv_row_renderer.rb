@@ -9,7 +9,7 @@ class OutputDocument
     end
 
     def render
-      CSV.generate(col_sep: '|', encoding: 'iso-8859-1') do |csv|
+      CSV.generate(col_sep: '|', encoding: 'utf-8') do |csv|
         csv << CSVRenderer.headers.map { |field| output_document.public_send(field) }
       end
     end
