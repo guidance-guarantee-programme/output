@@ -125,12 +125,18 @@ Given(/^(?:I|we) have captured the customer's details in an appointment summary$
   @appointment_summary = fixture(:populated_appointment_summary)
 end
 
-# Then(/^the record of guidance should include their details$/) do
-#   output_document = OutputDocument.new(@appointment_summary)
+Then(/^the record of guidance should include their details$/) do
+  output_document = OutputDocument.new(@appointment_summary)
 
-#   expect(page).to have_content(output_document.attendee_name)
-#   expect(page).to have_content(output_document.value_of_pension_pots)
-# end
+  expected = {
+    attendee_name: output_document.attendee_name,
+    value_of_pension_pots: output_document.value_of_pension_pots
+  }
+
+  rows = read_uploaded_csv
+  expect(rows.count).to eq(1)
+  expect(rows.first.to_hash).to include(expected)
+end
 
 Given(/^(?:I|we) have captured appointment details in an appointment summary$/) do
   @appointment_summary = fixture(:populated_appointment_summary)
