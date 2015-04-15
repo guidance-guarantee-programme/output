@@ -51,7 +51,6 @@ Scenario Outline: "Pension pot" section is tailored based on the range of income
     | multiple sources                    |
     | only their DC pot and state pension |
 
-@todo
 Scenario: Records of guidance include the information provided to us by the customer
   Given we have captured the customer's details in an appointment summary
   When we send them their record of guidance
