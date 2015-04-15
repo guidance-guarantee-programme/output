@@ -1,24 +1,7 @@
-require 'csv'
 require 'net/sftp'
 require 'rspec/mocks/standalone'
 
-CSV::Converters[:boolean] = lambda do |value|
-  case value.to_s
-  when 'true' then true
-  when 'false' then false
-  else value
-  end
-end
-
 module FakeSFTP
-  def read_uploaded_csv
-    path = FakeSFTP.find_path('*.csv')
-    contents = FakeSFTP.read(path)
-
-    CSV.parse(contents, headers: true, converters: [:numeric, :date_time, :boolean],
-                        header_converters: :symbol, col_sep: '|')
-  end
-
   def self.upload!(io, path)
     uploaded[path] = io.read
   end
