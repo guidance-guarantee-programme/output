@@ -37,22 +37,26 @@ end
 Then(/^the sections it includes should be:$/) do |table|
   sections = table.raw.flatten
 
-  variant = case
-            when sections.include?('detail about applicable circumstances') then 'tailored'
-            when sections.include?('detail about each option')              then 'generic'
-            else fail "Cannot determine expected variant from sections: #{sections}"
-            end
-
-  expected = {
-    variant: variant,
-    continue_working: @appointment_summary.continue_working?,
-    unsure: @appointment_summary.unsure?,
-    leave_inheritance: @appointment_summary.leave_inheritance?,
-    wants_flexibility: @appointment_summary.wants_flexibility?,
-    wants_security: @appointment_summary.wants_security?,
-    wants_lump_sum: @appointment_summary.wants_lump_sum?,
-    poor_health: @appointment_summary.poor_health?
-  }
+  expected =
+    case
+    when sections.include?('detail about applicable circumstances')
+      {
+        variant: 'tailored',
+        continue_working: @appointment_summary.continue_working?,
+        unsure: @appointment_summary.unsure?,
+        leave_inheritance: @appointment_summary.leave_inheritance?,
+        wants_flexibility: @appointment_summary.wants_flexibility?,
+        wants_security: @appointment_summary.wants_security?,
+        wants_lump_sum: @appointment_summary.wants_lump_sum?,
+        poor_health: @appointment_summary.poor_health?
+      }
+    when sections.include?('detail about each option')
+      {
+        variant: 'generic'
+      }
+    else
+      fail "Cannot determine expected variant from sections: #{sections}"
+    end
 
   rows = read_uploaded_csv
   expect(rows.count).to eq(1)
