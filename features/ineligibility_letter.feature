@@ -1,4 +1,3 @@
-@todo
 Feature: Ineligibility letter
   As Pension Wise
   We want people who have Pension Wise appointments, but turn out to be ineligible, to understand why we can't help them
