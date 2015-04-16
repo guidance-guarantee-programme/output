@@ -1,13 +1,15 @@
-@todo
 Feature: Record of guidance contents
   As Pension Wise
   We want to provide a record of guidance that is as tailored as possible
   So that customers are reminded of what was discussed, including next steps that they may wish to take
 
+Background:
+  Given a new, authenticated user
+
 Scenario: Tailored record of guidance
   Given one or more of the predefined circumstances applies to the customer
   When we send them their record of guidance
-  Then the sections it includes should be (in order):
+  Then the sections it includes should be:
     | introduction                          |
     | pension pot                           |
     | options overview                      |
@@ -17,7 +19,7 @@ Scenario: Tailored record of guidance
 Scenario: Generic record of guidance
   Given we don't know that any of the predefined circumstances apply to the customer
   When we send them their record of guidance
-  Then the sections it includes should be (in order):
+  Then the sections it includes should be:
     | introduction             |
     | pension pot              |
     | options overview         |
