@@ -1,7 +1,3 @@
-Given(/^a customer has had a Pension Wise appointment$/) do
-  @appointment_summary = fixture(:populated_appointment_summary)
-end
-
 Then(/^the preview should include a covering letter$/) do
   expect(page).to include_output_document_section('covering letter')
 
