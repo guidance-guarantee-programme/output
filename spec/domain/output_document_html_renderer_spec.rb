@@ -1,21 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OutputDocument::HTMLRenderer do
+  let(:templates_dir) { Rails.root.join('spec', 'fixtures', 'templates') }
   let(:variant) { 'tailored' }
   let(:attributes) do
     {
-      id: '',
-      format: '',
       variant: variant,
-      attendee_name: '',
-      attendee_address: '',
-      lead: '',
-      guider_first_name: '',
-      guider_organisation: '',
-      appointment_reference: '',
-      appointment_date: '',
-      value_of_pension_pots: '',
-      income_in_retirement: '',
       continue_working: false,
       unsure: false,
       leave_inheritance: false,
@@ -27,7 +17,7 @@ RSpec.describe OutputDocument::HTMLRenderer do
   end
   let(:output_document) { instance_double(OutputDocument, attributes) }
 
-  subject(:html_renderer) { described_class.new(output_document) }
+  subject(:html_renderer) { described_class.new(output_document, templates_dir) }
 
   describe '#pages_to_render' do
     subject { html_renderer.pages_to_render }
@@ -75,73 +65,12 @@ RSpec.describe OutputDocument::HTMLRenderer do
   end
 
   describe '#render' do
-    let(:covering_letter_text) { 't-covering-letter' }
-    let(:ineligible_text) { 't-ineligible' }
-    let(:generic_guidance_text) { 't-generic' }
-    let(:continue_working_text) { 't-continue-working' }
-    let(:unsure_text) { 't-unsure' }
-    let(:leave_inheritance_text) { 't-leave-inheritance' }
-    let(:wants_flexibility_text) { 't-wants-flexibility' }
-    let(:wants_security_text) { 't-wants-security' }
-    let(:wants_lump_sum_text) { 't-wants-lump-sum' }
-    let(:poor_health_text) { 't-poor-health' }
-
-    def only_includes_circumstance(circumstance)
-      circumstances = %i(continue_working unsure leave_inheritance
-                         wants_flexibility wants_security
-                         wants_lump_sum poor_health)
-
-      unless circumstance.empty?
-        expect(subject).to include(send("#{circumstance}_text"))
-      end
-
-      (circumstances - [circumstance]).each do |non_applicable_circumstance|
-        expect(subject).to_not include(send("#{non_applicable_circumstance}_text"))
-      end
-    end
-
-    def excludes_all_circumstances
-      only_includes_circumstance('')
+    before do
+      allow(html_renderer).to receive(:pages_to_render).and_return([:content])
     end
 
     subject { html_renderer.render }
 
-    context 'when ineligible for guidance' do
-      let(:variant) { 'other' }
-
-      it { is_expected.to include(ineligible_text) }
-      it { is_expected.to_not include(generic_guidance_text) }
-      it { is_expected.to_not include(covering_letter_text) }
-      it { excludes_all_circumstances }
-    end
-
-    context 'when eligible for guidance' do
-      context 'and generic guidance was given' do
-        let(:variant) { 'generic' }
-
-        it { is_expected.to include(generic_guidance_text) }
-        it { is_expected.to_not include(ineligible_text) }
-        it { is_expected.to include(covering_letter_text) }
-        it { excludes_all_circumstances }
-      end
-
-      context 'and custom guidance was given' do
-        let(:variant) { 'tailored' }
-
-        %i(continue_working unsure leave_inheritance wants_flexibility wants_security
-           wants_lump_sum poor_health).each do |circumstance|
-          context "for '#{circumstance}'" do
-            before do
-              attributes[circumstance] = true
-            end
-
-            it { is_expected.to_not include(generic_guidance_text) }
-            it { is_expected.to_not include(ineligible_text) }
-            it { is_expected.to include(covering_letter_text) }
-            it { only_includes_circumstance(circumstance) }
-          end
-        end
-      end
-    end
+    it { is_expected.to match(/header.*content.*footer/m) }
   end
 end
