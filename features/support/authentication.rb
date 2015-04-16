@@ -1,7 +1,6 @@
-Given(/^a new, authenticated user$/) do
+Before('~@unauthenticated') do
   email = 'guider@example.com'
   password = 'pensionwise'
-
   User.create(email: email, password: password, password_confirmation: password).confirm!
 
   page = UserSignInPage.new
