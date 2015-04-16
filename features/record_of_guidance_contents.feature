@@ -3,9 +3,6 @@ Feature: Record of guidance contents
   We want to provide a record of guidance that is as tailored as possible
   So that customers are reminded of what was discussed, including next steps that they may wish to take
 
-Background:
-  Given a new, authenticated user
-
 Scenario: Tailored record of guidance
   Given one or more of the predefined circumstances applies to the customer
   When we send them their record of guidance
