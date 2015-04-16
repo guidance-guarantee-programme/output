@@ -2,10 +2,12 @@ class OutputDocument
   class HTMLRenderer
     include ActionView::Helpers::TextHelper
 
-    attr_accessor :output_document
+    attr_accessor :output_document, :template_dir
+    private :output_document=, :template_dir=
 
-    def initialize(output_document)
+    def initialize(output_document, template_dir = Rails.root.join('app', 'templates'))
       @output_document = output_document
+      @template_dir = template_dir
     end
 
     def pages_to_render
@@ -55,8 +57,7 @@ class OutputDocument
     end
 
     def template_for(section)
-      File.read(
-        Rails.root.join('app', 'templates', "output_document_#{section}.html.erb"))
+      File.read(File.join(template_dir, "output_document_#{section}.html.erb"))
     end
   end
 end
