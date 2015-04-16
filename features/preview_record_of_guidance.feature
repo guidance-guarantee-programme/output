@@ -3,9 +3,6 @@ Feature: Record of guidance preview
   I want to preview the record of guidance before it is sent
   So that I can confirm that the documents to be sent are as intended
 
-Background:
-  Given a new, authenticated user
-
 Scenario: Tailored record of guidance
   Given one or more of the predefined circumstances applies to the customer
   When I preview their record of guidance

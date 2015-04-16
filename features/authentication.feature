@@ -1,3 +1,4 @@
+@unauthenticated
 Feature: Authentication
   As Pension Wise
   We want users to log in before they can access the output application
