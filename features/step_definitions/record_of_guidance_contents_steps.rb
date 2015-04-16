@@ -22,7 +22,7 @@ Given(/^(?:I|we) don't know that any of the predefined circumstances apply to th
   end
 end
 
-When(/^(?:I|we) send (?:them their|a) record of guidance$/) do
+When(/^we send (?:them their|a) record of guidance$/) do
   appointment_summary_page = AppointmentSummaryPage.new
   appointment_summary_page.load
   appointment_summary_page.fill_in(@appointment_summary)
