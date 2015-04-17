@@ -88,10 +88,6 @@ linters:
     enabled: true
     force_nesting: true
 
-  NameFormat:
-    enabled: true
-    convention: BEM
-
   NestingDepth:
     enabled: true
     max_depth: 3
@@ -118,7 +114,7 @@ linters:
 
   SelectorFormat:
     enabled: true
-    convention: BEM
+    convention: strict_BEM
     exclude:
         - app/assets/stylesheets/output_document.css.scss
 
