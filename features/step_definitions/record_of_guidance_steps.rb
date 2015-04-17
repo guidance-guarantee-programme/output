@@ -30,7 +30,7 @@ end
 
 When(/^I preview the record of guidance document$/) do
   expect(AppointmentSummary.count).to eq(0)
-  page = RecordOfGuidancePreviewPage.new
+  page = PreviewPage.new
   expect(page).to be_displayed
   expect(page).to have_text('Mr Joe Bloggs')
 
