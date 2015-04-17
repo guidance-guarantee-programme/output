@@ -11,7 +11,7 @@ RSpec.describe UploadToPrintHouse, '#call' do
 
   before do
     allow(uploader).to receive(:upload_file)
-    allow(Date).to receive(:today).and_return(now)
+    allow(Time.zone).to receive(:today).and_return(now)
     uploader.call
   end
 
