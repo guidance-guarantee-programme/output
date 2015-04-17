@@ -13,7 +13,7 @@ Issue [Pension Wise] appointment output.
 * [NPM]
 * [PostgreSQL]
 * [Redis]
-* [Ruby 2.2.1][Ruby]
+* [Ruby 2.2.2][Ruby]
 
 
 ## Installation
