@@ -9,7 +9,7 @@ class UploadToPrintHouse
   end
 
   def call
-    upload_file("/Data.in/pensionwise_output_#{Date.today.strftime('%Y%m%d')}.csv", csv)
+    upload_file("/Data.in/pensionwise_output_#{Time.zone.today.strftime('%Y%m%d')}.csv", csv)
     upload_file('/Trigger.in/trigger.txt', 'trigger')
   end
 

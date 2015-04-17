@@ -21,7 +21,7 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to allow_value('2015-02-10').for(:date_of_appointment) }
   it { is_expected.to allow_value('12/02/2015').for(:date_of_appointment) }
   it { is_expected.to_not allow_value('10/02/2012').for(:date_of_appointment) }
-  it { is_expected.to_not allow_value(Date.tomorrow.to_s).for(:date_of_appointment) }
+  it { is_expected.to_not allow_value(Time.zone.tomorrow.to_s).for(:date_of_appointment) }
 
   it { is_expected.to validate_presence_of(:reference_number) }
   it { is_expected.to validate_numericality_of(:reference_number).only_integer }
@@ -107,7 +107,7 @@ RSpec.describe AppointmentSummary, type: :model do
 
     def create_appointment_summary
       AppointmentSummary.create(
-        title: 'Mr', last_name: 'Bloggs', date_of_appointment: Date.today,
+        title: 'Mr', last_name: 'Bloggs', date_of_appointment: Time.zone.today,
         reference_number: '123', guider_name: 'Jimmy', guider_organisation: 'tpas',
         address_line_1: '29 Acacia Road', town: 'Beanotown', postcode: 'BT7 3AP',
         has_defined_contribution_pension: 'yes', income_in_retirement: 'pension')
