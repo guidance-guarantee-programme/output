@@ -88,6 +88,9 @@ linters:
     enabled: true
     force_nesting: true
 
+  NameFormat:
+    enabled: false
+
   NestingDepth:
     enabled: true
     max_depth: 3
@@ -171,10 +174,9 @@ linters:
   UrlQuotes:
     enabled: true
 
-  VendorPrefixes:
+  VendorPrefix:
     enabled: true
     identifier_list: base
-    include: []
     exclude:
     - app/assets/stylesheets/components/_fixed-bar.scss
 
