@@ -28,7 +28,7 @@ When(/^we send (?:them their|a) record of guidance$/) do
   appointment_summary_page.fill_in(@appointment_summary)
   appointment_summary_page.submit.click
 
-  preview_page = RecordOfGuidancePreviewPage.new
+  preview_page = PreviewPage.new
   preview_page.confirm.click
 
   ProcessOutputDocuments.new.call
