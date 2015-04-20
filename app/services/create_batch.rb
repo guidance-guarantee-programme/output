@@ -1,6 +1,6 @@
 class CreateBatch
   def call
-    unprocessed_appointment_summaries = AppointmentSummary.unprocessed
+    unprocessed_appointment_summaries = AppointmentSummary.unprocessed.where(format_preference: :standard)
 
     return nil if unprocessed_appointment_summaries.empty?
 
