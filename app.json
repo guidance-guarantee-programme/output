@@ -2,7 +2,8 @@
   "addons": [
     "heroku-postgresql:hobby-dev",
     "mailgun:starter",
-    "redistogo:nano"
+    "redistogo:nano",
+    "logentries:starter"
   ],
   "env": {
     "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git",
