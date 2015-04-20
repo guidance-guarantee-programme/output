@@ -11,7 +11,7 @@ end
 module UploadedCSVMatcher
   def read_uploaded_csv
     path = FakeSFTP.find_path('*.csv')
-    contents = FakeSFTP.read(path)
+    contents = path ? FakeSFTP.read(path) : ''
 
     CSV.parse(contents, headers: true, converters: [:numeric, :date_time, :boolean],
                         header_converters: :symbol, col_sep: '|')

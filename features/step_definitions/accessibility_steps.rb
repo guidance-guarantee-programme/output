@@ -11,3 +11,9 @@ end
 Then(/^it should be in (.*?) format$/) do |format_preference|
   expect_uploaded_csv_to_include(format: format_preference.gsub(/\s+/, '_'))
 end
+
+Then(/^we should not send them any documentation, for now$/) do
+  step('we send them their record of guidance')
+
+  expect(read_uploaded_csv).to be_empty
+end
