@@ -29,7 +29,7 @@ class AppointmentSummary < ActiveRecord::Base
   TITLES = %w(Mr Mrs Miss Ms Mx Dr)
 
   belongs_to :user
-  has_many :appointment_summaries_batches
+  has_many :appointment_summaries_batches, dependent: :destroy
 
   validates :title, presence: true, inclusion: { in: TITLES, allow_blank: true }
   validates :last_name, presence: true
