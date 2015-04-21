@@ -10,6 +10,7 @@ RSpec.describe AppointmentSummary, type: :model do
   let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }
+  it { is_expected.to have_many(:appointment_summaries_batches).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to_not validate_presence_of(:first_name) }
