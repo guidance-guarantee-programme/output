@@ -17,8 +17,20 @@ class UploadToPrintHouse
 
   def upload_file(path, contents)
     io = StringIO.new(contents)
-    Net::SFTP.start(ENV['SFTP_HOST'], ENV['SFTP_USER'], password: ENV['SFTP_PASSWORD']) do |sftp|
+    Net::SFTP.start(host, user, password: password) do |sftp|
       sftp.upload!(io, path)
     end
+  end
+
+  def host
+    ENV['SFTP_HOST']
+  end
+
+  def user
+    ENV['SFTP_USER']
+  end
+
+  def password
+    ENV['SFTP_PASSWORD']
   end
 end
