@@ -24,4 +24,12 @@ RSpec.describe Countries do
       expect(Countries.non_uk + [Countries.uk]).to match_array(Countries.all)
     end
   end
+
+  describe '.uk?' do
+    specify { expect(Countries.uk?(Countries.uk)).to be_truthy }
+    specify { expect(Countries.uk?(Countries.non_uk.sample)).to be_falsey }
+    specify { expect(Countries.uk?('nonsense')).to be_falsey }
+    specify { expect(Countries.uk?('')).to be_falsey }
+    specify { expect(Countries.uk?(nil)).to be_falsey }
+  end
 end
