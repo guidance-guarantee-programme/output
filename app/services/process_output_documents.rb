@@ -1,5 +1,6 @@
 class ProcessOutputDocuments
   def call
+    ActiveSupport::Notifications.instrument('process_output_documents.log', 'start')
     batch = CreateBatch.new.call
 
     return nil unless batch
