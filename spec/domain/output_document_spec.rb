@@ -7,8 +7,8 @@ RSpec.describe OutputDocument do
   let(:address_line_1) { 'HM Treasury' }
   let(:address_line_2) { '1 Horse Guards Road' }
   let(:address_line_3) { 'Whitehall' }
-  let(:town) { 'London' }
-  let(:county) { '' }
+  let(:town) { 'Westminster' }
+  let(:county) { 'Greater London' }
   let(:postcode) { 'SW1A 2HQ' }
   let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
   let(:value_of_pension_pots) { nil }
@@ -48,29 +48,24 @@ RSpec.describe OutputDocument do
   describe '#attendee_address' do
     subject { output_document.attendee_address }
 
-    let(:title) { 'Mr' }
-    let(:first_name) { 'Joe' }
-    let(:last_name) { 'Bloggs' }
-    let(:address_line_1) { 'HM Treasury' }
-    let(:address_line_2) { '1 Horse Guards Road' }
-    let(:address_line_3) { 'Whitehall' }
-    let(:town) { 'London' }
-    let(:county) { '' }
-    let(:postcode) { 'SW1A 2HQ' }
+    it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\nWestminster\nGreater London\nSW1A 2HQ") }
 
-    context 'when lines are blank' do
+    context 'when optional lines are blank' do
+      let(:county) { '' }
       let(:address_line_3) { '' }
 
-      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nLondon\nSW1A 2HQ") }
+      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWestminster\nSW1A 2HQ") }
     end
 
-    context 'when lines contain leading or tailing whitespace' do
-      let(:address_line_2) { '1 Horse Guards Road            ' }
-      let(:address_line_3) { '' }
-      let(:town) { '               London' }
-      let(:postcode) { 'SW1A                         2HQ' }
+    context 'when lines contain redundant whitespace' do
+      let(:address_line_1) { '    HM     Treasury' }
+      let(:address_line_2) { '  1 Horse   Guards Road            ' }
+      let(:address_line_3) { '  Whitehall  ' }
+      let(:town) { '               Westminster  ' }
+      let(:county) { '    Greater     London    ' }
+      let(:postcode) { '  SW1A                         2HQ  ' }
 
-      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nLondon\nSW1A 2HQ") }
+      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\nWestminster\nGreater London\nSW1A 2HQ") }
     end
   end
 
