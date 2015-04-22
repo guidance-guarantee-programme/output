@@ -58,6 +58,7 @@ class AppointmentSummary < ActiveRecord::Base
   validates :address_line_3, length: { maximum: 50 }
   validates :town, presence: true, length: { maximum: 50 }
   validates :county, length: { maximum: 50 }
+  validates :country, inclusion: { in: Countries.all, allow_blank: true, allow_nil: true }
   validates :postcode, presence: true, postcode: true
 
   validates :has_defined_contribution_pension,

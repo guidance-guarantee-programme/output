@@ -50,6 +50,7 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_length_of(:town).is_at_most(50) }
   it { is_expected.to_not validate_presence_of(:county) }
   it { is_expected.to validate_length_of(:county).is_at_most(50) }
+  it { is_expected.to validate_inclusion_of(:country).in_array(Countries.all).allow_nil.allow_blank }
   it { is_expected.to validate_presence_of(:postcode) }
   it { is_expected.to allow_value('sw1a 2hq').for(:postcode) }
   it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
