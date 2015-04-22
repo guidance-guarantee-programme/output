@@ -14,6 +14,10 @@ module Countries
     all - [uk]
   end
 
+  def self.uk?(country)
+    country == uk
+  end
+
   ALL = [
     'Afghanistan',
     'Albania',
