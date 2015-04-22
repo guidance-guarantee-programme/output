@@ -37,7 +37,7 @@ class AppointmentSummariesController < ApplicationController
   def appointment_summary_params
     params.require(:appointment_summary).permit(:title, :first_name, :last_name,
                                                 :address_line_1, :address_line_2, :address_line_3,
-                                                :town, :county, :postcode, :date_of_appointment,
+                                                :town, :county, :postcode, :country, :date_of_appointment,
                                                 :reference_number, :value_of_pension_pots,
                                                 :upper_value_of_pension_pots, :value_of_pension_pots_is_approximate,
                                                 :income_in_retirement, :guider_name,

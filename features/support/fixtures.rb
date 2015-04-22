@@ -14,6 +14,7 @@ module Fixtures
         address_line_3: 'Westminster',
         town: 'London',
         county: 'Greater London',
+        country: 'United Kingdom',
         postcode: 'SW1A 2HQ',
         date_of_appointment: '2015-02-05',
         reference_number: 1245,
