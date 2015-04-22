@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408152646) do
+ActiveRecord::Schema.define(version: 20150422095945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150408152646) do
     t.string   "has_defined_contribution_pension"
     t.money    "upper_value_of_pension_pots",          scale: 2
     t.boolean  "value_of_pension_pots_is_approximate"
+    t.string   "country"
   end
 
   add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
