@@ -53,8 +53,11 @@ class AppointmentSummary < ActiveRecord::Base
               message: '%{value} is not a valid organisation'
             }
 
-  validates :address_line_1, presence: true
-  validates :town, presence: true
+  validates :address_line_1, presence: true, length: { maximum: 50 }
+  validates :address_line_2, length: { maximum: 50 }
+  validates :address_line_3, length: { maximum: 50 }
+  validates :town, presence: true, length: { maximum: 50 }
+  validates :county, length: { maximum: 50 }
   validates :postcode, presence: true, postcode: true
 
   validates :has_defined_contribution_pension,
