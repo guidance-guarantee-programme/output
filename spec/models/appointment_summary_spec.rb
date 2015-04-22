@@ -50,7 +50,15 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_length_of(:town).is_at_most(50) }
   it { is_expected.to_not validate_presence_of(:county) }
   it { is_expected.to validate_length_of(:county).is_at_most(50) }
+  it { is_expected.to validate_presence_of(:country) }
+  it { is_expected.to validate_inclusion_of(:country).in_array(Countries.all) }
   it { is_expected.to validate_presence_of(:postcode) }
+
+  describe '#country' do
+    it "has a default value of #{Countries.uk}" do
+      expect(subject.country).to eq(Countries.uk)
+    end
+  end
 
   it do
     is_expected
