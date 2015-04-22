@@ -59,6 +59,35 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to_not allow_value('SW1A2H').for(:postcode) }
   it { is_expected.to_not allow_value('SWIA2HQ').for(:postcode) }
 
+  describe 'postcode validation' do
+    context 'for UK addresses' do
+      ['', nil, Countries.uk].each do |country|
+        context "with country '#{country.inspect}'" do
+          before { subject.country = country }
+
+          it { is_expected.to validate_presence_of(:postcode) }
+          it { is_expected.to allow_value('sw1a 2hq').for(:postcode) }
+          it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
+          it { is_expected.to allow_value('SW1A2HQ').for(:postcode) }
+          it { is_expected.to allow_value(' SW1A 2HQ    ').for(:postcode) }
+          it { is_expected.to_not allow_value('SW1A2H').for(:postcode) }
+          it { is_expected.to_not allow_value('SWIA2HQ').for(:postcode) }
+        end
+      end
+    end
+
+    context 'for non-UK addresses' do
+      before { subject.country = Countries.non_uk.sample }
+
+      it { is_expected.not_to validate_presence_of(:postcode) }
+      it { is_expected.to allow_value('').for(:postcode) }
+      it { is_expected.to allow_value(nil).for(:postcode) }
+      it { is_expected.to allow_value('4001').for(:postcode) }
+      it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
+      it { is_expected.to allow_value('anything').for(:postcode) }
+    end
+  end
+
   it do
     is_expected
       .to validate_inclusion_of(:has_defined_contribution_pension).in_array(%w(yes no unknown))

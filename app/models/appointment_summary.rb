@@ -59,7 +59,7 @@ class AppointmentSummary < ActiveRecord::Base
   validates :town, presence: true, length: { maximum: 50 }
   validates :county, length: { maximum: 50 }
   validates :country, inclusion: { in: Countries.all, allow_blank: true, allow_nil: true }
-  validates :postcode, presence: true, postcode: true
+  validates :postcode, presence: true, postcode: true, if: :uk_address?
 
   validates :has_defined_contribution_pension,
             presence: true,
@@ -88,6 +88,10 @@ class AppointmentSummary < ActiveRecord::Base
   end
 
   private
+
+  def uk_address?
+    country.blank? || country.to_s.strip == Countries.uk
+  end
 
   # rubocop:disable CyclomaticComplexity
   def retirement_circumstances?
