@@ -66,6 +66,12 @@ RSpec.describe AppointmentSummary, type: :model do
     expect(subject.format_preference).to eq('standard')
   end
 
+  describe '#postcode=' do
+    before { subject.postcode = ' sw1a 2hq    ' }
+
+    specify { expect(subject.postcode).to eq('SW1A 2HQ') }
+  end
+
   context 'when ineligible for guidance' do
     let(:has_defined_contribution_pension) { 'no' }
 
