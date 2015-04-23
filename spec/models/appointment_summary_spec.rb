@@ -51,12 +51,6 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to_not validate_presence_of(:county) }
   it { is_expected.to validate_length_of(:county).is_at_most(50) }
   it { is_expected.to validate_presence_of(:postcode) }
-  it { is_expected.to allow_value('sw1a 2hq').for(:postcode) }
-  it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
-  it { is_expected.to allow_value('SW1A2HQ').for(:postcode) }
-  it { is_expected.to allow_value(' SW1A 2HQ    ').for(:postcode) }
-  it { is_expected.to_not allow_value('SW1A2H').for(:postcode) }
-  it { is_expected.to_not allow_value('SWIA2HQ').for(:postcode) }
 
   it do
     is_expected
@@ -70,6 +64,12 @@ RSpec.describe AppointmentSummary, type: :model do
 
   it 'has a defaults to a standard format preference' do
     expect(subject.format_preference).to eq('standard')
+  end
+
+  describe '#postcode=' do
+    before { subject.postcode = ' sw1a 2hq    ' }
+
+    specify { expect(subject.postcode).to eq('SW1A 2HQ') }
   end
 
   context 'when ineligible for guidance' do
