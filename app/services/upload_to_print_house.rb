@@ -9,6 +9,7 @@ class UploadToPrintHouse
   end
 
   def call
+    ActiveSupport::Notifications.instrument('upload_to_print_house.log', 'start')
     upload_file("/Data.in/pensionwise_output_#{Time.zone.today.strftime('%Y%m%d')}.csv", csv)
   end
 
