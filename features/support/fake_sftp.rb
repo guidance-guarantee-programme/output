@@ -23,6 +23,7 @@ module FakeSFTP
   end
 end
 
+ENV['SFTP_HOST'] = 'Fake-SFTP-Host'
 allow(Net::SFTP).to receive(:start).and_yield(FakeSFTP)
 
 Before { FakeSFTP.clear_uploaded }

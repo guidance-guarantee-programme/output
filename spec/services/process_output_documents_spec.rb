@@ -30,7 +30,7 @@ RSpec.describe ProcessOutputDocuments, '#call' do
       allow(CSVRenderer).to receive(:new)
         .with([output_document]).and_return(csv_renderer)
       allow(UploadToPrintHouse).to receive(:new)
-        .with(csv).and_return(print_house)
+        .with(csv, kind_of(ActiveSupport::Logger)).and_return(print_house)
     end
 
     it { is_expected.to eq(result) }
