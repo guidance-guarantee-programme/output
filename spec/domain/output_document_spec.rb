@@ -48,14 +48,25 @@ RSpec.describe OutputDocument do
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
 
   describe '#attendee_address' do
-    let(:expected_attendee_address) do
-      "Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\n" \
-      "Westminster\nGreater London\nSW1A 2HQ\nUnited Kingdom"
+    subject(:attendee_address) { output_document.attendee_address }
+
+    context 'with a UK address' do
+      let(:country) { Countries.uk }
+
+      it 'does not include the Country' do
+        expect(attendee_address).to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\n" \
+                                       "Westminster\nGreater London\nSW1A 2HQ")
+      end
     end
 
-    subject { output_document.attendee_address }
+    context 'with a non-UK address' do
+      let(:country) { Countries.non_uk.sample }
 
-    it { is_expected.to eq(expected_attendee_address) }
+      it 'includes the Country' do
+        expect(attendee_address).to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\n" \
+                                       "Westminster\nGreater London\nSW1A 2HQ\n#{country}")
+      end
+    end
 
     context 'when optional lines are blank' do
       let(:county) { '' }
@@ -63,7 +74,7 @@ RSpec.describe OutputDocument do
 
       it do
         is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\n" \
-                          "Westminster\nSW1A 2HQ\nUnited Kingdom")
+                          "Westminster\nSW1A 2HQ")
       end
     end
 
@@ -73,10 +84,12 @@ RSpec.describe OutputDocument do
       let(:address_line_3) { '  Whitehall  ' }
       let(:town) { '               Westminster  ' }
       let(:county) { '    Greater     London    ' }
-      let(:country) { '    United     Kingdom    ' }
       let(:postcode) { '  SW1A                         2HQ  ' }
 
-      it { is_expected.to eq(expected_attendee_address) }
+      it do
+        is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\n" \
+                          "Westminster\nGreater London\nSW1A 2HQ")
+      end
     end
   end
 
