@@ -9,6 +9,7 @@ RSpec.describe OutputDocument do
   let(:address_line_3) { 'Whitehall' }
   let(:town) { 'Westminster' }
   let(:county) { 'Greater London' }
+  let(:country) { 'United Kingdom' }
   let(:postcode) { 'SW1A 2HQ' }
   let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
   let(:value_of_pension_pots) { nil }
@@ -28,6 +29,7 @@ RSpec.describe OutputDocument do
       address_line_3: address_line_3,
       town: town,
       county: county,
+      country: country,
       postcode: postcode,
       date_of_appointment: date_of_appointment,
       reference_number: reference_number,
@@ -48,7 +50,7 @@ RSpec.describe OutputDocument do
   describe '#attendee_address' do
     let(:expected_attendee_address) do
       "Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\n" \
-      "Westminster\nGreater London\nSW1A 2HQ"
+      "Westminster\nGreater London\nSW1A 2HQ\nUnited Kingdom"
     end
 
     subject { output_document.attendee_address }
@@ -59,7 +61,10 @@ RSpec.describe OutputDocument do
       let(:county) { '' }
       let(:address_line_3) { '' }
 
-      it { is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWestminster\nSW1A 2HQ") }
+      it do
+        is_expected.to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\n" \
+                          "Westminster\nSW1A 2HQ\nUnited Kingdom")
+      end
     end
 
     context 'when lines contain redundant whitespace' do
@@ -68,6 +73,7 @@ RSpec.describe OutputDocument do
       let(:address_line_3) { '  Whitehall  ' }
       let(:town) { '               Westminster  ' }
       let(:county) { '    Greater     London    ' }
+      let(:country) { '    United     Kingdom    ' }
       let(:postcode) { '  SW1A                         2HQ  ' }
 
       it { is_expected.to eq(expected_attendee_address) }
