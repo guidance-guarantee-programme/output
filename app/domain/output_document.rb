@@ -20,6 +20,8 @@ class OutputDocument
   end
 
   def attendee_address
+    attendee_country = Countries.uk?(self.attendee_country) ? nil : self.attendee_country
+
     [attendee_name,
      attendee_address_line_1,
      attendee_address_line_2,
