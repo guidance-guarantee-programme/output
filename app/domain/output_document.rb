@@ -8,7 +8,7 @@ class OutputDocument
            :wants_lump_sum, :poor_health,
            to: :appointment_summary
 
-  delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode,
+  delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode, :country,
            to: :appointment_summary, prefix: :attendee
 
   def initialize(appointment_summary)
@@ -26,7 +26,8 @@ class OutputDocument
      attendee_address_line_3,
      attendee_town,
      attendee_county,
-     attendee_postcode].reject(&:blank?).map(&:squish).join("\n")
+     attendee_postcode,
+     attendee_country].reject(&:blank?).map(&:squish).join("\n")
   end
 
   def appointment_date
