@@ -23,31 +23,24 @@ RSpec.describe CreateBatch, '#call' do
     it { is_expected.to be_a(Batch) }
     specify { expect(batch.appointment_summaries).to eq(appointment_summaries) }
 
-    context 'where some have currently unsupported formats' do
-      let(:braille_summaries) do
-        2.times.map do
-          create_appointment_summary.tap { |as| as.update_attributes!(format_preference: 'braille') }
+    context 'with some unsupported appointment summaries' do
+      shared_examples 'ignore unsupported appointment summaries' do |unsupported_state|
+        let(:unsupported) do
+          2.times.map do
+            create_appointment_summary.tap { |as| as.update_attributes!(unsupported_state) }
+          end
+        end
+
+        before { appointment_summaries.concat(unsupported) }
+
+        it "should ignore appointment_summaries with #{unsupported_state}" do
+          expect(batch.appointment_summaries).not_to include(*unsupported_state)
         end
       end
 
-      let(:large_text_summaries) do
-        2.times.map do
-          create_appointment_summary.tap { |as| as.update_attributes!(format_preference: 'large_text') }
-        end
-      end
-
-      before do
-        appointment_summaries.concat(braille_summaries)
-        appointment_summaries.concat(large_text_summaries)
-      end
-
-      it 'should ignore braille appointment_summaries' do
-        expect(batch.appointment_summaries).not_to include(*braille_summaries)
-      end
-
-      it 'should ignore large_text appointment_summaries' do
-        expect(batch.appointment_summaries).not_to include(*large_text_summaries)
-      end
+      include_examples 'ignore unsupported appointment summaries', format_preference: 'braille'
+      include_examples 'ignore unsupported appointment summaries', format_preference: 'large_text'
+      include_examples 'ignore unsupported appointment summaries', country: Countries.non_uk.sample
     end
   end
 end
