@@ -22,6 +22,7 @@
     <div class='session-details-panel'>
       <span class='session-details-panel__username'>Logged in as: <%= current_user.name %></span>
       <%= link_to 'Logout', destroy_user_session_path %>
+      <%= link_to 'Change password', edit_user_registration_path %>
     </div>
   <% end %>
 <% end %>
