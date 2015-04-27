@@ -1,32 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe PrintHouseSFTPUploader, '#call' do
-  let(:now) { Time.zone.local(2015, 1, 3, 5, 2, 4) }
-  let(:csv) { 'c,s,v' }
-  let(:csv_path) { '/Data.in/pensionwise_output_20150103050204000.csv' }
-  let(:trigger) { '' }
-  let(:trigger_path) { '/Data.in/pensionwise_output_20150103050204000.trg' }
-  let(:csv_upload_job) do
-    instance_double(CSVUploadJob, payload: csv,
-                                  payload_path: csv_path,
-                                  trigger: trigger,
-                                  trigger_path: trigger_path)
+  let(:jobs) do
+    3.times.map do |n|
+      instance_double(CSVUploadJob, payload: "payload #{n}",
+                                    payload_path: "/payload_path/#{n}.payload",
+                                    trigger: "trigger #{n}",
+                                    trigger_path: "/trigger_path/#{n}.trigger")
+    end
   end
 
   let(:uploader) { described_class.new }
+  before { allow(uploader).to receive(:upload_file) }
 
-  before do
-    allow(uploader).to receive(:upload_file)
-    allow(Time.zone).to receive(:today).and_return(now)
+  subject! { uploader.call(jobs) }
+
+  it 'uploads data from all specified jobs' do
+    jobs.each do |job|
+      expect(uploader).to have_received(:upload_file).with(job.payload_path, job.payload)
+      expect(uploader).to have_received(:upload_file).with(job.trigger_path, job.trigger)
+    end
   end
 
-  subject! { uploader.call(csv_upload_job) }
-
-  it 'uploads the CSV' do
-    expect(uploader).to have_received(:upload_file).with(csv_path, csv)
-  end
-
-  it 'uploads the trigger file' do
-    expect(uploader).to have_received(:upload_file).with(trigger_path, trigger)
+  it 'uploads trigger files after their respective payloads' do
+    jobs.each do |job|
+      expect(uploader).to have_received(:upload_file).with(job.payload_path, job.payload).ordered
+      expect(uploader).to have_received(:upload_file).with(job.trigger_path, job.trigger).ordered
+    end
   end
 end

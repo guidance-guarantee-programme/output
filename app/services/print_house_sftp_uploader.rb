@@ -2,9 +2,11 @@ require 'net/sftp'
 require 'stringio'
 
 class PrintHouseSFTPUploader
-  def call(job)
-    upload_file(job.payload_path, job.payload)
-    upload_file(job.trigger_path, job.trigger)
+  def call(jobs)
+    Array(jobs).each do |job|
+      upload_file(job.payload_path, job.payload)
+      upload_file(job.trigger_path, job.trigger)
+    end
   end
 
   private
