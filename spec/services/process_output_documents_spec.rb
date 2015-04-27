@@ -16,21 +16,16 @@ RSpec.describe ProcessOutputDocuments, '#call' do
   end
 
   context 'with items for processing' do
-    let(:appointment_summary) { instance_double(AppointmentSummary) }
-    let(:batch) { instance_double(Batch, appointment_summaries: [appointment_summary]) }
-    let(:csv_upload_job) { instance_double(CSVUploadJob) }
+    let(:batch) { instance_double(Batch) }
     let(:result) { 'result' }
-    let(:print_house) { instance_double(PrintHouseSFTPUploader, call: result) }
+    let(:upload_to_print_house) { instance_double(UploadToPrintHouse) }
 
     before do
-      allow(CSVUploadJob).to receive(:new)
-        .with(batch).and_return(csv_upload_job)
+      allow(UploadToPrintHouse).to receive(:new)
+        .and_return(upload_to_print_house)
 
-      allow(PrintHouseSFTPUploader).to receive(:new)
-        .and_return(print_house)
-
-      allow(print_house).to receive(:call)
-        .with(csv_upload_job).and_return(result)
+      allow(upload_to_print_house).to receive(:call)
+        .with(batch).and_return(result)
     end
 
     it { is_expected.to eq(result) }

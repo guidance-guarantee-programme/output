@@ -4,8 +4,6 @@ class ProcessOutputDocuments
 
     return nil unless batch
 
-    csv_upload_job = CSVUploadJob.new(batch)
-
-    PrintHouseSFTPUploader.new.call(csv_upload_job)
+    UploadToPrintHouse.new.call(batch)
   end
 end
