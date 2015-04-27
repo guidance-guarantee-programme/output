@@ -20,13 +20,13 @@ RSpec.describe ProcessOutputDocuments, '#call' do
     let(:batch) { instance_double(Batch, appointment_summaries: [appointment_summary]) }
     let(:csv_upload_job) { instance_double(CSVUploadJob) }
     let(:result) { 'result' }
-    let(:print_house) { instance_double(UploadToPrintHouse, call: result) }
+    let(:print_house) { instance_double(PrintHouseSFTPUploader, call: result) }
 
     before do
       allow(CSVUploadJob).to receive(:new)
         .with(batch).and_return(csv_upload_job)
 
-      allow(UploadToPrintHouse).to receive(:new)
+      allow(PrintHouseSFTPUploader).to receive(:new)
         .with(csv_upload_job).and_return(print_house)
     end
 

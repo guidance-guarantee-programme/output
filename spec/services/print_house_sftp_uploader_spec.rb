@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UploadToPrintHouse, '#call' do
+RSpec.describe PrintHouseSFTPUploader, '#call' do
   let(:now) { Time.zone.local(2015, 1, 3, 5, 2, 4) }
   let(:csv) { 'c,s,v' }
   let(:csv_path) { '/Data.in/pensionwise_output_20150103050204000.csv' }

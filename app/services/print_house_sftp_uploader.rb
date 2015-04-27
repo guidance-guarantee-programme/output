@@ -1,7 +1,7 @@
 require 'net/sftp'
 require 'stringio'
 
-class UploadToPrintHouse
+class PrintHouseSFTPUploader
   attr_accessor :job
 
   def initialize(job)

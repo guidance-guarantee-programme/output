@@ -6,6 +6,6 @@ class ProcessOutputDocuments
 
     csv_upload_job = CSVUploadJob.new(batch)
 
-    UploadToPrintHouse.new(csv_upload_job).call
+    PrintHouseSFTPUploader.new(csv_upload_job).call
   end
 end
