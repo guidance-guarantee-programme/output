@@ -2,13 +2,7 @@ require 'net/sftp'
 require 'stringio'
 
 class PrintHouseSFTPUploader
-  attr_accessor :job
-
-  def initialize(job)
-    @job = job
-  end
-
-  def call
+  def call(job)
     upload_file(job.payload_path, job.payload)
     upload_file(job.trigger_path, job.trigger)
   end

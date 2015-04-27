@@ -13,13 +13,14 @@ RSpec.describe PrintHouseSFTPUploader, '#call' do
                                   trigger_path: trigger_path)
   end
 
-  subject(:uploader) { described_class.new(csv_upload_job) }
+  let(:uploader) { described_class.new }
 
   before do
     allow(uploader).to receive(:upload_file)
     allow(Time.zone).to receive(:today).and_return(now)
-    uploader.call
   end
+
+  subject! { uploader.call(csv_upload_job) }
 
   it 'uploads the CSV' do
     expect(uploader).to have_received(:upload_file).with(csv_path, csv)

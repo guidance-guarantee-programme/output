@@ -27,7 +27,10 @@ RSpec.describe ProcessOutputDocuments, '#call' do
         .with(batch).and_return(csv_upload_job)
 
       allow(PrintHouseSFTPUploader).to receive(:new)
-        .with(csv_upload_job).and_return(print_house)
+        .and_return(print_house)
+
+      allow(print_house).to receive(:call)
+        .with(csv_upload_job).and_return(result)
     end
 
     it { is_expected.to eq(result) }
