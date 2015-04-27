@@ -14,7 +14,21 @@ class CSVUploadJob
   end
 
   def payload_path
+    upload_path('csv')
+  end
+
+  def trigger
+    ''
+  end
+
+  def trigger_path
+    upload_path('trg')
+  end
+
+  private
+
+  def upload_path(extension)
     timestamp = batch.created_at.strftime('%Y%m%d%H%M%S%L')
-    "/Data.in/pensionwise_output_#{timestamp}.csv"
+    "/Data.in/pensionwise_output_#{timestamp}.#{extension}"
   end
 end

@@ -10,6 +10,7 @@ class UploadToPrintHouse
 
   def call
     upload_file(job.payload_path, job.payload)
+    upload_file(job.trigger_path, job.trigger)
   end
 
   private
