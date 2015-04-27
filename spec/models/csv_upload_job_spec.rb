@@ -27,4 +27,16 @@ RSpec.describe CSVUploadJob do
 
     it { is_expected.to eq('/Data.in/pensionwise_output_20150322123022564.csv') }
   end
+
+  describe '#trigger' do
+    subject { csv_upload_job.trigger }
+
+    it { is_expected.to eq('') }
+  end
+
+  describe '#trigger_path' do
+    subject { csv_upload_job.trigger_path }
+
+    it { is_expected.to eq('/Data.in/pensionwise_output_20150322123022564.trg') }
+  end
 end

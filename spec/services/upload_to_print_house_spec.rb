@@ -4,7 +4,14 @@ RSpec.describe UploadToPrintHouse, '#call' do
   let(:now) { Time.zone.local(2015, 1, 3, 5, 2, 4) }
   let(:csv) { 'c,s,v' }
   let(:csv_path) { '/Data.in/pensionwise_output_20150103050204000.csv' }
-  let(:csv_upload_job) { instance_double(CSVUploadJob, payload: csv, payload_path: csv_path) }
+  let(:trigger) { '' }
+  let(:trigger_path) { '/Data.in/pensionwise_output_20150103050204000.trg' }
+  let(:csv_upload_job) do
+    instance_double(CSVUploadJob, payload: csv,
+                                  payload_path: csv_path,
+                                  trigger: trigger,
+                                  trigger_path: trigger_path)
+  end
 
   subject(:uploader) { described_class.new(csv_upload_job) }
 
@@ -16,5 +23,9 @@ RSpec.describe UploadToPrintHouse, '#call' do
 
   it 'uploads the CSV' do
     expect(uploader).to have_received(:upload_file).with(csv_path, csv)
+  end
+
+  it 'uploads the trigger file' do
+    expect(uploader).to have_received(:upload_file).with(trigger_path, trigger)
   end
 end
