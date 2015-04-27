@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe UploadToPrintHouse, '#call' do
-  let(:now) { Date.new(2015, 1, 3) }
+  let(:now) { Time.zone.local(2015, 1, 3, 5, 2, 4) }
   let(:csv) { 'c,s,v' }
-  let(:csv_path) { '/Data.in/pensionwise_output_20150103.csv' }
+  let(:csv_path) { '/Data.in/pensionwise_output_20150103050204000.csv' }
+  let(:csv_upload_job) { instance_double(CSVUploadJob, payload: csv, payload_path: csv_path) }
 
-  subject(:uploader) { described_class.new(csv) }
+  subject(:uploader) { described_class.new(csv_upload_job) }
 
   before do
     allow(uploader).to receive(:upload_file)
