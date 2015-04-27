@@ -2,14 +2,15 @@ require 'net/sftp'
 require 'stringio'
 
 class UploadToPrintHouse
-  attr_accessor :csv
+  attr_accessor :job
 
-  def initialize(csv)
-    @csv = csv
+  def initialize(job)
+    @job = job
   end
 
   def call
-    upload_file("/Data.in/pensionwise_output_#{Time.zone.today.strftime('%Y%m%d')}.csv", csv)
+    upload_file(job.payload_path, job.payload)
+    upload_file(job.trigger_path, job.trigger)
   end
 
   private
