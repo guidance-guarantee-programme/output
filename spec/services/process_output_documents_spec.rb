@@ -18,19 +18,16 @@ RSpec.describe ProcessOutputDocuments, '#call' do
   context 'with items for processing' do
     let(:appointment_summary) { instance_double(AppointmentSummary) }
     let(:batch) { instance_double(Batch, appointment_summaries: [appointment_summary]) }
-    let(:output_document) { instance_double(OutputDocument) }
-    let(:csv) { 'c,s,v' }
-    let(:csv_renderer) { instance_double(CSVRenderer, render: csv) }
+    let(:csv_upload_job) { instance_double(CSVUploadJob) }
     let(:result) { 'result' }
     let(:print_house) { instance_double(UploadToPrintHouse, call: result) }
 
     before do
-      allow(OutputDocument).to receive(:new)
-        .with(appointment_summary).and_return(output_document)
-      allow(CSVRenderer).to receive(:new)
-        .with([output_document]).and_return(csv_renderer)
+      allow(CSVUploadJob).to receive(:new)
+        .with(batch).and_return(csv_upload_job)
+
       allow(UploadToPrintHouse).to receive(:new)
-        .with(csv).and_return(print_house)
+        .with(csv_upload_job).and_return(print_house)
     end
 
     it { is_expected.to eq(result) }
