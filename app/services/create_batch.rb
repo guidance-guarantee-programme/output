@@ -1,11 +1,11 @@
 class CreateBatch
   def call
-    unprocessed_appointment_summaries = AppointmentSummary.unprocessed
-                                        .where(format_preference: :standard)
-                                        .where(country: Countries.uk)
+    unbatched_appointment_summaries = AppointmentSummary.unbatched
+                                      .where(format_preference: :standard)
+                                      .where(country: Countries.uk)
 
-    return nil if unprocessed_appointment_summaries.empty?
+    return nil if unbatched_appointment_summaries.empty?
 
-    Batch.create(appointment_summaries: unprocessed_appointment_summaries)
+    Batch.create(appointment_summaries: unbatched_appointment_summaries)
   end
 end
