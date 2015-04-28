@@ -15,7 +15,7 @@ class AppointmentSummary < ActiveRecord::Base
     end
   end
 
-  TITLES = %w(Mr Mrs Miss Ms Mx Dr)
+  TITLES = %w(Mr Mrs Miss Ms Mx Dr Reverend)
 
   belongs_to :user
   has_many :appointment_summaries_batches, dependent: :destroy
