@@ -18,4 +18,14 @@ RSpec.describe Batch, type: :model do
       expect(batch.uploaded_at).to be_within(0.1.seconds).of Time.zone.now
     end
   end
+
+  describe '.unprocessed' do
+    let(:uploaded_batches) { 3.times.map { Batch.create.tap(&:mark_as_uploaded) } }
+    let(:unuploaded_batches) { 3.times.map { Batch.create } }
+
+    subject(:batches) { Batch.unprocessed }
+
+    it { is_expected.to include(*unuploaded_batches) }
+    it { is_expected.not_to include(*uploaded_batches) }
+  end
 end

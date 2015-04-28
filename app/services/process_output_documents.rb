@@ -1,9 +1,10 @@
 class ProcessOutputDocuments
   def call
-    batch = CreateBatch.new.call
+    CreateBatch.new.call
+    batches = Array(Batch.unprocessed)
 
-    return nil unless batch
+    return nil if batches.empty?
 
-    UploadToPrintHouse.new.call(batch)
+    UploadToPrintHouse.new.call(batches)
   end
 end

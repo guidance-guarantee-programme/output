@@ -8,6 +8,7 @@ RSpec.describe ProcessOutputDocuments, '#call' do
   before do
     allow(CreateBatch).to receive(:new).and_return(create_batch)
     allow(UploadToPrintHouse).to receive(:new).and_return(upload_to_print_house)
+    allow(Batch).to receive(:unprocessed)
   end
 
   describe 'creates a new batch' do
@@ -18,22 +19,22 @@ RSpec.describe ProcessOutputDocuments, '#call' do
     it { is_expected.to have_received(:call) }
   end
 
-  describe 'uploads the created batch to the print house' do
-    let(:batch) { instance_double(Batch) }
+  describe 'uploads all unprocessed batches to the print house' do
+    let(:unprocessed_batches) { 3.times.map { instance_double(Batch) } }
 
     before do
-      allow(create_batch).to receive(:call).and_return(batch)
+      allow(Batch).to receive(:unprocessed).and_return(unprocessed_batches)
       service.call
     end
 
     subject { upload_to_print_house }
 
-    it { is_expected.to have_received(:call).with(batch) }
+    it { is_expected.to have_received(:call).with(unprocessed_batches) }
   end
 
   describe 'does nothing when there are no unprocessed batches' do
     before do
-      allow(create_batch).to receive(:call).and_return(nil)
+      allow(Batch).to receive(:unprocessed).and_return([])
       service.call
     end
 
