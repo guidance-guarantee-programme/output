@@ -1,35 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe ProcessOutputDocuments, '#call' do
-  let(:batch) { nil }
-
-  subject { described_class.new.call }
+  let(:batch) { instance_double(Batch).as_null_object }
+  let(:job) { instance_double(CSVUploadJob, batch: batch).as_null_object }
+  let(:create_batch) { instance_double(CreateBatch, call: batch).as_null_object }
+  let(:upload_to_print_house) { instance_double(UploadToPrintHouse).as_null_object }
 
   before do
-    allow(CreateBatch)
-      .to receive(:new)
-      .and_return(-> { batch })
+    allow(CreateBatch).to receive(:new).and_return(create_batch)
+    allow(CSVUploadJob).to receive(:new).with(batch).and_return(job)
+    allow(UploadToPrintHouse).to receive(:new).with(job).and_return(upload_to_print_house)
+
+    described_class.new.call
   end
 
-  context 'with no items for processing' do
-    it { is_expected.to be_nil }
+  describe 'creates a new batch' do
+    subject { create_batch }
+
+    it { is_expected.to have_received(:call) }
   end
 
-  context 'with items for processing' do
-    let(:appointment_summary) { instance_double(AppointmentSummary) }
-    let(:batch) { instance_double(Batch, appointment_summaries: [appointment_summary]) }
-    let(:csv_upload_job) { instance_double(CSVUploadJob) }
-    let(:result) { 'result' }
-    let(:print_house) { instance_double(UploadToPrintHouse, call: result) }
+  describe 'uploads the created batch to the print house' do
+    subject { upload_to_print_house }
 
-    before do
-      allow(CSVUploadJob).to receive(:new)
-        .with(batch).and_return(csv_upload_job)
+    it { is_expected.to have_received(:call) }
+  end
 
-      allow(UploadToPrintHouse).to receive(:new)
-        .with(csv_upload_job).and_return(print_house)
-    end
+  context 'when no items for processing' do
+    let(:batch) { nil }
 
-    it { is_expected.to eq(result) }
+    subject { upload_to_print_house }
+
+    it { is_expected.not_to have_received(:call) }
   end
 end
