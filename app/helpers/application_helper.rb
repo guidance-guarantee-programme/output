@@ -13,4 +13,8 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def error_messages_for(model)
+    render partial: 'shared/errors', locals: { model: model }
+  end
 end
