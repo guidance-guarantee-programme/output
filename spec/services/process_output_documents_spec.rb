@@ -26,6 +26,12 @@ RSpec.describe ProcessOutputDocuments, '#call' do
     it { is_expected.to have_received(:call) }
   end
 
+  describe 'marks the batch as uploaded' do
+    subject { batch }
+
+    it { is_expected.to have_received(:mark_as_uploaded) }
+  end
+
   context 'when no items for processing' do
     let(:batch) { nil }
 
