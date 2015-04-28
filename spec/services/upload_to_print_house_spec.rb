@@ -56,4 +56,14 @@ RSpec.describe UploadToPrintHouse, '#call' do
 
     it { is_expected.not_to have_received(:mark_as_uploaded) }
   end
+
+  [nil, []].each do |no_batches|
+    context "with #{no_batches.inspect} batches" do
+      before { upload_to_print_house.call(no_batches) }
+
+      subject { print_house_sftp_uploader }
+
+      it { is_expected.not_to have_received(:call) }
+    end
+  end
 end

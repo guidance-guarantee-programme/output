@@ -7,11 +7,15 @@ class UploadToPrintHouse
   end
 
   def call(batches)
-    jobs = Array(batches).map { |batch| CSVUploadJob.new(batch) }
-    uploader.call(jobs)
+    jobs = create_upload_jobs(batches)
+    uploader.call(jobs) unless jobs.empty?
   end
 
   private
+
+  def create_upload_jobs(batches)
+    Array(batches).map { |batch| CSVUploadJob.new(batch) }
+  end
 
   def on_upload_success(job)
     batch = job.batch

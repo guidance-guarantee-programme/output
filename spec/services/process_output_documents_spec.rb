@@ -31,15 +31,4 @@ RSpec.describe ProcessOutputDocuments, '#call' do
 
     it { is_expected.to have_received(:call).with(unprocessed_batches) }
   end
-
-  describe 'does nothing when there are no unprocessed batches' do
-    before do
-      allow(Batch).to receive(:unprocessed).and_return([])
-      service.call
-    end
-
-    subject { upload_to_print_house }
-
-    it { is_expected.not_to have_received(:call) }
-  end
 end
