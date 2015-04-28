@@ -11,4 +11,12 @@ RSpec.describe Batch, type: :model do
 
     it { is_expected.to be_nil }
   end
+
+  describe '#mark_as_uploaded' do
+    before { batch.mark_as_uploaded }
+
+    it 'saves uploaded_at as now' do
+      expect(batch.reload.uploaded_at).to be_within(0.1.seconds).of Time.zone.now
+    end
+  end
 end

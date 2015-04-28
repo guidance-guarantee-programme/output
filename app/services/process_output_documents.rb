@@ -7,5 +7,7 @@ class ProcessOutputDocuments
     csv_upload_job = CSVUploadJob.new(batch)
 
     UploadToPrintHouse.new(csv_upload_job).call
+
+    batch.mark_as_uploaded
   end
 end
