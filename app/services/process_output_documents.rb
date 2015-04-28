@@ -1,13 +1,18 @@
 class ProcessOutputDocuments
   def call
-    batch = CreateBatch.new.call
+    CreateBatch.new.call
+    upload_all(Batch.unprocessed)
+  end
 
-    return nil unless batch
+  private
 
-    csv_upload_job = CSVUploadJob.new(batch)
+  def upload_all(batches)
+    Array(batches).each { |batch| upload(batch) }
+  end
 
-    UploadToPrintHouse.new(csv_upload_job).call
-
+  def upload(batch)
+    job = CSVUploadJob.new(batch)
+    UploadToPrintHouse.new(job).call
     batch.mark_as_uploaded
   end
 end
