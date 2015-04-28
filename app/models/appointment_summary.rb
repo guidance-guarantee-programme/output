@@ -2,7 +2,7 @@ require 'json'
 require 'uri'
 
 class AppointmentSummary < ActiveRecord::Base
-  scope :unprocessed, lambda {
+  scope :unbatched, lambda {
     includes(:appointment_summaries_batches)
       .where(appointment_summaries_batches: { appointment_summary_id: nil })
   }

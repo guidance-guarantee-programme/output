@@ -1,24 +1,24 @@
-require 'net/sftp'
-require 'stringio'
-
 class UploadToPrintHouse
-  attr_accessor :job
+  attr_reader :uploader
 
-  def initialize(job)
-    @job = job
+  def initialize
+    @uploader = PrintHouseSFTPUploader.new
+    @uploader.on(:upload_success, &method(:on_upload_success))
   end
 
-  def call
-    upload_file(job.payload_path, job.payload)
-    upload_file(job.trigger_path, job.trigger)
+  def call(batches)
+    jobs = create_upload_jobs(batches)
+    uploader.call(jobs) unless jobs.empty?
   end
 
   private
 
-  def upload_file(path, contents)
-    io = StringIO.new(contents)
-    Net::SFTP.start(ENV['SFTP_HOST'], ENV['SFTP_USER'], password: ENV['SFTP_PASSWORD']) do |sftp|
-      sftp.upload!(io, path)
-    end
+  def create_upload_jobs(batches)
+    Array(batches).map { |batch| CSVUploadJob.new(batch) }
+  end
+
+  def on_upload_success(job)
+    batch = job.batch
+    batch.mark_as_uploaded if batch
   end
 end

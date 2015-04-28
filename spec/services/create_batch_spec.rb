@@ -12,12 +12,12 @@ RSpec.describe CreateBatch, '#call' do
       format_preference: 'standard')
   end
 
-  context 'with no items to be processed' do
+  context 'with no items to be batched' do
     it { is_expected.to be_nil }
     specify { expect { batch }.to_not change { Batch.count } }
   end
 
-  context 'with items to be processed' do
+  context 'with items to be batched' do
     let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
 
     it { is_expected.to be_a(Batch) }

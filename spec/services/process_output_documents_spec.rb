@@ -1,35 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe ProcessOutputDocuments, '#call' do
-  let(:batch) { nil }
-
-  subject { described_class.new.call }
+  let(:create_batch) { instance_double(CreateBatch).as_null_object }
+  let(:upload_to_print_house) { instance_double(UploadToPrintHouse).as_null_object }
+  let(:service)  { described_class.new }
 
   before do
-    allow(CreateBatch)
-      .to receive(:new)
-      .and_return(-> { batch })
+    allow(CreateBatch).to receive(:new).and_return(create_batch)
+    allow(UploadToPrintHouse).to receive(:new).and_return(upload_to_print_house)
+    allow(Batch).to receive(:unprocessed)
   end
 
-  context 'with no items for processing' do
-    it { is_expected.to be_nil }
+  describe 'creates a new batch' do
+    before { service.call }
+
+    subject { create_batch }
+
+    it { is_expected.to have_received(:call) }
   end
 
-  context 'with items for processing' do
-    let(:appointment_summary) { instance_double(AppointmentSummary) }
-    let(:batch) { instance_double(Batch, appointment_summaries: [appointment_summary]) }
-    let(:csv_upload_job) { instance_double(CSVUploadJob) }
-    let(:result) { 'result' }
-    let(:print_house) { instance_double(UploadToPrintHouse, call: result) }
+  describe 'uploads all unprocessed batches to the print house' do
+    let(:unprocessed_batches) { 3.times.map { instance_double(Batch) } }
 
     before do
-      allow(CSVUploadJob).to receive(:new)
-        .with(batch).and_return(csv_upload_job)
-
-      allow(UploadToPrintHouse).to receive(:new)
-        .with(csv_upload_job).and_return(print_house)
+      allow(Batch).to receive(:unprocessed).and_return(unprocessed_batches)
+      service.call
     end
 
-    it { is_expected.to eq(result) }
+    subject { upload_to_print_house }
+
+    it { is_expected.to have_received(:call).with(unprocessed_batches) }
   end
 end
