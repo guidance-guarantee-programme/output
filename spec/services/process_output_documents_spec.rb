@@ -1,33 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe ProcessOutputDocuments, '#call' do
-  let(:batch) { nil }
-
-  subject { described_class.new.call }
+  let(:create_batch) { instance_double(CreateBatch).as_null_object }
+  let(:upload_to_print_house) { instance_double(UploadToPrintHouse).as_null_object }
+  let(:service)  { described_class.new }
 
   before do
-    allow(CreateBatch)
-      .to receive(:new)
-      .and_return(-> { batch })
+    allow(CreateBatch).to receive(:new).and_return(create_batch)
+    allow(UploadToPrintHouse).to receive(:new).and_return(upload_to_print_house)
   end
 
-  context 'with no items for processing' do
-    it { is_expected.to be_nil }
+  describe 'creates a new batch' do
+    before { service.call }
+
+    subject { create_batch }
+
+    it { is_expected.to have_received(:call) }
   end
 
-  context 'with items for processing' do
+  describe 'uploads the created batch to the print house' do
     let(:batch) { instance_double(Batch) }
-    let(:result) { 'result' }
-    let(:upload_to_print_house) { instance_double(UploadToPrintHouse) }
 
     before do
-      allow(UploadToPrintHouse).to receive(:new)
-        .and_return(upload_to_print_house)
-
-      allow(upload_to_print_house).to receive(:call)
-        .with(batch).and_return(result)
+      allow(create_batch).to receive(:call).and_return(batch)
+      service.call
     end
 
-    it { is_expected.to eq(result) }
+    subject { upload_to_print_house }
+
+    it { is_expected.to have_received(:call).with(batch) }
+  end
+
+  describe 'does nothing when there are no unprocessed batches' do
+    before do
+      allow(create_batch).to receive(:call).and_return(nil)
+      service.call
+    end
+
+    subject { upload_to_print_house }
+
+    it { is_expected.not_to have_received(:call) }
   end
 end
