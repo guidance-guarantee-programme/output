@@ -1,15 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe ProcessOutputDocuments, '#call' do
-  let(:batch) { instance_double(Batch).as_null_object }
-  let(:job) { instance_double(CSVUploadJob, batch: batch).as_null_object }
-  let(:create_batch) { instance_double(CreateBatch, call: batch).as_null_object }
-  let(:upload_to_print_house) { instance_double(UploadToPrintHouse).as_null_object }
+  let(:batches) { 3.times.map { instance_double(Batch).as_null_object } }
+  let(:jobs) { Array(batches).map { instance_double(CSVUploadJob).as_null_object } }
+  let(:uploaders) { Array(batches).map { instance_double(UploadToPrintHouse).as_null_object } }
+  let(:create_batch) { instance_double(CreateBatch).as_null_object }
 
   before do
     allow(CreateBatch).to receive(:new).and_return(create_batch)
-    allow(CSVUploadJob).to receive(:new).with(batch).and_return(job)
-    allow(UploadToPrintHouse).to receive(:new).with(job).and_return(upload_to_print_house)
+    allow(Batch).to receive(:unprocessed).and_return(batches)
+    Array(batches).count.times do |n|
+      batch, job, uploader = batches[n], jobs[n], uploaders[n]
+      allow(CSVUploadJob).to receive(:new).with(batch).and_return(job)
+      allow(UploadToPrintHouse).to receive(:new).with(job).and_return(uploader)
+    end
 
     described_class.new.call
   end
@@ -20,23 +24,25 @@ RSpec.describe ProcessOutputDocuments, '#call' do
     it { is_expected.to have_received(:call) }
   end
 
-  describe 'uploads the created batch to the print house' do
-    subject { upload_to_print_house }
+  describe 'uploads all unprocessed batches to the print house' do
+    subject { uploaders }
 
-    it { is_expected.to have_received(:call) }
+    it { is_expected.to all(have_received(:call)) }
   end
 
-  describe 'marks the batch as uploaded' do
-    subject { batch }
+  describe 'marks each batch as uploaded' do
+    subject { batches }
 
-    it { is_expected.to have_received(:mark_as_uploaded) }
+    it { is_expected.to all(have_received(:mark_as_uploaded)) }
   end
 
   context 'when no items for processing' do
-    let(:batch) { nil }
+    [[], nil].each do |no_items|
+      let(:batches) { no_items }
 
-    subject { upload_to_print_house }
-
-    it { is_expected.not_to have_received(:call) }
+      it 'uploads nothing' do
+        uploaders.each { |uploader| expect(uploader).not_to have_received(:call) }
+      end
+    end
   end
 end
