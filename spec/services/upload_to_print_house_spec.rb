@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'wisper/rspec/stub_wisper_publisher'
 
 RSpec.describe UploadToPrintHouse, '#call' do
   let(:batch_one) { instance_double(Batch).as_null_object }
@@ -23,5 +24,36 @@ RSpec.describe UploadToPrintHouse, '#call' do
     subject { print_house_sftp_uploader }
 
     it { is_expected.to have_received(:call).with([job_one, job_two, job_three]) }
+  end
+
+  describe 'records the upload date for succesfully uploaded batches' do
+    before do
+      stub_wisper_publisher('PrintHouseSFTPUploader',
+                            :call,
+                            :upload_success,
+                            job_one)
+
+      upload_to_print_house.call(batch_one)
+    end
+
+    subject { batch_one }
+
+    it { is_expected.to have_received(:mark_as_uploaded) }
+  end
+
+  describe 'does not record the upload date for failed batches' do
+    before do
+      stub_wisper_publisher('PrintHouseSFTPUploader',
+                            :call,
+                            :upload_failure,
+                            job_one,
+                            RuntimeError.new('Upload failed!'))
+
+      upload_to_print_house.call(batch_one)
+    end
+
+    subject { batch_one }
+
+    it { is_expected.not_to have_received(:mark_as_uploaded) }
   end
 end

@@ -7,4 +7,15 @@ RSpec.describe Batch, type: :model do
   it 'has a default #uploaded_at of nil' do
     expect(subject.uploaded_at).to be_nil
   end
+
+  describe '#mark_as_uploaded' do
+    it 'sets uploaded_at to now and saves the record' do
+      batch = Batch.create
+
+      batch.mark_as_uploaded
+      batch.reload
+
+      expect(batch.uploaded_at).to be_within(0.1.seconds).of Time.zone.now
+    end
+  end
 end
