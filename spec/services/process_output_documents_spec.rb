@@ -1,35 +1,48 @@
 require 'rails_helper'
 
 RSpec.describe ProcessOutputDocuments, '#call' do
-  let(:batch) { nil }
-
-  subject { described_class.new.call }
+  let(:batches) { 3.times.map { instance_double(Batch).as_null_object } }
+  let(:jobs) { Array(batches).map { instance_double(CSVUploadJob).as_null_object } }
+  let(:uploaders) { Array(batches).map { instance_double(UploadToPrintHouse).as_null_object } }
+  let(:create_batch) { instance_double(CreateBatch).as_null_object }
 
   before do
-    allow(CreateBatch)
-      .to receive(:new)
-      .and_return(-> { batch })
-  end
-
-  context 'with no items for processing' do
-    it { is_expected.to be_nil }
-  end
-
-  context 'with items for processing' do
-    let(:appointment_summary) { instance_double(AppointmentSummary) }
-    let(:batch) { instance_double(Batch, appointment_summaries: [appointment_summary]) }
-    let(:csv_upload_job) { instance_double(CSVUploadJob) }
-    let(:result) { 'result' }
-    let(:print_house) { instance_double(UploadToPrintHouse, call: result) }
-
-    before do
-      allow(CSVUploadJob).to receive(:new)
-        .with(batch).and_return(csv_upload_job)
-
-      allow(UploadToPrintHouse).to receive(:new)
-        .with(csv_upload_job).and_return(print_house)
+    allow(CreateBatch).to receive(:new).and_return(create_batch)
+    allow(Batch).to receive(:unprocessed).and_return(batches)
+    Array(batches).count.times do |n|
+      batch, job, uploader = batches[n], jobs[n], uploaders[n]
+      allow(CSVUploadJob).to receive(:new).with(batch).and_return(job)
+      allow(UploadToPrintHouse).to receive(:new).with(job).and_return(uploader)
     end
 
-    it { is_expected.to eq(result) }
+    described_class.new.call
+  end
+
+  describe 'creates a new batch' do
+    subject { create_batch }
+
+    it { is_expected.to have_received(:call) }
+  end
+
+  describe 'uploads all unprocessed batches to the print house' do
+    subject { uploaders }
+
+    it { is_expected.to all(have_received(:call)) }
+  end
+
+  describe 'marks each batch as uploaded' do
+    subject { batches }
+
+    it { is_expected.to all(have_received(:mark_as_uploaded)) }
+  end
+
+  context 'when no items for processing' do
+    [[], nil].each do |no_items|
+      let(:batches) { no_items }
+
+      it 'uploads nothing' do
+        uploaders.each { |uploader| expect(uploader).not_to have_received(:call) }
+      end
+    end
   end
 end
