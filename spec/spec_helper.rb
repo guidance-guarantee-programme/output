@@ -1,3 +1,5 @@
+require 'retriable'
+
 RSpec.configure do |config|
   config.default_formatter = 'doc' if config.files_to_run.one?
   config.disable_monkey_patching!
@@ -15,4 +17,8 @@ RSpec.configure do |config|
   end
 
   Kernel.srand config.seed
+end
+
+Retriable.configure do |c|
+  c.base_interval = 0
 end
