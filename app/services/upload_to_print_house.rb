@@ -9,8 +9,10 @@ class UploadToPrintHouse
   end
 
   def call
-    upload_file(job.payload_path, job.payload)
-    upload_file(job.trigger_path, job.trigger)
+    attempt(5) do
+      upload_file(job.payload_path, job.payload)
+      upload_file(job.trigger_path, job.trigger)
+    end
   end
 
   private
@@ -26,5 +28,13 @@ class UploadToPrintHouse
 
   def logger
     Rails.logger
+  end
+
+  def attempt(times)
+    attempts ||= 0
+    yield
+  rescue
+    retry unless (attempts += 1) > times
+    raise
   end
 end
