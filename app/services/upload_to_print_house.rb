@@ -16,9 +16,15 @@ class UploadToPrintHouse
   private
 
   def upload_file(path, contents)
+    logger.info("Uploading #{path}")
+
     io = StringIO.new(contents)
     Net::SFTP.start(ENV['SFTP_HOST'], ENV['SFTP_USER'], password: ENV['SFTP_PASSWORD']) do |sftp|
       sftp.upload!(io, path)
     end
+  end
+
+  def logger
+    Rails.logger
   end
 end
