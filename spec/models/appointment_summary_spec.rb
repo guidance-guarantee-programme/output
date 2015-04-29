@@ -133,8 +133,8 @@ RSpec.describe AppointmentSummary, type: :model do
     end
   end
 
-  describe '.unprocessed' do
-    subject { described_class.unprocessed }
+  describe '.unbatched' do
+    subject { described_class.unbatched }
 
     def create_appointment_summary
       AppointmentSummary.create(
@@ -144,20 +144,20 @@ RSpec.describe AppointmentSummary, type: :model do
         has_defined_contribution_pension: 'yes', income_in_retirement: 'pension')
     end
 
-    context 'with no unprocessed items' do
+    context 'with no unbatched items' do
       let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
       let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries) }
 
       it { is_expected.to be_empty }
     end
 
-    context 'with unprocessed items' do
+    context 'with unbatched items' do
       let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
 
       it { is_expected.to eq(appointment_summaries) }
     end
 
-    context 'with processed and unprocessed items' do
+    context 'with batched and unbatched items' do
       let!(:appointment_summaries) { 4.times.map { create_appointment_summary } }
       let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries[0..1]) }
 

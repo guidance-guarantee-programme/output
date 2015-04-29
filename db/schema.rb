@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427100026) do
+ActiveRecord::Schema.define(version: 20150427131639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20150427100026) do
   add_index "appointment_summaries_batches", ["batch_id"], name: "index_appointment_summaries_batches_on_batch_id", using: :btree
 
   create_table "batches", force: :cascade do |t|
-    t.datetime "processed_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "uploaded_at"
   end
 
   create_table "users", force: :cascade do |t|
