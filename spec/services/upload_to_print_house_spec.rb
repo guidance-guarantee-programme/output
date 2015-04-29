@@ -28,21 +28,59 @@ RSpec.describe UploadToPrintHouse, '#call' do
 
   subject(:uploader) { described_class.new(csv_upload_job) }
 
-  before do
-    allow(Net::SFTP).to receive(:start).and_yield(sftp)
-    uploader.call
+  before { allow(Net::SFTP).to receive(:start).and_yield(sftp) }
+
+  context 'when no errors occur during upload' do
+    before { uploader.call }
+
+    it 'uploads the CSV' do
+      expect(sftp.uploaded).to include(contents: csv, path: csv_path)
+    end
+
+    it 'uploads the trigger file' do
+      expect(sftp.uploaded).to include(contents: trigger, path: trigger_path)
+    end
+
+    it 'uploads the trigger file after the CSV' do
+      ordered_uploaded_paths = sftp.uploaded.map { |upload| upload [:path] }
+      expect(ordered_uploaded_paths).to eq([csv_path, trigger_path])
+    end
   end
 
-  it 'uploads the CSV' do
-    expect(sftp.uploaded).to include(contents: csv, path: csv_path)
-  end
+  context 'when errors occur during upload' do
+    class ErroringFakeSFTP < FakeSFTP
+      ERROR_MESSAGE = 'SFTP error!'
 
-  it 'uploads the trigger file' do
-    expect(sftp.uploaded).to include(contents: trigger, path: trigger_path)
-  end
+      def initialize(errors_to_raise)
+        super()
+        @errors_to_raise = errors_to_raise
+        @error_count = 0
+      end
 
-  it 'uploads the trigger file after the CSV' do
-    ordered_uploaded_paths = sftp.uploaded.map { |upload| upload [:path] }
-    expect(ordered_uploaded_paths).to eq([csv_path, trigger_path])
+      def upload!(*args)
+        fail ERROR_MESSAGE unless (@error_count += 1) > @errors_to_raise
+        super
+      end
+    end
+
+    let(:sftp) { ErroringFakeSFTP.new(errors_to_raise) }
+
+    context 'when up to 5 errors occur' do
+      let(:errors_to_raise) { 5 }
+
+      before { uploader.call }
+
+      it 'retries until the upload succeeds' do
+        expect(sftp.uploaded).to eq([{ contents: csv, path: csv_path }, { contents: trigger, path: trigger_path }])
+      end
+    end
+
+    context 'when more than 5 errors occur' do
+      let(:errors_to_raise) { 6 }
+
+      it 'stops retrying' do
+        expect { uploader.call }.to raise_error(ErroringFakeSFTP::ERROR_MESSAGE)
+      end
+    end
   end
 end
