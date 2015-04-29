@@ -1,7 +1,20 @@
 require 'rails_helper'
+require 'net/sftp'
 
 RSpec.describe UploadToPrintHouse, '#call' do
-  let(:now) { Time.zone.local(2015, 1, 3, 5, 2, 4) }
+  class FakeSFTP
+    attr_reader :uploaded
+
+    def initialize
+      @uploaded = []
+    end
+
+    def upload!(io, path)
+      uploaded << { contents: io.read, path: path }
+    end
+  end
+
+  let(:sftp) { FakeSFTP.new }
   let(:csv) { 'c,s,v' }
   let(:csv_path) { '/Data.in/pensionwise_output_20150103050204000.csv' }
   let(:trigger) { '' }
@@ -16,16 +29,20 @@ RSpec.describe UploadToPrintHouse, '#call' do
   subject(:uploader) { described_class.new(csv_upload_job) }
 
   before do
-    allow(uploader).to receive(:upload_file)
-    allow(Time.zone).to receive(:today).and_return(now)
+    allow(Net::SFTP).to receive(:start).and_yield(sftp)
     uploader.call
   end
 
   it 'uploads the CSV' do
-    expect(uploader).to have_received(:upload_file).with(csv_path, csv)
+    expect(sftp.uploaded).to include(contents: csv, path: csv_path)
   end
 
   it 'uploads the trigger file' do
-    expect(uploader).to have_received(:upload_file).with(trigger_path, trigger)
+    expect(sftp.uploaded).to include(contents: trigger, path: trigger_path)
+  end
+
+  it 'uploads the trigger file after the CSV' do
+    ordered_uploaded_paths = sftp.uploaded.map { |upload| upload [:path] }
+    expect(ordered_uploaded_paths).to eq([csv_path, trigger_path])
   end
 end
