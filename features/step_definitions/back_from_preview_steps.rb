@@ -39,11 +39,8 @@ Then(/^the previously captured details are prepopulated$/) do
   expect(page.value_of_pension_pots.value).to eq(@appointment_summary.value_of_pension_pots.to_s)
   expect(page.upper_value_of_pension_pots.value).to eq(@appointment_summary.upper_value_of_pension_pots.to_s)
 
-  if @appointment_summary.value_of_pension_pots_is_approximate?
-    expect(page.value_of_pension_pots_is_approximate).to be_checked
-  else
-    expect(page.value_of_pension_pots_is_approximate).not_to be_checked
-  end
+  expect(page.value_of_pension_pots_is_approximate)
+    .to have_checked_state(@appointment_summary.value_of_pension_pots_is_approximate?)
 
   case @appointment_summary.income_in_retirement
   when 'pension'
@@ -79,47 +76,13 @@ Then(/^the previously captured details are prepopulated$/) do
     expect(page.has_defined_contribution_pension_unknown).to be_checked
   end
 
-  if @appointment_summary.continue_working?
-    expect(page.continue_working).to be_checked
-  else
-    expect(page.continue_working).not_to be_checked
-  end
-
-  if @appointment_summary.unsure?
-    expect(page.unsure).to be_checked
-  else
-    expect(page.unsure).not_to be_checked
-  end
-
-  if @appointment_summary.leave_inheritance?
-    expect(page.leave_inheritance).to be_checked
-  else
-    expect(page.leave_inheritance).not_to be_checked
-  end
-
-  if @appointment_summary.wants_flexibility?
-    expect(page.wants_flexibility).to be_checked
-  else
-    expect(page.wants_flexibility).not_to be_checked
-  end
-
-  if @appointment_summary.wants_security?
-    expect(page.wants_security).to be_checked
-  else
-    expect(page.wants_security).not_to be_checked
-  end
-
-  if @appointment_summary.wants_lump_sum?
-    expect(page.wants_lump_sum).to be_checked
-  else
-    expect(page.wants_lump_sum).not_to be_checked
-  end
-
-  if @appointment_summary.poor_health?
-    expect(page.poor_health).to be_checked
-  else
-    expect(page.poor_health).not_to be_checked
-  end
+  expect(page.continue_working).to have_checked_state(@appointment_summary.continue_working?)
+  expect(page.unsure).to have_checked_state(@appointment_summary.unsure?)
+  expect(page.leave_inheritance).to have_checked_state(@appointment_summary.leave_inheritance?)
+  expect(page.wants_flexibility).to have_checked_state(@appointment_summary.wants_flexibility?)
+  expect(page.wants_security).to have_checked_state(@appointment_summary.wants_security?)
+  expect(page.wants_lump_sum).to have_checked_state(@appointment_summary.wants_lump_sum?)
+  expect(page.poor_health).to have_checked_state(@appointment_summary.poor_health?)
 
   case @appointment_summary.format_preference
   when 'standard'
