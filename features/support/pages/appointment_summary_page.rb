@@ -21,7 +21,7 @@ class AppointmentSummaryPage < SitePrism::Page
   element :income_in_retirement_other, '.t-income-in-retirement-other'
   element :guider_name, '.t-guider-name'
   element :guider_organisation_tpas, '.t-guider-organisation-tpas'
-  element :guider_organisation_cab, '.t-guider-organisation-cab'
+  element :guider_organisation_dwp, '.t-guider-organisation-dwp'
   element :has_defined_contribution_pension_yes, '.t-has-defined-contribution-pension-yes'
   element :has_defined_contribution_pension_no, '.t-has-defined-contribution-pension-no'
   element :has_defined_contribution_pension_unknown, '.t-has-defined-contribution-pension-unknown'
