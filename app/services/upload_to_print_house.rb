@@ -9,8 +9,10 @@ class UploadToPrintHouse
   end
 
   def call
-    upload_file(job.payload_path, job.payload)
-    upload_file(job.trigger_path, job.trigger)
+    Retriable.retriable(tries: 6, on_retry: method(:on_retry)) do
+      upload_file(job.payload_path, job.payload)
+      upload_file(job.trigger_path, job.trigger)
+    end
   end
 
   private
@@ -26,5 +28,9 @@ class UploadToPrintHouse
 
   def logger
     Rails.logger
+  end
+
+  def on_retry(exception, try, _, _)
+    logger.warn "Upload error (attempt #{try}). #{exception.class}: '#{exception.message}'"
   end
 end
