@@ -1,5 +1,9 @@
+require_relative '../site_prism/radio_button_container'
+
 # rubocop:disable ClassLength
 class AppointmentSummaryPage < SitePrism::Page
+  extend SitePrism::RadioButtonContainer
+
   set_url '/appointment_summaries/new'
 
   element :title, '.t-title'
@@ -17,14 +21,14 @@ class AppointmentSummaryPage < SitePrism::Page
   element :value_of_pension_pots, '.t-value-of-pension-pots'
   element :upper_value_of_pension_pots, '.t-upper-value-of-pension-pots'
   element :value_of_pension_pots_is_approximate, '.t-value-of-pension-pots-is-approximate'
-  element :income_in_retirement_pension, '.t-income-in-retirement-pension'
-  element :income_in_retirement_other, '.t-income-in-retirement-other'
+  radio_buttons :income_in_retirement, pension: '.t-income-in-retirement-pension',
+                                       other: '.t-income-in-retirement-other'
   element :guider_name, '.t-guider-name'
-  element :guider_organisation_tpas, '.t-guider-organisation-tpas'
-  element :guider_organisation_dwp, '.t-guider-organisation-dwp'
-  element :has_defined_contribution_pension_yes, '.t-has-defined-contribution-pension-yes'
-  element :has_defined_contribution_pension_no, '.t-has-defined-contribution-pension-no'
-  element :has_defined_contribution_pension_unknown, '.t-has-defined-contribution-pension-unknown'
+  radio_buttons :guider_organisation, tpas: '.t-guider-organisation-tpas',
+                                      dwp: '.t-guider-organisation-dwp'
+  radio_buttons :has_defined_contribution_pension, yes: '.t-has-defined-contribution-pension-yes',
+                                                   no: '.t-has-defined-contribution-pension-no',
+                                                   unknown: '.t-has-defined-contribution-pension-unknown'
   element :continue_working, '.t-continue-working'
   element :unsure, '.t-unsure'
   element :leave_inheritance, '.t-leave-inheritance'
@@ -32,9 +36,9 @@ class AppointmentSummaryPage < SitePrism::Page
   element :wants_security, '.t-wants-security'
   element :wants_lump_sum, '.t-wants-lump-sum'
   element :poor_health, '.t-poor-health'
-  element :format_preference_standard, '.t-format-preference-standard'
-  element :format_preference_large_text, '.t-format-preference-large-text'
-  element :format_preference_braille, '.t-format-preference-braille'
+  radio_buttons :format_preference, standard: '.t-format-preference-standard',
+                                    large_text: '.t-format-preference-large-text',
+                                    braille: '.t-format-preference-braille'
   element :submit, '.t-submit'
 
   def fill_in(appointment_summary)
