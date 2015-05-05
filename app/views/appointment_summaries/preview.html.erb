@@ -5,9 +5,14 @@
 <%= @output_document.html.html_safe %>
 
 <div class="fixed-bar">
-  <%= render 'preview_form', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
-    submit_button_text: 'Back', submit_button_classes: %w(t-back) %>
-
-  <%= render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
-    submit_button_text: 'Submit', submit_button_classes: %w(btn-success t-confirm) %>
+  <div class="row">
+    <div class="col-xs-6 fixed-bar__back">
+      <%= render 'preview_form', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
+                 submit_button_text: 'Back', submit_button_classes: %w(t-back) %>
+    </div>
+    <div class="col-xs-6 fixed-bar__submit">
+      <%= render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
+                 submit_button_text: 'Submit', submit_button_classes: %w(btn-success t-confirm) %>
+    </div>
+  </div>
 </div>
