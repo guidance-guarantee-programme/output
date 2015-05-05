@@ -18,7 +18,7 @@
       this.$wrapper = $('.display_if_range');
       this.$inputs = $('.js-numbers-only');
       this.$input1 = $('#appointment_summary_value_of_pension_pots');
-      this.$input2 = $('#appointment_summary_value_of_pension_pots_max');
+      this.$input2 = $('#appointment_summary_upper_value_of_pension_pots');
     },
     subscribe: function () {
       var that = this;
