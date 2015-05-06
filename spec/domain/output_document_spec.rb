@@ -213,19 +213,4 @@ RSpec.describe OutputDocument do
 
     it { is_expected.to eq(html) }
   end
-
-  describe '#csv' do
-    let(:csv) { 'csv' }
-    let(:renderer) { double(render: csv) }
-
-    subject { output_document.csv }
-
-    before do
-      allow(OutputDocument::CSVRowRenderer).to receive(:new)
-        .with(output_document)
-        .and_return(renderer)
-    end
-
-    it { is_expected.to eq(csv) }
-  end
 end
