@@ -90,10 +90,6 @@ class OutputDocument
     HTMLRenderer.new(self).render
   end
 
-  def csv
-    CSVRowRenderer.new(self).render
-  end
-
   private
 
   def to_currency(number)
