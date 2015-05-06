@@ -16,7 +16,8 @@ RSpec.describe OutputDocument do
   let(:upper_value_of_pension_pots) { nil }
   let(:value_of_pension_pots_is_approximate) { false }
   let(:guider_name) { 'James' }
-  let(:date_of_appointment) { Date.new(2015, 3, 30) }
+  let(:date_of_appointment) { Date.new(2015, 3, 9) }
+  let(:appointment_date) { '9 March 2015' }
   let(:guider_organisation) { 'tpas' }
   let(:reference_number) { '123456789' }
   let(:params) do
@@ -46,6 +47,7 @@ RSpec.describe OutputDocument do
   subject(:output_document) { described_class.new(appointment_summary) }
 
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
+  specify { expect(output_document.appointment_date).to eq(appointment_date) }
 
   describe '#attendee_address' do
     subject(:attendee_address) { output_document.attendee_address }
@@ -180,7 +182,7 @@ RSpec.describe OutputDocument do
     it do
       is_expected.to eq(
         'You recently had a Pension Wise guidance appointment with James ' \
-        'from The Pensions Advisory Service on 30 March 2015.'
+        "from The Pensions Advisory Service on #{appointment_date}."
       )
     end
   end
