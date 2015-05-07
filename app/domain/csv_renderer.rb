@@ -1,5 +1,3 @@
-require 'csv'
-
 class CSVRenderer
   attr_reader :output_documents
 
@@ -17,13 +15,28 @@ class CSVRenderer
     @output_documents = output_documents
   end
 
-  def header_row
-    CSV.generate(col_sep: '|', encoding: 'utf-8') do |csv|
-      csv << self.class.headers
+  def render
+    rows = output_documents.reduce([self.class.headers]) do |result, output_document|
+      result << array_from(output_document)
     end
+
+    rows.map { |row| render_row(row) }.join("\n")
   end
 
-  def render
-    [header_row].concat(output_documents.map(&:csv)).join
+  private
+
+  def render_row(row)
+    row
+      .map(&:to_s)
+      .map { |value| sanitise(value) }
+      .join('|')
+  end
+
+  def array_from(output_document)
+    self.class.headers.map { |h| output_document.public_send(h) }
+  end
+
+  def sanitise(string)
+    string.gsub(/[|\n]/, '').strip
   end
 end
