@@ -7,6 +7,15 @@ class AppointmentSummariesController < ApplicationController
                                                   date_of_appointment: Time.zone.today)
   end
 
+  def confirm
+    @appointment_summary = AppointmentSummary.new(appointment_summary_params)
+    if @appointment_summary.valid?
+      @output_document = OutputDocument.new(@appointment_summary)
+    else
+      render :new
+    end
+  end
+
   def preview
     @appointment_summary = AppointmentSummary.new(appointment_summary_params)
     if @appointment_summary.valid?
