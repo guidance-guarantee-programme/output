@@ -6,7 +6,7 @@
 
 <%= form_for @appointment_summary, url: appointment_summaries_path do |f| %>
 
-  <% (AppointmentSummary.columns - [:id, :created_at, :updated_at, :user_id]).map(&:name).each do |field| %>
+  <% (AppointmentSummary.columns.map(&:name) - %w(id created_at updated_at user_id)).each do |field| %>
     <%= f.hidden_field field %>
   <% end %>
 
