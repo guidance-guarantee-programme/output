@@ -11,16 +11,4 @@ class User < ActiveRecord::Base
   def name
     [first_name, last_name].join(' ').strip
   end
-
-  def first_name
-    super || self[:name].try do |name|
-      name.split(' ').first
-    end
-  end
-
-  def last_name
-    super || self[:name].try do |name|
-      name.split(' ').last
-    end
-  end
 end
