@@ -8,11 +8,11 @@
   <div class="row">
     <div class="col-xs-6 fixed-bar__back">
       <%= render 'preview_form', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
-                 submit_button_text: 'Back', submit_button_classes: %w(t-back) %>
+                 submit_button_text: 'Edit', submit_button_classes: %w(btn-success t-back) %>
     </div>
     <div class="col-xs-6 fixed-bar__submit">
       <%= render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
-                 submit_button_text: 'Submit', submit_button_classes: %w(btn-success t-confirm) %>
+                 submit_button_text: 'Send', submit_button_classes: %w(btn-danger t-confirm) %>
     </div>
   </div>
 </div>
