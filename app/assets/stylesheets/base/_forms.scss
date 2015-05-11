@@ -2,6 +2,11 @@ label {
   display: block;
   margin-bottom: .5em;
   font-weight: bold;
+
+  .radio &,
+  .checkbox & {
+    display: inline-block;
+  }
 }
 
 p label {
