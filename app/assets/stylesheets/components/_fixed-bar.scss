@@ -10,14 +10,33 @@
   text-align: center;
 }
 
-.lte-ie7 .fixed-bar {
-  background:transparent;
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000);
-  zoom: 1;
+.fixed-bar__back {
+  text-align: right;
 }
 
-.ie8 .fixed-bar {
-  background:transparent;
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000)";
-  zoom: 1;
+.fixed-bar__submit {
+  text-align: left;
 }
+
+.lte-ie7 {
+  .fixed-bar {
+    background:transparent;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000);
+    zoom: 1;
+  }
+
+  .fixed-bar__back,
+  .fixed-bar__submit {
+    text-align: center;
+  }
+}
+
+.ie8 {
+  .fixed-bar {
+    background:transparent;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#4C000000, endColorstr=#4C000000)";
+    zoom: 1;
+  }
+}
+
+

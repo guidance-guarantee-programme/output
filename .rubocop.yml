@@ -18,5 +18,8 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 15
 
+Style/DoubleNegation:
+  Enabled: false
+
 Style/RescueModifier:
   Enabled: false
