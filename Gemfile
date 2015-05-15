@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 
+# force Bundler to use SSH for github repos
+git_source(:github) { |repo_name| "git@github.com:#{repo_name}.git" }
+
 gem 'autoprefixer-rails'
 gem 'bugsnag'
 gem 'devise'
