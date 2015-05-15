@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/andrewgarner/govuk_admin_template.git
+  remote: git@github.com:andrewgarner/govuk_admin_template.git
   revision: c0ba6e52dbd76236aaab8705838ae4da008aace8
   branch: configurable-analytics
   specs:
@@ -9,7 +9,7 @@ GIT
       rails (>= 3.2.0)
 
 GIT
-  remote: git://github.com/guidance-guarantee-programme/output-templates.git
+  remote: git@github.com:guidance-guarantee-programme/output-templates.git
   revision: c2cdd85444eb96cb16f6548cdc020df65753f852
   specs:
     output-templates (1.1.0)
