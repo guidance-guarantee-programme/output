@@ -7,7 +7,7 @@ class CSVUploadJob
 
   def payload
     output_documents = batch.appointment_summaries.map do |appointment_summary|
-      OutputDocument.new(appointment_summary)
+      OutputDocument.new(TransliteratedAppointmentSummary.new(appointment_summary))
     end
 
     CSVRenderer.new(output_documents).render
