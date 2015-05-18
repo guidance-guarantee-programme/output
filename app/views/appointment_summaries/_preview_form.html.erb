@@ -7,6 +7,7 @@
   <% end %>
 
   <%= f.submit local_assigns.fetch(:submit_button_text),
-    class: (%w(btn btn-lg) | Array(local_assigns[:submit_button_classes])) %>
+    class: (%w(btn btn-lg) | Array(local_assigns[:submit_button_classes])),
+    data: { disable_with: 'Please wait...' } %>
 
 <% end %>
