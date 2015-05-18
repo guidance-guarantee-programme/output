@@ -120,12 +120,7 @@ Given(/^(?:I|we) have captured the customer's details in an appointment summary$
 end
 
 Then(/^the record of guidance should include their details$/) do
-  output_document = OutputDocument.new(@appointment_summary)
-
-  expected = {
-    attendee_name: output_document.attendee_name,
-    value_of_pension_pots: output_document.value_of_pension_pots
-  }
+  expected = fixture(:populated_csv).slice(%i(attendee_name value_of_pension_pots))
 
   expect_uploaded_csv_to_include(expected)
 end
@@ -135,16 +130,12 @@ Given(/^(?:I|we) have captured appointment details in an appointment summary$/) 
 end
 
 Then(/^the record of guidance should include the details of the appointment$/) do
-  output_document = OutputDocument.new(@appointment_summary)
-
-  expected = {
-    appointment_date: output_document.appointment_date,
-    guider_first_name: output_document.guider_first_name,
-    guider_organisation: output_document.guider_organisation
-  }
+  expected = fixture(:populated_csv).slice(%i(appointment_date guider_first_name guider_organisation))
 
   expect_uploaded_csv_to_include(expected)
 
   appointment_reference = read_uploaded_csv.first[:appointment_reference]
-  expect(appointment_reference).to match(/^\d+#{output_document.appointment_reference}/)
+  expected_reference = %r{^\d+/#{@appointment_summary.reference_number}$}
+
+  expect(appointment_reference).to match(expected_reference)
 end
