@@ -14,9 +14,12 @@ p label {
 }
 
 input[type="text"],
-input[type="number"],
-input[type="email"] {
+input[type="number"] {
   width: 20em;
+  padding: .5em;
+}
+
+input[type="email"] {
   padding: .5em;
 }
 
