@@ -27,7 +27,6 @@
           line_2: '#appointment_summary_address_line_2',
           line_3: '#appointment_summary_address_line_3',
           post_town: '#appointment_summary_town',
-          county: '#appointment_summary_county',
           postcode: '#appointment_summary_postcode'
         }
       });
