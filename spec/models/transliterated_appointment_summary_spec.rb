@@ -50,10 +50,10 @@ RSpec.describe TransliteratedAppointmentSummary do
   describe '.address_line_1' do
     subject { transliterated_appointment_summary.address_line_1 }
 
-    let(:address_line_1) { 'Świętokrzyska' }
+    let(:address_line_1) { 'Świętokrzyska Stra-ße' }
 
     it 'approximates non-ASCII characters' do
-      is_expected.to eq('Swietokrzyska')
+      is_expected.to eq('Swietokrzyska Stra-sse')
     end
   end
 
