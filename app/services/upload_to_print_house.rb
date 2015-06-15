@@ -21,7 +21,8 @@ class UploadToPrintHouse
     logger.info("Uploading #{path}")
 
     io = StringIO.new(contents)
-    Net::SFTP.start(ENV['SFTP_HOST'], ENV['SFTP_USER'], password: ENV['SFTP_PASSWORD']) do |sftp|
+    Net::SFTP.start(ENV['SFTP_HOST'], ENV['SFTP_USER'],
+                    port: ENV['SFTP_PORT'], password: ENV['SFTP_PASSWORD']) do |sftp|
       sftp.upload!(io, path)
     end
   end
