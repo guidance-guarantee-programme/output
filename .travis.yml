@@ -14,16 +14,16 @@ env:
 node_js:
 - '0.10'
 rvm:
-- '2.2.2'
+- 2.2.2
 before_script:
 - npm install
-- ./bin/rake db:setup RAILS_ENV=test
+- "./bin/rake db:setup RAILS_ENV=test"
 after_script:
 - "./node_modules/.bin/travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY"
 deploy:
   provider: heroku
   api_key:
-    secure: oOyqM/OW8yMk4pkYL4/A0xJOF12OgaXQ8ooPcxlteksJh4ow3nzezTm2GECsrx5NmdUEVkbPJdxOky/I1XKv3vNUIek11uFm4zJT6OYq1+PxiMaeuTsBd7bPcPVVppfs1g/D43oIVauPIiCvHEeq9U3uKzt0AhS785FzaLJ01pc=
+    secure: Suvlts2UlzvnyYWJ1Y+c97nQOg3T3BCS+y8chl0xUXMJTip/jpQ7hxc7ClBi6BsKJ2WpC+CAXNK0lwoxRFhZ+ieeKO3RuUXwbo6DL/6fhHSUGZLfhjgMmH9Nk+mvNipWk6nqV3HYaveY0OCIgYXVi3kJLP7k+1M5AenmJ0rWSRA=
   app: staging-output-pensionwise
   on:
     repo: guidance-guarantee-programme/output
