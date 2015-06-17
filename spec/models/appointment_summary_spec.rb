@@ -12,11 +12,11 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:appointment_summaries_batches).dependent(:destroy) }
 
-  it { is_expected.to validate_presence_of(:title) }
+  it { is_expected.to_not validate_presence_of(:title) }
   it { is_expected.to_not validate_presence_of(:first_name) }
   it { is_expected.to validate_presence_of(:last_name) }
 
-  it { is_expected.to validate_inclusion_of(:title).in_array(%w(Mr Mrs Miss Ms Mx Dr Reverend)) }
+  it { is_expected.to validate_inclusion_of(:title).in_array(%w(Mr Mrs Miss Ms Mx Dr Reverend)).allow_blank }
   it { is_expected.to_not allow_value('Alien').for(:title) }
 
   it { is_expected.to allow_value('2015-02-10').for(:date_of_appointment) }
