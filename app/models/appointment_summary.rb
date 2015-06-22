@@ -11,7 +11,7 @@ class AppointmentSummary < ActiveRecord::Base
     if str.blank?
       super
     else
-      super str.upcase.strip
+      super UKPostcode.parse(str).to_s
     end
   end
 
