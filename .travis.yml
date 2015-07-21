@@ -15,6 +15,8 @@ node_js:
 - '0.10'
 rvm:
 - 2.2.2
+before_install:
+- echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
 before_script:
 - npm install
 - "./bin/rake db:setup RAILS_ENV=test"
