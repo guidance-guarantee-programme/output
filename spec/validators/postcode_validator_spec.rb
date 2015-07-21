@@ -16,5 +16,5 @@ RSpec.describe PostcodeValidator, type: :model do
   it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
   it { is_expected.to allow_value('SW1A2HQ').for(:postcode) }
   it { is_expected.to_not allow_value('SW1A2H').for(:postcode) }
-  it { is_expected.to_not allow_value('SWIA2HQ').for(:postcode) }
+  it { is_expected.to_not allow_value('SW1A2H2').for(:postcode) }
 end
