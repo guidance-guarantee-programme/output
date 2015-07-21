@@ -60,22 +60,22 @@ RSpec.describe AppointmentSummary, type: :model do
     end
   end
 
-  # describe 'postcode validation' do
-  #   context 'for UK addresses' do
-  #     before { subject.country = Countries.uk }
+  describe 'postcode validation' do
+    context 'for UK addresses' do
+      before { subject.country = Countries.uk }
 
-  #     it { is_expected.to validate_presence_of(:postcode) }
-  #     it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
-  #     it { is_expected.to_not allow_value('nonsense').for(:postcode) }
-  #   end
+      it { is_expected.to validate_presence_of(:postcode) }
+      it { is_expected.to allow_value('SW1A 2HQ').for(:postcode) }
+      it { is_expected.to_not allow_value('nonsense').for(:postcode) }
+    end
 
-  #   context 'for non-UK addresses' do
-  #     before { subject.country = Countries.non_uk.sample }
+    context 'for non-UK addresses' do
+      before { subject.country = Countries.non_uk.sample }
 
-  #     it { is_expected.to_not validate_presence_of(:postcode) }
-  #     it { is_expected.to allow_value('nonsense').for(:postcode) }
-  #   end
-  # end
+      it { is_expected.to_not validate_presence_of(:postcode) }
+      it { is_expected.to allow_value('nonsense').for(:postcode) }
+    end
+  end
 
   it do
     is_expected
