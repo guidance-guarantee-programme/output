@@ -1,7 +1,6 @@
 {
   "name": "record_of_guidance",
   "dependencies": {
-    "travis-notify-geckoboard": "git://github.com/guidance-guarantee-programme/travis-notify-geckoboard#item-must-be-array",
     "bower": "*"
   },
   "scripts": {
