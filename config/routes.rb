@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :appointment_summaries, only: %i(new create) do
+    post :confirm, on: :collection
     post :preview, on: :collection
   end
 

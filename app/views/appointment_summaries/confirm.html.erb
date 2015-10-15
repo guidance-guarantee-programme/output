@@ -1,0 +1,63 @@
+<div class="page-header">
+  <h1><%= title 'Confirm appointment summary' %></h1>
+</div>
+
+<p>Check the details below and click Confirm if they're correct</p>
+
+<%= form_for @appointment_summary, url: preview_appointment_summaries_path do |f| %>
+
+  <% (AppointmentSummary.columns - [:id, :created_at, :updated_at, :user_id]).map(&:name).each do |field| %>
+    <%= f.hidden_field field %>
+  <% end %>
+
+  <table class="table">
+    <tr>
+      <th>Attendee</th>
+      <td><%= simple_format(@output_document.attendee_address) %></td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td><%= @output_document.appointment_date %></td>
+    </tr>
+    <tr>
+      <th>Reference</th>
+      <td><%= @appointment_summary.reference_number %></td>
+    </tr>
+    <tr>
+      <th>Guider</th>
+      <td><%= @output_document.guider_first_name %>, <%= @output_document.guider_organisation %></td>
+    </tr>
+    <tr>
+      <th>Defined Contibution Pension?</th>
+      <td><%= @appointment_summary.has_defined_contribution_pension.capitalize %></td>
+    </tr>
+    <% unless @appointment_summary.has_defined_contribution_pension == 'no' %>
+      <tr>
+        <th>Pension Pot</th>
+        <td><%= @output_document.value_of_pension_pots %></td>
+      </tr>
+      <tr>
+        <th>Income in Retirement</th>
+        <td><%= @appointment_summary.income_in_retirement.humanize %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>Format</th>
+      <td><%= @output_document.format.humanize %></td>
+    </tr>
+    <tr>
+      <th>Circumstances and preferences</th>
+      <td>
+        <ul>
+          <% %i(
+              continue_working unsure leave_inheritance wants_flexibility wants_security wants_lump_sum poor_health
+              ).select { |c| @appointment_summary.public_send(c) }.each do |circumstance| %>
+            <li><%= circumstance.to_s.humanize %></li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <%= f.submit 'Confirm', class: %w(btn btn-success t-confirm btn-lg) %>
+<% end %>
