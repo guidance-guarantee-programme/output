@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.2.3'
 
 # force Bundler to use HTTPS for github repos
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
