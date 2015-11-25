@@ -15,7 +15,10 @@ class OutputDocument
     private
 
     def template
-      template_id = (output_document.variant == 'other') ? 'ineligible' : output_document.variant
+      template_id = case output_document.variant
+                    when 'other'    then 'ineligible'
+                    when 'standard' then 'base'
+                    end
 
       Output::Templates.template(template_id)
     end

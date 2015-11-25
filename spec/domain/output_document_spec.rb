@@ -142,14 +142,10 @@ RSpec.describe OutputDocument do
 
   describe '#variant' do
     let(:eligible_for_guidance) { true }
-    let(:generic_guidance) { true }
-    let(:custom_guidance) { true }
 
     before do
       allow(appointment_summary).to receive_messages(
-        eligible_for_guidance?: eligible_for_guidance,
-        generic_guidance?: generic_guidance,
-        custom_guidance?: custom_guidance
+        eligible_for_guidance?: eligible_for_guidance
       )
     end
 
@@ -162,17 +158,7 @@ RSpec.describe OutputDocument do
     end
 
     context 'when eligible for guidance' do
-      context 'and generic guidance was given' do
-        let(:custom_guidance) { false }
-
-        it { is_expected.to eq('generic') }
-      end
-
-      context 'and custom guidance was given' do
-        let(:generic_guidance) { false }
-
-        it { is_expected.to eq('tailored') }
-      end
+      it { is_expected.to eq('standard') }
     end
   end
 

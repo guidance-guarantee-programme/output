@@ -59,11 +59,7 @@ class OutputDocument
 
   def variant
     if appointment_summary.eligible_for_guidance?
-      if appointment_summary.custom_guidance?
-        'tailored'
-      else
-        'generic'
-      end
+      'standard'
     else
       'other'
     end

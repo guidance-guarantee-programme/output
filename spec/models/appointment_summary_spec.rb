@@ -101,8 +101,6 @@ RSpec.describe AppointmentSummary, type: :model do
     let(:has_defined_contribution_pension) { 'no' }
 
     it { is_expected.to_not be_eligible_for_guidance }
-    it { is_expected.to_not be_generic_guidance }
-    it { is_expected.to_not be_custom_guidance }
 
     it { is_expected.to_not validate_presence_of(:value_of_pension_pots) }
     it { is_expected.to_not validate_presence_of(:upper_value_of_pension_pots) }
@@ -118,19 +116,7 @@ RSpec.describe AppointmentSummary, type: :model do
   context 'when eligible for guidance' do
     let(:has_defined_contribution_pension) { 'yes' }
 
-    context 'and no retirement circumstances given' do
-      it { is_expected.to be_eligible_for_guidance }
-      it { is_expected.to be_generic_guidance }
-      it { is_expected.to_not be_custom_guidance }
-    end
-
-    context 'and retirement circumstances given' do
-      let(:continue_working) { true }
-
-      it { is_expected.to be_eligible_for_guidance }
-      it { is_expected.to_not be_generic_guidance }
-      it { is_expected.to be_custom_guidance }
-    end
+    it { is_expected.to be_eligible_for_guidance }
   end
 
   describe '.unbatched' do

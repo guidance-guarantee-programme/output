@@ -24,6 +24,6 @@ RSpec.describe OutputDocument::HTMLRenderer do
       end
     end
 
-    %w(generic tailored other).each { |variant| include_examples('renders html', variant) }
+    %w(standard other).each { |variant| include_examples('renders html', variant) }
   end
 end
