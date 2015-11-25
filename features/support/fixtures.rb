@@ -53,14 +53,7 @@ module Fixtures
         attendee_address_line_3: 'Westminster',
         attendee_town: 'London',
         attendee_county: 'Greater London',
-        attendee_postcode: 'SW1A 2HQ',
-        continue_working: true,
-        leave_inheritance: true,
-        poor_health: true,
-        unsure: true,
-        wants_flexibility: true,
-        wants_lump_sum: true,
-        wants_security: true
+        attendee_postcode: 'SW1A 2HQ'
       }
     end
   }

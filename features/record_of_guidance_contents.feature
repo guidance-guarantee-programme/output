@@ -3,41 +3,6 @@ Feature: Record of guidance contents
   We want to provide a record of guidance that is as tailored as possible
   So that customers are reminded of what was discussed, including next steps that they may wish to take
 
-Scenario: Tailored record of guidance
-  Given one or more of the predefined circumstances applies to the customer
-  When we send them their record of guidance
-  Then the sections it includes should be:
-    | introduction                          |
-    | pension pot                           |
-    | options overview                      |
-    | detail about applicable circumstances |
-    | other information                     |
-
-Scenario: Generic record of guidance
-  Given we don't know that any of the predefined circumstances apply to the customer
-  When we send them their record of guidance
-  Then the sections it includes should be:
-    | introduction             |
-    | pension pot              |
-    | options overview         |
-    | detail about each option |
-    | other information        |
-
-Scenario Outline: Guidance is tailored based on applicable circumstances
-  Given "<circumstance>" applies to the customer
-  When we send them their record of guidance
-  Then it should include information about "<circumstance>"
-
-  Examples:
-    | circumstance                          |
-    | Plans to continue working for a while |
-    | Unsure about plans in retirement      |
-    | Plans to leave money to someone       |
-    | Wants flexibility when taking money   |
-    | Wants a guaranteed income             |
-    | Needs a certain amount of money now   |
-    | Has poor health                       |
-
 Scenario Outline: "Pension pot" section is tailored based on the range of income sources available to the customer
   Given the customer has access to income during retirement from <sources-of-income>
   When we send them their record of guidance

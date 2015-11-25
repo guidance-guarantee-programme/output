@@ -19,14 +19,7 @@ RSpec.describe CSVRenderer, '#render' do
       appointment_reference: 'appointment_reference',
       appointment_date: 'appointment_date',
       value_of_pension_pots: 'value_of_pension_pots',
-      income_in_retirement: 'income_in_retirement',
-      continue_working: false,
-      unsure: false,
-      leave_inheritance: false,
-      wants_flexibility: false,
-      wants_security: false,
-      wants_lump_sum: false,
-      poor_health: false
+      income_in_retirement: 'income_in_retirement'
     }
   end
   let(:output_document) { instance_double(OutputDocument, attributes) }
@@ -35,15 +28,13 @@ RSpec.describe CSVRenderer, '#render' do
     'attendee_address_line_2|attendee_address_line_3|attendee_town|' \
     'attendee_county|attendee_postcode|lead|guider_first_name|' \
     'guider_organisation|appointment_reference|appointment_date|' \
-    'value_of_pension_pots|income_in_retirement|continue_working|unsure|' \
-    'leave_inheritance|wants_flexibility|wants_security|wants_lump_sum|' \
-    'poor_health'
+    'value_of_pension_pots|income_in_retirement'
   end
   let(:row) do
     'id|format|variant|attendee_name|attendee_address_line_1|attendee_address_line_2|' \
     'attendee_address_line_3|attendee_town|attendee_county|attendee_postcode|' \
     'lead|guider_first_name|guider_organisation|appointment_reference|appointment_date|' \
-    'value_of_pension_pots|income_in_retirement|false|false|false|false|false|false|false'
+    'value_of_pension_pots|income_in_retirement'
   end
 
   subject(:csv) { described_class.new([output_document]).render }

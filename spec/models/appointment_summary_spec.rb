@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe AppointmentSummary, type: :model do
   subject do
-    described_class.new(continue_working: continue_working,
-                        has_defined_contribution_pension: has_defined_contribution_pension)
+    described_class.new(has_defined_contribution_pension: has_defined_contribution_pension)
   end
 
-  let(:continue_working) { false }
   let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }
