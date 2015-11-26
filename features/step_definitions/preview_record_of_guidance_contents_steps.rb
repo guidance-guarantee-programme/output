@@ -23,7 +23,6 @@ Then(/^the record of guidance preview should include their details$/) do
   output_document = OutputDocument.new(@appointment_summary)
 
   expect(page).to have_content(output_document.attendee_name)
-  expect(page).to have_content(output_document.value_of_pension_pots)
 end
 
 Then(/^the record of guidance preview should include the details of the appointment$/) do

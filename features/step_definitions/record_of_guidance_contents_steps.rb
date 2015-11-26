@@ -33,7 +33,7 @@ Given(/^(?:I|we) have captured the customer's details in an appointment summary$
 end
 
 Then(/^the record of guidance should include their details$/) do
-  expected = fixture(:populated_csv).slice(%i(attendee_name value_of_pension_pots))
+  expected = fixture(:populated_csv).slice(:attendee_name)
 
   expect_uploaded_csv_to_include(expected)
 end

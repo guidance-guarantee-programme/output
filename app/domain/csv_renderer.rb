@@ -6,7 +6,7 @@ class CSVRenderer
        attendee_address_line_2 attendee_address_line_3 attendee_town
        attendee_county attendee_postcode lead guider_first_name
        guider_organisation appointment_reference appointment_date
-       value_of_pension_pots income_in_retirement)
+       income_in_retirement)
   end
 
   def initialize(output_documents)

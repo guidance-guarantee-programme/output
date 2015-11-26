@@ -18,7 +18,6 @@ RSpec.describe CSVRenderer, '#render' do
       guider_organisation: 'guider_organisation',
       appointment_reference: 'appointment_reference',
       appointment_date: 'appointment_date',
-      value_of_pension_pots: 'value_of_pension_pots',
       income_in_retirement: 'income_in_retirement'
     }
   end
@@ -28,13 +27,13 @@ RSpec.describe CSVRenderer, '#render' do
     'attendee_address_line_2|attendee_address_line_3|attendee_town|' \
     'attendee_county|attendee_postcode|lead|guider_first_name|' \
     'guider_organisation|appointment_reference|appointment_date|' \
-    'value_of_pension_pots|income_in_retirement'
+    'income_in_retirement'
   end
   let(:row) do
     'id|format|variant|attendee_name|attendee_address_line_1|attendee_address_line_2|' \
     'attendee_address_line_3|attendee_town|attendee_county|attendee_postcode|' \
     'lead|guider_first_name|guider_organisation|appointment_reference|appointment_date|' \
-    'value_of_pension_pots|income_in_retirement'
+    'income_in_retirement'
   end
 
   subject(:csv) { described_class.new([output_document]).render }
