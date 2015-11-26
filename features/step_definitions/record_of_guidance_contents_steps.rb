@@ -10,24 +10,6 @@ When(/^we send (?:them their|a) record of guidance$/) do
   ProcessOutputDocuments.new.call
 end
 
-Given(/^the customer has access to income during retirement from (.*?)$/) do |sources_of_income|
-  @appointment_summary = fixture(:populated_appointment_summary).tap do |as|
-    as.income_in_retirement = case sources_of_income
-                              when 'only their DC pot and state pension' then 'pension'
-                              when 'multiple sources'                    then 'other'
-                              end
-  end
-end
-
-Then(/^the "pension pot" section should be the "(.*?)" version$/) do |version|
-  version = case version
-            when 'only their DC pot and state pension' then 'pension'
-            when 'multiple sources'                    then 'other'
-            end
-
-  expect_uploaded_csv_to_include(income_in_retirement: version)
-end
-
 Given(/^(?:I|we) have captured the customer's details in an appointment summary$/) do
   @appointment_summary = fixture(:populated_appointment_summary)
 end

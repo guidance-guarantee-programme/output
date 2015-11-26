@@ -10,15 +10,6 @@ Then(/^the sections that the preview includes should be \(in order\):$/) do |tab
   expect(page).to include_output_document_sections(sections)
 end
 
-Then(/^the preview should include the "(.*?)" version of the "pension pot" section$/) do |version|
-  version = case version
-            when 'only their DC pot and state pension' then 'pension'
-            when 'multiple sources'                    then 'other'
-            end
-
-  expect(page).to include_output_document_section('pension pot').at_version(version)
-end
-
 Then(/^the record of guidance preview should include their details$/) do
   output_document = OutputDocument.new(@appointment_summary)
 

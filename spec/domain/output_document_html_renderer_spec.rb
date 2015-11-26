@@ -7,7 +7,6 @@ RSpec.describe OutputDocument::HTMLRenderer do
         let(:output_document) do
           attributes = {
             attendee_address: '1 Horse Guard Road',
-            income_in_retirement: 'pension',
             variant: variant
           }
 

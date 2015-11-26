@@ -15,16 +15,6 @@ Scenario: Standard record of guidance
     | scams                    |
     | further guidance         |
 
-Scenario Outline: "Pension pot" section is tailored based on the range of income sources available to the customer
-  Given the customer has access to income during retirement from <sources-of-income>
-  When I preview their record of guidance
-  Then the preview should include the "<sources-of-income>" version of the "pension pot" section
-
-  Examples:
-    | sources-of-income                   |
-    | multiple sources                    |
-    | only their DC pot and state pension |
-
 Scenario: Records of guidance include the information provided to us by the customer
   Given I have captured the customer's details in an appointment summary
   When I preview their record of guidance
