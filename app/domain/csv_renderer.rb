@@ -4,8 +4,7 @@ class CSVRenderer
   def self.headers
     %i(id format variant attendee_name attendee_address_line_1
        attendee_address_line_2 attendee_address_line_3 attendee_town
-       attendee_county attendee_postcode lead guider_first_name
-       guider_organisation appointment_reference appointment_date)
+       attendee_county attendee_postcode lead)
   end
 
   def initialize(output_documents)

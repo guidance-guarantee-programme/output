@@ -13,24 +13,19 @@ RSpec.describe CSVRenderer, '#render' do
       attendee_town: 'attendee_town',
       attendee_county: 'attendee_county',
       attendee_postcode: 'attendee_postcode',
-      lead: 'lead',
-      guider_first_name: 'guider_first_name',
-      guider_organisation: 'guider_organisation',
-      appointment_reference: 'appointment_reference',
-      appointment_date: 'appointment_date'
+      lead: 'lead'
     }
   end
   let(:output_document) { instance_double(OutputDocument, attributes) }
   let(:headers) do
     'id|format|variant|attendee_name|attendee_address_line_1|' \
     'attendee_address_line_2|attendee_address_line_3|attendee_town|' \
-    'attendee_county|attendee_postcode|lead|guider_first_name|' \
-    'guider_organisation|appointment_reference|appointment_date'
+    'attendee_county|attendee_postcode|lead'
   end
   let(:row) do
     'id|format|variant|attendee_name|attendee_address_line_1|attendee_address_line_2|' \
     'attendee_address_line_3|attendee_town|attendee_county|attendee_postcode|' \
-    'lead|guider_first_name|guider_organisation|appointment_reference|appointment_date'
+    'lead'
   end
 
   subject(:csv) { described_class.new([output_document]).render }
