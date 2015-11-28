@@ -21,7 +21,7 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def create
-    @appointment_summary = AppointmentSummary.create(appointment_summary_params.merge(user: current_user))
+    @appointment_summary = AppointmentSummary.where(appointment_summary_params).first_or_create(user: current_user)
     if @appointment_summary.persisted?
       render :create
     else
