@@ -5,7 +5,6 @@ $(function () {
   PWO.eligibility.init();
   PWO.pensionPotAccuracy.init();
   PWO.pensionPotInput.init();
-  PWO.pensionPotPreview.init();
   PWO.postcodeLookup.init();
 
   var hasErrors = !!$('.alert-danger').length;
@@ -26,15 +25,9 @@ $(function () {
       PWO.pensionPotAccuracy.$input.filter('[value=approximate]').click();
     }
 
-    // update preview if value of pension pot provided
-    if (pensionValue1) {
-      $.publish('valueChange', [pensionValue1, PWO.pensionPotInput.$input1.attr('id')]);
-    }
-
     // update accuracy and preview if upper value of pension pot provided
     if (pensionValue2) {
       PWO.pensionPotAccuracy.$input.filter('[value=range]').click();
-      $.publish('valueChange', [pensionValue2, PWO.pensionPotInput.$input2.attr('id')]);
     }
   }
 });

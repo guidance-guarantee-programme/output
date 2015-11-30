@@ -3,6 +3,5 @@
 //= require eligibility
 //= require pension-pot-accuracy
 //= require pension-pot-input
-//= require pension-pot-preview
 //= require postcode-lookup
 //= require init
