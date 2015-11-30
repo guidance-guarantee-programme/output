@@ -24,3 +24,15 @@ Scenario: Records of guidance include information about the appointment
   Given I have captured appointment details in an appointment summary
   When I preview a record of guidance
   Then the record of guidance preview should include the details of the appointment
+
+Scenario Outline: Supplementary information can be included
+  Given the customer requires supplementary information about "<topic>"
+  When I preview a record of guidance
+  Then the record of guidance preview should include supplementary information about "<topic>"
+
+  Examples:
+    | topic                                   |
+    | Benefits and pension income             |
+    | Debt and pensions                       |
+    | Final salary or career average pensions |
+    | Pensions and ill health                 |

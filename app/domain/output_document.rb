@@ -3,7 +3,10 @@ class OutputDocument
 
   attr_accessor :appointment_summary
 
-  delegate :id, to: :appointment_summary
+  delegate :id, :supplementary_benefits,
+           :supplementary_debt, :supplementary_ill_health,
+           :supplementary_defined_benefit_pensions,
+           to: :appointment_summary
 
   delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode, :country,
            to: :appointment_summary, prefix: :attendee

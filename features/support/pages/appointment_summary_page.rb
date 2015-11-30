@@ -39,6 +39,10 @@ class AppointmentSummaryPage < SitePrism::Page
   radio_buttons :format_preference, standard: '.t-format-preference-standard',
                                     large_text: '.t-format-preference-large-text',
                                     braille: '.t-format-preference-braille'
+  element :supplementary_benefits, '.t-supplementary-benefits'
+  element :supplementary_debt, '.t-supplementary-debt'
+  element :supplementary_ill_health, '.t-supplementary-ill-health'
+  element :supplementary_defined_benefit_pensions, '.t-supplementary-defined-benefit-pensions'
   element :submit, '.t-submit'
 
   def fill_in(appointment_summary)
@@ -50,6 +54,7 @@ class AppointmentSummaryPage < SitePrism::Page
     fill_in_has_defined_contribution_pension(appointment_summary)
     fill_in_circumstances(appointment_summary)
     fill_in_format_preference(appointment_summary)
+    fill_in_supplementary_information(appointment_summary)
   end
 
   private
@@ -121,6 +126,13 @@ class AppointmentSummaryPage < SitePrism::Page
     when 'large_text' then format_preference_large_text.set true
     when 'braille' then format_preference_braille.set true
     end
+  end
+
+  def fill_in_supplementary_information(appointment_summary)
+    supplementary_benefits.set appointment_summary.supplementary_benefits
+    supplementary_debt.set appointment_summary.supplementary_debt
+    supplementary_ill_health.set appointment_summary.supplementary_ill_health
+    supplementary_defined_benefit_pensions.set appointment_summary.supplementary_defined_benefit_pensions
   end
 end
 # rubocop:enable ClassLength

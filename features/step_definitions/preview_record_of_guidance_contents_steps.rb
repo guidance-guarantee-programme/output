@@ -23,3 +23,18 @@ Then(/^the record of guidance preview should include the details of the appointm
   expect(page).to have_content(output_document.guider_first_name)
   expect(page).to have_content(output_document.guider_organisation)
 end
+
+Then(/^the record of guidance preview should include supplementary information about "(.*?)"$/) do |topic|
+  section = case topic
+            when 'Benefits and pension income' then
+              'benefits'
+            when 'Debt and pensions' then
+              'debt'
+            when 'Pensions and ill health' then
+              'ill health'
+            when 'Final salary or career average pensions' then
+              'defined benefit pensions'
+            end
+
+  expect(page).to include_output_document_section(section)
+end

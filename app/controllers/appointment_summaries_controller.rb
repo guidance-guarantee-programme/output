@@ -49,6 +49,8 @@ class AppointmentSummariesController < ApplicationController
                                                 :leave_inheritance, :wants_flexibility,
                                                 :wants_security, :wants_lump_sum, :poor_health,
                                                 :has_defined_contribution_pension,
-                                                :format_preference)
+                                                :format_preference, :supplementary_benefits,
+                                                :supplementary_debt, :supplementary_ill_health,
+                                                :supplementary_defined_benefit_pensions)
   end
 end

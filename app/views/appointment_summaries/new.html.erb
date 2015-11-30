@@ -263,6 +263,46 @@
       </div>
     </div>
 
+    <div class="display_if_eligible">
+      <h2>Supplementary information</h2>
+
+      <div class="form-group">
+        <legend>Does visitor need supplementary information about any of the following?</legend>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_benefits do %>
+            <%= f.check_box :supplementary_benefits,
+                            class: 't-supplementary-benefits' %>
+            Benefits and pension income
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_debt do %>
+            <%= f.check_box :supplementary_debt,
+                            class: 't-supplementary-debt' %>
+            Debt and pensions
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_ill_health do %>
+            <%= f.check_box :supplementary_ill_health,
+                            class: 't-supplementary-ill-health' %>
+            Pensions and ill health
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_defined_benefit_pensions do %>
+            <%= f.check_box :supplementary_defined_benefit_pensions,
+                            class: 't-supplementary-defined-benefit-pensions' %>
+            Final salary or career average pensions
+          <% end %>
+        </div>
+      </div>
+    </div>
+
     <h2>Record of guidance</h2>
 
     <div class="form-group">
