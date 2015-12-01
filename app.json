@@ -1,9 +1,9 @@
 {
   "addons": [
     "heroku-postgresql",
-    "mailgun",
     "heroku-redis",
     "logentries",
+    "mailgun",
     "scheduler"
   ],
   "env": {
