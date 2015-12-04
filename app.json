@@ -7,16 +7,25 @@
     "scheduler"
   ],
   "env": {
-    "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git",
+    "BUILDPACK_URL": {
+      "description": "Which buildpack to use when compiling the slug",
+      "value": "https://github.com/heroku/heroku-buildpack-multi.git"
+    },
     "GITHUB_AUTH_TOKEN": {
       "description": "GitHub token that allows cloning of `guidance-guarantee-programme/output-templates`"
     },
-    "NEW_RELIC_LOG": "STDOUT",
+    "NEW_RELIC_LOG": {
+      "description": "Complete path to the New Relic agent log, including the filename. The agent will shut down the process if it can’t create this file, and it creates the log file with the same umask of the process. Setting this to stdout will write all logging to stdout, and stderr will write all logging to stderr.",
+      "value": "STDOUT"
+    },
     "SECRET_KEY_BASE": {
       "description": "Cryptographically secure secret key (typically used to generate a secret for cookie sessions)",
       "generator": "secret"
     },
-    "SIDEKIQ_CONCURRENCY": "5"
+    "SIDEKIQ_CONCURRENCY": {
+      "description": "Sidekiq concurrencies",
+      "value": "5"
+    }
   },
   "scripts": {
     "postdeploy": "./bin/rake db:migrate"
