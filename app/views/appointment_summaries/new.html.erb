@@ -3,11 +3,14 @@
     <h1><%= title 'New appointment summary' %></h1>
   </div>
 
-  <p class="lead">Use this form to enter the caller's personal details given during the guidance
-    appointment and to issue a personalised record of guidance.</p>
+  <p class="lead">Use this form to enter the caller’s personal details given during the guidance
+    appointment and to issue a summary document.</p>
 
   <div class="consent">
-    <p class="highlight highlight-orange">Has caller consented to sharing data for purpose of creating and sending record of guidance?</p>
+    <p class="highlight highlight-orange">
+      Has caller consented to sharing data for the purpose of creating an appointment summary and sending a
+      summary document?
+    </p>
   </div>
 
   <div class="display_if_consent">
@@ -345,7 +348,8 @@
   <div class="checkbox">
     <label for="appointment_summary_consent">
       <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[consent]" id="appointment_summary_consent" />
-      Caller has consented to sharing data for purpose of creating and sending record of guidance
+      Caller has consented to sharing data for for the purpose of creating an appointment summary and sending a
+      summary document
     </label>
   </div>
 </script>
