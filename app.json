@@ -8,6 +8,9 @@
   ],
   "env": {
     "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git",
+    "GITHUB_AUTH_TOKEN": {
+      "description": "GitHub token that allows cloning of `guidance-guarantee-programme/output-templates`"
+    },
     "NEW_RELIC_LOG": "STDOUT",
     "SECRET_KEY_BASE": {
       "description": "Cryptographically secure secret key (typically used to generate a secret for cookie sessions)",
