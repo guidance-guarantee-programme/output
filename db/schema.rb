@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511110601) do
+ActiveRecord::Schema.define(version: 20151124174621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointment_summaries", force: :cascade do |t|
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.datetime "created_at",                                                                  null: false
+    t.datetime "updated_at",                                                                  null: false
     t.date     "date_of_appointment"
-    t.money    "value_of_pension_pots",                scale: 2
+    t.money    "value_of_pension_pots",                  scale: 2
     t.string   "income_in_retirement"
     t.string   "guider_organisation"
     t.string   "guider_name"
@@ -44,9 +44,13 @@ ActiveRecord::Schema.define(version: 20150511110601) do
     t.string   "last_name"
     t.string   "format_preference"
     t.string   "has_defined_contribution_pension"
-    t.money    "upper_value_of_pension_pots",          scale: 2
+    t.money    "upper_value_of_pension_pots",            scale: 2
     t.boolean  "value_of_pension_pots_is_approximate"
-    t.string   "country",                                        default: "United Kingdom"
+    t.string   "country",                                          default: "United Kingdom"
+    t.boolean  "supplementary_benefits"
+    t.boolean  "supplementary_debt"
+    t.boolean  "supplementary_ill_health"
+    t.boolean  "supplementary_defined_benefit_pensions"
   end
 
   add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
