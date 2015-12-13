@@ -7,7 +7,6 @@ RSpec.describe OutputDocument::HTMLRenderer do
         let(:output_document) do
           attributes = {
             attendee_address: '1 Horse Guard Road',
-            income_in_retirement: 'pension',
             variant: variant
           }
 
@@ -24,6 +23,6 @@ RSpec.describe OutputDocument::HTMLRenderer do
       end
     end
 
-    %w(generic tailored other).each { |variant| include_examples('renders html', variant) }
+    %w(standard other).each { |variant| include_examples('renders html', variant) }
   end
 end

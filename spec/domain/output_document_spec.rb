@@ -109,47 +109,12 @@ RSpec.describe OutputDocument do
     end
   end
 
-  describe '#value_of_pension_pots' do
-    subject { output_document.value_of_pension_pots }
-
-    context 'with one pension pot value' do
-      let(:value_of_pension_pots) { 35_000 }
-      let(:upper_value_of_pension_pots) { nil }
-
-      it { is_expected.to eq('£35,000') }
-
-      context 'and it is approximate' do
-        let(:value_of_pension_pots_is_approximate) { true }
-
-        it { is_expected.to eq('£35,000 (approximately)') }
-      end
-    end
-
-    context 'with two pension pot values' do
-      let(:value_of_pension_pots) { 35_000 }
-      let(:upper_value_of_pension_pots) { 55_000 }
-
-      it { is_expected.to eq('£35,000 to £55,000') }
-    end
-
-    context 'with no pension pot values' do
-      let(:value_of_pension_pots) { nil }
-      let(:upper_value_of_pension_pots) { nil }
-
-      it { is_expected.to eq('No value given') }
-    end
-  end
-
   describe '#variant' do
     let(:eligible_for_guidance) { true }
-    let(:generic_guidance) { true }
-    let(:custom_guidance) { true }
 
     before do
       allow(appointment_summary).to receive_messages(
-        eligible_for_guidance?: eligible_for_guidance,
-        generic_guidance?: generic_guidance,
-        custom_guidance?: custom_guidance
+        eligible_for_guidance?: eligible_for_guidance
       )
     end
 
@@ -162,17 +127,7 @@ RSpec.describe OutputDocument do
     end
 
     context 'when eligible for guidance' do
-      context 'and generic guidance was given' do
-        let(:custom_guidance) { false }
-
-        it { is_expected.to eq('generic') }
-      end
-
-      context 'and custom guidance was given' do
-        let(:generic_guidance) { false }
-
-        it { is_expected.to eq('tailored') }
-      end
+      it { is_expected.to eq('standard') }
     end
   end
 

@@ -32,7 +32,11 @@ module Fixtures
         wants_security: true,
         wants_lump_sum: true,
         poor_health: true,
-        format_preference: 'standard'
+        format_preference: 'standard',
+        supplementary_benefits: true,
+        supplementary_debt: true,
+        supplementary_ill_health: true,
+        supplementary_defined_benefit_pensions: true
       )
     end,
 
@@ -54,13 +58,10 @@ module Fixtures
         attendee_town: 'London',
         attendee_county: 'Greater London',
         attendee_postcode: 'SW1A 2HQ',
-        continue_working: true,
-        leave_inheritance: true,
-        poor_health: true,
-        unsure: true,
-        wants_flexibility: true,
-        wants_lump_sum: true,
-        wants_security: true
+        supplementary_benefits: true,
+        supplementary_debt: true,
+        supplementary_ill_health: true,
+        supplementary_defined_benefit_pensions: true
       }
     end
   }

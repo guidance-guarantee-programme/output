@@ -57,9 +57,6 @@
           return false;
         }
       });
-      this.$inputs.on('keyup', function () {
-        $.publish('valueChange', [this.value, this.id]);
-      });
     }
   };
 

@@ -3,11 +3,14 @@
     <h1><%= title 'New appointment summary' %></h1>
   </div>
 
-  <p class="lead">Use this form to enter the caller's personal details given during the guidance
-    appointment and to issue a personalised record of guidance.</p>
+  <p class="lead">Use this form to enter the caller’s personal details given during the guidance
+    appointment and to issue a summary document.</p>
 
   <div class="consent">
-    <p class="highlight highlight-orange">Has caller consented to sharing data for purpose of creating and sending record of guidance?</p>
+    <p class="highlight highlight-orange">
+      Has caller consented to sharing data for the purpose of creating an appointment summary and sending a
+      summary document?
+    </p>
   </div>
 
   <div class="display_if_consent">
@@ -263,6 +266,46 @@
       </div>
     </div>
 
+    <div class="display_if_eligible">
+      <h2>Supplementary information</h2>
+
+      <div class="form-group">
+        <legend>Does visitor need supplementary information about any of the following?</legend>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_benefits do %>
+            <%= f.check_box :supplementary_benefits,
+                            class: 't-supplementary-benefits' %>
+            Benefits and pension income
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_debt do %>
+            <%= f.check_box :supplementary_debt,
+                            class: 't-supplementary-debt' %>
+            Debt and pensions
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_ill_health do %>
+            <%= f.check_box :supplementary_ill_health,
+                            class: 't-supplementary-ill-health' %>
+            Pensions and ill health
+          <% end %>
+        </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_defined_benefit_pensions do %>
+            <%= f.check_box :supplementary_defined_benefit_pensions,
+                            class: 't-supplementary-defined-benefit-pensions' %>
+            Final salary or career average pensions
+          <% end %>
+        </div>
+      </div>
+    </div>
+
     <h2>Record of guidance</h2>
 
     <div class="form-group">
@@ -305,7 +348,8 @@
   <div class="checkbox">
     <label for="appointment_summary_consent">
       <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[consent]" id="appointment_summary_consent" />
-      Caller has consented to sharing data for purpose of creating and sending record of guidance
+      Caller has consented to sharing data for for the purpose of creating an appointment summary and sending a
+      summary document
     </label>
   </div>
 </script>
@@ -358,20 +402,6 @@
 
 <script type="text/html" id="pension-pot-input-error">
   <span id="errmsg" class="error"></span>
-</script>
-
-<script type="text/html" id="pension-pot-preview">
-  <div class="preview">
-    <div class="preview__context">Document preview</div>
-    <p class="preview__heading">What you told us about your pension pot</p>
-
-    <p class="preview__intro">This is your personal or workplace pension based on how much has been paid<br />
-      into your pot (defined contribution pension).</p>
-
-    <p class="preview__label">Total value of your pension pot:</p>
-    <p class="preview__amount">£</p>
-    <p class="preview__note">If you have more than one pot this is their combined value.</p>
-  </div>
 </script>
 
 <% content_for :body_end do %>

@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe AppointmentSummary, type: :model do
   subject do
-    described_class.new(continue_working: continue_working,
-                        has_defined_contribution_pension: has_defined_contribution_pension)
+    described_class.new(has_defined_contribution_pension: has_defined_contribution_pension)
   end
 
-  let(:continue_working) { false }
   let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }
@@ -101,8 +99,6 @@ RSpec.describe AppointmentSummary, type: :model do
     let(:has_defined_contribution_pension) { 'no' }
 
     it { is_expected.to_not be_eligible_for_guidance }
-    it { is_expected.to_not be_generic_guidance }
-    it { is_expected.to_not be_custom_guidance }
 
     it { is_expected.to_not validate_presence_of(:value_of_pension_pots) }
     it { is_expected.to_not validate_presence_of(:upper_value_of_pension_pots) }
@@ -118,18 +114,77 @@ RSpec.describe AppointmentSummary, type: :model do
   context 'when eligible for guidance' do
     let(:has_defined_contribution_pension) { 'yes' }
 
-    context 'and no retirement circumstances given' do
-      it { is_expected.to be_eligible_for_guidance }
-      it { is_expected.to be_generic_guidance }
-      it { is_expected.to_not be_custom_guidance }
+    it { is_expected.to be_eligible_for_guidance }
+  end
+
+  describe 'boolean fields' do
+    shared_examples 'a boolean field' do
+      def set(value)
+        subject.public_send(:"#{field}=", value)
+      end
+
+      def get
+        subject.public_send(field)
+      end
+
+      it 'converts "true" to true' do
+        set('true')
+        expect(get).to be(true)
+      end
+
+      it 'converts "1" to true' do
+        set('1')
+        expect(get).to be(true)
+      end
+
+      it 'converts 1 to true' do
+        set(1)
+        expect(get).to be(true)
+      end
+
+      it 'leaves true as true' do
+        set(true)
+        expect(get).to be(true)
+      end
+
+      it 'converts "random" to false' do
+        set('random')
+        expect(get).to be(false)
+      end
+
+      it 'converts "0" to false' do
+        set('0')
+        expect(get).to be(false)
+      end
+
+      it 'converts 0 to false' do
+        set(0)
+        expect(get).to be(false)
+      end
     end
 
-    context 'and retirement circumstances given' do
-      let(:continue_working) { true }
+    describe 'supplementary_benefits' do
+      let(:field) { :supplementary_benefits }
 
-      it { is_expected.to be_eligible_for_guidance }
-      it { is_expected.to_not be_generic_guidance }
-      it { is_expected.to be_custom_guidance }
+      it_should_behave_like 'a boolean field'
+    end
+
+    describe 'supplementary_debt' do
+      let(:field) { :supplementary_debt }
+
+      it_should_behave_like 'a boolean field'
+    end
+
+    describe 'supplementary_ill_health' do
+      let(:field) { :supplementary_ill_health }
+
+      it_should_behave_like 'a boolean field'
+    end
+
+    describe 'supplementary_defined_benefit_pensions' do
+      let(:field) { :supplementary_defined_benefit_pensions }
+
+      it_should_behave_like 'a boolean field'
     end
   end
 
