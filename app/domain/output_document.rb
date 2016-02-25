@@ -46,7 +46,7 @@ class OutputDocument
 
   def variant
     if appointment_summary.eligible_for_guidance?
-      'standard'
+      appointment_type
     else
       'other'
     end
