@@ -82,6 +82,15 @@ RSpec.describe AppointmentSummary, type: :model do
 
   it do
     is_expected
+      .to validate_inclusion_of(:appointment_type).in_array(%w(standard 50_54))
+  end
+
+  it 'defaults to a standard appointment type' do
+    expect(subject.appointment_type).to eq('standard')
+  end
+
+  it do
+    is_expected
       .to validate_inclusion_of(:format_preference).in_array(%w(standard large_text braille))
   end
 

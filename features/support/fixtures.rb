@@ -16,6 +16,7 @@ module Fixtures
         county: 'Greater London',
         country: 'United Kingdom',
         postcode: 'SW1A 2HQ',
+        appointment_type: 'standard',
         date_of_appointment: '2015-02-05',
         reference_number: 1245,
         value_of_pension_pots: 35_000,

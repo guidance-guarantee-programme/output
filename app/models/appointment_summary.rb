@@ -59,8 +59,13 @@ class AppointmentSummary < ActiveRecord::Base
             }
 
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
+  validates :appointment_type, inclusion: { in: %w(standard 50_54) }
 
   def format_preference
+    super || 'standard'
+  end
+
+  def appointment_type
     super || 'standard'
   end
 
