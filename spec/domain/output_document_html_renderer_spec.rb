@@ -7,6 +7,8 @@ RSpec.describe OutputDocument::HTMLRenderer do
         let(:output_document) do
           attributes = {
             attendee_address: '1 Horse Guard Road',
+            format_preference: 'standard',
+            appointment_type: 'standard',
             variant: variant
           }
 

@@ -9,7 +9,7 @@ RSpec.describe CreateBatch, '#call' do
       reference_number: '123', guider_name: 'Jimmy', guider_organisation: 'tpas',
       address_line_1: '29 Acacia Road', town: 'Beanotown', postcode: 'BT7 3AP',
       has_defined_contribution_pension: 'yes', income_in_retirement: 'pension',
-      format_preference: 'standard')
+      format_preference: 'standard', appointment_type: 'standard')
   end
 
   context 'with no items to be batched' do

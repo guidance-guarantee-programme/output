@@ -51,6 +51,7 @@ class AppointmentSummariesController < ApplicationController
                                                 :has_defined_contribution_pension,
                                                 :format_preference, :supplementary_benefits,
                                                 :supplementary_debt, :supplementary_ill_health,
-                                                :supplementary_defined_benefit_pensions)
+                                                :supplementary_defined_benefit_pensions,
+                                                :appointment_type)
   end
 end
