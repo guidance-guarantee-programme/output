@@ -39,6 +39,10 @@ class AppointmentSummaryPage < SitePrism::Page
   radio_buttons :format_preference, standard: '.t-format-preference-standard',
                                     large_text: '.t-format-preference-large-text',
                                     braille: '.t-format-preference-braille'
+
+  radio_buttons :appointment_type, standard: '.t-appointment-type-standard',
+                                   appointment_50_54: '.t-appointment-type-50-54'
+
   element :supplementary_benefits, '.t-supplementary-benefits'
   element :supplementary_debt, '.t-supplementary-debt'
   element :supplementary_ill_health, '.t-supplementary-ill-health'
@@ -48,6 +52,7 @@ class AppointmentSummaryPage < SitePrism::Page
   def fill_in(appointment_summary)
     fill_in_customer_details(appointment_summary)
     fill_in_appointment_audit_details(appointment_summary)
+    fill_in_appointment_type(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
     fill_in_income_in_retirement_details(appointment_summary)
     fill_in_guider_details(appointment_summary)
@@ -77,6 +82,13 @@ class AppointmentSummaryPage < SitePrism::Page
   def fill_in_appointment_audit_details(appointment_summary)
     date_of_appointment.set appointment_summary.date_of_appointment
     reference_number.set appointment_summary.reference_number
+  end
+
+  def fill_in_appointment_type(appointment_summary)
+    case appointment_summary.appointment_type
+    when 'standard' then appointment_type_standard.set true
+    when '50_54' then appointment_type_appointment_50_54.set true
+    end
   end
 
   def fill_in_pension_pot_details(appointment_summary)
