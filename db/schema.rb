@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124174621) do
+ActiveRecord::Schema.define(version: 20160225114042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20151124174621) do
     t.boolean  "supplementary_debt"
     t.boolean  "supplementary_ill_health"
     t.boolean  "supplementary_defined_benefit_pensions"
+    t.string   "appointment_type"
   end
 
   add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
