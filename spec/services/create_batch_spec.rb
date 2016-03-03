@@ -8,8 +8,9 @@ RSpec.describe CreateBatch, '#call' do
       title: 'Mr', last_name: 'Bloggs', date_of_appointment: Time.zone.today,
       reference_number: '123', guider_name: 'Jimmy', guider_organisation: 'tpas',
       address_line_1: '29 Acacia Road', town: 'Beanotown', postcode: 'BT7 3AP',
-      has_defined_contribution_pension: 'yes', income_in_retirement: 'pension',
-      format_preference: 'standard', appointment_type: 'standard')
+      country: 'United Kingdom', has_defined_contribution_pension: 'yes',
+      income_in_retirement: 'pension', format_preference: 'standard',
+      appointment_type: 'standard')
   end
 
   context 'with no items to be batched' do
@@ -23,24 +24,42 @@ RSpec.describe CreateBatch, '#call' do
     it { is_expected.to be_a(Batch) }
     specify { expect(batch.appointment_summaries).to eq(appointment_summaries) }
 
-    context 'with some unsupported appointment summaries' do
-      shared_examples 'ignore unsupported appointment summaries' do |unsupported_state|
-        let(:unsupported) do
-          2.times.map do
-            create_appointment_summary.tap { |as| as.update_attributes!(unsupported_state) }
+    context 'with supported appointment summaries' do
+      shared_examples 'supported appointment summaries' do |supported_state|
+        before do
+          supported = 2.times.map do
+            create_appointment_summary.tap { |as| as.update_attributes!(supported_state) }
           end
+
+          appointment_summaries.concat(supported)
         end
 
-        before { appointment_summaries.concat(unsupported) }
+        it "includes appointment_summaries with #{supported_state}" do
+          expect(batch.appointment_summaries).to include(have_attributes(supported_state))
+        end
+      end
+
+      include_examples 'supported appointment summaries', appointment_type: '50_54'
+      include_examples 'supported appointment summaries', country: Countries.non_uk.sample
+      include_examples 'supported appointment summaries', format_preference: 'large_text'
+    end
+
+    context 'with some unsupported appointment summaries' do
+      shared_examples 'ignore unsupported appointment summaries' do |unsupported_state|
+        before do
+          unsupported = 2.times.map do
+            create_appointment_summary.tap { |as| as.update_attributes!(unsupported_state) }
+          end
+
+          appointment_summaries.concat(unsupported)
+        end
 
         it "should ignore appointment_summaries with #{unsupported_state}" do
-          expect(batch.appointment_summaries).not_to include(*unsupported_state)
+          expect(batch.appointment_summaries).not_to include(have_attributes(unsupported_state))
         end
       end
 
       include_examples 'ignore unsupported appointment summaries', format_preference: 'braille'
-      include_examples 'ignore unsupported appointment summaries', format_preference: 'large_text'
-      include_examples 'ignore unsupported appointment summaries', country: Countries.non_uk.sample
     end
   end
 end
