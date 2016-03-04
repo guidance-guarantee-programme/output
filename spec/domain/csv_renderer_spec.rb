@@ -13,6 +13,7 @@ RSpec.describe CSVRenderer, '#render' do
       attendee_town: 'attendee_town',
       attendee_county: 'attendee_county',
       attendee_postcode: 'attendee_postcode',
+      attendee_country: 'attendee_country',
       lead: 'lead',
       supplementary_benefits: false,
       supplementary_debt: false,
@@ -24,13 +25,13 @@ RSpec.describe CSVRenderer, '#render' do
   let(:headers) do
     'id|format|variant|attendee_name|attendee_address_line_1|' \
     'attendee_address_line_2|attendee_address_line_3|attendee_town|' \
-    'attendee_county|attendee_postcode|lead|supplementary_benefits|' \
+    'attendee_county|attendee_postcode|attendee_country|lead|supplementary_benefits|' \
     'supplementary_debt|supplementary_ill_health|' \
     'supplementary_defined_benefit_pensions'
   end
   let(:row) do
     'id|format|variant|attendee_name|attendee_address_line_1|attendee_address_line_2|' \
-    'attendee_address_line_3|attendee_town|attendee_county|attendee_postcode|' \
+    'attendee_address_line_3|attendee_town|attendee_county|attendee_postcode|attendee_country|' \
     'lead|false|false|false|false'
   end
 

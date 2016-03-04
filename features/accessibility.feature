@@ -9,8 +9,9 @@ Scenario Outline: Document formats
   Then it should be in <format> format
 
   Examples:
-  | format   |
-  | standard |
+  | format     |
+  | standard   |
+  | large text |
 
 Scenario Outline: Unsupported document formats
   When the customer prefers to receive documentation in <format> format
@@ -18,5 +19,4 @@ Scenario Outline: Unsupported document formats
 
   Examples:
   | format     |
-  | large text |
   | braille    |

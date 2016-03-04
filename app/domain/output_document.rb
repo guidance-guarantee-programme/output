@@ -6,6 +6,7 @@ class OutputDocument
   delegate :id, :supplementary_benefits,
            :supplementary_debt, :supplementary_ill_health,
            :supplementary_defined_benefit_pensions,
+           :format_preference, :appointment_type,
            to: :appointment_summary
 
   delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode, :country,
@@ -46,7 +47,7 @@ class OutputDocument
 
   def variant
     if appointment_summary.eligible_for_guidance?
-      'standard'
+      appointment_type
     else
       'other'
     end
