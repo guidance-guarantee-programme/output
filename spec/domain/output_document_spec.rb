@@ -49,6 +49,26 @@ RSpec.describe OutputDocument do
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
   specify { expect(output_document.appointment_date).to eq(appointment_date) }
 
+  describe '#attendee_country' do
+    subject(:attendee_country) { output_document.attendee_country }
+
+    context 'when United Kingdom' do
+      let(:country) { Countries.uk }
+
+      it 'is nil' do
+        expect(attendee_country).to be_nil
+      end
+    end
+
+    context 'with a non-UK address' do
+      let(:country) { Countries.non_uk.sample }
+
+      it 'includes the Country' do
+        expect(attendee_country).to eq(country)
+      end
+    end
+  end
+
   describe '#attendee_address' do
     subject(:attendee_address) { output_document.attendee_address }
 
