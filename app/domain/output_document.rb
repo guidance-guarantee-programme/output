@@ -9,7 +9,7 @@ class OutputDocument
            :format_preference, :appointment_type,
            to: :appointment_summary
 
-  delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode, :country,
+  delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode,
            to: :appointment_summary, prefix: :attendee
 
   def initialize(appointment_summary)
@@ -20,9 +20,11 @@ class OutputDocument
     "#{appointment_summary.title} #{appointment_summary.first_name} #{appointment_summary.last_name}".squish
   end
 
-  def attendee_address
-    attendee_country = Countries.uk?(self.attendee_country) ? nil : self.attendee_country
+  def attendee_country
+    Countries.uk?(appointment_summary.country) ? nil : appointment_summary.country
+  end
 
+  def attendee_address
     [attendee_name,
      attendee_address_line_1,
      attendee_address_line_2,
