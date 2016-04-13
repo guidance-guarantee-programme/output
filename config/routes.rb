@@ -43,5 +43,9 @@ Rails.application.routes.draw do
     get '(/:action)'
   end
 
+  namespace :admin do
+    resources :appointment_summaries, only: :index
+  end
+
   mount Sidekiq::Web => '/sidekiq'
 end

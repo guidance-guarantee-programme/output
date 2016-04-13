@@ -4,7 +4,8 @@ Given(/^I am logged in as a Pension Wise Administrator$/) do
 end
 
 When(/^I visit the Summary Browser$/) do
-  pending # express the regexp above with the code you wish you had
+  page = AppointmentSummaryBrowserPage.new
+  page.load
 end
 
 Then(/^I am presented with a table of Appointment Summaries$/) do
