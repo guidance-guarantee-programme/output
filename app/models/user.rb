@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   def name
     [first_name, last_name].join(' ').strip
   end
+
+  # GDS-SSO noop
+  def clear_remotely_signed_out!
+  end
 end
