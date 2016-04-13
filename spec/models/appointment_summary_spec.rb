@@ -129,11 +129,11 @@ RSpec.describe AppointmentSummary, type: :model do
   describe 'boolean fields' do
     shared_examples 'a boolean field' do
       def set(value)
-        subject.public_send(:"#{field}=", value)
+        subject[field] = value
       end
 
       def get
-        subject.public_send(field)
+        subject[field]
       end
 
       it 'converts "true" to true' do
