@@ -1,9 +1,9 @@
-@signon
 Feature: Appointment Summary Browser
   As a Pension Wise Administrator
   I want to browse Appointment Summaries
   So that I can self serve
 
+@unauthenticated
 Scenario: Viewing the Appointment Summaries
   Given I am logged in as a Pension Wise Administrator
   And there are existing Appointment Summaries

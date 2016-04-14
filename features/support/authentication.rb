@@ -1,4 +1,4 @@
-Before('~@unauthenticated', '~@signon') do
+Before('~@unauthenticated') do
   email = 'guider@example.com'
   password = 'pensionwise'
   User.create(email: email, password: password, password_confirmation: password).confirm!

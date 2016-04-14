@@ -1,6 +1,7 @@
 Given(/^I am logged in as a Pension Wise Administrator$/) do
-  @administrator = Administrator.create!
-  login_as @administrator
+  @administrator = create(:user)
+  page = UserSignInPage.new
+  page.login(@administrator)
 end
 
 Given(/^there are existing Appointment Summaries$/) do
