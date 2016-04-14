@@ -4,6 +4,7 @@ FactoryGirl.define do
     password 'password'
     first_name 'Rick'
     last_name 'Sanchez'
+    admin false
   end
 
   factory :appointment_summary do

@@ -1,5 +1,6 @@
 Given(/^I am logged in as a Pension Wise Administrator$/) do
-  @administrator = create(:user)
+  @administrator = create(:user, admin: true).tap(&:confirm!)
+
   page = UserSignInPage.new
   page.login(@administrator)
 end
@@ -27,4 +28,8 @@ end
 Then(/^the date range is displayed$/) do
   expect(@page.start_date.value).to be_present
   expect(@page.end_date.value).to be_present
+end
+
+Then(/^I am denied access$/) do
+  expect(@page).to_not be_displayed
 end

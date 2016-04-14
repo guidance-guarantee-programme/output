@@ -11,3 +11,7 @@ Scenario: Viewing the Appointment Summaries
   Then I am presented with Appointment Summaries
   And I see there are multiple pages
   And the date range is displayed
+
+Scenario: Attempting to view the Appointment Summaries
+  When I visit the Summary Browser
+  Then I am denied access
