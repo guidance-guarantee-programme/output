@@ -6,6 +6,7 @@ ruby IO.read('.ruby-version').strip
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
 gem 'autoprefixer-rails'
+gem 'bootstrap-kaminari-views'
 gem 'bugsnag'
 gem 'devise'
 gem 'devise_invitable'
@@ -16,6 +17,7 @@ gem 'gaffe'
 gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'jc-validates_timeliness'
+gem 'kaminari'
 gem 'meta-tags'
 gem 'net-sftp'
 gem 'newrelic_rpm'
@@ -49,6 +51,8 @@ group :test do
   gem 'shoulda-matchers'
   gem 'site_prism'
 end
+
+gem 'factory_girl_rails', group: %i(development test)
 
 group :staging, :production do
   gem 'rails_12factor'

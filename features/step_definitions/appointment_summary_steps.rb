@@ -3,11 +3,27 @@ Given(/^I am logged in as a Pension Wise Administrator$/) do
   login_as @administrator
 end
 
-When(/^I visit the Summary Browser$/) do
-  page = AppointmentSummaryBrowserPage.new
-  page.load
+Given(/^there are existing Appointment Summaries$/) do
+  create_list(
+    :appointment_summary,
+    Kaminari.config.default_per_page + 1
+  )
 end
 
-Then(/^I am presented with a table of Appointment Summaries$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I visit the Summary Browser$/) do
+  @page = AppointmentSummaryBrowserPage.new
+  @page.load
+end
+
+Then(/^I am presented with Appointment Summaries$/) do
+  expect(@page).to have_appointments(count: Kaminari.config.default_per_page)
+end
+
+Then(/^I see there are multiple pages$/) do
+  expect(@page).to have_pages
+end
+
+Then(/^the date range is displayed$/) do
+  expect(@page.start_date.value).to be_present
+  expect(@page.end_date.value).to be_present
 end

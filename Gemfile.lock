@@ -55,6 +55,9 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-kaminari-views (0.0.5)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
@@ -102,6 +105,11 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.5.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     foreman (0.78.0)
@@ -135,6 +143,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.3)
@@ -319,18 +330,21 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bootstrap-kaminari-views
   bugsnag
   cucumber-rails
   database_cleaner
   devise
   devise_invitable
   devise_zxcvbn
+  factory_girl_rails
   faraday
   foreman
   gaffe
   gds-sso
   govuk_admin_template
   jc-validates_timeliness
+  kaminari
   launchy
   meta-tags
   net-sftp
