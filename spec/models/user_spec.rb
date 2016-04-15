@@ -5,6 +5,10 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to have_many(:appointment_summaries) }
 
+  it 'defaults to non-admin upon initialisation' do
+    expect(subject).to_not be_admin
+  end
+
   context 'when a first name and last name is set' do
     subject { described_class.new(first_name: 'Joe', last_name: 'Bloggs') }
 
