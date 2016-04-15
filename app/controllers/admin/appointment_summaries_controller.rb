@@ -4,6 +4,11 @@ module Admin
 
     def index
       @appointment_form = AppointmentSummaryBrowser.new(form_params)
+
+      respond_to do |format|
+        format.html
+        format.csv { render csv: AppointmentSummaryCsv.new(@appointment_form.results) }
+      end
     end
 
     private

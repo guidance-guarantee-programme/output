@@ -7,4 +7,5 @@ class AppointmentSummaryBrowserPage < SitePrism::Page
 
   element :start_date, '.t-start'
   element :end_date, '.t-end'
+  element :export_to_csv, '.t-export'
 end

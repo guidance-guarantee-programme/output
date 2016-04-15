@@ -12,6 +12,14 @@ Scenario: Viewing the Appointment Summaries
   And I see there are multiple pages
   And the date range is displayed
 
+@unauthenticated
+Scenario: Exporting the Appointment Summaries to CSV
+  Given I am logged in as a Pension Wise Administrator
+  And there are existing Appointment Summaries
+  When I visit the Summary Browser
+  And I export the results to CSV
+  Then I am prompted to download a CSV
+
 Scenario: Attempting to view the Appointment Summaries
   When I visit the Summary Browser
   Then I am denied access

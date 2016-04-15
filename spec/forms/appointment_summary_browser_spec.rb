@@ -11,11 +11,19 @@ RSpec.describe AppointmentSummaryBrowser do
   end
 
   describe '#results' do
+    let(:page_size_plus_one) { Kaminari.config.default_per_page + 1 }
+
     it 'returns results within the provided date range' do
       present = create(:appointment_summary, date_of_appointment: Time.zone.today)
       create(:appointment_summary, date_of_appointment: 1.year.ago)
 
       expect(subject.results).to match_array(present)
+    end
+
+    it 'is unpaginated' do
+      create_list(:appointment_summary, page_size_plus_one)
+
+      expect(subject.results.size).to eq(page_size_plus_one)
     end
 
     context 'on postgres `DateStyle` iso, mdy servers (travis-ci)' do
