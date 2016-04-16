@@ -17,5 +17,17 @@ RSpec.describe AppointmentSummaryBrowser do
 
       expect(subject.results).to match_array(present)
     end
+
+    context 'on postgres `DateStyle` iso, mdy servers (travis-ci)' do
+      it 'will not overflow for UK formatted dates' do
+        expect do
+          described_class.new(
+            page: nil,
+            start_date: '15/01/2016',
+            end_date: '16/01/2016'
+          ).results
+        end.not_to raise_error
+      end
+    end
   end
 end

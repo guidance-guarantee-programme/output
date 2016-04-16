@@ -20,6 +20,6 @@ class AppointmentSummaryBrowser
   private
 
   def normalise_date(date, default)
-    date.present? ? date : default
+    date.present? ? Time.zone.parse(date) : default
   end
 end
