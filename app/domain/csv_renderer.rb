@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CSVRenderer
   attr_reader :output_documents
 

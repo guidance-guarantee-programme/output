@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Then(/^the preview should show an ineligibility letter$/) do
   expect(page).to include_output_document_sections(['ineligible'])
 

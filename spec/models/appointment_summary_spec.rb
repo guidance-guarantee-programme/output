@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe AppointmentSummary, type: :model do
@@ -209,20 +210,20 @@ RSpec.describe AppointmentSummary, type: :model do
     end
 
     context 'with no unbatched items' do
-      let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
+      let!(:appointment_summaries) { Array.new(2) { create_appointment_summary } }
       let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries) }
 
       it { is_expected.to be_empty }
     end
 
     context 'with unbatched items' do
-      let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
+      let!(:appointment_summaries) { Array.new(2) { create_appointment_summary } }
 
       it { is_expected.to eq(appointment_summaries) }
     end
 
     context 'with batched and unbatched items' do
-      let!(:appointment_summaries) { 4.times.map { create_appointment_summary } }
+      let!(:appointment_summaries) { Array.new(4) { create_appointment_summary } }
       let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries[0..1]) }
 
       it { is_expected.to eq(appointment_summaries[2, 3]) }

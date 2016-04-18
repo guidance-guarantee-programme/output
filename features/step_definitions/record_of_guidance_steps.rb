@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Given(/^"(.*?)" applies to the customer$/) do |circumstance|
   @appointment_summary = fixture(:populated_appointment_summary).tap do |as|
     as.continue_working = false

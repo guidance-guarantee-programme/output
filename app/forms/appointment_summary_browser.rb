@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AppointmentSummaryBrowser
   include ActiveModel::Model
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'site_prism'
 
 module SitePrism
@@ -16,7 +17,7 @@ module SitePrism
       if selected_values.one?
         selected_values.first.to_s
       elsif selected_values.any?
-        fail 'Multiple options are selected (is something wrong with your markup?)'
+        raise 'Multiple options are selected (is something wrong with your markup?)'
       end
     end
 

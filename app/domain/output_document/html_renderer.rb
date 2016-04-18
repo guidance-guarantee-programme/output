@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class OutputDocument
   class HTMLRenderer
     include ActionView::Helpers::TextHelper
@@ -16,7 +17,7 @@ class OutputDocument
 
     def template
       template_id = case output_document.variant
-                    when 'other'    then 'ineligible'
+                    when 'other' then 'ineligible'
                     else 'base'
                     end
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Batch < ActiveRecord::Base
   scope :unprocessed, -> { where(uploaded_at: nil) }
 

@@ -1,9 +1,12 @@
 AllCops:
-  RunRailsCops: true
+  TargetRubyVersion: 2.3
   Exclude:
     - 'bin/*'
     - 'db/**/*'
     - 'vendor/**/*'
+
+Rails:
+  Enabled: true
 
 Documentation:
   Enabled: false

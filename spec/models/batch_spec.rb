@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Batch, type: :model do
@@ -21,8 +22,8 @@ RSpec.describe Batch, type: :model do
   end
 
   describe '.unprocessed' do
-    let(:uploaded_batches) { 3.times.map { Batch.create.tap(&:mark_as_uploaded) } }
-    let(:unuploaded_batches) { 3.times.map { Batch.create } }
+    let(:uploaded_batches) { Array.new(3) { Batch.create.tap(&:mark_as_uploaded) } }
+    let(:unuploaded_batches) { Array.new(3) { Batch.create } }
 
     subject(:batches) { Batch.unprocessed }
 
