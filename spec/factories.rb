@@ -6,6 +6,10 @@ FactoryGirl.define do
     first_name 'Rick'
     last_name 'Sanchez'
     admin false
+
+    factory :admin do
+      admin true
+    end
   end
 
   factory :appointment_summary do
