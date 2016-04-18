@@ -1,22 +1,24 @@
 <h1><%= title 'Appointment Summaries' %></h1>
 
-<%= form_for @appointment_form, url: admin_appointment_summaries_path, method: :get, html: { class: 'form-inline' } do |f| %>
-  <div class="form-group">
-    <%= f.label :start_date, 'From', class: 'inline' %>
-    <%= f.text_field :start_date, class: 'form-control t-start', placeholder: 'dd/mm/yyyy' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :end_date, 'To', class: 'inline' %>
-    <%= f.text_field :end_date, class: 'form-control t-end', placeholder: 'dd/mm/yyyy' %>
-  </div>
-  <%= f.submit 'Search', class: 'btn btn-default' %>
-<% end %>
+<div class="well">
+  <%= form_for @appointment_form, url: admin_appointment_summaries_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
+    <div class="form-group">
+      <%= f.label :start_date, 'From', class: 'inline' %>
+      <%= f.text_field :start_date, class: 'form-control t-start', placeholder: 'dd/mm/yyyy' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_date, 'To', class: 'inline' %>
+      <%= f.text_field :end_date, class: 'form-control t-end', placeholder: 'dd/mm/yyyy' %>
+    </div>
+    <%= f.submit 'Search', class: 'btn btn-default' %>
+  <% end %>
 
-<%= form_for @appointment_form, url: admin_appointment_summaries_path(format: :csv), method: :get, html: { class: 'form-inline' } do |f| %>
-  <%= f.hidden_field :start_date %>
-  <%= f.hidden_field :end_date %>
-  <%= f.submit 'Export CSV', class: 'btn btn-default t-export' %>
-<% end %>
+  <%= form_for @appointment_form, url: admin_appointment_summaries_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
+    <%= f.hidden_field :start_date %>
+    <%= f.hidden_field :end_date %>
+    <%= f.submit 'Export CSV', class: 'btn btn-default t-export' %>
+  <% end %>
+</div>
 
 <%= paginate @appointment_form.paginated_results, theme: 'twitter-bootstrap-3' %>
 
