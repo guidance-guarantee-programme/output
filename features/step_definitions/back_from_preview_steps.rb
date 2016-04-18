@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Given(/^appointment details are captured$/) do
   @appointment_summary = fixture(:populated_appointment_summary)
 

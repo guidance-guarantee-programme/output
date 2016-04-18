@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 # This list is taken from https://www.gov.uk/api/foreign-travel-advice.json
 # $ curl https://www.gov.uk/api/foreign-travel-advice.json | jq '.details.countries[].name'
 
-module Countries
+module Countries # rubocop:disable Metrics/ModuleLength
   def self.all
     ALL
   end
@@ -245,7 +246,7 @@ module Countries
     'Yemen',
     'Zambia',
     'Zimbabwe'
-  ]
+  ].freeze
 
   private_constant :ALL
 end

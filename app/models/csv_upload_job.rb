@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CSVUploadJob
   attr_reader :batch
 

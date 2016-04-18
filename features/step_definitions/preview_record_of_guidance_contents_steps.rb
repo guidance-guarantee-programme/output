@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 When(/^I preview (?:their|a) record of guidance$/) do
   page = AppointmentSummaryPage.new
   page.load

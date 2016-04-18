@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe ProcessOutputDocuments, '#call' do
-  let(:batches) { 3.times.map { instance_double(Batch).as_null_object } }
+  let(:batches) { Array.new(3) { instance_double(Batch).as_null_object } }
   let(:jobs) { Array(batches).map { instance_double(CSVUploadJob).as_null_object } }
   let(:uploaders) { Array(batches).map { instance_double(UploadToPrintHouse).as_null_object } }
   let(:create_batch) { instance_double(CreateBatch).as_null_object }
@@ -10,7 +11,9 @@ RSpec.describe ProcessOutputDocuments, '#call' do
     allow(CreateBatch).to receive(:new).and_return(create_batch)
     allow(Batch).to receive(:unprocessed).and_return(batches)
     Array(batches).count.times do |n|
-      batch, job, uploader = batches[n], jobs[n], uploaders[n]
+      batch = batches[n]
+      job = jobs[n]
+      uploader = uploaders[n]
       allow(CSVUploadJob).to receive(:new).with(batch).and_return(job)
       allow(UploadToPrintHouse).to receive(:new).with(job).and_return(uploader)
     end

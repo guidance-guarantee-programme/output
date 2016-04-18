@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :invitable, :lockable, :timeoutable, :trackable,
          :validatable, :zxcvbnable, :recoverable

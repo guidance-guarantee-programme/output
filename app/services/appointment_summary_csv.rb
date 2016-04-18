@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'csv'
 
 class AppointmentSummaryCsv
@@ -20,7 +21,7 @@ class AppointmentSummaryCsv
     format_preference
     appointment_type
     has_defined_contribution_pension
-  )
+  ).freeze
 
   def initialize(appointments)
     @appointments = Array(appointments)
@@ -33,7 +34,7 @@ class AppointmentSummaryCsv
       appointments.each { |appointment| output << row(appointment) }
     end
   end
-  alias_method :csv, :call
+  alias csv call
 
   private
 

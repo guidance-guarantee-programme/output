@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe CreateBatch, '#call' do
@@ -19,7 +20,7 @@ RSpec.describe CreateBatch, '#call' do
   end
 
   context 'with items to be batched' do
-    let!(:appointment_summaries) { 2.times.map { create_appointment_summary } }
+    let!(:appointment_summaries) { Array.new(2) { create_appointment_summary } }
 
     it { is_expected.to be_a(Batch) }
     specify { expect(batch.appointment_summaries).to eq(appointment_summaries) }
@@ -27,7 +28,7 @@ RSpec.describe CreateBatch, '#call' do
     context 'with supported appointment summaries' do
       shared_examples 'supported appointment summaries' do |supported_state|
         before do
-          supported = 2.times.map do
+          supported = Array.new(2) do
             create_appointment_summary.tap { |as| as.update_attributes!(supported_state) }
           end
 
@@ -47,7 +48,7 @@ RSpec.describe CreateBatch, '#call' do
     context 'with some unsupported appointment summaries' do
       shared_examples 'ignore unsupported appointment summaries' do |unsupported_state|
         before do
-          unsupported = 2.times.map do
+          unsupported = Array.new(2) do
             create_appointment_summary.tap { |as| as.update_attributes!(unsupported_state) }
           end
 

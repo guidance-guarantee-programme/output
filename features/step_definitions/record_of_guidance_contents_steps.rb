@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 When(/^we send (?:them their|a) record of guidance$/) do
   appointment_summary_page = AppointmentSummaryPage.new
   appointment_summary_page.load

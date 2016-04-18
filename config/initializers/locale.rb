@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.configure do
   # We only need to make the following available
   config.i18n.available_locales = ['en-GB', :en]

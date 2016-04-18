@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'net/sftp'
 
@@ -58,7 +59,7 @@ RSpec.describe UploadToPrintHouse, '#call' do
       end
 
       def upload!(*args)
-        fail ERROR_MESSAGE unless (@error_count += 1) > @errors_to_raise
+        raise ERROR_MESSAGE unless (@error_count += 1) > @errors_to_raise
         super
       end
     end

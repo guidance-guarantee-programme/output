@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'site_prism'
 require_relative './radio_button_group'
 

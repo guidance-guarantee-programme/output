@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'json'
 require 'uri'
 
@@ -15,7 +16,7 @@ class AppointmentSummary < ActiveRecord::Base
     end
   end
 
-  TITLES = %w(Mr Mrs Miss Ms Mx Dr Reverend)
+  TITLES = %w(Mr Mrs Miss Ms Mx Dr Reverend).freeze
 
   belongs_to :user
   has_many :appointment_summaries_batches, dependent: :destroy

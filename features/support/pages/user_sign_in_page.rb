@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UserSignInPage < SitePrism::Page
   set_url '/users/sign_in'
   set_url_matcher %r{/users/sign_in}

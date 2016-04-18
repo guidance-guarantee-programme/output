@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative '../site_prism/radio_button_container'
 
 # rubocop:disable ClassLength

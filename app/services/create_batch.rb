@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 class CreateBatch
   def call
     unbatched_appointment_summaries = AppointmentSummary.unbatched
-                                      .where.not(format_preference: 'braille')
+                                                        .where.not(format_preference: 'braille')
 
     return nil if unbatched_appointment_summaries.empty?
 

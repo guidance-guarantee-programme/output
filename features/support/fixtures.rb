@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Fixtures
   def fixture(name)
     FIXTURES.fetch(name).call
@@ -65,7 +66,7 @@ module Fixtures
         supplementary_defined_benefit_pensions: true
       }
     end
-  }
+  }.freeze
 
   private_constant :FIXTURES
 end
