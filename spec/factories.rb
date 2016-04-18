@@ -12,8 +12,11 @@ FactoryGirl.define do
     guider_name 'Morty Smith'
     guider_organisation 'tpas'
     title 'Mr'
+    first_name 'Bob'
     last_name 'Smith'
-    address_line_1 '10 London Road'
+    address_line_1 '10 London House'
+    address_line_2 'London Road'
+    address_line_3 'Havering'
     town 'Romford'
     county 'Essex'
     postcode 'RM1 1AL'
@@ -22,5 +25,8 @@ FactoryGirl.define do
     sequence(:reference_number)
     has_defined_contribution_pension 'yes'
     income_in_retirement 'pension'
+    value_of_pension_pots 15_000
+    format_preference 'standard'
+    appointment_type 'standard'
   end
 end

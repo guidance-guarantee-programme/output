@@ -14,7 +14,10 @@ class AppointmentSummaryBrowser
       .includes(:user)
       .order(date_of_appointment: :desc)
       .where(date_of_appointment: start_date..end_date)
-      .page(page)
+  end
+
+  def paginated_results
+    results.page(page)
   end
 
   private

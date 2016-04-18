@@ -33,3 +33,14 @@ end
 Then(/^I am denied access$/) do
   expect(@page).to_not be_displayed
 end
+
+When(/^I export the results to CSV$/) do
+  @page.export_to_csv.click
+end
+
+Then(/^I am prompted to download a CSV$/) do
+  expect(page.response_headers).to include(
+    'Content-Disposition' => 'attachment; filename=data.csv',
+    'Content-Type'        => 'text/csv'
+  )
+end
