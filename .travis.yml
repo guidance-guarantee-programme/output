@@ -30,3 +30,7 @@ deploy:
   on:
     repo: guidance-guarantee-programme/output
   run: "./bin/rake db:migrate"
+notifications:
+  slack:
+    rooms:
+      secure: imKpfnI2QtNT/ylZwv0727nlBw+AbCRfHV9u+Yr7OA/1PaqtQuKtuudo2LViMsTb1NTmolA0IEoxdmpz/Ec+l7w11y4KOI6qUv8b4z7lXYkI4ynDzB/lfJmCd8zrmTNHKsRp1XzqvrPGNDWyuupII4MaVE3nAB7zTSLRR5WWpFI=
