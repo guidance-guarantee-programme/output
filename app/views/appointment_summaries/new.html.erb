@@ -359,6 +359,21 @@
       </fieldset>
     </div>
 
+    <div class="form-group">
+      <fieldset>
+        <legend>
+          <span>Digital version?</span>
+        </legend>
+
+        <div class="checkbox">
+          <%= f.label :requested_digital do %>
+            <%= f.check_box :requested_digital, class: 't-requested-digital' %>
+            Yes, the caller wants a digital summary document as well as a hard copy
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+
     <p>
       <%= f.submit 'Preview', class: %w(btn-success t-submit btn-lg) %>
     </p>
