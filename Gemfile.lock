@@ -87,6 +87,8 @@ GEM
       rails (>= 3, < 5)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
+    deprecated_columns (0.1.0)
+      rails (>= 4.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -302,6 +304,7 @@ DEPENDENCIES
   bugsnag
   cucumber-rails
   database_cleaner
+  deprecated_columns
   devise
   devise_invitable
   devise_zxcvbn
