@@ -64,8 +64,8 @@ RSpec.describe OutputDocument do
     context 'with a non-UK address' do
       let(:country) { Countries.non_uk.sample }
 
-      it 'includes the Country' do
-        expect(attendee_country).to eq(country)
+      it 'includes the Country in uppercase' do
+        expect(attendee_country).to eq(country.upcase)
       end
     end
   end
@@ -85,9 +85,8 @@ RSpec.describe OutputDocument do
     context 'with a non-UK address' do
       let(:country) { Countries.non_uk.sample }
 
-      it 'includes the Country' do
-        expect(attendee_address).to eq("Mr Joe Bloggs\nHM Treasury\n1 Horse Guards Road\nWhitehall\n" \
-                                       "Westminster\nGreater London\nSW1A 2HQ\n#{country}")
+      it 'includes the Country in uppercase' do
+        expect(attendee_address).to end_with(country.upcase)
       end
     end
 

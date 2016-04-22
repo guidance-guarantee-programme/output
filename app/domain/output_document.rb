@@ -22,7 +22,7 @@ class OutputDocument
   end
 
   def attendee_country
-    Countries.uk?(appointment_summary.country) ? nil : appointment_summary.country
+    Countries.uk?(appointment_summary.country) ? nil : appointment_summary.country.upcase
   end
 
   def attendee_address
