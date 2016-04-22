@@ -9,6 +9,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 gem 'autoprefixer-rails'
 gem 'bootstrap-kaminari-views'
 gem 'bugsnag'
+gem 'deprecated_columns'
 gem 'devise'
 gem 'devise_invitable'
 gem 'devise_zxcvbn'
