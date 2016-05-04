@@ -53,6 +53,6 @@ class AppointmentSummariesController < ApplicationController
                                                 :format_preference, :supplementary_benefits,
                                                 :supplementary_debt, :supplementary_ill_health,
                                                 :supplementary_defined_benefit_pensions,
-                                                :appointment_type)
+                                                :appointment_type, :requested_digital)
   end
 end

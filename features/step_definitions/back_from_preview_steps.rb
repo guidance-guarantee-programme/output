@@ -48,7 +48,8 @@ Then(/^the previously captured details are prepopulated$/) do
                    poor_health
                    supplementary_benefits supplementary_debt
                    supplementary_ill_health
-                   supplementary_defined_benefit_pensions)
+                   supplementary_defined_benefit_pensions
+                   requested_digital)
 
   radio_button_groups = %i(income_in_retirement
                            guider_organisation

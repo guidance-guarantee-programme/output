@@ -38,7 +38,8 @@ module Fixtures
         supplementary_benefits: true,
         supplementary_debt: true,
         supplementary_ill_health: true,
-        supplementary_defined_benefit_pensions: true
+        supplementary_defined_benefit_pensions: true,
+        requested_digital: false
       )
     end,
 

@@ -44,6 +44,8 @@ class AppointmentSummaryPage < SitePrism::Page
   radio_buttons :appointment_type, standard: '.t-appointment-type-standard',
                                    appointment_50_54: '.t-appointment-type-50-54'
 
+  element :requested_digital, '.t-requested-digital'
+
   element :supplementary_benefits, '.t-supplementary-benefits'
   element :supplementary_debt, '.t-supplementary-debt'
   element :supplementary_ill_health, '.t-supplementary-ill-health'
@@ -60,6 +62,7 @@ class AppointmentSummaryPage < SitePrism::Page
     fill_in_has_defined_contribution_pension(appointment_summary)
     fill_in_circumstances(appointment_summary)
     fill_in_format_preference(appointment_summary)
+    fill_in_digital_request(appointment_summary)
     fill_in_supplementary_information(appointment_summary)
   end
 
@@ -139,6 +142,10 @@ class AppointmentSummaryPage < SitePrism::Page
     when 'large_text' then format_preference_large_text.set true
     when 'braille' then format_preference_braille.set true
     end
+  end
+
+  def fill_in_digital_request(appointment_summary)
+    requested_digital.set appointment_summary.requested_digital
   end
 
   def fill_in_supplementary_information(appointment_summary)
