@@ -21,6 +21,7 @@ class AppointmentSummaryCsv
     format_preference
     appointment_type
     has_defined_contribution_pension
+    requested_digital
   ).freeze
 
   def initialize(appointments)
