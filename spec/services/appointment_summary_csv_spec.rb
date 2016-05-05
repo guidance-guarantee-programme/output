@@ -29,6 +29,7 @@ RSpec.describe AppointmentSummaryCsv do
           format_preference
           appointment_type
           has_defined_contribution_pension
+          requested_digital
         )
       )
     end
@@ -53,7 +54,8 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.last_name,
           appointment.format_preference,
           appointment.appointment_type,
-          appointment.has_defined_contribution_pension
+          appointment.has_defined_contribution_pension,
+          appointment.requested_digital.to_s
         ]
       )
     end
