@@ -22,6 +22,7 @@ class AppointmentSummaryCsv
     appointment_type
     has_defined_contribution_pension
     requested_digital
+    created_at
   ).freeze
 
   def initialize(appointments)
@@ -46,6 +47,15 @@ class AppointmentSummaryCsv
       .attributes
       .slice(*ATTRIBUTES)
       .values
-      .map(&:to_s)
+      .map { |value| stringify(value) }
+  end
+
+  def stringify(value)
+    case value
+    when ActiveSupport::TimeWithZone
+      value.getlocal.to_s(:rfc)
+    else
+      value.to_s
+    end
   end
 end

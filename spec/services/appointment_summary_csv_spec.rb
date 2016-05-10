@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentSummaryCsv do
-  let(:appointment) { build_stubbed(:appointment_summary) }
+  let(:appointment) { create(:appointment_summary) }
   let(:separator) { ',' }
 
   subject { described_class.new(appointment).call.lines }
@@ -30,6 +30,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment_type
           has_defined_contribution_pension
           requested_digital
+          created_at
         )
       )
     end
@@ -55,7 +56,8 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.format_preference,
           appointment.appointment_type,
           appointment.has_defined_contribution_pension,
-          appointment.requested_digital.to_s
+          appointment.requested_digital.to_s,
+          appointment.created_at.getlocal.to_s(:rfc)
         ]
       )
     end
