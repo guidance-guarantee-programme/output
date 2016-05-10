@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+require_relative '../../lib/devise_tagged_logging'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -51,6 +53,9 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   config.log_tags = [:uuid]
+
+  # Prepend log lines with the `current_user`
+  config.app_middleware.insert_after(Warden::Manager, DeviseTaggedLogging)
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
