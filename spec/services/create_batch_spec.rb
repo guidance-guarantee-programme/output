@@ -4,23 +4,13 @@ require 'rails_helper'
 RSpec.describe CreateBatch, '#call' do
   subject(:batch) { described_class.new.call }
 
-  def create_appointment_summary
-    AppointmentSummary.create(
-      title: 'Mr', last_name: 'Bloggs', date_of_appointment: Time.zone.today,
-      reference_number: '123', guider_name: 'Jimmy', guider_organisation: 'tpas',
-      address_line_1: '29 Acacia Road', town: 'Beanotown', postcode: 'BT7 3AP',
-      country: 'United Kingdom', has_defined_contribution_pension: 'yes',
-      income_in_retirement: 'pension', format_preference: 'standard',
-      appointment_type: 'standard')
-  end
-
   context 'with no items to be batched' do
     it { is_expected.to be_nil }
     specify { expect { batch }.to_not change { Batch.count } }
   end
 
   context 'with items to be batched' do
-    let!(:appointment_summaries) { Array.new(2) { create_appointment_summary } }
+    let!(:appointment_summaries) { create_list(:appointment_summary, 2) }
 
     it { is_expected.to be_a(Batch) }
     specify { expect(batch.appointment_summaries).to eq(appointment_summaries) }
@@ -28,10 +18,7 @@ RSpec.describe CreateBatch, '#call' do
     context 'with supported appointment summaries' do
       shared_examples 'supported appointment summaries' do |supported_state|
         before do
-          supported = Array.new(2) do
-            create_appointment_summary.tap { |as| as.update_attributes!(supported_state) }
-          end
-
+          supported = create_list(:appointment_summary, 2, supported_state)
           appointment_summaries.concat(supported)
         end
 
@@ -48,10 +35,7 @@ RSpec.describe CreateBatch, '#call' do
     context 'with some unsupported appointment summaries' do
       shared_examples 'ignore unsupported appointment summaries' do |unsupported_state|
         before do
-          unsupported = Array.new(2) do
-            create_appointment_summary.tap { |as| as.update_attributes!(unsupported_state) }
-          end
-
+          unsupported = create_list(:appointment_summary, 2, unsupported_state)
           appointment_summaries.concat(unsupported)
         end
 
