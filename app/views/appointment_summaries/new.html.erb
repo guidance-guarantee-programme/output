@@ -106,6 +106,67 @@
       </fieldset>
     </div>
 
+    <div class="form-group if-no-js-hide">
+      <fieldset>
+        <legend>
+          <span>Is this the callers first appointment?</span>
+        </legend>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag :first_appointment, 'yes',
+                                 f.object.number_of_previous_appointments.zero?,
+                                 class: 't-first-appointment-yes js-first-appointment' %>
+            Yes
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag :first_appointment, 'no',
+                                 f.object.number_of_previous_appointments.positive?,
+                                 class: 't-first-appointment-no js-first-appointment' %>
+            No
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="form-group js-previous-appointments hide-with-js">
+      <fieldset>
+        <legend>
+          <span>Number of previous appointments</span>
+        </legend>
+
+        <div class="radio hide-with-js">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '0',
+                               class: 't-number-of-previous-appointments-0 js-previous-appointment js-previous-appointment-0' %>
+            Zero
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '1',
+                               class: 't-number-of-previous-appointments-1 js-previous-appointment' %>
+            One
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '2',
+                               class: 't-number-of-previous-appointments-2 js-previous-appointment' %>
+            Two
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '3',
+                               class: 't-number-of-previous-appointments-3 js-previous-appointment' %>
+            Three
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
     <h2>Guider details</h2>
 
     <div class="form-group">

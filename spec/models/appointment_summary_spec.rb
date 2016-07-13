@@ -52,6 +52,7 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_presence_of(:country) }
   it { is_expected.to validate_inclusion_of(:country).in_array(Countries.all) }
   it { is_expected.to validate_presence_of(:postcode) }
+  it { is_expected.to validate_inclusion_of(:number_of_previous_appointments).in_range(0..3) }
 
   describe '#country' do
     it "has a default value of #{Countries.uk}" do
@@ -130,29 +131,21 @@ RSpec.describe AppointmentSummary, type: :model do
   describe '.unbatched' do
     subject { described_class.unbatched }
 
-    def create_appointment_summary
-      AppointmentSummary.create(
-        title: 'Mr', last_name: 'Bloggs', date_of_appointment: Time.zone.today,
-        reference_number: '123', guider_name: 'Jimmy', guider_organisation: 'tpas',
-        address_line_1: '29 Acacia Road', town: 'Beanotown', postcode: 'BT7 3AP',
-        has_defined_contribution_pension: 'yes', income_in_retirement: 'pension')
-    end
-
     context 'with no unbatched items' do
-      let!(:appointment_summaries) { Array.new(2) { create_appointment_summary } }
+      let!(:appointment_summaries) { create_list(:appointment_summary, 2) }
       let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries) }
 
       it { is_expected.to be_empty }
     end
 
     context 'with unbatched items' do
-      let!(:appointment_summaries) { Array.new(2) { create_appointment_summary } }
+      let!(:appointment_summaries) { create_list(:appointment_summary, 2) }
 
       it { is_expected.to eq(appointment_summaries) }
     end
 
     context 'with batched and unbatched items' do
-      let!(:appointment_summaries) { Array.new(4) { create_appointment_summary } }
+      let!(:appointment_summaries) { create_list(:appointment_summary, 4) }
       let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries[0..1]) }
 
       it { is_expected.to eq(appointment_summaries[2, 3]) }
