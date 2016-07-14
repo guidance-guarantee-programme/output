@@ -49,8 +49,8 @@ class AppointmentSummaryPage < SitePrism::Page
                                                   one: '.t-number-of-previous-appointments-1',
                                                   two: '.t-number-of-previous-appointments-2',
                                                   three: '.t-number-of-previous-appointments-3'
-
-  element :requested_digital, '.t-requested-digital'
+  radio_buttons :requested_digital, true: '.t-requested-digital',
+                                    false: '.t-requested-postal'
 
   element :supplementary_benefits, '.t-supplementary-benefits'
   element :supplementary_debt, '.t-supplementary-debt'
@@ -152,7 +152,11 @@ class AppointmentSummaryPage < SitePrism::Page
   end
 
   def fill_in_digital_request(appointment_summary)
-    requested_digital.set appointment_summary.requested_digital
+    if appointment_summary.requested_digital
+      requested_digital_true.set true
+    else
+      requested_digital_false.set true
+    end
   end
 
   def fill_in_number_of_previous_appointments(appointment_summary)
