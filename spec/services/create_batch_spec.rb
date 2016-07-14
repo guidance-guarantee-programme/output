@@ -45,6 +45,7 @@ RSpec.describe CreateBatch, '#call' do
       end
 
       include_examples 'ignore unsupported appointment summaries', format_preference: 'braille'
+      include_examples 'ignore unsupported appointment summaries', requested_digital: true
     end
   end
 end
