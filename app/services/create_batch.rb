@@ -2,6 +2,7 @@
 class CreateBatch
   def call
     unbatched_appointment_summaries = AppointmentSummary.unbatched
+                                                        .excluding_digital_by_default
                                                         .where.not(format_preference: 'braille')
 
     return nil if unbatched_appointment_summaries.empty?
