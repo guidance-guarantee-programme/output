@@ -48,14 +48,14 @@ Then(/^the previously captured details are prepopulated$/) do
                    poor_health
                    supplementary_benefits supplementary_debt
                    supplementary_ill_health
-                   supplementary_defined_benefit_pensions
-                   requested_digital)
+                   supplementary_defined_benefit_pensions)
 
   radio_button_groups = %i(income_in_retirement
                            guider_organisation
                            has_defined_contribution_pension
                            format_preference
-                           appointment_type)
+                           appointment_type
+                           requested_digital)
 
   text_fields.each do |field|
     expect(page.public_send(field).value).to eq(@appointment_summary.public_send(field).to_s)
@@ -66,7 +66,7 @@ Then(/^the previously captured details are prepopulated$/) do
   end
 
   radio_button_groups.each do |field|
-    expect(page.public_send(field)).to have_selected_value(@appointment_summary.public_send(field))
+    expect(page.public_send(field)).to have_selected_value(@appointment_summary.public_send(field).to_s)
   end
 
   expect(Time.zone.parse(page.date_of_appointment.value)).to eq(@appointment_summary.date_of_appointment)

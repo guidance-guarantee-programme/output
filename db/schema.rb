@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160715124444) do
     t.boolean  "supplementary_ill_health"
     t.boolean  "supplementary_defined_benefit_pensions"
     t.string   "appointment_type"
-    t.boolean  "requested_digital",                                default: false,            null: false
+    t.boolean  "requested_digital",                                default: true,             null: false
     t.integer  "number_of_previous_appointments",                  default: 0,                null: false
     t.integer  "count_of_pension_pots"
   end
