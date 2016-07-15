@@ -233,24 +233,36 @@
 
     <div class="display_if_eligible">
       <div class="row">
-        <div class="col-md-8" id="col-pension-pot-value">
+        <div class="col-md-4" id="col-pension-pot-value">
           <div class="form-group form-inline">
             <%= f.label :value_of_pension_pots do %>
               Value of pension pots
               <span class="input-help">Only use numbers, don't include pence, eg 27500</span>
-            <% end %><br />
+            <% end %>
             £ <%= f.text_field :value_of_pension_pots, placeholder: 27500,
                                class: %w(form-control t-value-of-pension-pots input-md-2 js-numbers-only) %>
 
             <span class="display_if_range">
+              <br />
               to
+              <br />
               <%= f.label :upper_value_of_pension_pots do %>
                 <span class="visuallyhidden">Upper value of pension pots (optional) Only use numbers, don't include pence, eg 30000</span>
               <% end %>
               £ <%= f.text_field :upper_value_of_pension_pots, placeholder: 30000,
                                class: %w(form-control input-md-2 js-numbers-only t-upper-value-of-pension-pots) %>
               <span class="hide-with-js"> (optional)</span>
-          </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :count_of_pension_pots do %>
+              How many pension pots does the caller have?
+              <span class="input-help">Only use numbers</span>
+            <% end %>
+            <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only t-count-of-pension-pots) %>
           </div>
         </div>
       </div>
@@ -471,7 +483,7 @@
 </script>
 
 <script type="text/html" id="pension-pot-accuracy">
-  <div class="col-md-3 col-accuracy">
+  <div class="col-md-4 col-accuracy">
     <div class="form-group">
       <fieldset>
         <legend>

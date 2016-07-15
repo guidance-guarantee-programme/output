@@ -40,7 +40,8 @@ module Fixtures
         supplementary_ill_health: true,
         supplementary_defined_benefit_pensions: true,
         requested_digital: false,
-        number_of_previous_appointments: 0
+        number_of_previous_appointments: 0,
+        count_of_pension_pots: 1
       )
     end,
 
