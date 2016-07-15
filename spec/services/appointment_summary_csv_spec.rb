@@ -13,7 +13,10 @@ RSpec.describe AppointmentSummaryCsv do
         %w(
           id
           date_of_appointment
+          value_of_pension_pots_is_approximate
+          count_of_pension_pots
           value_of_pension_pots
+          upper_value_of_pension_pots
           guider_name
           reference_number
           address_line_1
@@ -29,18 +32,35 @@ RSpec.describe AppointmentSummaryCsv do
           format_preference
           appointment_type
           has_defined_contribution_pension
+          supplementary_benefits
+          supplementary_debt
+          supplementary_ill_health
+          supplementary_defined_benefit_pensions
+          income_in_retirement
+          continue_working
+          unsure
+          leave_inheritance
+          wants_flexibility
+          wants_security
+          wants_lump_sum
+          poor_health
+          guider_organisation
           requested_digital
+          number_of_previous_appointments
           created_at
         )
       )
     end
 
     it 'generates correctly mapped rows' do
-      expect(subject.last.chomp.split(separator)).to match_array(
+      expect(subject.last.chomp.split(separator)).to eq(
         [
           appointment.to_param,
           appointment.date_of_appointment.to_s,
+          appointment.value_of_pension_pots_is_approximate.to_s,
+          appointment.count_of_pension_pots.to_s,
           appointment.value_of_pension_pots.to_s,
+          appointment.upper_value_of_pension_pots.to_s,
           appointment.guider_name,
           appointment.reference_number,
           appointment.address_line_1,
@@ -55,8 +75,22 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.last_name,
           appointment.format_preference,
           appointment.appointment_type,
-          appointment.has_defined_contribution_pension,
+          appointment.has_defined_contribution_pension.to_s,
+          appointment.supplementary_benefits.to_s,
+          appointment.supplementary_debt.to_s,
+          appointment.supplementary_ill_health.to_s,
+          appointment.supplementary_defined_benefit_pensions.to_s,
+          appointment.income_in_retirement,
+          appointment.continue_working.to_s,
+          appointment.unsure.to_s,
+          appointment.leave_inheritance.to_s,
+          appointment.wants_flexibility.to_s,
+          appointment.wants_security.to_s,
+          appointment.wants_lump_sum.to_s,
+          appointment.poor_health.to_s,
+          appointment.guider_organisation,
           appointment.requested_digital.to_s,
+          appointment.number_of_previous_appointments.to_s,
           appointment.created_at.getlocal.to_s(:rfc)
         ]
       )
