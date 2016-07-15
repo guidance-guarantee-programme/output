@@ -22,6 +22,7 @@ class AppointmentSummaryPage < SitePrism::Page
   element :value_of_pension_pots, '.t-value-of-pension-pots'
   element :upper_value_of_pension_pots, '.t-upper-value-of-pension-pots'
   element :value_of_pension_pots_is_approximate, '.t-value-of-pension-pots-is-approximate'
+  element :count_of_pension_pots, '.t-count-of-pension-pots'
   radio_buttons :income_in_retirement, pension: '.t-income-in-retirement-pension',
                                        other: '.t-income-in-retirement-other'
   element :guider_name, '.t-guider-name'
@@ -106,6 +107,7 @@ class AppointmentSummaryPage < SitePrism::Page
     value_of_pension_pots.set appointment_summary.value_of_pension_pots
     upper_value_of_pension_pots.set appointment_summary.upper_value_of_pension_pots
     value_of_pension_pots_is_approximate.set appointment_summary.value_of_pension_pots_is_approximate?
+    count_of_pension_pots.set appointment_summary.count_of_pension_pots
   end
 
   def fill_in_income_in_retirement_details(appointment_summary)
