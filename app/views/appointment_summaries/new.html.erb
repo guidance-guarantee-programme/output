@@ -253,6 +253,8 @@
                                class: %w(form-control input-md-2 js-numbers-only t-upper-value-of-pension-pots) %>
               <span class="hide-with-js"> (optional)</span>
             </span>
+
+            <div class="js-error-message error"></div>
           </div>
         </div>
 
@@ -263,6 +265,7 @@
               <span class="input-help">Only use numbers</span>
             <% end %>
             <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only t-count-of-pension-pots) %>
+            <div class="js-error-message error"></div>
           </div>
         </div>
       </div>
@@ -516,10 +519,6 @@
       </fieldset>
     </div>
   </div>
-</script>
-
-<script type="text/html" id="pension-pot-input-error">
-  <span id="errmsg" class="error"></span>
 </script>
 
 <% content_for :body_end do %>
