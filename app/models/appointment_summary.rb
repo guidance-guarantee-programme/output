@@ -3,9 +3,20 @@ require 'json'
 require 'uri'
 
 class AppointmentSummary < ActiveRecord::Base
+  DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
+
   scope :unbatched, lambda {
     includes(:appointment_summaries_batches)
       .where(appointment_summaries_batches: { appointment_summary_id: nil })
+  }
+  scope :excluding_digital_by_default, lambda {
+    where(
+      %(
+        appointment_summaries.requested_digital IS FALSE
+        OR appointment_summaries.date_of_appointment < ?
+      ),
+      DIGITAL_BY_DEFAULT_START_DATE
+    )
   }
 
   def postcode=(str)
@@ -61,6 +72,7 @@ class AppointmentSummary < ActiveRecord::Base
 
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
   validates :appointment_type, inclusion: { in: %w(standard 50_54) }
+  validates :number_of_previous_appointments, inclusion: { in: 0..3 }
 
   def format_preference
     super || 'standard'

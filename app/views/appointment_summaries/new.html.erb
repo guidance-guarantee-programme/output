@@ -106,6 +106,67 @@
       </fieldset>
     </div>
 
+    <div class="form-group if-no-js-hide">
+      <fieldset>
+        <legend>
+          <span>Is this the callers first appointment?</span>
+        </legend>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag :first_appointment, 'yes',
+                                 f.object.number_of_previous_appointments.zero?,
+                                 class: 't-first-appointment-yes js-first-appointment' %>
+            Yes
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= radio_button_tag :first_appointment, 'no',
+                                 f.object.number_of_previous_appointments.positive?,
+                                 class: 't-first-appointment-no js-first-appointment' %>
+            No
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="form-group js-previous-appointments hide-with-js">
+      <fieldset>
+        <legend>
+          <span>Number of previous appointments</span>
+        </legend>
+
+        <div class="radio hide-with-js">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '0',
+                               class: 't-number-of-previous-appointments-0 js-previous-appointment js-previous-appointment-0' %>
+            Zero
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '1',
+                               class: 't-number-of-previous-appointments-1 js-previous-appointment js-previous-appointment-1' %>
+            One
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '2',
+                               class: 't-number-of-previous-appointments-2 js-previous-appointment' %>
+            Two
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :number_of_previous_appointments, '3',
+                               class: 't-number-of-previous-appointments-3 js-previous-appointment' %>
+            Three
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
     <h2>Guider details</h2>
 
     <div class="form-group">
@@ -172,24 +233,39 @@
 
     <div class="display_if_eligible">
       <div class="row">
-        <div class="col-md-8" id="col-pension-pot-value">
+        <div class="col-md-4" id="col-pension-pot-value">
           <div class="form-group form-inline">
             <%= f.label :value_of_pension_pots do %>
               Value of pension pots
               <span class="input-help">Only use numbers, don't include pence, eg 27500</span>
-            <% end %><br />
+            <% end %>
             £ <%= f.text_field :value_of_pension_pots, placeholder: 27500,
                                class: %w(form-control t-value-of-pension-pots input-md-2 js-numbers-only) %>
 
             <span class="display_if_range">
+              <br />
               to
+              <br />
               <%= f.label :upper_value_of_pension_pots do %>
                 <span class="visuallyhidden">Upper value of pension pots (optional) Only use numbers, don't include pence, eg 30000</span>
               <% end %>
               £ <%= f.text_field :upper_value_of_pension_pots, placeholder: 30000,
                                class: %w(form-control input-md-2 js-numbers-only t-upper-value-of-pension-pots) %>
               <span class="hide-with-js"> (optional)</span>
-          </span>
+            </span>
+
+            <div class="js-error-message error"></div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :count_of_pension_pots do %>
+              How many pension pots does the caller have?
+              <span class="input-help">Only use numbers</span>
+            <% end %>
+            <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only js-pot-count t-count-of-pension-pots) %>
+            <div class="js-error-message error"></div>
           </div>
         </div>
       </div>
@@ -362,14 +438,22 @@
     <div class="form-group">
       <fieldset>
         <legend>
-          <span>Digital version?</span>
+          <span>Delivery method</span>
         </legend>
 
-        <div class="checkbox">
-          <%= f.label :requested_digital do %>
-            <%= f.check_box :requested_digital, class: 't-requested-digital' %>
-            Yes, the caller wants a digital summary document as well as a hard copy
-          <% end %>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :requested_digital, 'true',
+                               class: 't-requested-digital' %>
+            Digital
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <%= f.radio_button :requested_digital, 'false',
+                               class: 't-requested-postal' %>
+            Post
+          </label>
         </div>
       </fieldset>
     </div>
@@ -402,7 +486,7 @@
 </script>
 
 <script type="text/html" id="pension-pot-accuracy">
-  <div class="col-md-3 col-accuracy">
+  <div class="col-md-4 col-accuracy">
     <div class="form-group">
       <fieldset>
         <legend>
@@ -410,7 +494,7 @@
         </legend>
         <div class="radio">
           <label for="appointment_summary_accuracy_1">
-            <input checked="checked" type="radio" value="exact" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_1" />
+            <input type="radio" value="exact" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_1" />
             Exact
           </label>
         </div>
@@ -435,10 +519,6 @@
       </fieldset>
     </div>
   </div>
-</script>
-
-<script type="text/html" id="pension-pot-input-error">
-  <span id="errmsg" class="error"></span>
 </script>
 
 <% content_for :body_end do %>

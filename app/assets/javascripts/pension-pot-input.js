@@ -19,6 +19,8 @@
       this.$inputs = $('.js-numbers-only');
       this.$input1 = $('#appointment_summary_value_of_pension_pots');
       this.$input2 = $('#appointment_summary_upper_value_of_pension_pots');
+      this.$potCountInput = $('.js-pot-count');
+      this.$accuracyInput = $('input[name="appointment_summary[accuracy]"]');
     },
     subscribe: function () {
       var that = this;
@@ -36,6 +38,7 @@
           that.$input1.trigger('keyup');
           that.$input2.val('');
           that.$input2.trigger('keyup');
+          that.$potCountInput.val('').trigger('keyup');
         }
       });
 
@@ -45,6 +48,8 @@
           that.$input1.trigger('keyup');
           that.$input2.val('');
           that.$input2.trigger('keyup');
+          that.$potCountInput.val('').trigger('keyup');
+          that.$accuracyInput.prop('checked', false);
         }
       });
     },
@@ -53,7 +58,8 @@
         //if the letter is not digit then display error and don't type anything
         if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
           //display error message
-          $('#errmsg').html('Only use numbers').show().fadeOut('slow');
+          var error_input = $(e.target).parents('.form-group').find('.js-error-message');
+          error_input.html('Only use numbers').show().attr('aria-live', 'polite').fadeOut('slow');
           return false;
         }
       });

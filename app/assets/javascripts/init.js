@@ -1,6 +1,7 @@
 $(function () {
   'use strict';
 
+  PWO.additionalAppointment.init();
   PWO.consent.init();
   PWO.eligibility.init();
   PWO.pensionPotAccuracy.init();
