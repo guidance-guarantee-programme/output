@@ -264,7 +264,7 @@
               How many pension pots does the caller have?
               <span class="input-help">Only use numbers</span>
             <% end %>
-            <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only t-count-of-pension-pots) %>
+            <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only js-pot-count t-count-of-pension-pots) %>
             <div class="js-error-message error"></div>
           </div>
         </div>
@@ -494,7 +494,7 @@
         </legend>
         <div class="radio">
           <label for="appointment_summary_accuracy_1">
-            <input checked="checked" type="radio" value="exact" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_1" />
+            <input type="radio" value="exact" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_1" />
             Exact
           </label>
         </div>
