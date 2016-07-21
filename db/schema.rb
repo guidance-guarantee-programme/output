@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715124444) do
+ActiveRecord::Schema.define(version: 20160721095104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20160715124444) do
     t.boolean  "requested_digital",                                default: true,             null: false
     t.integer  "number_of_previous_appointments",                  default: 0,                null: false
     t.integer  "count_of_pension_pots"
+    t.string   "email",                                            default: ""
+    t.string   "notification_id",                                  default: ""
   end
 
   add_index "appointment_summaries", ["user_id"], name: "index_appointment_summaries_on_user_id", using: :btree
