@@ -24,6 +24,7 @@ class AppointmentSummariesController < ApplicationController
   def create
     @appointment_summary = AppointmentSummary.create(appointment_summary_params.merge(user: current_user))
     if @appointment_summary.persisted?
+      NotifyViaEmail.perform_later(@appointment_summary) if @appointment_summary.can_be_emailed?
       render :create
     else
       render :new

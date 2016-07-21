@@ -95,6 +95,10 @@ class AppointmentSummary < ActiveRecord::Base
     %w(yes unknown).include?(has_defined_contribution_pension)
   end
 
+  def can_be_emailed?
+    requested_digital? && email.present?
+  end
+
   private
 
   def uk_address?
