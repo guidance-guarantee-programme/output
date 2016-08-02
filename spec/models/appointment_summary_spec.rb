@@ -54,6 +54,24 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_presence_of(:postcode) }
   it { is_expected.to validate_inclusion_of(:number_of_previous_appointments).in_range(0..3) }
 
+  shared_examples 'it is a valid email' do
+    it { is_expected.to allow_value('fred.jones@pensionwise.gov.uk').for(:email) }
+    it { is_expected.not_to allow_value('fred.jones').for(:email) }
+    it { is_expected.not_to allow_value('fred@no-extension').for(:email) }
+    it { is_expected.not_to allow_value('  fred@spaced.com  ').for(:email) }
+    it { is_expected.to allow_value('').for(:email) }
+  end
+
+  context 'requested_digital is true' do
+    before { subject.requested_digital = true }
+    include_examples 'it is a valid email'
+  end
+
+  context 'requested_digital is false' do
+    before { subject.requested_digital = false }
+    include_examples 'it is a valid email'
+  end
+
   describe '#country' do
     it "has a default value of #{Countries.uk}" do
       expect(subject.country).to eq(Countries.uk)

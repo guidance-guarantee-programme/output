@@ -41,7 +41,8 @@ module Fixtures
         supplementary_defined_benefit_pensions: true,
         requested_digital: false,
         number_of_previous_appointments: 0,
-        count_of_pension_pots: 1
+        count_of_pension_pots: 1,
+        email: 'joe@bloggs.com'
       )
     end,
 

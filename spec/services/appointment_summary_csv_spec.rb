@@ -48,12 +48,14 @@ RSpec.describe AppointmentSummaryCsv do
           requested_digital
           number_of_previous_appointments
           created_at
+          email
+          notification_id
         )
       )
     end
 
     it 'generates correctly mapped rows' do
-      expect(subject.last.chomp.split(separator)).to eq(
+      expect(subject.last.chomp.split(separator, -1)).to eq(
         [
           appointment.to_param,
           appointment.date_of_appointment.to_s,
@@ -91,9 +93,15 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.guider_organisation,
           appointment.requested_digital.to_s,
           appointment.number_of_previous_appointments.to_s,
-          appointment.created_at.getlocal.to_s(:rfc)
+          appointment.created_at.getlocal.to_s(:rfc),
+          appointment.email,
+          quote_empty_string(appointment.notification_id)
         ]
       )
+    end
+
+    def quote_empty_string(value)
+      value == '' ? '""' : value
     end
   end
 end

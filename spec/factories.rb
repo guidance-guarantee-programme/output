@@ -35,5 +35,6 @@ FactoryGirl.define do
     appointment_type 'standard'
     number_of_previous_appointments 0
     requested_digital false
+    email 'joe@bloggs.com'
   end
 end

@@ -39,6 +39,8 @@ class AppointmentSummaryCsv < CsvGenerator
       requested_digital
       number_of_previous_appointments
       created_at
+      email
+      notification_id
     ).freeze
   end
 

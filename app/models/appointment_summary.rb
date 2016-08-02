@@ -4,6 +4,10 @@ require 'uri'
 
 class AppointmentSummary < ActiveRecord::Base
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
+  EMAIL_REGEXP = Regexp.union(
+    /\A[^\s][^@]+@([^@\.]+\.)+[^@\.]+[^\s]\z/,
+    /\A\z/
+  )
 
   scope :unbatched, lambda {
     includes(:appointment_summaries_batches)
@@ -73,6 +77,11 @@ class AppointmentSummary < ActiveRecord::Base
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
   validates :appointment_type, inclusion: { in: %w(standard 50_54) }
   validates :number_of_previous_appointments, inclusion: { in: 0..3 }
+  validates :email, format: EMAIL_REGEXP
+
+  def self.editable_column_names
+    column_names - %w(id created_at updated_at user_id notification_id)
+  end
 
   def format_preference
     super || 'standard'
@@ -84,6 +93,10 @@ class AppointmentSummary < ActiveRecord::Base
 
   def eligible_for_guidance?
     %w(yes unknown).include?(has_defined_contribution_pension)
+  end
+
+  def can_be_emailed?
+    requested_digital? && email.present?
   end
 
   private
