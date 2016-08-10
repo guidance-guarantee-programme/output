@@ -3,6 +3,10 @@
 <div class="well">
   <%= form_for @appointment_form, url: admin_appointment_summaries_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
     <div class="form-group">
+      <%= f.label :search_string, 'Search', class: 'inline' %>
+      <%= f.text_field :search_string, class: 'form-control t-search', placeholder: 'Surname or Reference' %>
+    </div>
+    <div class="form-group">
       <%= f.label :start_date, 'From', class: 'inline' %>
       <%= f.text_field :start_date, class: 'form-control t-start', placeholder: 'dd/mm/yyyy' %>
     </div>
@@ -16,6 +20,7 @@
   <%= form_for @appointment_form, url: admin_appointment_summaries_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
     <%= f.hidden_field :start_date %>
     <%= f.hidden_field :end_date %>
+    <%= f.hidden_field :search_string %>
     <%= f.submit 'Export CSV', class: 'btn btn-default t-export' %>
   <% end %>
 </div>
@@ -28,7 +33,9 @@
       <th scope="col">Reference</th>
       <th scope="col">Guider</th>
       <th scope="col">Customer</th>
-      <th scope="col">Appointment Date</th>
+      <th scope="col">Appointment<br>Date</th>
+      <th scope="col">Requested<br>Digital</th>
+      <th scope="col">Email</th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +45,8 @@
         <td><%= summary.guider_name %></td>
         <td><%= "#{summary.title} #{summary.first_name} #{summary.last_name}" %></td>
         <td><%= summary.date_of_appointment.to_s(:gov_uk) %></td>
+        <td><%= summary.requested_digital ? 'Yes' : 'No' %></td>
+        <td><%= summary.email %></td>
       </tr>
     <% end %>
   </tbody>

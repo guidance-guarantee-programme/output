@@ -16,9 +16,10 @@ module Admin
 
     def form_params
       {
-        page:       params[:page],
-        start_date: params.dig(:appointment_summary_browser, :start_date),
-        end_date:   params.dig(:appointment_summary_browser, :end_date)
+        page:          params[:page],
+        start_date:    params.dig(:appointment_summary_browser, :start_date),
+        end_date:      params.dig(:appointment_summary_browser, :end_date),
+        search_string: params.dig(:appointment_summary_browser, :search_string)
       }
     end
 
