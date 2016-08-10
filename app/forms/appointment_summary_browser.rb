@@ -39,7 +39,7 @@ class AppointmentSummaryBrowser
     return scope unless @search_string.present?
 
     scope.where(
-      %(appointment_summaries.last_name ilike ? OR appointment_summaries.reference_number = ?),
+      'appointment_summaries.last_name ilike ? OR appointment_summaries.reference_number = ?',
       "%#{@search_string}%",
       @search_string
     )

@@ -25,7 +25,7 @@ RSpec.describe AppointmentSummaryBrowser do
     context 'with search string filter for reference_number' do
       let(:search_string) { '123456' }
 
-      it 'can match against the customer last_name' do
+      it 'matches exact values' do
         last_name = create(:appointment_summary, reference_number: search_string)
         create(:appointment_summary, reference_number: '654321')
 
