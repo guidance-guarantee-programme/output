@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alphagov/notifications-ruby-client.git
-  revision: b2477aeb148003b88c2db0f69d62c60c244f56b5
+  revision: 17a638cfff93201254ae58e67a7b071537c8a32d
   specs:
     notifications-ruby-client (0.0.1)
       jwt (~> 1.5)
@@ -348,5 +348,8 @@ DEPENDENCIES
   uk_postcode
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.5
