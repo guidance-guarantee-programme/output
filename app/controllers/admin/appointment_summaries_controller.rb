@@ -12,6 +12,21 @@ module Admin
       end
     end
 
+    def edit
+      @appointment_summary = AppointmentSummary.find(params[:id])
+    end
+
+    def update
+      @appointment_summary = AppointmentSummary.find(params[:id])
+
+      if @appointment_summary.update(appointment_summary_params)
+        NotifyViaEmail.perform_later(@appointment_summary) if @appointment_summary.can_be_emailed?
+        redirect_to admin_appointment_summaries_path
+      else
+        render :edit
+      end
+    end
+
     private
 
     def form_params
@@ -27,6 +42,11 @@ module Admin
       authenticate_user!
 
       redirect_to :root unless current_user.admin?
+    end
+
+    def appointment_summary_params
+      params.require(:appointment_summary)
+            .permit(:email)
     end
   end
 end

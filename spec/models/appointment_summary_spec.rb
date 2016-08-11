@@ -169,4 +169,27 @@ RSpec.describe AppointmentSummary, type: :model do
       it { is_expected.to eq(appointment_summaries[2, 3]) }
     end
   end
+
+  context 'notification ID' do
+    subject { create(:appointment_summary, requested_digital: true, email: 'test@test.com') }
+    before { subject.update(notification_id: '123') }
+
+    it 'resets the notification ID if the email changes' do
+      expect do
+        subject.update(email: 'new@test.com')
+      end.to change { subject.notification_id }.from('123').to('')
+    end
+
+    it 'does not reset the notification ID if the email address stays the same' do
+      expect do
+        subject.update(email: subject.email)
+      end.not_to change { subject.notification_id }
+    end
+
+    it 'does not reset the notification ID if fields other than the email address are changed' do
+      expect do
+        subject.update(last_name: 'new_name')
+      end.not_to change { subject.notification_id }
+    end
+  end
 end

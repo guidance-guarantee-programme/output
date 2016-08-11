@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :appointment_summaries, only: :index
+    resources :appointment_summaries, only: [:index, :edit, :update]
   end
 
   mount Sidekiq::Web => '/sidekiq'

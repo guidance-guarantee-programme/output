@@ -14,7 +14,7 @@
       <%= f.label :end_date, 'To', class: 'inline' %>
       <%= f.text_field :end_date, class: 'form-control t-end', placeholder: 'dd/mm/yyyy' %>
     </div>
-    <%= f.submit 'Search', class: 'btn btn-default' %>
+    <%= f.submit 'Search', class: 'btn btn-default t-search-button' %>
   <% end %>
 
   <%= form_for @appointment_form, url: admin_appointment_summaries_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
@@ -36,6 +36,7 @@
       <th scope="col">Appointment<br>Date</th>
       <th scope="col">Requested<br>Digital</th>
       <th scope="col">Email</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -47,6 +48,11 @@
         <td><%= summary.date_of_appointment.to_s(:gov_uk) %></td>
         <td><%= summary.requested_digital ? 'Yes' : 'No' %></td>
         <td><%= summary.email %></td>
+        <td>
+          <% if summary.requested_digital? %>
+            <%= link_to 'Edit email', edit_admin_appointment_summary_path(summary), class: 't-edit-email' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
