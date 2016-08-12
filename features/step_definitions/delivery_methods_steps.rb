@@ -5,8 +5,29 @@ Given(/^the customer requested a (.*) appointment summary$/) do |delivery_method
   end
 end
 
+Given(/^the customer failed to receive an email notification due to an incorrect email address$/) do
+  @appointment_summary = create(:appointment_summary, email: 'incorrect@email.com', requested_digital: true)
+end
+
 When(/^I create their summary document$/) do
   step('I create their record of guidance')
+end
+
+When(/^I update their email address$/) do
+  @updated_email = 'correct@email.com'
+
+  page = AppointmentSummaryBrowserPage.new
+  page.load
+
+  page.search_input.set @appointment_summary.last_name
+  page.search_button.click
+
+  page.appointments.first.edit_email.click
+
+  page = AppointmentSummaryEditPage.new
+  page.email.set @updated_email
+
+  page.save_and_resend_email.click
 end
 
 Then(/^we should know that the customer requested a (.*) version$/) do |delivery_method|

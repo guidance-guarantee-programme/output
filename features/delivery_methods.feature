@@ -12,7 +12,3 @@ Feature: Summary Document delivery methods
       | digital         |
       | postal          |
 
-  Scenario: Email notification of summary document location
-    Given the customer requested a digital appointment summary
-    When I create their summary document
-    Then the customer should be notified by email
