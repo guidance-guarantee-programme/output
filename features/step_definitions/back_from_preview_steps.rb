@@ -6,6 +6,9 @@ Given(/^appointment details are captured$/) do
   page.load
   page.fill_in(@appointment_summary)
   page.submit.click
+
+  email_confirmation_page = EmailConfirmationPage.new
+  email_confirmation_page.confirm.click
 end
 
 Given(/^I'm on the preview page$/) do
