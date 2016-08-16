@@ -17,8 +17,13 @@ class AppointmentSummariesController < ApplicationController
     if @appointment_summary.valid?
       @output_document = OutputDocument.new(@appointment_summary)
     else
-      render :new
+      render :email_confirmation
     end
+  end
+
+  def email_confirmation
+    @appointment_summary = AppointmentSummary.new(appointment_summary_params)
+    render :new unless @appointment_summary.valid?
   end
 
   def create

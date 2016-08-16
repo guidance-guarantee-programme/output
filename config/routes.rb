@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :appointment_summaries, only: %i(new create) do
     post :preview, on: :collection
+    post :email_confirmation, on: :collection
   end
 
   scope path: 'styleguide', controller: 'styleguide' do
