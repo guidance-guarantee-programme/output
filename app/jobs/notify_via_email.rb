@@ -12,7 +12,7 @@ class NotifyViaEmail < ActiveJob::Base
     response = notify(
       service_id: config.service_id,
       secret_id: config.secret_id,
-      notification: notification(appointment_summary, config)
+      notification: notification(appointment_summary, template_id(appointment_summary, config))
     )
 
     appointment_summary.update_attributes(notification_id: response.id)
@@ -23,10 +23,10 @@ class NotifyViaEmail < ActiveJob::Base
     client.send_email(notification.to_json)
   end
 
-  def notification(appointment_summary, config)
+  def notification(appointment_summary, template_id)
     {
       to: appointment_summary.email,
-      template: config.appointment_summary_template_id,
+      template: template_id,
       personalisation: {
         reference_number: appointment_summary.reference_number,
         title: appointment_summary.title,
@@ -35,5 +35,9 @@ class NotifyViaEmail < ActiveJob::Base
         date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long)
       }
     }
+  end
+
+  def template_id(appointment_summary, config)
+    appointment_summary.eligible_for_guidance? ? config.appointment_summary_template_id : config.ineligible_template_id
   end
 end
