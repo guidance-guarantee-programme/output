@@ -5,6 +5,8 @@ Date::DATE_FORMATS[:pw_date_long] = '%A, %-d %B %Y'
 
 Date::DATE_FORMATS[:gov_uk] = '%-d %B %Y'
 
+Time::DATE_FORMATS[:govuk_date] = '%-I:%M%P, %-e %B %Y'
+
 default = { default: '%d/%m/%Y' }
 Time::DATE_FORMATS.merge!(default)
 Date::DATE_FORMATS.merge!(default)

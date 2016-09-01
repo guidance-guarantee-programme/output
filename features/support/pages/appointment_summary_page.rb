@@ -6,6 +6,7 @@ class AppointmentSummaryPage < SitePrism::Page
   extend SitePrism::RadioButtonContainer
 
   set_url '/appointment_summaries/new'
+  set_url_matcher %r{/appointment_summaries/new}
 
   element :title, '.t-title'
   element :first_name, '.t-first-name'

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :appointment_summaries, only: %i(new create) do
+  resources :appointment_summaries, only: %i(index new create) do
     post :preview, on: :collection
     post :email_confirmation, on: :collection
   end

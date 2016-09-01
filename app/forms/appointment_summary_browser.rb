@@ -14,9 +14,7 @@ class AppointmentSummaryBrowser
   def results
     text_filter(
       date_filter(
-        AppointmentSummary
-          .includes(:user)
-          .order(date_of_appointment: :desc)
+        AppointmentSummary.order(date_of_appointment: :desc)
       )
     )
   end

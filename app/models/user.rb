@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    role == ADMIN
+    [ADMIN].include?(role)
   end
 
   def team_leader?
-    role == TEAM_LEADER
+    [ADMIN, TEAM_LEADER].include?(role)
   end
 
   def toggle_role(role_to_toggle)
