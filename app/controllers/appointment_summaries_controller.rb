@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 class AppointmentSummariesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
+  before_action :authenticate_team_leader!, only: :index
+
+  def index
+    form_params = { search_string: params.dig(:appointment_summary_finder, :search_string) }
+
+    @appointment_form = AppointmentSummaryFinder.new(form_params)
+  end
 
   def new
     prepopulated_fields = { guider_name: current_user.first_name,
@@ -47,5 +54,11 @@ class AppointmentSummariesController < ApplicationController
 
   def appointment_summary_params
     params.require(:appointment_summary).permit(AppointmentSummary.editable_column_names)
+  end
+
+  def authenticate_team_leader!
+    authenticate_user!
+
+    redirect_to :root unless current_user.team_leader?
   end
 end

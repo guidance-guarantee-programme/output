@@ -5,10 +5,14 @@ FactoryGirl.define do
     password 'password'
     first_name 'Rick'
     last_name 'Sanchez'
-    admin false
+    role ''
 
     factory :admin do
-      admin true
+      role User::ADMIN
+    end
+
+    factory :team_leader do
+      role User::TEAM_LEADER
     end
   end
 

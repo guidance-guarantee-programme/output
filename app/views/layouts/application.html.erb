@@ -26,6 +26,19 @@
       <%= link_to 'Change password', edit_user_registration_path %>
     </div>
   <% end %>
+
+  <% if current_user.team_leader? %>
+    <% content_for :navbar_items do %>
+      <li>
+        <%= link_to 'Regenerate', appointment_summaries_path %>
+      </li>
+      <% if current_user.admin? %>
+        <li>
+          <%= link_to 'Reporting', admin_appointment_summaries_path %>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <% content_for(:content) do %>
