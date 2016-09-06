@@ -34,12 +34,12 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def create
-    @appointment_summary = AppointmentSummary.create(appointment_summary_params.merge(user: current_user))
-    if @appointment_summary.persisted?
-      NotifyViaEmail.perform_later(@appointment_summary) if @appointment_summary.can_be_emailed?
-      render :create
-    else
-      render :new
+    @appointment_summary = AppointmentSummary.create!(appointment_summary_params.merge(user: current_user))
+    NotifyViaEmail.perform_later(@appointment_summary) if @appointment_summary.can_be_emailed?
+
+    respond_to do |format|
+      format.html { redirect_to done_appointment_summaries_path }
+      format.json { render json: ajax_reponse_paths(@appointment_summary) }
     end
   end
 
@@ -47,7 +47,15 @@ class AppointmentSummariesController < ApplicationController
     appointment_summary = AppointmentSummary.find(params[:id])
     output_document = OutputDocument.new(appointment_summary)
 
-    render html: output_document.html.html_safe
+    send_data output_document.pdf,
+              filename: 'pension_wise.pdf', type: 'application/pdf',
+              disposition: :inline
+  end
+
+  def done
+  end
+
+  def generate
   end
 
   private
@@ -60,5 +68,12 @@ class AppointmentSummariesController < ApplicationController
     authenticate_user!
 
     redirect_to :root unless current_user.team_leader?
+  end
+
+  def ajax_reponse_paths(appointment_summary)
+    {
+      done_path: done_appointment_summaries_path,
+      pdf_path: appointment_summary_path(appointment_summary, format: 'pdf')
+    }
   end
 end

@@ -11,8 +11,29 @@
                  submit_button_text: 'Edit', submit_button_classes: %w(btn-success t-back) %>
     </div>
     <div class="col-xs-6 fixed-bar__submit">
-      <%= render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
-                 submit_button_text: 'Send', submit_button_classes: %w(btn-danger t-confirm) %>
+      <%=
+        submit_button_classes = %w(btn-danger t-confirm)
+        submit_button_classes << 'js-save-and-open' unless @appointment_summary.requested_digital?
+        render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
+               submit_button_text: 'Send', submit_button_classes: submit_button_classes
+      %>
     </div>
   </div>
 </div>
+
+<script>
+  $(".js-save-and-open").click(function(){
+    var w = window.open('<%= generate_appointment_summaries_path %>');
+    $.ajax({
+      method: 'POST',
+      url: '<%= appointment_summaries_path(format: 'json') %>',
+      data: $(this.form).serialize(),
+      success: function( data )
+      {
+        w.location = data.pdf_path;
+        window.location = data.done_path;
+      }
+    });
+    return false;
+  });
+</script>

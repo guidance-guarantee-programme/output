@@ -77,6 +77,10 @@ class OutputDocument
     HTMLRenderer.new(self).render
   end
 
+  def pdf
+    Princely.new.pdf_from_string(html)
+  end
+
   private
 
   def to_currency(number)

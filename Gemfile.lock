@@ -169,6 +169,7 @@ GEM
       ast (~> 2.2)
     pg (0.18.1)
     powerpack (0.1.1)
+    princely (1.4.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -330,6 +331,7 @@ DEPENDENCIES
   notifications-ruby-client!
   output-templates (~> 4.0.0)!
   pg
+  princely
   pry-rails
   puma
   rails (= 4.2.6)
