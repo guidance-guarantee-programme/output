@@ -1,39 +1,42 @@
 <div class="confirm">
-  <p class="highlight highlight-orange">Check the details below and click Submit if they're correct</p>
+  <p class="highlight highlight-orange">Check the customer details below and edit or submit</p>
 </div>
 
-<%= @output_document.html.html_safe %>
+<div class="l-summary-document">
+  <%= @output_document.html.html_safe %>
+</div>
 
 <div class="fixed-bar">
   <div class="row">
     <div class="col-xs-6 fixed-bar__back">
       <%= render 'preview_form', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
-                 submit_button_text: 'Edit', submit_button_classes: %w(btn-success t-back) %>
+                 submit_button_text: 'Edit', submit_button_classes: %w(btn-danger t-back) %>
     </div>
     <div class="col-xs-6 fixed-bar__submit">
       <%=
-        submit_button_classes = %w(btn-danger t-confirm)
+        submit_button_classes = %w(btn-success t-confirm)
         submit_button_classes << 'js-save-and-open' unless @appointment_summary.requested_digital?
         render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
-               submit_button_text: 'Send', submit_button_classes: submit_button_classes
+               submit_button_text: 'Submit', submit_button_classes: submit_button_classes
       %>
     </div>
   </div>
 </div>
 
 <script>
-  $(".js-save-and-open").click(function(){
-    var w = window.open('<%= generate_appointment_summaries_path %>');
-    $.ajax({
-      method: 'POST',
-      url: '<%= appointment_summaries_path(format: 'json') %>',
-      data: $(this.form).serialize(),
-      success: function( data )
-      {
-        w.location = data.pdf_path;
+  $(".js-save-and-open").click(function(e){
+    var popupWindow = window.open('<%= creating_appointment_summaries_path %>');
+
+    $.post('<%= appointment_summaries_path(format: 'json') %>', $(this.form).serialize())
+      .done(function(data) {
+        popupWindow.location = data.pdf_path;
         window.location = data.done_path;
-      }
-    });
-    return false;
+      })
+      .fail(function() {
+        popupWindow.close();
+        alert( "Error saving the summary document. Please try again." );
+      });
+
+    e.preventDefault();
   });
 </script>

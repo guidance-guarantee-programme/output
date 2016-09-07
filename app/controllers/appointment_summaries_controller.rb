@@ -39,7 +39,7 @@ class AppointmentSummariesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to done_appointment_summaries_path }
-      format.json { render json: ajax_reponse_paths(@appointment_summary) }
+      format.json { render json: ajax_response_paths(@appointment_summary) }
     end
   end
 
@@ -55,7 +55,7 @@ class AppointmentSummariesController < ApplicationController
   def done
   end
 
-  def generate
+  def creating
   end
 
   private
@@ -70,7 +70,7 @@ class AppointmentSummariesController < ApplicationController
     redirect_to :root unless current_user.team_leader?
   end
 
-  def ajax_reponse_paths(appointment_summary)
+  def ajax_response_paths(appointment_summary)
     {
       done_path: done_appointment_summaries_path,
       pdf_path: appointment_summary_path(appointment_summary, format: 'pdf')

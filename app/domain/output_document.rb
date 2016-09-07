@@ -18,6 +18,10 @@ class OutputDocument
   end
 
   def attendee_name
+    "#{appointment_summary.title} #{appointment_summary.last_name}".squish
+  end
+
+  def attendee_full_name
     "#{appointment_summary.title} #{appointment_summary.first_name} #{appointment_summary.last_name}".squish
   end
 
@@ -26,7 +30,7 @@ class OutputDocument
   end
 
   def attendee_address
-    [attendee_name,
+    [attendee_full_name,
      attendee_address_line_1,
      attendee_address_line_2,
      attendee_address_line_3,
@@ -40,14 +44,6 @@ class OutputDocument
     appointment_summary.date_of_appointment.to_s(:gov_uk)
   end
 
-  def guider_organisation
-    if appointment_summary.guider_organisation == 'tpas'
-      'The Pensions Advisory Service'
-    else
-      'Pension Wise'
-    end
-  end
-
   def variant
     if appointment_summary.eligible_for_guidance?
       appointment_type
@@ -57,8 +53,7 @@ class OutputDocument
   end
 
   def lead
-    "You recently had a Pension Wise guidance appointment with #{guider_first_name} " \
-      "from #{guider_organisation} on #{appointment_date}."
+    "You recently had a Pension Wise guidance appointment with #{guider_first_name} on #{appointment_date}."
   end
 
   def appointment_reference

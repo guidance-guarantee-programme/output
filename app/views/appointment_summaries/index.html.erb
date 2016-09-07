@@ -1,10 +1,10 @@
-<h1><%= title 'Appointment Summaries' %></h1>
+<h1><%= title 'Reprint Summary' %></h1>
 
 <div class="well">
   <%= form_for @appointment_form, url: appointment_summaries_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
     <div class="form-group">
       <%= f.label :search_string, 'Search', class: 'inline' %>
-      <%= f.text_field :search_string, class: 'form-control t-search', placeholder: 'Surname or Reference' %>
+      <%= f.text_field :search_string, class: 'form-control t-search', placeholder: 'Reference Number' %>
     </div>
     <%= f.submit 'Search', class: 'btn btn-default t-search-button' %>
   <% end %>
@@ -13,12 +13,12 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr class="table-header">
-      <th scope="col">Reference</th>
+      <th scope="col">Booking<br>reference</th>
       <th scope="col">Guider</th>
       <th scope="col">Customer</th>
-      <th scope="col">Appointment<br>Date</th>
-      <th scope="col">Generated<br>At</th>
-      <th scope="col">Requested<br>Digital</th>
+      <th scope="col">Appointment<br>date</th>
+      <th scope="col">Created<br>at</th>
+      <th scope="col">Email copy<br>requested</th>
       <th scope="col">Email</th>
       <th scope="col"></th>
     </tr>
@@ -34,7 +34,9 @@
         <td><%= summary.requested_digital ? 'Yes' : 'No' %></td>
         <td><%= summary.email %></td>
         <td>
-          <%= link_to 'Regenerate', new_appointment_summary_path(appointment_summary: summary.attributes), class: 't-regenerate' %>
+          <% unless summary.requested_digital? %>
+            <%= link_to 'Reprint', new_appointment_summary_path(appointment_summary: summary.attributes), class: 't-regenerate' %>
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   resources :appointment_summaries, only: %i(index new create show) do
     collection do
-      get :generate
+      get :creating
       get :done
       post :preview
       post :email_confirmation
