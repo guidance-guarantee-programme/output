@@ -25,7 +25,6 @@ Then(/^the record of guidance preview should include the details of the appointm
 
   expect(page).to have_content(output_document.appointment_date)
   expect(page).to have_content(output_document.guider_first_name)
-  expect(page).to have_content(output_document.guider_organisation)
 end
 
 Then(/^the record of guidance preview should include supplementary information about "(.*?)"$/) do |topic|

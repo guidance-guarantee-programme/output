@@ -12,7 +12,7 @@ RSpec.describe OutputDocument do
   let(:county) { 'Greater London' }
   let(:country) { 'United Kingdom' }
   let(:postcode) { 'SW1A 2HQ' }
-  let(:attendee_name) { "#{title} #{first_name} #{last_name}" }
+  let(:attendee_name) { "#{title} #{last_name}" }
   let(:value_of_pension_pots) { nil }
   let(:upper_value_of_pension_pots) { nil }
   let(:value_of_pension_pots_is_approximate) { false }
@@ -115,20 +115,6 @@ RSpec.describe OutputDocument do
     end
   end
 
-  describe '#guider_organisation' do
-    subject { output_document.guider_organisation }
-
-    context 'when TPAS' do
-      it { is_expected.to eq('The Pensions Advisory Service') }
-    end
-
-    context 'when PensionWise' do
-      let(:guider_organisation) { 'pw' }
-
-      it { is_expected.to eq('Pension Wise') }
-    end
-  end
-
   describe '#variant' do
     let(:eligible_for_guidance) { true }
 
@@ -156,8 +142,7 @@ RSpec.describe OutputDocument do
 
     it do
       is_expected.to eq(
-        'You recently had a Pension Wise guidance appointment with James ' \
-        "from The Pensions Advisory Service on #{appointment_date}."
+        "You recently had a Pension Wise guidance appointment with James on #{appointment_date}."
       )
     end
   end

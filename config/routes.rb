@@ -31,9 +31,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :appointment_summaries, only: %i(index new create) do
-    post :preview, on: :collection
-    post :email_confirmation, on: :collection
+  resources :appointment_summaries, only: %i(index new create show) do
+    collection do
+      get :creating
+      get :done
+      post :preview
+      post :email_confirmation
+    end
   end
 
   scope path: 'styleguide', controller: 'styleguide' do
