@@ -5,7 +5,7 @@ require 'uri'
 class AppointmentSummary < ActiveRecord::Base
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
   EMAIL_REGEXP = Regexp.union(
-    /\A[^\s][^@]+@([^@\.]+\.)+[^@\.]+[^\s]\z/,
+    /\A[^\s][^@\s]+@([^@\.\s]+\.)+[^@\.\s]+[^\s]\z/,
     /\A\z/
   )
 
