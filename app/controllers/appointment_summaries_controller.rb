@@ -4,9 +4,10 @@ class AppointmentSummariesController < ApplicationController
   before_action :authenticate_team_leader!, only: :index
 
   def index
-    form_params = { search_string: params.dig(:appointment_summary_finder, :search_string) }
-
-    @appointment_form = AppointmentSummaryFinder.new(form_params)
+    @appointment_form = AppointmentSummaryFinder.new(
+      search_string: params.dig(:appointment_summary_finder, :search_string),
+      search_date: params.dig(:appointment_summary_finder, :search_date)
+    )
   end
 
   def new

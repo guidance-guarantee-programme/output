@@ -1,13 +1,30 @@
 <h1><%= title 'Reprint Summary' %></h1>
 
-<div class="well">
-  <%= form_for @appointment_form, url: appointment_summaries_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
-    <div class="form-group">
-      <%= f.label :search_string, 'Search', class: 'inline' %>
-      <%= f.text_field :search_string, class: 'form-control t-search', placeholder: 'Reference Number' %>
+<div class="col-md-6">
+  <div class="row">
+    <div class="well col-md-11">
+      <%= form_for @appointment_form, url: appointment_summaries_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <div class="form-group">
+          <%= f.label :search_date, 'Appointment Date', class: 'inline' %>
+          <%= f.text_field :search_date, class: 'form-control t-date-search', placeholder: 'DD/MM/YYYY' %>
+        </div>
+        <%= f.submit 'Search', class: 'btn btn-default t-date-search-button' %>
+      <% end %>
     </div>
-    <%= f.submit 'Search', class: 'btn btn-default t-search-button' %>
-  <% end %>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="row">
+    <div class="well col-md-11 col-md-offset-1">
+      <%= form_for @appointment_form, url: appointment_summaries_path, method: :get, html: { class: 'inline form-inline' } do |f| %>
+        <div class="form-group">
+          <%= f.label :search_string, 'Reference Number', class: 'inline' %>
+          <%= f.text_field :search_string, class: 'form-control t-search', placeholder: 'Reference Number' %>
+        </div>
+        <%= f.submit 'Search', class: 'btn btn-default t-search-button' %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <table class="table table-striped table-bordered">
@@ -35,7 +52,7 @@
         <td><%= summary.email %></td>
         <td>
           <% unless summary.requested_digital? %>
-            <%= link_to 'Reprint', new_appointment_summary_path(appointment_summary: summary.attributes), class: 't-regenerate' %>
+            <%= link_to 'Reprint', new_appointment_summary_path(appointment_summary: summary.attributes), class: 't-reprint' %>
           <% end %>
         </td>
       </tr>
