@@ -24,5 +24,8 @@ Metrics/MethodLength:
 Style/DoubleNegation:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/RescueModifier:
   Enabled: false
