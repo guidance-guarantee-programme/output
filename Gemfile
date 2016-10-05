@@ -38,7 +38,7 @@ gem 'uk_postcode'
 
 group :development, :test do
   gem 'launchy'
-  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'scss-lint'
   gem 'web-console', '~> 2.0'
