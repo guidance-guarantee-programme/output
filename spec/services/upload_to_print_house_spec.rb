@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'rails_helper'
 require 'net/sftp'
 
@@ -50,7 +49,7 @@ RSpec.describe UploadToPrintHouse, '#call' do
 
   context 'when errors occur during upload' do
     class ErroringFakeSFTP < FakeSFTP
-      ERROR_MESSAGE = 'SFTP error!'
+      ERROR_MESSAGE = 'SFTP error!'.freeze
 
       def initialize(errors_to_raise)
         super()
