@@ -2,12 +2,18 @@
 require 'notifications/client'
 
 class NotifyViaEmail < ActiveJob::Base
-  class AttemptingToResendNotification < StandardError; end
+  class AttemptingToResendNotification < StandardError
+    ERROR_ATTRIBUTES = %w(id email first_name last_name notification_id).freeze
+
+    def initialize(appointment_summary)
+      super(appointment_summary.attributes.slice(*ERROR_ATTRIBUTES).inspect)
+    end
+  end
 
   queue_as :default
 
   def perform(appointment_summary, config: Rails.configuration.x.notify)
-    raise AttemptingToResendNotification, appointment_summary.inspect if appointment_summary.notification_id.present?
+    raise AttemptingToResendNotification, appointment_summary if appointment_summary.notification_id.present?
 
     response = notify(
       service_id: config.service_id,
