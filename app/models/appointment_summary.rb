@@ -5,7 +5,7 @@ require 'uri'
 class AppointmentSummary < ActiveRecord::Base
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
   EMAIL_REGEXP = Regexp.union(
-    /\A[^\s][^@\s]+@([^@\.\s]+\.)+[^@\.\s]+[^\s]\z/,
+    /\A[^\@\s]+@[^\@\.\s]+(\.[^\@\.\s]+)+$/,
     /\A\z/
   )
 
@@ -79,8 +79,6 @@ class AppointmentSummary < ActiveRecord::Base
   validates :number_of_previous_appointments, inclusion: { in: 0..3 }
   validates :email, format: EMAIL_REGEXP
 
-  before_save :reset_notification_id!
-
   def self.editable_column_names
     column_names - %w(id created_at updated_at user_id notification_id)
   end
@@ -105,9 +103,5 @@ class AppointmentSummary < ActiveRecord::Base
 
   def uk_address?
     Countries.uk?(country)
-  end
-
-  def reset_notification_id!
-    self.notification_id = '' if email_changed?
   end
 end

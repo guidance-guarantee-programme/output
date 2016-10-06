@@ -47,6 +47,7 @@ module Admin
     def appointment_summary_params
       params.require(:appointment_summary)
             .permit(:email)
+            .merge(notification_id: nil)
     end
   end
 end
