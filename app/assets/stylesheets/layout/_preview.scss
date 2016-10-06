@@ -8,7 +8,6 @@
 
 .l-pw-logo-letter {
   position: absolute;
-  top: -100px !important; // override output_document.css which comes afterwards
 }
 
 .page-covering-letter {
@@ -19,4 +18,5 @@
 
 .l-summary-document {
   position: relative;
+  overflow: hidden;
 }
