@@ -52,6 +52,14 @@ class OutputDocument
     end
   end
 
+  def envelope_class
+    'l-envelope--tpas'
+  end
+
+  def supplementary_pension_transfers
+    false # placeholder until pension transfers is live
+  end
+
   def lead
     "You recently had a Pension Wise guidance appointment with #{guider_first_name} on #{appointment_date}."
   end
