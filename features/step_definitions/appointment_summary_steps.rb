@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 Given(/^I am logged in as a Pension Wise Administrator$/) do
-  @administrator = create(:admin).tap(&:confirm!)
-
-  page = UserSignInPage.new
-  page.login(@administrator)
+  create(:user, permissions: ['analyst'])
 end
 
 Given(/^there are existing Appointment Summaries$/) do

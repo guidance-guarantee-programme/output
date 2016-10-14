@@ -1,22 +1,16 @@
 # frozen_string_literal: true
 Given(/^I log in to reprint a summary document$/) do
+  @user = create(:user, permissions: ['team_leader'])
   @appointment_summary = create(:appointment_summary)
-  @user = create(:team_leader).tap(&:confirm!)
-
-  page = UserSignInPage.new
-  page.login(@user)
 end
 
 Given(/^I log in to see a report of summary documents sent by post$/) do
+  @user = create(:user, permissions: ['team_leader'])
+
   create(:appointment_summary, requested_digital: true)
   create(:appointment_summary, date_of_appointment: Time.zone.yesterday)
 
   @appointment_summaries = create_list(:appointment_summary, 2, requested_digital: false)
-
-  @user = create(:team_leader).tap(&:confirm!)
-
-  page = UserSignInPage.new
-  page.login(@user)
 end
 
 When(/^I search for a reference number$/) do

@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 20161031192119) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: ""
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.string   "email",                   default: "",    null: false
+    t.string   "encrypted_password",      default: ""
+    t.integer  "sign_in_count",           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20161031192119) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
+    t.integer  "failed_attempts",         default: 0,     null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at"
@@ -110,12 +110,19 @@ ActiveRecord::Schema.define(version: 20161031192119) do
     t.integer  "invitation_limit"
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
-    t.integer  "invitations_count",      default: 0
+    t.integer  "invitations_count",       default: 0
     t.string   "first_name"
     t.string   "last_name"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string   "role",                   default: "", null: false
+    t.string   "role",                    default: "",    null: false
+    t.string   "name",                    default: "",    null: false
+    t.string   "uid",                     default: "",    null: false
+    t.string   "organisation_slug",       default: "",    null: false
+    t.string   "organisation_content_id", default: "",    null: false
+    t.string   "permissions",             default: "",    null: false
+    t.boolean  "remotely_signed_out",     default: false
+    t.boolean  "disabled",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

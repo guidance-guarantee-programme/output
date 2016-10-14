@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class AppointmentSummariesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :authenticate_team_leader!, only: :index
+  before_action :authenticate_as_team_leader!, only: :index
 
   def index
     @appointment_form = AppointmentSummaryFinder.new(
@@ -63,12 +63,6 @@ class AppointmentSummariesController < ApplicationController
 
   def appointment_summary_params
     params.require(:appointment_summary).permit(AppointmentSummary.editable_column_names)
-  end
-
-  def authenticate_team_leader!
-    authenticate_user!
-
-    redirect_to :root unless current_user.team_leader?
   end
 
   def ajax_response_paths(appointment_summary)
