@@ -180,7 +180,7 @@ GEM
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
-    puma (2.11.2)
+    puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -355,7 +355,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.0p0
+   ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.3
