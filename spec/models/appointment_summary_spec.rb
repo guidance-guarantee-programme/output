@@ -33,8 +33,6 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_numericality_of(:upper_value_of_pension_pots) }
   it { is_expected.to allow_value('').for(:upper_value_of_pension_pots) }
 
-  it { is_expected.to validate_inclusion_of(:income_in_retirement).in_array(%w(pension other)) }
-
   it { is_expected.to validate_presence_of(:guider_name) }
   it { is_expected.to validate_inclusion_of(:guider_organisation).in_array(%w(tpas dwp)) }
 
@@ -140,10 +138,6 @@ RSpec.describe AppointmentSummary, type: :model do
 
     it { is_expected.to_not validate_numericality_of(:value_of_pension_pots) }
     it { is_expected.to_not validate_numericality_of(:upper_value_of_pension_pots) }
-
-    it do
-      is_expected.to_not validate_inclusion_of(:income_in_retirement).in_array(%w(pension other))
-    end
   end
 
   context 'when eligible for guidance' do

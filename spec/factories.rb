@@ -32,7 +32,6 @@ FactoryGirl.define do
     date_of_appointment { Time.zone.today }
     sequence(:reference_number)
     has_defined_contribution_pension 'yes'
-    income_in_retirement 'pension'
     value_of_pension_pots 15_000
     format_preference 'standard'
     appointment_type 'standard'
