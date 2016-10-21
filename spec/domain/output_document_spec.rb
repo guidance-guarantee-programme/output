@@ -18,7 +18,6 @@ RSpec.describe OutputDocument do
   let(:guider_name) { 'James' }
   let(:date_of_appointment) { Date.new(2015, 3, 9) }
   let(:appointment_date) { '9 March 2015' }
-  let(:guider_organisation) { 'tpas' }
   let(:reference_number) { '123456789' }
   let(:params) do
     {
@@ -37,8 +36,7 @@ RSpec.describe OutputDocument do
       value_of_pension_pots: value_of_pension_pots,
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       value_of_pension_pots_is_approximate: value_of_pension_pots_is_approximate,
-      guider_name: guider_name,
-      guider_organisation: guider_organisation
+      guider_name: guider_name
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }

@@ -26,8 +26,6 @@ class AppointmentSummaryPage < SitePrism::Page
   element :count_of_pension_pots, '.t-count-of-pension-pots'
 
   element :guider_name, '.t-guider-name'
-  radio_buttons :guider_organisation, tpas: '.t-guider-organisation-tpas',
-                                      dwp: '.t-guider-organisation-dwp'
   radio_buttons :has_defined_contribution_pension, yes: '.t-has-defined-contribution-pension-yes',
                                                    no: '.t-has-defined-contribution-pension-no',
                                                    unknown: '.t-has-defined-contribution-pension-unknown'
@@ -136,10 +134,6 @@ class AppointmentSummaryPage < SitePrism::Page
 
   def fill_in_guider_details(appointment_summary)
     guider_name.set appointment_summary.guider_name
-    case appointment_summary.guider_organisation
-    when 'tpas' then guider_organisation_tpas.set true
-    when 'dwp' then guider_organisation_dwp.set true
-    end
   end
 
   def fill_in_has_defined_contribution_pension(appointment_summary)

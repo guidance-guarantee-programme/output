@@ -179,30 +179,6 @@
       <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name) %>
     </div>
 
-    <div class="form-group">
-      <fieldset>
-        <legend>
-          <span>Organisation</span>
-        </legend>
-
-        <div class="radio">
-          <%= f.label :guider_organisation, value: 'tpas' do %>
-            <%= f.radio_button :guider_organisation, 'tpas',
-                               class: 't-guider-organisation-tpas' %>
-            The Pensions Advisory Service
-          <% end %>
-        </div>
-
-        <div class="radio">
-          <%= f.label :guider_organisation, value: 'dwp' do %>
-            <%= f.radio_button :guider_organisation, 'dwp',
-                               class: 't-guider-organisation-dwp' %>
-            The Department of Work and Pensions
-          <% end %>
-        </div>
-      </fieldset>
-    </div>
-
     <hr>
 
     <h2>Pension pot details</h2>

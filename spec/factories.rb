@@ -8,7 +8,6 @@ FactoryGirl.define do
   factory :appointment_summary do
     user
     guider_name 'Morty Smith'
-    guider_organisation 'tpas'
     title 'Mr'
     first_name 'Bob'
     last_name 'Smith'

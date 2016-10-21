@@ -12,7 +12,6 @@ class AppointmentSummariesController < ApplicationController
 
   def new
     prepopulated_fields = { guider_name: current_user.first_name,
-                            guider_organisation: current_user.organisation,
                             date_of_appointment: Time.zone.today }
 
     prepopulated_fields.merge!(appointment_summary_params) if params.include?(:appointment_summary)

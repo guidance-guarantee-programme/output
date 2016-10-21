@@ -32,9 +32,7 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to_not validate_presence_of(:upper_value_of_pension_pots) }
   it { is_expected.to validate_numericality_of(:upper_value_of_pension_pots) }
   it { is_expected.to allow_value('').for(:upper_value_of_pension_pots) }
-
   it { is_expected.to validate_presence_of(:guider_name) }
-  it { is_expected.to validate_inclusion_of(:guider_organisation).in_array(%w(tpas dwp)) }
 
   it { is_expected.to validate_presence_of(:address_line_1) }
   it { is_expected.to validate_length_of(:address_line_1).is_at_most(50) }

@@ -42,7 +42,6 @@ RSpec.describe AppointmentSummaryCsv do
           wants_security
           wants_lump_sum
           poor_health
-          guider_organisation
           requested_digital
           number_of_previous_appointments
           created_at
@@ -97,7 +96,6 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.wants_security.to_s,
           appointment.wants_lump_sum.to_s,
           appointment.poor_health.to_s,
-          appointment.guider_organisation,
           appointment.requested_digital.to_s,
           appointment.number_of_previous_appointments.to_s,
           appointment.created_at.getlocal.to_s(:rfc),
