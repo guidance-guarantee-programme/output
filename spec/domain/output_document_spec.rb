@@ -37,7 +37,6 @@ RSpec.describe OutputDocument do
       value_of_pension_pots: value_of_pension_pots,
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       value_of_pension_pots_is_approximate: value_of_pension_pots_is_approximate,
-      income_in_retirement: :pension,
       guider_name: guider_name,
       guider_organisation: guider_organisation
     }

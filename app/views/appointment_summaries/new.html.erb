@@ -284,29 +284,80 @@
         </div>
       </div>
 
+      <hr>
+
+      <h2>Other income in retirement</h2>
+
       <div class="form-group">
+
         <fieldset>
           <legend>
-            <span>Income in retirement</span>
+            <span>In addition to defined contribution pension(s) and State Pension</span>
           </legend>
-          <div class="radio">
-            <%= f.label :income_in_retirement, value: 'pension' do %>
-              <%= f.radio_button :income_in_retirement, 'pension',
-                                 class: 't-income-in-retirement-pension' %>
-              Only defined contribution pension(s) and State Pension (if eligible)
+          <div class="checkbox">
+            <%= f.label :retirement_income_other_state_benefits do %>
+              <%= f.check_box :retirement_income_other_state_benefits, class: 't-retirement-income-other-state-benefits' %>
+              State benefits / allowances (other than state pension)
             <% end %>
           </div>
 
-          <div class="radio">
-            <%= f.label :income_in_retirement, value: 'other' do %>
-              <%= f.radio_button :income_in_retirement, 'other',
-                                 class: 't-income-in-retirement-other' %>
-              Other income is available
+          <div class="checkbox">
+            <%= f.label :retirement_income_employment do %>
+              <%= f.check_box :retirement_income_employment, class: 't-retirement-income-employment' %>
+              Income from employment
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_partner do %>
+              <%= f.check_box :retirement_income_partner, class: 't-retirement-income-partner' %>
+              Spouse’s/Partner’s/Someone else’s income or pension
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_interest_or_savings do %>
+              <%= f.check_box :retirement_income_interest_or_savings, class: 't-retirement-income-interest-or-savings' %>
+              Interest or cashing in savings
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_property do %>
+              <%= f.check_box :retirement_income_property, class: 't-retirement-income-property' %>
+              Selling a property or income from a property
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_business do %>
+              <%= f.check_box :retirement_income_business, class: 't-retirement-income-business' %>
+              Selling a business or income from a business
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_inheritance do %>
+              <%= f.check_box :retirement_income_inheritance, class: 't-retirement-income-inheritance' %>
+              Inheritance
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_other_income do %>
+              <%= f.check_box :retirement_income_other_income, class: 't-retirement-income-other-income' %>
+              Other
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :retirement_income_unspecified do %>
+              <%= f.check_box :retirement_income_unspecified, class: 't-retirement-income-unspecified' %>
+              Customer did not know
             <% end %>
           </div>
         </fieldset>
       </div>
-
 
       <hr>
 
@@ -513,7 +564,7 @@
           <label for="appointment_summary_accuracy_3">
             <input type="radio" value="range" name="appointment_summary[accuracy]" id="appointment_summary_accuracy_3" />
             A range
-        </label>
+          </label>
         </div>
         <div class="radio">
           <label for="appointment_summary_accuracy_4">

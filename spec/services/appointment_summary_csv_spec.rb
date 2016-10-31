@@ -35,7 +35,6 @@ RSpec.describe AppointmentSummaryCsv do
           supplementary_debt
           supplementary_ill_health
           supplementary_defined_benefit_pensions
-          income_in_retirement
           continue_working
           unsure
           leave_inheritance
@@ -49,6 +48,15 @@ RSpec.describe AppointmentSummaryCsv do
           created_at
           email
           notification_id
+          retirement_income_other_state_benefits
+          retirement_income_employment
+          retirement_income_partner
+          retirement_income_interest_or_savings
+          retirement_income_property
+          retirement_income_business
+          retirement_income_inheritance
+          retirement_income_other_income
+          retirement_income_unspecified
         )
       )
     end
@@ -81,7 +89,6 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.supplementary_debt.to_s,
           appointment.supplementary_ill_health.to_s,
           appointment.supplementary_defined_benefit_pensions.to_s,
-          appointment.income_in_retirement,
           appointment.continue_working.to_s,
           appointment.unsure.to_s,
           appointment.leave_inheritance.to_s,
@@ -94,7 +101,16 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.number_of_previous_appointments.to_s,
           appointment.created_at.getlocal.to_s(:rfc),
           appointment.email,
-          quote_empty_string(appointment.notification_id)
+          quote_empty_string(appointment.notification_id),
+          appointment.retirement_income_other_state_benefits.to_s,
+          appointment.retirement_income_employment.to_s,
+          appointment.retirement_income_partner.to_s,
+          appointment.retirement_income_interest_or_savings.to_s,
+          appointment.retirement_income_property.to_s,
+          appointment.retirement_income_business.to_s,
+          appointment.retirement_income_inheritance.to_s,
+          appointment.retirement_income_other_income.to_s,
+          appointment.retirement_income_unspecified.to_s
         ]
       )
     end

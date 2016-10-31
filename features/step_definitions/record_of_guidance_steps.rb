@@ -50,7 +50,7 @@ Then(/^information about "(.*?)" should be recorded$/) do |circumstance|
 end
 
 Then(/^the customer's details should be recorded$/) do
-  attributes = %i(income_in_retirement value_of_pension_pots upper_value_of_pension_pots
+  attributes = %i(value_of_pension_pots upper_value_of_pension_pots
                   value_of_pension_pots_is_approximate count_of_pension_pots)
   appointment_summary = AppointmentSummary.first
 

@@ -51,10 +51,18 @@ Then(/^the previously captured details are prepopulated$/) do
                    poor_health
                    supplementary_benefits supplementary_debt
                    supplementary_ill_health
-                   supplementary_defined_benefit_pensions)
+                   supplementary_defined_benefit_pensions
+                   retirement_income_other_state_benefits
+                   retirement_income_employment
+                   retirement_income_partner
+                   retirement_income_interest_or_savings
+                   retirement_income_property
+                   retirement_income_business
+                   retirement_income_inheritance
+                   retirement_income_other_income
+                   retirement_income_unspecified)
 
-  radio_button_groups = %i(income_in_retirement
-                           guider_organisation
+  radio_button_groups = %i(guider_organisation
                            has_defined_contribution_pension
                            format_preference
                            appointment_type
