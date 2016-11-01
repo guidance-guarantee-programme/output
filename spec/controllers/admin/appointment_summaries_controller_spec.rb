@@ -2,25 +2,31 @@ require 'rails_helper'
 
 RSpec.describe Admin::AppointmentSummariesController, type: :controller do
   let(:email) { 'guider@example.com' }
-  let(:password) { 'pensionwise' }
-  let(:user) { User.create(email: email, password: password, role: 'admin').tap(&:confirm!) }
   let(:appointment_summary) { create(:appointment_summary, notification_id: '123', requested_digital: true) }
+  let(:warden) { double('stub warden', authenticate!: true, authenticated?: true, user: user) }
+
+  before do
+    request.env['warden'] = warden
+  end
 
   describe '#update' do
     subject { response }
 
     context 'when not authenticated' do
+      let(:user) { User.create(email: email) }
+
       before do
         put :update, id: appointment_summary.id
       end
 
-      it { is_expected.to redirect_to(controller: 'devise/sessions', action: :new) }
+      it { is_expected.to redirect_to(root_path) }
     end
 
     context 'when authenticated' do
+      let(:user) { User.create(email: email, permissions: ['analyst']) }
+
       before do
         allow(NotifyViaEmail).to receive(:perform_later)
-        sign_in user
         put :update, id: appointment_summary.id, appointment_summary: { email: email }
         appointment_summary.reload
       end

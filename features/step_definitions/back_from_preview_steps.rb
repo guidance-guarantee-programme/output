@@ -62,8 +62,7 @@ Then(/^the previously captured details are prepopulated$/) do
                    retirement_income_other_income
                    retirement_income_unspecified)
 
-  radio_button_groups = %i(guider_organisation
-                           has_defined_contribution_pension
+  radio_button_groups = %i(has_defined_contribution_pension
                            format_preference
                            appointment_type
                            requested_digital)

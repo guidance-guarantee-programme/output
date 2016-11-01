@@ -34,7 +34,6 @@ class AppointmentSummaryCsv < CsvGenerator
       wants_security
       wants_lump_sum
       poor_health
-      guider_organisation
       requested_digital
       number_of_previous_appointments
       created_at

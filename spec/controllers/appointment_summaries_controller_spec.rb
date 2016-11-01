@@ -2,24 +2,17 @@ require 'rails_helper'
 
 RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
   let(:email) { 'guider@example.com' }
-  let(:password) { 'pensionwise' }
-  let(:user) do
-    User.create(email: email, password: password).tap(&:confirm!)
-  end
+  let(:user) { create(:user, email: email) }
+  let(:warden) { double('stub warden', authenticate!: true, authenticated?: true, user: user) }
 
   subject { response }
 
-  context 'when not authenticated' do
-    before do
-      get :new
-    end
-
-    it { is_expected.to redirect_to(controller: 'devise/sessions', action: :new) }
+  before do
+    request.env['warden'] = warden
   end
 
   context 'when authenticated' do
     before do
-      sign_in user
       get :new
     end
 
@@ -30,8 +23,6 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
     let(:appointment_summary) do
       build(:appointment_summary, requested_digital: requested_digital, email: email).attributes
     end
-
-    before { sign_in user }
 
     context 'when the customer has requested a digital summary document' do
       let(:requested_digital) { true }

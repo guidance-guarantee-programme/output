@@ -3,7 +3,7 @@ require 'json'
 require 'uri'
 
 class AppointmentSummary < ActiveRecord::Base
-  deprecated_columns :income_in_retirement
+  deprecated_columns :income_in_retirement, :guider_organisation
 
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
   # bassed off: https://github.com/alphagov/notifications-utils/blob/master/notifications_utils/recipients.py#L22
@@ -52,13 +52,6 @@ class AppointmentSummary < ActiveRecord::Base
   end
 
   validates :guider_name, presence: true
-  validates :guider_organisation,
-            presence: true,
-            inclusion: {
-              in: %w(tpas dwp),
-              allow_blank: true,
-              message: '%{value} is not a valid organisation'
-            }
 
   validates :address_line_1, presence: true, length: { maximum: 50 }
   validates :address_line_2, length: { maximum: 50 }

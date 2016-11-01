@@ -1,39 +1,29 @@
 # frozen_string_literal: true
 class User < ActiveRecord::Base
-  deprecated_columns :admin
+  include GDS::SSO::User
+  serialize :permissions, Array
 
-  class UnableToSetRole < StandardError; end
-
-  ADMIN = 'admin'
-  TEAM_LEADER = 'team_leader'
-
-  devise :database_authenticatable, :confirmable, :invitable, :lockable, :timeoutable, :trackable,
-         :validatable, :zxcvbnable, :recoverable
+  deprecated_columns :admin, :first_name, :last_name, :encrypted_password, :sign_in_count, :current_sign_in_at,
+                     :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :confirmation_token, :confirmed_at,
+                     :confirmation_sent_at, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at,
+                     :organisation, :invitation_token, :invitation_created_at, :invitation_sent_at,
+                     :invitation_accepted_at, :invitation_limit, :invited_by_id, :invited_by_type, :invitations_count,
+                     :first_name, :last_name, :reset_password_token, :reset_password_sent_at, :role
 
   has_many :appointment_summaries
 
   scope :admins, -> { where(role: ADMIN).order(:last_name, :first_name) }
   scope :team_leaders, -> { where(role: TEAM_LEADER).order(:last_name, :first_name) }
 
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
-
-  def name
-    [first_name, last_name].join(' ').strip
-  end
-
-  def admin?
-    [ADMIN].include?(role)
+  def first_name
+    name.split(' ').first
   end
 
   def team_leader?
-    [ADMIN, TEAM_LEADER].include?(role)
+    has_permission?('team_leader')
   end
 
-  def toggle_role(role_to_toggle)
-    raise(UnableToSetRole, "User has existing role: #{role}") unless ['', role_to_toggle].include?(role)
-
-    update_attributes(role: role.present? ? '' : role_to_toggle)
+  def analyst?
+    has_permission?('analyst')
   end
 end

@@ -21,18 +21,19 @@
 <% if user_signed_in? %>
   <%= content_for :navbar_right do %>
     <div class='session-details-panel'>
-      <span class='session-details-panel__username'>Logged in as: <%= current_user.name %></span>
-      <%= link_to 'Logout', destroy_user_session_path %>
-      <%= link_to 'Change password', edit_user_registration_path %>
+      <%= link_to current_user.name, Plek.current.find('signon') %>
+      &bull; <%= link_to 'Sign out', gds_sign_out_path %>
     </div>
   <% end %>
 
-  <% if current_user.team_leader? %>
+  <% if current_user.team_leader? || current_user.analyst? %>
     <% content_for :navbar_items do %>
-      <li>
-        <%= link_to 'Reprint', appointment_summaries_path %>
-      </li>
-      <% if current_user.admin? %>
+      <% if current_user.team_leader? %>
+        <li>
+          <%= link_to 'Reprint', appointment_summaries_path %>
+        </li>
+      <% end %>
+      <% if current_user.analyst? %>
         <li>
           <%= link_to 'Reporting', admin_appointment_summaries_path %>
         </li>

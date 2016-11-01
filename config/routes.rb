@@ -23,14 +23,6 @@ Rails.application.routes.draw do
 
   mount GovukAdminTemplate::Engine, at: '/style-guide'
 
-  devise_for :users
-  as :user do
-    scope path: 'users', controller: 'devise/registrations' do
-      get 'edit', action: 'edit', as: 'edit_user_registration'
-      put ':id', action: 'update', as: 'user_registration'
-    end
-  end
-
   resources :appointment_summaries, only: %i(index new create show) do
     collection do
       get :creating

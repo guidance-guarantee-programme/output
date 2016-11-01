@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Admin
   class AppointmentSummariesController < ::ApplicationController
-    before_action :authenticate_admin!
+    before_action :authenticate_as_analyst!
 
     def index
       @appointment_form = AppointmentSummaryBrowser.new(form_params)
@@ -36,12 +36,6 @@ module Admin
         end_date:      params.dig(:appointment_summary_browser, :end_date),
         search_string: params.dig(:appointment_summary_browser, :search_string)
       }
-    end
-
-    def authenticate_admin!
-      authenticate_user!
-
-      redirect_to :root unless current_user.admin?
     end
 
     def appointment_summary_params
