@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161031192119) do
+ActiveRecord::Schema.define(version: 20161101141726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,11 +116,11 @@ ActiveRecord::Schema.define(version: 20161031192119) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "role",                    default: "",    null: false
-    t.string   "name",                    default: "",    null: false
+    t.string   "name",                    default: ""
     t.string   "uid",                     default: "",    null: false
-    t.string   "organisation_slug",       default: "",    null: false
-    t.string   "organisation_content_id", default: "",    null: false
-    t.string   "permissions",             default: "",    null: false
+    t.string   "organisation_slug",       default: ""
+    t.string   "organisation_content_id", default: ""
+    t.string   "permissions",             default: ""
     t.boolean  "remotely_signed_out",     default: false
     t.boolean  "disabled",                default: false
   end
