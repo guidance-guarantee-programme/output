@@ -302,6 +302,13 @@
           </div>
 
           <div class="checkbox">
+            <%= f.label :retirement_income_defined_benefit do %>
+              <%= f.check_box :retirement_income_defined_benefit, class: 't-retirement-income-defined-benefit' %>
+              Defined benefit pension
+            <% end %>
+          </div>
+
+          <div class="checkbox">
             <%= f.label :retirement_income_employment do %>
               <%= f.check_box :retirement_income_employment, class: 't-retirement-income-employment' %>
               Income from employment

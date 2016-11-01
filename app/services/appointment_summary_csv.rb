@@ -49,6 +49,7 @@ class AppointmentSummaryCsv < CsvGenerator
       retirement_income_inheritance
       retirement_income_other_income
       retirement_income_unspecified
+      retirement_income_defined_benefit
     ).freeze
   end
 

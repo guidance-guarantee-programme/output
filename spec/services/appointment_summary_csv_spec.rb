@@ -57,6 +57,7 @@ RSpec.describe AppointmentSummaryCsv do
           retirement_income_inheritance
           retirement_income_other_income
           retirement_income_unspecified
+          retirement_income_defined_benefit
         )
       )
     end
@@ -110,6 +111,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.retirement_income_business.to_s,
           appointment.retirement_income_inheritance.to_s,
           appointment.retirement_income_other_income.to_s,
+          appointment.retirement_income_defined_benefit.to_s,
           appointment.retirement_income_unspecified.to_s
         ]
       )
