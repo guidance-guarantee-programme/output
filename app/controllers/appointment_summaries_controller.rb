@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class AppointmentSummariesController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :require_signin_permission! # this can't be in ApplicationController due to Gaffe gem
   before_action :authenticate_as_team_leader!, only: :index
 
   def index
