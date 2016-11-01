@@ -13,7 +13,7 @@ RSpec.describe Admin::AppointmentSummariesController, type: :controller do
     subject { response }
 
     context 'when not authenticated' do
-      let(:user) { User.create(email: email) }
+      let(:user) { create(:user, email: email) }
 
       before do
         put :update, id: appointment_summary.id
@@ -23,7 +23,7 @@ RSpec.describe Admin::AppointmentSummariesController, type: :controller do
     end
 
     context 'when authenticated' do
-      let(:user) { User.create(email: email, permissions: ['analyst']) }
+      let(:user) { create(:user, email: email, permissions: %w(signin analyst)) }
 
       before do
         allow(NotifyViaEmail).to receive(:perform_later)
