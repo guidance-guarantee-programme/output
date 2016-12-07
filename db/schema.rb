@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 20161207154853) do
     t.integer  "count_of_pension_pots"
     t.string   "email",                                            default: ""
     t.string   "notification_id",                                  default: ""
-    t.boolean  "supplementary_pension_transfers",                  default: false,            null: false
     t.boolean  "retirement_income_other_state_benefits",           default: false,            null: false
     t.boolean  "retirement_income_employment",                     default: false,            null: false
     t.boolean  "retirement_income_partner",                        default: false,            null: false

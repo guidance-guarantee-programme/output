@@ -33,7 +33,7 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
         it 'we should attempt to notify the customer of the digital summary document location by email' do
           expect(NotifyViaEmail).to receive(:perform_later).with(an_instance_of(AppointmentSummary))
 
-          post :create, appointment_summary: appointment_summary
+          post :create, params: { appointment_summary: appointment_summary }
         end
       end
 
@@ -43,7 +43,7 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
         it 'we should not attempt to notify the customer' do
           expect(NotifyViaEmail).not_to receive(:perform_later)
 
-          post :create, appointment_summary: appointment_summary
+          post :create, params: { appointment_summary: appointment_summary }
         end
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
       it 'we should not attempt to notify the customer' do
         expect(NotifyViaEmail).not_to receive(:perform_later)
 
-        post :create, appointment_summary: appointment_summary
+        post :create, params: { appointment_summary: appointment_summary }
       end
     end
   end

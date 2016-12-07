@@ -26,8 +26,6 @@ Rails.application.routes.draw do
       get 'input', action: 'pages_input'
       get 'output-elements', action: 'pages_output_elements'
     end
-
-    get '(/:action)'
   end
 
   namespace :admin do

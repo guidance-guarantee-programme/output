@@ -5,7 +5,6 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
   config.filter_run :focus
   config.order = :random
-  config.profile_examples = 10
   config.run_all_when_everything_filtered = true
 
   config.expect_with :rspec do |expectations|
