@@ -1,7 +1,6 @@
-# frozen_string_literal: true
 require 'notifications/client'
 
-class NotifyViaEmail < ActiveJob::Base
+class NotifyViaEmail < ApplicationJob
   class AttemptingToResendNotification < StandardError
     ERROR_ATTRIBUTES = %w(id email first_name last_name notification_id).freeze
 

@@ -1,8 +1,4 @@
-# frozen_string_literal: true
-require 'json'
-require 'uri'
-
-class AppointmentSummary < ActiveRecord::Base
+class AppointmentSummary < ApplicationRecord
   deprecated_columns :income_in_retirement, :guider_organisation
 
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
