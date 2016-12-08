@@ -56,6 +56,7 @@ class AppointmentSummaryPage < SitePrism::Page
   element :supplementary_debt, '.t-supplementary-debt'
   element :supplementary_ill_health, '.t-supplementary-ill-health'
   element :supplementary_defined_benefit_pensions, '.t-supplementary-defined-benefit-pensions'
+  element :supplementary_pension_transfers, '.t-supplementary-pension-transfers'
 
   element :retirement_income_other_state_benefits, '.t-retirement-income-other-state-benefits'
   element :retirement_income_employment, '.t-retirement-income-employment'
@@ -190,6 +191,7 @@ class AppointmentSummaryPage < SitePrism::Page
     supplementary_debt.set appointment_summary.supplementary_debt
     supplementary_ill_health.set appointment_summary.supplementary_ill_health
     supplementary_defined_benefit_pensions.set appointment_summary.supplementary_defined_benefit_pensions
+    supplementary_pension_transfers.set appointment_summary.supplementary_pension_transfers
   end
 end
 # rubocop:enable ClassLength

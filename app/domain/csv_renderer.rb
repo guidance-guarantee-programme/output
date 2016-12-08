@@ -7,7 +7,7 @@ class CSVRenderer
        attendee_address_line_2 attendee_address_line_3 attendee_town
        attendee_county attendee_postcode attendee_country lead supplementary_benefits
        supplementary_debt supplementary_ill_health
-       supplementary_defined_benefit_pensions)
+       supplementary_defined_benefit_pensions supplementary_pension_transfers)
   end
 
   def initialize(output_documents)

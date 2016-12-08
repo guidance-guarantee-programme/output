@@ -440,6 +440,14 @@
             Final salary or career average pensions
           <% end %>
         </div>
+
+        <div class="checkbox">
+          <%= f.label :supplementary_pension_transfers do %>
+            <%= f.check_box :supplementary_pension_transfers,
+              class: 't-supplementary-pension-transfers' %>
+            Transfer of pension pot
+          <% end %>
+        </div>
       </div>
     </div>
 

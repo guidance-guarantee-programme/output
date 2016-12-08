@@ -36,3 +36,4 @@ Scenario Outline: Supplementary information can be included
     | Debt and pensions                       |
     | Final salary or career average pensions |
     | Pensions and ill health                 |
+    | Transfer of pension pot                 |

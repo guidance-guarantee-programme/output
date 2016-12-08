@@ -7,6 +7,7 @@ class OutputDocument
   delegate :id, :supplementary_benefits,
            :supplementary_debt, :supplementary_ill_health,
            :supplementary_defined_benefit_pensions,
+           :supplementary_pension_transfers,
            :format_preference, :appointment_type,
            to: :appointment_summary
 
@@ -54,10 +55,6 @@ class OutputDocument
 
   def envelope_class
     'l-envelope--tpas'
-  end
-
-  def supplementary_pension_transfers
-    false # placeholder until pension transfers is live
   end
 
   def lead
