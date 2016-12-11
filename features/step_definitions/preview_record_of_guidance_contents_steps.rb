@@ -37,6 +37,8 @@ Then(/^the record of guidance preview should include supplementary information a
               'ill health'
             when 'Final salary or career average pensions' then
               'defined benefit pensions'
+            when 'Transfer of pension pot' then
+              'pension transfer'
             end
 
   expect(page).to include_output_document_section(section)
