@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-When(/^we send (?:them their|a) record of guidance$/) do
+When(/^we send them their record of guidance$/) do
   appointment_summary_page = AppointmentSummaryPage.new
   appointment_summary_page.load
   appointment_summary_page.fill_in(@appointment_summary)
@@ -10,8 +10,6 @@ When(/^we send (?:them their|a) record of guidance$/) do
 
   preview_page = PreviewPage.new
   preview_page.confirm.click
-
-  ProcessOutputDocuments.new.call
 end
 
 Given(/^(?:I|we) have captured the customer's details in an appointment summary$/) do
@@ -19,9 +17,7 @@ Given(/^(?:I|we) have captured the customer's details in an appointment summary$
 end
 
 Then(/^the record of guidance should include their details$/) do
-  expected = fixture(:populated_csv).slice(:attendee_name)
-
-  expect_uploaded_csv_to_include(expected)
+  expect(AppointmentSummary.last).to have_attributes(@appointment_summary.slice(:first_name, :last_name))
 end
 
 Given(/^(?:I|we) have captured appointment details in an appointment summary$/) do
@@ -74,5 +70,5 @@ Then(/^it should include supplementary information about "(.*?)"$/) do |topic|
                           end
 
   supplementary_sections[supplementary_section] = true
-  expect_uploaded_csv_to_include(supplementary_sections)
+  expect(AppointmentSummary.last).to have_attributes(supplementary_sections)
 end

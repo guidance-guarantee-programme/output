@@ -12,10 +12,6 @@ class AppointmentSummary < ActiveRecord::Base
     /\A\z/
   )
 
-  scope :unbatched, lambda {
-    includes(:appointment_summaries_batches)
-      .where(appointment_summaries_batches: { appointment_summary_id: nil })
-  }
   scope :excluding_digital_by_default, lambda {
     where(
       %(
@@ -37,7 +33,6 @@ class AppointmentSummary < ActiveRecord::Base
   TITLES = %w(Mr Mrs Miss Ms Mx Dr Reverend).freeze
 
   belongs_to :user
-  has_many :appointment_summaries_batches, dependent: :destroy
 
   validates :title, presence: true, inclusion: { in: TITLES, allow_blank: true }
   validates :last_name, presence: true

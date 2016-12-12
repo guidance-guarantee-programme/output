@@ -10,5 +10,5 @@ When(/^they have had a Pension Wise appointment$/) do
 end
 
 Then(/^we should send them an ineligibility letter$/) do
-  expect_uploaded_csv_to_include(variant: 'other')
+  expect(AppointmentSummary.last).to have_attributes(has_defined_contribution_pension: 'no')
 end

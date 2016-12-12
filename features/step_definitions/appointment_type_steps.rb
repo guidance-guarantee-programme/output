@@ -6,5 +6,5 @@ Given(/^the customer is given the (.*?) appointment$/) do |appointment_type|
 end
 
 Then(/^it should be a (.*?) record of guidance$/) do |variant|
-  expect_uploaded_csv_to_include(variant: variant.tr('-', '_'))
+  expect(AppointmentSummary.last).to have_attributes(appointment_type: variant.tr('-', '_'))
 end
