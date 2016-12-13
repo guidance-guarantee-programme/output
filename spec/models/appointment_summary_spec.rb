@@ -8,7 +8,6 @@ RSpec.describe AppointmentSummary, type: :model do
   let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }
-  it { is_expected.to have_many(:appointment_summaries_batches).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to_not validate_presence_of(:first_name) }
@@ -142,29 +141,5 @@ RSpec.describe AppointmentSummary, type: :model do
     let(:has_defined_contribution_pension) { 'yes' }
 
     it { is_expected.to be_eligible_for_guidance }
-  end
-
-  describe '.unbatched' do
-    subject { described_class.unbatched }
-
-    context 'with no unbatched items' do
-      let!(:appointment_summaries) { create_list(:appointment_summary, 2) }
-      let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries) }
-
-      it { is_expected.to be_empty }
-    end
-
-    context 'with unbatched items' do
-      let!(:appointment_summaries) { create_list(:appointment_summary, 2) }
-
-      it { is_expected.to eq(appointment_summaries) }
-    end
-
-    context 'with batched and unbatched items' do
-      let!(:appointment_summaries) { create_list(:appointment_summary, 4) }
-      let!(:previous_batch) { Batch.create(appointment_summaries: appointment_summaries[0..1]) }
-
-      it { is_expected.to eq(appointment_summaries[2, 3]) }
-    end
   end
 end

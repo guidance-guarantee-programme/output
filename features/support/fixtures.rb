@@ -51,28 +51,6 @@ module Fixtures
         retirement_income_other_income: false,
         retirement_income_unspecified: false
       )
-    end,
-
-    populated_csv: proc do
-      {
-        format: 'standard',
-        variant: 'tailored',
-        guider_first_name: 'Penelope',
-        appointment_date: '5 February 2015',
-        lead: 'You recently had a Pension Wise guidance appointment with Penelope on 5 February 2015.',
-        value_of_pension_pots: '£35,000 to £55,000',
-        attendee_name: 'Mr Bloggs',
-        attendee_address_line_1: 'HM Treasury',
-        attendee_address_line_2: '1 Horse Guards Road',
-        attendee_address_line_3: 'Westminster',
-        attendee_town: 'London',
-        attendee_county: 'Greater London',
-        attendee_postcode: 'SW1A 2HQ',
-        supplementary_benefits: true,
-        supplementary_debt: true,
-        supplementary_ill_health: true,
-        supplementary_defined_benefit_pensions: true
-      }
     end
   }.freeze
 

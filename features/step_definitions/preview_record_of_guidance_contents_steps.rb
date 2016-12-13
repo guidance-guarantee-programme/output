@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+Given(/^a customer has had a Pension Wise appointment$/) do
+  @appointment_summary = fixture(:populated_appointment_summary)
+end
+
 When(/^I preview (?:their|a) record of guidance$/) do
   page = AppointmentSummaryPage.new
   page.load
