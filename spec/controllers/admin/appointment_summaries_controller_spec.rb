@@ -16,7 +16,7 @@ RSpec.describe Admin::AppointmentSummariesController, type: :controller do
       let(:user) { create(:user, email: email) }
 
       before do
-        put :update, id: appointment_summary.id
+        put :update, params: { id: appointment_summary.id }
       end
 
       it { is_expected.to redirect_to(root_path) }
@@ -27,7 +27,7 @@ RSpec.describe Admin::AppointmentSummariesController, type: :controller do
 
       before do
         allow(NotifyViaEmail).to receive(:perform_later)
-        put :update, id: appointment_summary.id, appointment_summary: { email: email }
+        put :update, params: { id: appointment_summary.id, appointment_summary: { email: email } }
         appointment_summary.reload
       end
 

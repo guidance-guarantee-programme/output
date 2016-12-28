@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-require_relative './boot'
+require_relative 'boot'
 
 require 'active_model/railtie'
 require 'active_job/railtie'
@@ -15,6 +14,5 @@ module Output
   class Application < Rails::Application
     config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'] }
     config.active_job.queue_adapter = :sidekiq
-    config.active_record.raise_in_transactional_callbacks = true
   end
 end

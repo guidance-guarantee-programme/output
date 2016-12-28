@@ -1,16 +1,5 @@
-# frozen_string_literal: true
 require 'sidekiq/api'
 require 'sidekiq/web'
-
-Sidekiq::Web.get '/rag' do
-  stats = Sidekiq::Stats.new
-
-  content_type :json
-
-  { item: [{ value: stats.failed, text: 'Failed' },
-           { value: stats.enqueued, text: 'Enqueued' },
-           { value: stats.processed, text: 'Processed' }] }.to_json
-end
 
 if ENV['SIDEKIQ_USERNAME'] && ENV['SIDEKIQ_PASSWORD']
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
@@ -37,8 +26,6 @@ Rails.application.routes.draw do
       get 'input', action: 'pages_input'
       get 'output-elements', action: 'pages_output_elements'
     end
-
-    get '(/:action)'
   end
 
   namespace :admin do

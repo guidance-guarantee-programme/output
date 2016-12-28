@@ -78,7 +78,7 @@ class OutputDocument
   end
 
   def pdf
-    Princely.new.pdf_from_string(html)
+    Princely::Pdf.new.pdf_from_string(html)
   end
 
   private

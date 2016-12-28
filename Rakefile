@@ -6,8 +6,6 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-Rake::Task['doc:app'].clear
-
 begin
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new(:default)

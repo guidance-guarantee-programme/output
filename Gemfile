@@ -24,9 +24,9 @@ gem 'notifications-ruby-client', github: 'alphagov/notifications-ruby-client'
 gem 'output-templates', '~> 4.4.4', github: 'guidance-guarantee-programme/output-templates'
 gem 'pg'
 gem 'plek'
-gem 'princely'
+gem 'princely', github: 'guidance-guarantee-programme/princely', branch: 'remove-alias-method-chain'
 gem 'puma'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.1'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'retriable'
 gem 'sass-rails', '~> 5.0'
@@ -40,11 +40,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'scss-lint'
-  gem 'web-console', '~> 2.0'
 end
 
 group :development do
   gem 'rubocop', require: false
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
