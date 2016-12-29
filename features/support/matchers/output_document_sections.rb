@@ -14,7 +14,7 @@ module OutputDocumentSectionsMatchers
     end
   end
 
-  RSpec::Matchers.define :include_output_document_section do |section|
+  RSpec::Matchers.define :include_output_document_section do |section| # rubocop:disable Metrics/BlockLength
     include SectionMatchExpressions
 
     chain :at_version, :version

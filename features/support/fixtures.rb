@@ -5,7 +5,7 @@ module Fixtures
   end
 
   FIXTURES = {
-    populated_appointment_summary: proc do
+    populated_appointment_summary: proc do # rubocop:disable Metrics/BlockLength
       AppointmentSummary.new(
         title: 'Mr',
         first_name: 'Joé',

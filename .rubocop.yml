@@ -29,3 +29,6 @@ Style/FrozenStringLiteralComment:
 
 Style/RescueModifier:
   Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false

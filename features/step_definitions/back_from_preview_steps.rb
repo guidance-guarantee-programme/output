@@ -23,7 +23,7 @@ When(/^I go back to the appointment details$/) do
   page.back.click
 end
 
-Then(/^the previously captured details are prepopulated$/) do
+Then(/^the previously captured details are prepopulated$/) do # rubocop:disable Metrics/BlockLength
   page = AppointmentSummaryPage.new
 
   text_fields = %i(title
