@@ -1,6 +1,6 @@
 require_relative '../../lib/devise_tagged_logging'
 
-Rails.application.configure do
+Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
