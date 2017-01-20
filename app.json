@@ -7,10 +7,6 @@
     "scheduler"
   ],
   "env": {
-    "BUILDPACK_URL": {
-      "description": "Which buildpack to use when compiling the slug",
-      "value": "https://github.com/heroku/heroku-buildpack-multi.git"
-    },
     "GITHUB_AUTH_TOKEN": {
       "description": "GitHub token that allows cloning of `guidance-guarantee-programme/output-templates`"
     },
@@ -29,5 +25,19 @@
   },
   "scripts": {
     "postdeploy": "./bin/rake db:migrate"
-  }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/timshadel/heroku-buildpack-github-netrc.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "https://github.com/lm-tools/heroku-buildpack-princexml.git"
+    }
+  ]
 }
