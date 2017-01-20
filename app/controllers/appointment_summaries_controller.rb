@@ -34,7 +34,8 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def create
-    @appointment_summary = AppointmentSummary.create!(appointment_summary_params.merge(user: current_user))
+    @appointment_summary = AppointmentSummary.create!(appointment_summary_params)
+    CreateTapActivity.perform_later(@appointment_summary, current_user)
     NotifyViaEmail.perform_later(@appointment_summary) if @appointment_summary.can_be_emailed?
 
     respond_to do |format|
@@ -61,7 +62,10 @@ class AppointmentSummariesController < ApplicationController
   private
 
   def appointment_summary_params
-    params.require(:appointment_summary).permit(AppointmentSummary.editable_column_names)
+    params
+      .require(:appointment_summary)
+      .permit(AppointmentSummary.editable_column_names)
+      .merge(user: current_user)
   end
 
   def ajax_response_paths(appointment_summary)

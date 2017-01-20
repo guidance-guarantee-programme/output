@@ -32,6 +32,7 @@ gem 'retriable'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'sinatra', require: nil # Sidekiq UI
+gem 'telephone_appointments'
 gem 'uglifier', '>= 1.3.0'
 gem 'uk_postcode'
 
