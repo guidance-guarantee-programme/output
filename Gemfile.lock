@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: b236a4e52aa70c7e919d8f9c56986fb3e80a95fe
+  revision: 865fcbcd9e5ea167780d702c1e75858a70087dc7
   specs:
     output-templates (4.4.4)
       actionview
@@ -75,7 +75,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
     bugsnag (5.0.1)
-    builder (3.2.2)
+    builder (3.2.3)
     byebug (9.0.6)
     capybara (2.11.0)
       addressable
@@ -172,7 +172,7 @@ GEM
     net-ssh (4.0.0)
     newrelic_rpm (3.17.2.327)
     nio4r (1.2.1)
-    nokogiri (1.7.0)
+    nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     oauth2 (1.3.0)
       faraday (>= 0.8, < 0.11)
