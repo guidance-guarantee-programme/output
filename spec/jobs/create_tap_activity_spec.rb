@@ -41,7 +41,7 @@ RSpec.describe CreateTapActivity do
   context 'when the summary document fails to save' do
     let(:appointment_summary) { double(:appointment_summary, reference_number: '1234', requested_digital: false) }
     let(:summary_document_activity) do
-      double(:summary_document_activity, save: false, errors: { 'owner_id' => 'can be black' })
+      double(:summary_document_activity, save: false, errors: { 'owner_id' => "can't be blank" })
     end
 
     it 'reports an error via bugsnag' do
