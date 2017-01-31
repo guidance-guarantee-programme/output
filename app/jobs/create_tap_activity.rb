@@ -18,6 +18,9 @@ class CreateTapActivity < ApplicationJob
 
     return if telephone_appointment.save
 
-    raise UnableToCreateSummaryDocumentActivity, "Errors: #{telephone_appointment.errors.inspect}"
+    raise UnableToCreateSummaryDocumentActivity, <<~MESSAGE
+      Appointment: #{appointment_summary.reference_number}
+      Errors: #{telephone_appointment.errors.inspect}
+    MESSAGE
   end
 end
