@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@example.com" }
     name 'Rick Sanchez'
-    permissions ['signin']
+    permissions %w(signin team_leader)
   end
 
   factory :appointment_summary do

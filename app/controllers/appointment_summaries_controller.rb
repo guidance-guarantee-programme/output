@@ -11,12 +11,16 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def new
-    prepopulated_fields = { guider_name: current_user.first_name,
-                            date_of_appointment: Time.zone.today }
+    if summarisable?
+      prepopulated_fields = { guider_name: current_user.first_name,
+                              date_of_appointment: Time.zone.today }
 
-    prepopulated_fields.merge!(appointment_summary_params.to_h) if params.include?(:appointment_summary)
+      prepopulated_fields.merge!(appointment_summary_params.to_h) if params.include?(:appointment_summary)
 
-    @appointment_summary = AppointmentSummary.new(prepopulated_fields)
+      @appointment_summary = AppointmentSummary.new(prepopulated_fields)
+    else
+      render :summarise_via_tap
+    end
   end
 
   def preview
@@ -60,6 +64,10 @@ class AppointmentSummariesController < ApplicationController
   end
 
   private
+
+  def summarisable?
+    current_user.team_leader? || params.key?(:appointment_summary)
+  end
 
   def appointment_summary_params
     params
