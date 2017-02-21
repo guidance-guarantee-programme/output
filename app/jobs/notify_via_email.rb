@@ -14,24 +14,18 @@ class NotifyViaEmail < ApplicationJob
   def perform(appointment_summary, config: Rails.configuration.x.notify)
     raise AttemptingToResendNotification, appointment_summary if appointment_summary.notification_id.present?
 
-    response = notify(
-      service_id: config.service_id,
-      secret_id: config.secret_id,
-      notification: notification(appointment_summary, template_id(appointment_summary, config))
-    )
+    payload  = notification(appointment_summary, template_id(appointment_summary, config))
+    response = Notifications::Client.new(config.secret_id).send_email(payload)
 
     appointment_summary.update_attributes(notification_id: response.id)
   end
 
-  def notify(service_id:, secret_id:, notification:)
-    client = Notifications::Client.new(service_id, secret_id)
-    client.send_email(notification.to_json)
-  end
+  private
 
   def notification(appointment_summary, template_id)
     {
-      to: appointment_summary.email,
-      template: template_id,
+      email_address: appointment_summary.email,
+      template_id: template_id,
       personalisation: {
         reference_number: appointment_summary.reference_number,
         title: appointment_summary.title,
@@ -39,7 +33,7 @@ class NotifyViaEmail < ApplicationJob
         guider_name: appointment_summary.guider_name,
         date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long)
       }
-    }
+    }.to_json
   end
 
   def template_id(appointment_summary, config)
