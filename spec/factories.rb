@@ -1,3 +1,5 @@
+require 'securerandom'
+
 FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@example.com" }
@@ -27,5 +29,10 @@ FactoryGirl.define do
     number_of_previous_appointments 0
     requested_digital false
     email 'joe@bloggs.com'
+
+    factory :notify_delivered_appointment_summary do
+      requested_digital true
+      notification_id { SecureRandom.uuid }
+    end
   end
 end
