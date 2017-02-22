@@ -49,9 +49,6 @@ Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # Prepend all log lines with the following tags.
   config.log_tags = [:uuid]
 
-  # Prepend log lines with the `current_user`
-  config.app_middleware.insert_after(Warden::Manager, DeviseTaggedLogging)
-
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
