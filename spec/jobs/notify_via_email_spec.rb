@@ -22,8 +22,8 @@ RSpec.describe NotifyViaEmail do
     it 'sends a standard email notification' do
       expect(client).to receive(:send_email).with(
         {
-          to: appointment_summary.email,
-          template: 'template',
+          email_address: appointment_summary.email,
+          template_id: 'template',
           personalisation: {
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
@@ -44,8 +44,8 @@ RSpec.describe NotifyViaEmail do
     it 'sends an ineligible email notification' do
       expect(client).to receive(:send_email).with(
         {
-          to: appointment_summary.email,
-          template: 'ineligible_template',
+          email_address: appointment_summary.email,
+          template_id: 'ineligible_template',
           personalisation: {
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
