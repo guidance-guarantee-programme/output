@@ -27,7 +27,9 @@ class NotifyDelivery
   def notify_tap(appointment_summary)
     return unless appointment_summary.failed? && appointment_summary.notify_completed_at?
 
-    TelephoneAppointments::DroppedSummaryDocumentActivity.new(appointment_summary.to_param).save
+    TelephoneAppointments::DroppedSummaryDocumentActivity.new(
+      appointment_summary.reference_number
+    ).save
   end
 
   def map_status(response)
