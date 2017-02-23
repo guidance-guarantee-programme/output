@@ -27,11 +27,13 @@ RSpec.describe NotifyDelivery, '#call' do
       allow(client).to receive(:get_notification).and_return(
         double(completed_at: Time.zone.now, status: 'permanent-failure')
       )
-
-      allow(TelephoneAppointments::DroppedSummaryDocumentActivity).to receive(:new) { activity }
     end
 
     it 'notifies TAP with an activity entry' do
+      expect(
+        TelephoneAppointments::DroppedSummaryDocumentActivity
+      ).to receive(:new).with(appointment_summary.reference_number) { activity }
+
       subject
 
       expect(activity).to have_received(:save)
