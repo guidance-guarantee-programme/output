@@ -32,3 +32,8 @@ Style/RescueModifier:
 
 Style/EmptyMethod:
   Enabled: false
+
+Metrics/AbcSize:
+  Exclude:
+    - spec/**/*
+
