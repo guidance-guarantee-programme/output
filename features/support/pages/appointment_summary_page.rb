@@ -4,8 +4,7 @@ require_relative '../site_prism/radio_button_container'
 # rubocop:disable ClassLength
 class AppointmentSummaryPage < SitePrism::Page
   extend SitePrism::RadioButtonContainer
-
-  set_url '/appointment_summaries/new?appointment_summary%5Btitle%5D=Mr'
+  set_url '/appointment_summaries/new{?params*}'
   set_url_matcher %r{/appointment_summaries/new}
 
   element :title, '.t-title'
@@ -70,18 +69,41 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :submit, '.t-submit'
 
+  def load(appointment_summary)
+    super(
+      {
+        params: params(appointment_summary)
+      }
+    )
+  end
+
+  def params(appointment_summary)
+    params_from_tap = %i(
+      appointment_type
+      date_of_appointment
+      email
+      first_name
+      last_name
+      guider_name
+      number_of_previous_appointments
+      reference_number
+    )
+
+    {}.tap do |params|
+      params_from_tap.each do |param|
+        params["appointment_summary[#{param}]"] = appointment_summary[param.to_s]
+      end
+    end
+  end
+
   def fill_in(appointment_summary)
     fill_in_customer_details(appointment_summary)
-    fill_in_appointment_audit_details(appointment_summary)
-    fill_in_appointment_type(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
     fill_in_income_in_retirement_details(appointment_summary)
-    fill_in_guider_details(appointment_summary)
     fill_in_has_defined_contribution_pension(appointment_summary)
     fill_in_circumstances(appointment_summary)
     fill_in_format_preference(appointment_summary)
     fill_in_digital_request(appointment_summary)
-    fill_in_number_of_previous_appointments(appointment_summary)
     fill_in_supplementary_information(appointment_summary)
   end
 
@@ -90,8 +112,6 @@ class AppointmentSummaryPage < SitePrism::Page
   # rubocop:disable AbcSize
   def fill_in_customer_details(appointment_summary)
     title.select appointment_summary.title
-    first_name.set appointment_summary.first_name
-    last_name.set appointment_summary.last_name
     address_line_1.set appointment_summary.address_line_1
     address_line_2.set appointment_summary.address_line_2
     address_line_3.set appointment_summary.address_line_3
@@ -101,18 +121,6 @@ class AppointmentSummaryPage < SitePrism::Page
     postcode.set appointment_summary.postcode
   end
   # rubocop:enable AbcSize
-
-  def fill_in_appointment_audit_details(appointment_summary)
-    date_of_appointment.set appointment_summary.date_of_appointment
-    reference_number.set appointment_summary.reference_number
-  end
-
-  def fill_in_appointment_type(appointment_summary)
-    case appointment_summary.appointment_type
-    when 'standard' then appointment_type_standard.set true
-    when '50_54' then appointment_type_appointment_50_54.set true
-    end
-  end
 
   def fill_in_pension_pot_details(appointment_summary)
     value_of_pension_pots.set appointment_summary.value_of_pension_pots
@@ -131,10 +139,6 @@ class AppointmentSummaryPage < SitePrism::Page
     retirement_income_inheritance.set appointment_summary.retirement_income_inheritance
     retirement_income_other_income.set appointment_summary.retirement_income_other_income
     retirement_income_unspecified.set appointment_summary.retirement_income_unspecified
-  end
-
-  def fill_in_guider_details(appointment_summary)
-    guider_name.set appointment_summary.guider_name
   end
 
   def fill_in_has_defined_contribution_pension(appointment_summary)
@@ -170,19 +174,6 @@ class AppointmentSummaryPage < SitePrism::Page
       requested_digital_true.set true
     else
       requested_digital_false.set true
-    end
-    email.set appointment_summary.email
-  end
-
-  def fill_in_number_of_previous_appointments(appointment_summary)
-    field = appointment_summary.number_of_previous_appointments.zero? ? first_appointment_yes : first_appointment_no
-    field.set true
-
-    case appointment_summary.number_of_previous_appointments
-    when 0 then number_of_previous_appointments_zero.set true
-    when 1 then number_of_previous_appointments_one.set true
-    when 2 then number_of_previous_appointments_two.set true
-    when 3 then number_of_previous_appointments_three.set true
     end
   end
 
