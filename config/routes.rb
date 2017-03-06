@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   mount GovukAdminTemplate::Engine, at: '/style-guide'
   mount Sidekiq::Web => '/sidekiq', constraints: AuthenticatedUser.new
 
-  resources :appointment_summaries, only: %i(index new create show) do
+  resources :appointment_summaries, only: %i(index new create update show) do
     collection do
       get :creating
       get :done
