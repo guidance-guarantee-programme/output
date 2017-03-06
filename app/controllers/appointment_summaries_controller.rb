@@ -66,7 +66,7 @@ class AppointmentSummariesController < ApplicationController
   private
 
   def summarisable?
-    current_user.team_leader? || params.key?(:appointment_summary)
+    params.key?(:appointment_summary)
   end
 
   def appointment_summary_params

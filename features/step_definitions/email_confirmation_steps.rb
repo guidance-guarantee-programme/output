@@ -3,7 +3,7 @@ Given(/^a guider has submitted the customer's details in an appointment summary$
   @appointment_summary = fixture(:populated_appointment_summary)
   @email = @appointment_summary.email
   page = AppointmentSummaryPage.new
-  page.load
+  page.load(@appointment_summary)
   page.fill_in(@appointment_summary)
   page.submit.click
 end

@@ -5,7 +5,7 @@ end
 
 When(/^I preview (?:their|a) record of guidance$/) do
   page = AppointmentSummaryPage.new
-  page.load
+  page.load(@appointment_summary)
   page.fill_in(@appointment_summary)
   page.submit.click
 

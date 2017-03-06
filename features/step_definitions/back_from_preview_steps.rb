@@ -3,7 +3,7 @@ Given(/^appointment details are captured$/) do
   @appointment_summary = fixture(:populated_appointment_summary)
 
   page = AppointmentSummaryPage.new
-  page.load
+  page.load(@appointment_summary)
   page.fill_in(@appointment_summary)
   page.submit.click
 

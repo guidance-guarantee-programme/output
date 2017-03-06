@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 When(/^we send them their record of guidance$/) do
   appointment_summary_page = AppointmentSummaryPage.new
-  appointment_summary_page.load
+  appointment_summary_page.load(@appointment_summary)
+
   appointment_summary_page.fill_in(@appointment_summary)
   appointment_summary_page.submit.click
 
