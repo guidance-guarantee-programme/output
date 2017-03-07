@@ -65,11 +65,4 @@ RSpec.describe NotifyViaEmail do
     appointment_summary.reload
     expect(appointment_summary.notification_id).to eq('12345')
   end
-
-  it 'raises an error if a notification has already been sent' do
-    appointment_summary.notification_id = 'already send'
-    expect do
-      described_class.perform_now(appointment_summary, config: config)
-    end.to raise_error(described_class::AttemptingToResendNotification)
-  end
 end
