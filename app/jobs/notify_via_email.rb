@@ -12,8 +12,6 @@ class NotifyViaEmail < ApplicationJob
   queue_as :default
 
   def perform(appointment_summary, config: Rails.configuration.x.notify)
-    raise AttemptingToResendNotification, appointment_summary if appointment_summary.notification_id.present?
-
     payload  = notification(appointment_summary, template_id(appointment_summary, config))
     response = Notifications::Client.new(config.secret_id).send_email(payload)
 
