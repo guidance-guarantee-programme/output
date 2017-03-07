@@ -91,7 +91,7 @@ class AppointmentSummaryPage < SitePrism::Page
 
     {}.tap do |params|
       params_from_tap.each do |param|
-        params["appointment_summary[#{param}]"] = appointment_summary[param.to_s]
+        params["appointment_summary[#{param}]"] = appointment_summary[param]
       end
     end
   end
