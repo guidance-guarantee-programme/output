@@ -14,7 +14,7 @@
     </div>
     <div class="col-xs-6 fixed-bar__submit">
       <%=
-        submit_button_classes = %w(btn-success t-confirm)
+        submit_button_classes = %w(btn btn-success t-confirm)
         submit_button_classes << 'js-save-and-open' unless @appointment_summary.requested_digital?
         render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
                submit_button_text: 'Submit', submit_button_classes: submit_button_classes

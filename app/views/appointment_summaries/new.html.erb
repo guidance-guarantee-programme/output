@@ -26,17 +26,17 @@
 
     <div class="form-group">
       <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name) %>
+      <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name), readonly: true %>
     </div>
 
     <div class="form-group">
       <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name) %>
+      <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name), readonly: true %>
     </div>
 
     <div class="form-group">
       <%= f.label :email %>
-      <%= f.text_field :email, class: %w(form-control t-email input-md-3) %>
+      <%= f.text_field :email, class: %w(form-control t-email input-md-3), readonly: true %>
     </div>
 
     <h3 id="postal-address-heading">Postal address</h3>
@@ -81,12 +81,12 @@
     <div class="form-group">
       <%= f.label :date_of_appointment %>
       <%= f.date_field :date_of_appointment,
-                       class: %w(form-control input-md-2 t-date-of-appointment) %>
+                       class: %w(form-control input-md-2 t-date-of-appointment), readonly: true %>
     </div>
 
     <div class="form-group">
       <%= f.label :reference_number %>
-      <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number) %>
+      <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number), readonly: true %>
     </div>
 
     <div class="form-group">
@@ -97,14 +97,14 @@
         <div class="radio">
           <%= f.label :appointment_type, value: 'standard' do %>
             <%= f.radio_button :appointment_type, 'standard',
-                               class: 't-appointment-type-standard' %>
+                               class: 't-appointment-type-standard', disabled: f.object.appointment_type != 'standard' %>
             Appointment for customers aged 55+
           <% end %>
         </div>
         <div class="radio">
           <%= f.label :appointment_type, value: '50_54' do %>
             <%= f.radio_button :appointment_type, '50_54',
-                               class: 't-appointment-type-50-54' %>
+                               class: 't-appointment-type-50-54', disabled: f.object.appointment_type != '50_54' %>
             Appointment for customers aged 50-54
           <% end %>
         </div>
@@ -176,7 +176,7 @@
 
     <div class="form-group">
       <%= f.label :guider_name %>
-      <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name) %>
+      <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name), readonly: true %>
     </div>
 
     <hr>
@@ -506,7 +506,7 @@
     </div>
 
     <p>
-      <%= f.submit 'Next', class: %w(btn-success t-submit btn-lg) %>
+      <%= f.submit 'Next', class: %w(btn btn-success t-submit btn-lg) %>
     </p>
 
   </div>
@@ -526,7 +526,7 @@
   <div class="form-group form-inline postcode-lookup" id="postcode-lookup">
     <label for="appointment_summary_lookup" class="visuallyhidden">Postcode or address to search for</label><br>
     <input class="form-control input-md-3 add-right-margin" placeholder="Enter postcode or address" type="text" id="postcode-lookup-input" />
-    <button class="btn-success btn-sm" onclick="return false" id="postcode-lookup-button">Find UK address</button>
+    <button class="btn btn-success btn-sm" onclick="return false" id="postcode-lookup-button">Find UK address</button>
   </div>
   <div class="form-group form-inline" id="postcode-lookup-results-container">
   </div>
