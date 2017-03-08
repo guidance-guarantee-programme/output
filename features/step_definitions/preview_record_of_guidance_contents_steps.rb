@@ -8,9 +8,6 @@ When(/^I preview (?:their|a) record of guidance$/) do
   page.load(@appointment_summary)
   page.fill_in(@appointment_summary)
   page.submit.click
-
-  email_confirmation_page = EmailConfirmationPage.new
-  email_confirmation_page.confirm.click
 end
 
 Then(/^the sections that the preview includes should be \(in order\):$/) do |table|

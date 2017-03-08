@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       get :creating
       get :done
       post :preview
-      post :email_confirmation
     end
   end
 
