@@ -60,9 +60,19 @@ RSpec.describe NotifyViaEmail do
     end
   end
 
-  it 'stores the notification id' do
-    described_class.perform_now(appointment_summary, config: config)
-    appointment_summary.reload
-    expect(appointment_summary.notification_id).to eq('12345')
+  context 'when regenerating' do
+    let(:appointment_summary) do
+      create(:appointment_summary, notify_completed_at: '2017-02-02 13:00', notify_status: :delivered)
+    end
+
+    it 'ensures the record is polled for notify delivery status' do
+      described_class.perform_now(appointment_summary, config: config)
+
+      expect(appointment_summary.reload).to have_attributes(
+        notification_id: '12345',
+        notify_completed_at: nil,
+        notify_status: 'pending'
+      )
+    end
   end
 end
