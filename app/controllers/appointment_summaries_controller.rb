@@ -42,7 +42,10 @@ class AppointmentSummariesController < ApplicationController
     @appointment_summary.update!(appointment_summary_params)
     send_notifications(@appointment_summary)
 
-    redirect_to done_appointment_summaries_path
+    respond_to do |format|
+      format.html { redirect_to done_appointment_summaries_path }
+      format.json { render json: ajax_response_paths(@appointment_summary) }
+    end
   end
 
   def show
