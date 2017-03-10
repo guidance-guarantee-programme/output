@@ -43,7 +43,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'rspec-rails'
-  gem 'scss-lint'
+  gem 'scss_lint', require: false
 end
 
 group :development do
