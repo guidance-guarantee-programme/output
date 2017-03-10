@@ -5,6 +5,7 @@ services:
 cache:
   bundler: true
   directories:
+  - '.downloads'
   - node_modules
   - tmp/cache/assets/test
   - vendor/assets/bower_components
@@ -18,8 +19,11 @@ node_js:
 before_install:
 - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
 before_script:
+- '[ -d .downloads ] || mkdir .downloads'
+- '(cd .downloads; [ -d prince-9.0r5-linux-amd64-static ] || curl -s http://www.princexml.com/download/prince-9.0r5-linux-amd64-static.tar.gz | tar xzf -)'
+- echo $PWD | ./.downloads/prince-9.0r5-linux-amd64-static/install.sh
 - npm install
-- "./bin/rake db:setup RAILS_ENV=test"
+- './bin/rake db:setup RAILS_ENV=test'
 notifications:
   slack:
     secure: YSz3iC+QIFKS108cIAc+bmImetKRRb0fij9g7skft+Ug9Err4JDMGo0fX+2vHL9XOk+tx5wWJZjy/HSpHd5kMAw8+ASXCQf3mqLyC9GR2zgxxb6Xs1I0Hc1yuzYHv+6zrEvbS5P+zf2Fz3mj1rEaK3Yf7wmw/Rags1X42R9jPcc=

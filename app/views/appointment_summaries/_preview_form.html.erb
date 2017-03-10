@@ -1,6 +1,12 @@
-<%= form_for local_assigns.fetch(:appointment_summary),
-  url: local_assigns.fetch(:url),
-  method: local_assigns.fetch(:method) { :post } do |f| %>
+<%
+  options = {}
+
+  if local_assigns[:url]
+    options[:url]    = local_assigns[:url]
+    options[:method] = local_assigns.fetch(:method) { :post }
+  end
+%>
+<%= form_for local_assigns.fetch(:appointment_summary), options do |f| %>
 
   <% AppointmentSummary.editable_column_names.each do |field| %>
     <%= f.hidden_field field %>
