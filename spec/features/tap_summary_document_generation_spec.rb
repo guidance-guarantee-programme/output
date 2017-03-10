@@ -1,13 +1,14 @@
 require 'rails_helper'
-require_relative '../../features/support/pages/appointment_summary_page'
 
-RSpec.feature 'Appointment Summaries' do
+RSpec.feature 'Appointment Summaries', js: true do
   scenario 'Regenerating an existing appointment summary' do
     given_an_existing_appointment_summary
     when_the_guider_attempts_to_regenerate_the_summary
     then_the_existing_appointment_summary_is_displayed
     and_the_details_provided_by_tap_are_displayed
     when_the_guider_modifies_the_summary
+    then_the_preview_is_displayed
+    when_the_guider_confirms_the_preview
     then_the_existing_summary_is_updated
   end
 
@@ -52,7 +53,19 @@ RSpec.feature 'Appointment Summaries' do
     @page.submit.click
   end
 
+  def then_the_preview_is_displayed
+    @page = PreviewPage.new
+    expect(@page).to be_displayed
+  end
+
+  def when_the_guider_confirms_the_preview
+    @page.confirm.click
+  end
+
   def then_the_existing_summary_is_updated
+    @page = DonePage.new
+    expect(@page).to be_displayed
+
     expect(@summary.reload.address_line_1).to eq('5 Grange Hill')
   end
 end

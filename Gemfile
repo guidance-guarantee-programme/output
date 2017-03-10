@@ -37,7 +37,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'uk_postcode'
 
 group :development, :test do
+  gem 'database_rewinder'
   gem 'launchy'
+  gem 'phantomjs-binaries'
+  gem 'poltergeist'
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'scss-lint'

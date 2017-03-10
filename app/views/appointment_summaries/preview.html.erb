@@ -20,7 +20,7 @@
       <%=
         submit_button_classes = %w(btn-success t-confirm)
         submit_button_classes << 'js-save-and-open' unless @appointment_summary.requested_digital?
-        render 'preview_form', url: appointment_summaries_path, appointment_summary: @appointment_summary,
+        render 'preview_form', appointment_summary: @appointment_summary,
                submit_button_text: 'Submit', submit_button_classes: submit_button_classes
       %>
     </div>
@@ -28,10 +28,17 @@
 </div>
 
 <script>
+  <%
+    path = if @appointment_summary.persisted?
+             appointment_summary_path(@appointment_summary, format: :json)
+           else
+             appointment_summaries_path(format: :json)
+           end
+  %>
   $(".js-save-and-open").click(function(e){
     var popupWindow = window.open('<%= creating_appointment_summaries_path %>');
 
-    $.post('<%= appointment_summaries_path(format: 'json') %>', $(this.form).serialize())
+    $.post('<%= path %>', $(this.form).serialize())
       .done(function(data) {
         popupWindow.location = data.pdf_path;
         window.location = data.done_path;
