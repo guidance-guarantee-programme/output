@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
   Exclude:
     - 'bin/*'
     - 'db/**/*'
@@ -37,3 +37,6 @@ Metrics/AbcSize:
   Exclude:
     - spec/**/*
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
