@@ -5,6 +5,13 @@
 <p class="lead">Use this form to enter the caller's personal details given during
   the guidance appointment and to issue a personalised record of guidance.</p>
 
+<div class="consent">
+  <p class="highlight highlight-orange">
+  Has caller consented to sharing data for the purpose of creating an appointment summary and sending a summary document?
+  </p>
+</div>
+
+<div class="display_if_consent">
   <h2>Caller details</h2>
 
   <div class="form-group">
@@ -318,8 +325,18 @@
   </div>
 
   <p>
-    <input type="submit" name="commit" value="Submit" class="btn btn-success t-submit btn-lg" />
+    <input type="submit" name="commit" value="Continue" class="btn btn-primary t-submit" />
   </p>
+</div>
+
+<script type="text/html" id="consent">
+  <div class="checkbox">
+    <label for="appointment_summary_consent">
+      <input class="t-continue-working" type="checkbox" value="1" name="appointment_summary[consent]" id="appointment_summary_consent" />
+     Caller has consented to sharing data for for the purpose of creating an appointment summary and sending a summary document
+    </label>
+  </div>
+</script>
 
 <script type="text/html" id="postcode-lookup-template">
   <div class="form-group form-inline postcode-lookup" id="postcode-lookup">
