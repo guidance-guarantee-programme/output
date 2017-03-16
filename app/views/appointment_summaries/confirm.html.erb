@@ -54,26 +54,26 @@
 </div>
 
 <script>
-  <%
-    path = if @appointment_summary.persisted?
-             appointment_summary_path(@appointment_summary, format: :json)
-           else
-             appointment_summaries_path(format: :json)
-           end
-  %>
-  $(".js-save-and-open").click(function(e){
-    var popupWindow = window.open('<%= creating_appointment_summaries_path %>');
+<%
+  path = if @appointment_summary.persisted?
+           appointment_summary_path(@appointment_summary, format: :json)
+         else
+           appointment_summaries_path(format: :json)
+         end
+%>
+$('.js-save-and-open').click(function(e){
+  var popupWindow = window.open('<%= creating_appointment_summaries_path %>');
 
-    $.post('<%= path %>', $(this.form).serialize())
-      .done(function(data) {
-        popupWindow.location = data.pdf_path;
-        window.location = data.done_path;
-      })
-      .fail(function() {
-        popupWindow.close();
-        alert( "Error saving the summary document. Please try again." );
-      });
+  $.post('<%= path %>', $(this.form).serialize())
+    .done(function(data) {
+      popupWindow.location = data.pdf_path;
+      window.location = data.done_path;
+    })
+    .fail(function() {
+      popupWindow.close();
+      alert('Error saving the summary document. Please try again.');
+    });
 
-    e.preventDefault();
-  });
+  e.preventDefault();
+});
 </script>
