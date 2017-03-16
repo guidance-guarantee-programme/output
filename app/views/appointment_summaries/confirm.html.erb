@@ -43,11 +43,11 @@
         submit_button_classes = %w(btn-primary t-confirm)
         submit_button_classes << 'js-save-and-open' unless @appointment_summary.requested_digital?
 
-        render 'preview_form', appointment_summary: @appointment_summary,
+        render 'confirmation_button', appointment_summary: @appointment_summary,
                submit_button_text: 'Confirm summary document', submit_button_classes: submit_button_classes
       %>
 
-      <%= render 'preview_form', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
+      <%= render 'confirmation_button', url: new_appointment_summary_path, method: :get, appointment_summary: @appointment_summary,
                submit_button_text: 'Edit summary document', submit_button_classes: %w(btn-danger t-back) %>
     </div>
   </div>
