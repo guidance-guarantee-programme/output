@@ -2,7 +2,7 @@
 class AppointmentSummariesController < ApplicationController
   before_action :require_signin_permission! # this can't be in ApplicationController due to Gaffe gem
   before_action :authenticate_as_team_leader!, only: :index
-  before_action :load_summary, only: %i(new email_confirmation update preview)
+  before_action :load_summary, only: %i(new email_confirmation update confirm)
 
   def index
     @appointment_form = AppointmentSummaryFinder.new(
@@ -19,7 +19,7 @@ class AppointmentSummariesController < ApplicationController
     end
   end
 
-  def preview
+  def confirm
     @appointment_summary.assign_attributes(appointment_summary_params)
 
     if @appointment_summary.valid?

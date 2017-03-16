@@ -67,8 +67,6 @@ linters:
 
   ImportantRule:
     enabled: true
-    exclude:
-      - app/assets/stylesheets/layout/_preview.scss
 
   ImportPath:
     enabled: true

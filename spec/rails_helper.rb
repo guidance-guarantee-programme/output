@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'database_rewinder'
 
 require_relative '../features/support/pages/done_page'
-require_relative '../features/support/pages/preview_page'
+require_relative '../features/support/pages/confirmation_page'
 require_relative '../features/support/pages/appointment_summary_page'
 
 ActiveRecord::Migration.maintain_test_schema!

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class PreviewPage < SitePrism::Page
-  set_url_matcher %r{/appointment_summaries/preview}
+class ConfirmationPage < SitePrism::Page
+  set_url_matcher %r{/appointment_summaries/confirm}
 
   element :name, '.name'
   element :confirm, '.t-confirm'
