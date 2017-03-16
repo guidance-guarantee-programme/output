@@ -6,8 +6,8 @@ When(/^we send them their record of guidance$/) do
   appointment_summary_page.fill_in(@appointment_summary)
   appointment_summary_page.submit.click
 
-  preview_page = PreviewPage.new
-  preview_page.confirm.click
+  confirmation_page = ConfirmationPage.new
+  confirmation_page.confirm.click
 end
 
 Given(/^(?:I|we) have captured the customer's details in an appointment summary$/) do

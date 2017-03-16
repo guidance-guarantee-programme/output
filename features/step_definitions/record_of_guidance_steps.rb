@@ -27,8 +27,8 @@ When(/^I create their record of guidance$/) do
   appointment_summary_page.fill_in(@appointment_summary)
   appointment_summary_page.submit.click
 
-  preview_page = PreviewPage.new
-  preview_page.confirm.click
+  confirmation_page = ConfirmationPage.new
+  confirmation_page.confirm.click
 end
 
 Then(/^information about "(.*?)" should be recorded$/) do |circumstance|

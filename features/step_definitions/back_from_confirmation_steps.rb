@@ -8,14 +8,14 @@ Given(/^appointment details are captured$/) do
   page.submit.click
 end
 
-Given(/^I'm on the preview page$/) do
-  page = PreviewPage.new
+Given(/^I'm on the confirmation page$/) do
+  page = ConfirmationPage.new
 
   expect(page).to be_displayed
 end
 
 When(/^I go back to the appointment details$/) do
-  page = PreviewPage.new
+  page = ConfirmationPage.new
 
   page.back.click
 end

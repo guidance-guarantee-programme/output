@@ -7,8 +7,8 @@ RSpec.feature 'Appointment Summaries', js: true do
     then_the_existing_appointment_summary_is_displayed
     and_the_details_provided_by_tap_are_displayed
     when_the_guider_modifies_the_summary
-    then_the_preview_is_displayed
-    when_the_guider_confirms_the_preview
+    then_the_confirmation_is_displayed
+    when_the_guider_confirms_the_details
     then_the_existing_summary_is_updated
   end
 
@@ -53,12 +53,12 @@ RSpec.feature 'Appointment Summaries', js: true do
     @page.submit.click
   end
 
-  def then_the_preview_is_displayed
-    @page = PreviewPage.new
+  def then_the_confirmation_is_displayed
+    @page = ConfirmationPage.new
     expect(@page).to be_displayed
   end
 
-  def when_the_guider_confirms_the_preview
+  def when_the_guider_confirms_the_details
     @page.confirm.click
   end
 

@@ -102,6 +102,21 @@ class AppointmentSummary < ApplicationRecord
     )
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def postal_address
+    [
+      address_line_1,
+      address_line_2,
+      address_line_3,
+      town,
+      county,
+      postcode
+    ].reject(&:empty?).join("\n")
+  end
+
   private
 
   def uk_address?

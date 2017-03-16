@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     collection do
       get :creating
       get :done
-      post :preview
+      post :confirm
     end
   end
 
