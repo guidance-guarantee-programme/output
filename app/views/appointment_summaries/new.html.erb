@@ -42,17 +42,17 @@
     <h3 id="postal-address-heading">Postal address</h3>
 
     <div class="form-group">
-      <%= f.label :address_line_1 do %>Building and street <span class="visuallyhidden">line 1</span><% end %>
+      <%= f.label :address_line_1 do %>Building and street <span class="sr-only">line 1</span><% end %>
       <%= f.text_field :address_line_1, class: %w(form-control input-md-3 t-address-line-1) %>
     </div>
 
     <div class="form-group">
-      <%= f.label :address_line_2, class: 'visuallyhidden' %>
+      <%= f.label :address_line_2, class: 'sr-only' %>
       <%= f.text_field :address_line_2, class: %w(form-control input-md-3 t-address-line-2) %>
     </div>
 
     <div class="form-group">
-      <%= f.label :address_line_3, class: 'visuallyhidden' %>
+      <%= f.label :address_line_3, class: 'sr-only' %>
       <%= f.text_field :address_line_3, class: %w(form-control input-md-3 t-address-line-3) %>
     </div>
 
@@ -228,7 +228,7 @@
               to
               <br />
               <%= f.label :upper_value_of_pension_pots do %>
-                <span class="visuallyhidden">Upper value of pension pots (optional) Only use numbers, don't include pence, eg 30000</span>
+                <span class="sr-only">Upper value of pension pots (optional) Only use numbers, don't include pence, eg 30000</span>
               <% end %>
               £ <%= f.text_field :upper_value_of_pension_pots, placeholder: 30000,
                                class: %w(form-control input-md-2 js-numbers-only t-upper-value-of-pension-pots) %>
@@ -524,7 +524,7 @@
 
 <script type="text/html" id="postcode-lookup-template">
   <div class="form-group form-inline postcode-lookup" id="postcode-lookup">
-    <label for="appointment_summary_lookup" class="visuallyhidden">Postcode or address to search for</label><br>
+    <label for="appointment_summary_lookup" class="sr-only">Postcode or address to search for</label><br>
     <input class="form-control input-md-3 add-right-margin" placeholder="Enter postcode or address" type="text" id="postcode-lookup-input" />
     <button class="btn btn-success btn-sm" onclick="return false" id="postcode-lookup-button">Find UK address</button>
   </div>
