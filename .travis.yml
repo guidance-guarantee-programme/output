@@ -27,3 +27,6 @@ before_script:
 notifications:
   slack:
     secure: YSz3iC+QIFKS108cIAc+bmImetKRRb0fij9g7skft+Ug9Err4JDMGo0fX+2vHL9XOk+tx5wWJZjy/HSpHd5kMAw8+ASXCQf3mqLyC9GR2zgxxb6Xs1I0Hc1yuzYHv+6zrEvbS5P+zf2Fz3mj1rEaK3Yf7wmw/Rags1X42R9jPcc=
+branches:
+  except:
+    - /^prototypes\/.*$/
