@@ -103,7 +103,7 @@ class AppointmentSummary < ApplicationRecord
   end
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{title} #{first_name} #{last_name}"
   end
 
   def postal_address
