@@ -1,4 +1,4 @@
-class AppointmentSummary < ApplicationRecord
+class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   deprecated_columns :income_in_retirement, :guider_organisation
 
   enum notify_status: %i(pending delivered failed ignoring)
@@ -115,6 +115,14 @@ class AppointmentSummary < ApplicationRecord
       county,
       postcode
     ].reject(&:empty?).join("\n")
+  end
+
+  def supplementary_info_selected?
+    supplementary_benefits ||
+      supplementary_debt ||
+      supplementary_ill_health ||
+      supplementary_defined_benefit_pensions ||
+      supplementary_pension_transfers
   end
 
   private

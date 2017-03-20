@@ -36,6 +36,22 @@
           <td class="active" width="35%"><b>Guider Name</b></td>
           <td><%= @appointment_summary.guider_name %></td>
         </tr>
+        <tr>
+          <td class="active" width="35%"><b>Supplementary info</b></td>
+          <td>
+            <% if @appointment_summary.supplementary_info_selected? %>
+              <ul>
+                <%= content_tag(:li, 'Benefits') if @appointment_summary.supplementary_benefits %>
+                <%= content_tag(:li, 'Debt') if @appointment_summary.supplementary_debt %>
+                <%= content_tag(:li, 'Ill Health') if @appointment_summary.supplementary_ill_health %>
+                <%= content_tag(:li, 'Defined Benefit Pensions') if @appointment_summary.supplementary_defined_benefit_pensions %>
+                <%= content_tag(:li, 'Pension Transfers') if @appointment_summary.supplementary_pension_transfers %>
+              </ul>
+            <% else %>
+              None selected
+            <% end %>
+          </td>
+        </tr>
       </tbody>
     </table>
     <div class="confirm-submit-buttons">
