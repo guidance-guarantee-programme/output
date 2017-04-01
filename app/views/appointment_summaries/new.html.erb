@@ -96,15 +96,13 @@
             </legend>
             <div class="radio">
               <%= f.label :appointment_type, value: 'standard' do %>
-                <%= f.radio_button :appointment_type, 'standard',
-                                   class: 't-appointment-type-standard' %>
+                <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', disabled: true %>
                 Appointment for customers aged 55+
               <% end %>
             </div>
             <div class="radio">
               <%= f.label :appointment_type, value: '50_54' do %>
-                <%= f.radio_button :appointment_type, '50_54',
-                                   class: 't-appointment-type-50-54' %>
+                <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', disabled: true %>
                 Appointment for customers aged 50-54
               <% end %>
             </div>
