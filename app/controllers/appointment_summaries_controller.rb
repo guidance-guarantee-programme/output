@@ -12,11 +12,6 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def new
-    if summarisable?
-      @appointment_summary.assign_attributes(appointment_summary_params)
-    else
-      render :summarise_via_tap
-    end
   end
 
   def confirm

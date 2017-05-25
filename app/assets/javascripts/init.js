@@ -2,7 +2,6 @@ $(function () {
   'use strict';
 
   PWO.additionalAppointment.init();
-  PWO.consent.init();
   PWO.eligibility.init();
   PWO.pensionPotAccuracy.init();
   PWO.pensionPotInput.init();
@@ -15,9 +14,6 @@ $(function () {
 
   // set up correct UI when displaying form errors and when use has clicked back from confirmation
   if (hasErrors || isBackFromConfirmation) {
-    // check consent form so form is displayed
-    PWO.consent.$input.trigger('click');
-
     // ensure fields for eligible users are displayed
     PWO.eligibility.$input.filter(':checked').trigger('change');
 
