@@ -8,5 +8,5 @@ en-GB:
         address_line_3: Building and street line 3
         town: Town or city
         reference_number: Booking reference number
-        guider_name: First name of guider
+        guider_name: First name
         has_defined_contribution_pension: Defined contribution pension pot details

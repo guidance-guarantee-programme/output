@@ -1,511 +1,503 @@
 <%= form_for @appointment_summary, url: confirm_appointment_summaries_path, method: :post do |f| %>
   <div class="page-header">
-    <h1><%= title 'New telephone appointment summary' %></h1>
+    <h1><%= title 'Create summary document' %></h1>
   </div>
 
   <div class="row">
     <div class="col-md-8">
-      <p class="lead">Use this form to enter the caller’s personal details given during the guidance appointment and to issue a summary document.</p>
+      <p class="lead">Enter the customer's personal details to create and send a summary document.</p>
 
-      <div class="consent">
-        <p class="highlight highlight-orange">
-          Has caller consented to sharing data for the purpose of creating an appointment summary and sending a summary document?
-        </p>
+      <%= error_messages_for(@appointment_summary) %>
+
+      <h2>Customer details</h2>
+
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.select :title, AppointmentSummary::TITLES,
+                     { prompt: true }, { class: %w(form-control input-md-2 t-title) } %>
       </div>
 
-      <div class="display_if_consent">
-        <%= error_messages_for(@appointment_summary) %>
+      <div class="form-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name), readonly: true %>
+      </div>
 
-        <h2>Caller details</h2>
+      <div class="form-group">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name), readonly: true %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :title %>
-          <%= f.select :title, AppointmentSummary::TITLES,
-                       { prompt: true }, { class: %w(form-control input-md-2 t-title) } %>
-        </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: %w(form-control t-email input-md-3), readonly: true %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name), readonly: true %>
-        </div>
+      <h3 id="postal-address-heading">Address</h3>
 
-        <div class="form-group">
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name), readonly: true %>
-        </div>
+      <div class="form-group">
+        <%= f.label :address_line_1 do %>Building and street <span class="sr-only">line 1</span><% end %>
+        <%= f.text_field :address_line_1, class: %w(form-control input-md-3 t-address-line-1) %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: %w(form-control t-email input-md-3), readonly: true %>
-        </div>
+      <div class="form-group">
+        <%= f.label :address_line_2, class: 'sr-only' %>
+        <%= f.text_field :address_line_2, class: %w(form-control input-md-3 t-address-line-2) %>
+      </div>
 
-        <h3 id="postal-address-heading">Postal address</h3>
+      <div class="form-group">
+        <%= f.label :address_line_3, class: 'sr-only' %>
+        <%= f.text_field :address_line_3, class: %w(form-control input-md-3 t-address-line-3) %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :address_line_1 do %>Building and street <span class="sr-only">line 1</span><% end %>
-          <%= f.text_field :address_line_1, class: %w(form-control input-md-3 t-address-line-1) %>
-        </div>
+      <div class="form-group">
+        <%= f.label :town %>
+        <%= f.text_field :town, class: %w(form-control input-md-3 t-town) %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :address_line_2, class: 'sr-only' %>
-          <%= f.text_field :address_line_2, class: %w(form-control input-md-3 t-address-line-2) %>
-        </div>
+      <div class="form-group">
+        <%= f.label :county, 'County (optional)' %>
+        <%= f.text_field :county, class: %w(form-control input-md-3 t-county) %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :address_line_3, class: 'sr-only' %>
-          <%= f.text_field :address_line_3, class: %w(form-control input-md-3 t-address-line-3) %>
-        </div>
+      <div class="form-group">
+        <%= f.label :postcode %>
+        <%= f.text_field :postcode, class: %w(form-control input-md-2 t-postcode) %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :town %>
-          <%= f.text_field :town, class: %w(form-control input-md-3 t-town) %>
-        </div>
+      <div class="form-group">
+        <%= f.label :country, 'Country' %>
+        <%= f.select :country, Countries.all, {}, class: %w(form-control input-md-3 t-country) %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :county, 'County (optional)' %>
-          <%= f.text_field :county, class: %w(form-control input-md-3 t-county) %>
-        </div>
+      <h3>Appointment</h3>
 
-        <div class="form-group">
-          <%= f.label :postcode %>
-          <%= f.text_field :postcode, class: %w(form-control input-md-2 t-postcode) %>
-        </div>
+      <div class="form-group">
+        <%= f.label :date_of_appointment %>
+        <%= f.date_field :date_of_appointment,
+                         class: %w(form-control input-md-2 t-date-of-appointment), readonly: true %>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :country, 'Country' %>
-          <%= f.select :country, Countries.all, {}, class: %w(form-control input-md-3 t-country) %>
-        </div>
+      <div class="form-group">
+        <%= f.label :reference_number %>
+        <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number), readonly: true %>
+      </div>
 
-        <h3>Appointment</h3>
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Type of appointment</span>
+          </legend>
+          <div class="radio">
+            <%= f.label :appointment_type, value: 'standard' do %>
+              <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', disabled: true %>
+              For customers aged 55 or over
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :appointment_type, value: '50_54' do %>
+              <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', disabled: true %>
+              For customers aged 50 to 54
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :date_of_appointment %>
-          <%= f.date_field :date_of_appointment,
-                           class: %w(form-control input-md-2 t-date-of-appointment), readonly: true %>
-        </div>
+      <div class="form-group if-no-js-hide">
+        <fieldset>
+          <legend>
+            <span>Is this the customer's first appointment?</span>
+          </legend>
+          <div class="radio">
+            <label>
+              <%= radio_button_tag :first_appointment, 'yes',
+                                   f.object.number_of_previous_appointments.zero?,
+                                   class: 't-first-appointment-yes js-first-appointment' %>
+              Yes
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= radio_button_tag :first_appointment, 'no',
+                                   f.object.number_of_previous_appointments.positive?,
+                                   class: 't-first-appointment-no js-first-appointment' %>
+              No
+            </label>
+          </div>
+        </fieldset>
+      </div>
 
-        <div class="form-group">
-          <%= f.label :reference_number %>
-          <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number), readonly: true %>
-        </div>
+      <div class="form-group js-previous-appointments hide-with-js">
+        <fieldset>
+          <legend>
+            <span>Number of previous appointments</span>
+          </legend>
 
-        <div class="form-group">
-          <fieldset>
-            <legend>
-              <span>Type of appointment</span>
-            </legend>
-            <div class="radio">
-              <%= f.label :appointment_type, value: 'standard' do %>
-                <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', disabled: true %>
-                Appointment for customers aged 55+
+          <div class="radio hide-with-js">
+            <label>
+              <%= f.radio_button :number_of_previous_appointments, '0',
+                                 class: 't-number-of-previous-appointments-0 js-previous-appointment js-previous-appointment-0' %>
+              0
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= f.radio_button :number_of_previous_appointments, '1',
+                                 class: 't-number-of-previous-appointments-1 js-previous-appointment js-previous-appointment-1' %>
+              1
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= f.radio_button :number_of_previous_appointments, '2',
+                                 class: 't-number-of-previous-appointments-2 js-previous-appointment' %>
+              2
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= f.radio_button :number_of_previous_appointments, '3',
+                                 class: 't-number-of-previous-appointments-3 js-previous-appointment' %>
+              3
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <h2>Guider details</h2>
+
+      <div class="form-group">
+        <%= f.label :guider_name %>
+        <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name), readonly: true %>
+      </div>
+
+      <hr>
+
+      <h2>Pension pot details</h2>
+
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Does customer have a defined contribution pension?</span>
+          </legend>
+          <div class="radio">
+            <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
+              <%= f.radio_button :has_defined_contribution_pension, 'yes',
+                                 class: 't-has-defined-contribution-pension-yes' %>
+              Yes
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :has_defined_contribution_pension, value: 'no' do %>
+              <%= f.radio_button :has_defined_contribution_pension, 'no',
+                                 class: 't-has-defined-contribution-pension-no' %>
+              No
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
+              <%= f.radio_button :has_defined_contribution_pension, 'unknown',
+                                 class: 't-has-defined-contribution-pension-unknown' %>
+              Don't know
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="display_if_eligible">
+        <div class="row">
+          <div class="col-md-4" id="col-pension-pot-value">
+            <div class="form-group form-inline">
+              <%= f.label :value_of_pension_pots do %>
+                Value of pension pots
+                <span class="input-help">Only use numbers, don't include pence, eg 27500</span>
               <% end %>
+              £ <%= f.text_field :value_of_pension_pots, placeholder: 27500,
+                                 class: %w(form-control t-value-of-pension-pots input-md-2 js-numbers-only) %>
+
+              <span class="display_if_range">
+                <br />
+                to
+                <br />
+                <%= f.label :upper_value_of_pension_pots do %>
+                  <span class="sr-only">Upper value of pension pots (optional) Only use numbers, don't include pence, eg 30000</span>
+                <% end %>
+                £ <%= f.text_field :upper_value_of_pension_pots, placeholder: 30000,
+                                 class: %w(form-control input-md-2 js-numbers-only t-upper-value-of-pension-pots) %>
+                <span class="hide-with-js"> (optional)</span>
+              </span>
+
+              <div class="js-error-message error"></div>
             </div>
-            <div class="radio">
-              <%= f.label :appointment_type, value: '50_54' do %>
-                <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', disabled: true %>
-                Appointment for customers aged 50-54
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :count_of_pension_pots do %>
+                How many pension pots does the customer have?
+                <span class="input-help">Only use numbers</span>
               <% end %>
+              <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only js-pot-count t-count-of-pension-pots) %>
+              <div class="js-error-message error"></div>
             </div>
-          </fieldset>
+          </div>
         </div>
 
-        <div class="form-group if-no-js-hide">
-          <fieldset>
-            <legend>
-              <span>Is this the callers first appointment?</span>
-            </legend>
-            <div class="radio">
-              <label>
-                <%= radio_button_tag :first_appointment, 'yes',
-                                     f.object.number_of_previous_appointments.zero?,
-                                     class: 't-first-appointment-yes js-first-appointment' %>
-                Yes
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <%= radio_button_tag :first_appointment, 'no',
-                                     f.object.number_of_previous_appointments.positive?,
-                                     class: 't-first-appointment-no js-first-appointment' %>
-                No
-              </label>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="form-group js-previous-appointments hide-with-js">
-          <fieldset>
-            <legend>
-              <span>Number of previous appointments</span>
-            </legend>
-
-            <div class="radio hide-with-js">
-              <label>
-                <%= f.radio_button :number_of_previous_appointments, '0',
-                                   class: 't-number-of-previous-appointments-0 js-previous-appointment js-previous-appointment-0' %>
-                Zero
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <%= f.radio_button :number_of_previous_appointments, '1',
-                                   class: 't-number-of-previous-appointments-1 js-previous-appointment js-previous-appointment-1' %>
-                One
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <%= f.radio_button :number_of_previous_appointments, '2',
-                                   class: 't-number-of-previous-appointments-2 js-previous-appointment' %>
-                Two
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <%= f.radio_button :number_of_previous_appointments, '3',
-                                   class: 't-number-of-previous-appointments-3 js-previous-appointment' %>
-                Three
-              </label>
-            </div>
-          </fieldset>
-        </div>
-
-        <h2>Guider details</h2>
-
-        <div class="form-group">
-          <%= f.label :guider_name %>
-          <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name), readonly: true %>
+        <div class="form-group form-inline hide-with-js">
+          <div class="checkbox">
+            <%= f.label :value_of_pension_pots_is_approximate do %>
+              <%= f.check_box :value_of_pension_pots_is_approximate, class: 't-value-of-pension-pots-is-approximate' %>
+              Value of pension pots is approximate
+            <% end %>
+          </div>
         </div>
 
         <hr>
 
-        <h2>Pension pot details</h2>
+        <h2>Other income in retirement</h2>
 
         <div class="form-group">
+
           <fieldset>
             <legend>
-              <span>Does caller have a defined contribution pension?</span>
+              <span>In addition to defined contribution pension(s) and State Pension</span>
             </legend>
-            <div class="radio">
-              <%= f.label :has_defined_contribution_pension, value: 'yes' do %>
-                <%= f.radio_button :has_defined_contribution_pension, 'yes',
-                                   class: 't-has-defined-contribution-pension-yes' %>
-                Yes
+            <div class="checkbox">
+              <%= f.label :retirement_income_other_state_benefits do %>
+                <%= f.check_box :retirement_income_other_state_benefits, class: 't-retirement-income-other-state-benefits' %>
+                State benefits / allowances (other than state pension)
               <% end %>
             </div>
-            <div class="radio">
-              <%= f.label :has_defined_contribution_pension, value: 'no' do %>
-                <%= f.radio_button :has_defined_contribution_pension, 'no',
-                                   class: 't-has-defined-contribution-pension-no' %>
-                No
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_defined_benefit do %>
+                <%= f.check_box :retirement_income_defined_benefit, class: 't-retirement-income-defined-benefit' %>
+                Defined benefit pension
               <% end %>
             </div>
-            <div class="radio">
-              <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
-                <%= f.radio_button :has_defined_contribution_pension, 'unknown',
-                                   class: 't-has-defined-contribution-pension-unknown' %>
-                Don't know
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_employment do %>
+                <%= f.check_box :retirement_income_employment, class: 't-retirement-income-employment' %>
+                Income from employment
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_partner do %>
+                <%= f.check_box :retirement_income_partner, class: 't-retirement-income-partner' %>
+                Spouse’s/Partner’s/Someone else’s income or pension
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_interest_or_savings do %>
+                <%= f.check_box :retirement_income_interest_or_savings, class: 't-retirement-income-interest-or-savings' %>
+                Interest or cashing in savings
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_property do %>
+                <%= f.check_box :retirement_income_property, class: 't-retirement-income-property' %>
+                Selling a property or income from a property
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_business do %>
+                <%= f.check_box :retirement_income_business, class: 't-retirement-income-business' %>
+                Selling a business or income from a business
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_inheritance do %>
+                <%= f.check_box :retirement_income_inheritance, class: 't-retirement-income-inheritance' %>
+                Inheritance
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_other_income do %>
+                <%= f.check_box :retirement_income_other_income, class: 't-retirement-income-other-income' %>
+                Other
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :retirement_income_unspecified do %>
+                <%= f.check_box :retirement_income_unspecified, class: 't-retirement-income-unspecified' %>
+                Customer did not know
               <% end %>
             </div>
           </fieldset>
         </div>
 
-        <div class="display_if_eligible">
-          <div class="row">
-            <div class="col-md-4" id="col-pension-pot-value">
-              <div class="form-group form-inline">
-                <%= f.label :value_of_pension_pots do %>
-                  Value of pension pots
-                  <span class="input-help">Only use numbers, don't include pence, eg 27500</span>
-                <% end %>
-                £ <%= f.text_field :value_of_pension_pots, placeholder: 27500,
-                                   class: %w(form-control t-value-of-pension-pots input-md-2 js-numbers-only) %>
+        <hr>
 
-                <span class="display_if_range">
-                  <br />
-                  to
-                  <br />
-                  <%= f.label :upper_value_of_pension_pots do %>
-                    <span class="sr-only">Upper value of pension pots (optional) Only use numbers, don't include pence, eg 30000</span>
-                  <% end %>
-                  £ <%= f.text_field :upper_value_of_pension_pots, placeholder: 30000,
-                                   class: %w(form-control input-md-2 js-numbers-only t-upper-value-of-pension-pots) %>
-                  <span class="hide-with-js"> (optional)</span>
-                </span>
-
-                <div class="js-error-message error"></div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <%= f.label :count_of_pension_pots do %>
-                  How many pension pots does the caller have?
-                  <span class="input-help">Only use numbers</span>
-                <% end %>
-                <%= f.text_field :count_of_pension_pots, class: %w(form-control input-md-2 js-numbers-only js-pot-count t-count-of-pension-pots) %>
-                <div class="js-error-message error"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group form-inline hide-with-js">
-            <div class="checkbox">
-              <%= f.label :value_of_pension_pots_is_approximate do %>
-                <%= f.check_box :value_of_pension_pots_is_approximate, class: 't-value-of-pension-pots-is-approximate' %>
-                Value of pension pots is approximate
-              <% end %>
-            </div>
-          </div>
-
-          <hr>
-
-          <h2>Other income in retirement</h2>
-
-          <div class="form-group">
-
-            <fieldset>
-              <legend>
-                <span>In addition to defined contribution pension(s) and State Pension</span>
-              </legend>
-              <div class="checkbox">
-                <%= f.label :retirement_income_other_state_benefits do %>
-                  <%= f.check_box :retirement_income_other_state_benefits, class: 't-retirement-income-other-state-benefits' %>
-                  State benefits / allowances (other than state pension)
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_defined_benefit do %>
-                  <%= f.check_box :retirement_income_defined_benefit, class: 't-retirement-income-defined-benefit' %>
-                  Defined benefit pension
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_employment do %>
-                  <%= f.check_box :retirement_income_employment, class: 't-retirement-income-employment' %>
-                  Income from employment
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_partner do %>
-                  <%= f.check_box :retirement_income_partner, class: 't-retirement-income-partner' %>
-                  Spouse’s/Partner’s/Someone else’s income or pension
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_interest_or_savings do %>
-                  <%= f.check_box :retirement_income_interest_or_savings, class: 't-retirement-income-interest-or-savings' %>
-                  Interest or cashing in savings
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_property do %>
-                  <%= f.check_box :retirement_income_property, class: 't-retirement-income-property' %>
-                  Selling a property or income from a property
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_business do %>
-                  <%= f.check_box :retirement_income_business, class: 't-retirement-income-business' %>
-                  Selling a business or income from a business
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_inheritance do %>
-                  <%= f.check_box :retirement_income_inheritance, class: 't-retirement-income-inheritance' %>
-                  Inheritance
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_other_income do %>
-                  <%= f.check_box :retirement_income_other_income, class: 't-retirement-income-other-income' %>
-                  Other
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :retirement_income_unspecified do %>
-                  <%= f.check_box :retirement_income_unspecified, class: 't-retirement-income-unspecified' %>
-                  Customer did not know
-                <% end %>
-              </div>
-            </fieldset>
-          </div>
-
-          <hr>
-
-          <h2>Retirement plans and pension options</h2>
-
-          <div class="form-group">
-            <fieldset>
-              <legend>
-                <span>Circumstances and preferences</span>
-              </legend>
-              <div class="checkbox">
-                <%= f.label :continue_working do %>
-                  <%= f.check_box :continue_working, class: 't-continue-working' %>
-                  Plans to continue working for a while
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :unsure do %>
-                  <%= f.check_box :unsure, class: 't-unsure' %>
-                  Unsure about plans in retirement
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :leave_inheritance do %>
-                  <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
-                  Plans to leave money to someone
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :wants_flexibility do %>
-                  <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
-                  Wants flexibility when taking money
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :wants_security do %>
-                  <%= f.check_box :wants_security, class: 't-wants-security' %>
-                  Wants a guaranteed income
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :wants_lump_sum do %>
-                  <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
-                  Needs a certain amount of money now
-                <% end %>
-              </div>
-
-              <div class="checkbox">
-                <%= f.label :poor_health do %>
-                  <%= f.check_box :poor_health, class: 't-poor-health' %>
-                  Has poor health
-                <% end %>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="display_if_eligible">
-          <h2>Supplementary information</h2>
-
-          <div class="form-group">
-            <legend>Does visitor need supplementary information about any of the following?</legend>
-
-            <div class="checkbox">
-              <%= f.label :supplementary_benefits do %>
-                <%= f.check_box :supplementary_benefits,
-                                class: 't-supplementary-benefits' %>
-                Benefits and pension income
-              <% end %>
-            </div>
-
-            <div class="checkbox">
-              <%= f.label :supplementary_debt do %>
-                <%= f.check_box :supplementary_debt,
-                                class: 't-supplementary-debt' %>
-                Debt and pensions
-              <% end %>
-            </div>
-
-            <div class="checkbox">
-              <%= f.label :supplementary_ill_health do %>
-                <%= f.check_box :supplementary_ill_health,
-                                class: 't-supplementary-ill-health' %>
-                Pensions and ill health
-              <% end %>
-            </div>
-
-            <div class="checkbox">
-              <%= f.label :supplementary_defined_benefit_pensions do %>
-                <%= f.check_box :supplementary_defined_benefit_pensions,
-                                class: 't-supplementary-defined-benefit-pensions' %>
-                Final salary or career average pensions
-              <% end %>
-            </div>
-
-            <div class="checkbox">
-              <%= f.label :supplementary_pension_transfers do %>
-                <%= f.check_box :supplementary_pension_transfers,
-                  class: 't-supplementary-pension-transfers' %>
-                Transfer of pension pot
-              <% end %>
-            </div>
-          </div>
-        </div>
-
-        <h2>Summary document</h2>
+        <h2>Retirement plans and pension options</h2>
 
         <div class="form-group">
           <fieldset>
             <legend>
-              <span>Format preference</span>
+              <span>Circumstances and preferences</span>
             </legend>
-            <div class="radio">
-              <%= f.label :format_preference, value: 'standard' do %>
-                <%= f.radio_button :format_preference, 'standard',
-                                   class: 't-format-preference-standard' %>
-                Standard
+            <div class="checkbox">
+              <%= f.label :continue_working do %>
+                <%= f.check_box :continue_working, class: 't-continue-working' %>
+                Plans to continue working for a while
               <% end %>
             </div>
-            <div class="radio">
-              <%= f.label :format_preference, value: 'large_text' do %>
-                <%= f.radio_button :format_preference, 'large_text',
-                                   class: 't-format-preference-large-text' %>
-                Large text
+
+            <div class="checkbox">
+              <%= f.label :unsure do %>
+                <%= f.check_box :unsure, class: 't-unsure' %>
+                Unsure about plans in retirement
               <% end %>
             </div>
-            <div class="radio">
-              <%= f.label :format_preference, value: 'braille' do %>
-                <%= f.radio_button :format_preference, 'braille',
-                                   class: 't-format-preference-braille' %>
-                Braille
+
+            <div class="checkbox">
+              <%= f.label :leave_inheritance do %>
+                <%= f.check_box :leave_inheritance, class: 't-leave-inheritance' %>
+                Plans to leave money to someone
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :wants_flexibility do %>
+                <%= f.check_box :wants_flexibility, class: 't-wants-flexibility' %>
+                Wants flexibility when taking money
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :wants_security do %>
+                <%= f.check_box :wants_security, class: 't-wants-security' %>
+                Wants a guaranteed income
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :wants_lump_sum do %>
+                <%= f.check_box :wants_lump_sum, class: 't-wants-lump-sum' %>
+                Needs a certain amount of money now
+              <% end %>
+            </div>
+
+            <div class="checkbox">
+              <%= f.label :poor_health do %>
+                <%= f.check_box :poor_health, class: 't-poor-health' %>
+                Has poor health
               <% end %>
             </div>
           </fieldset>
         </div>
-
-        <div class="form-group">
-          <fieldset>
-            <legend>
-              <span>Delivery method</span>
-            </legend>
-
-            <div class="radio">
-              <label>
-                <%= f.radio_button :requested_digital, 'true',
-                                   class: 't-requested-digital' %>
-                Digital
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <%= f.radio_button :requested_digital, 'false',
-                                   class: 't-requested-postal' %>
-                Post
-              </label>
-            </div>
-          </fieldset>
-        </div>
-        <p>
-          <%= f.submit 'Continue', class: %w(btn btn-primary t-submit) %>
-        </p>
       </div>
+
+      <div class="display_if_eligible">
+        <h2>Extra information</h2>
+
+        <div class="form-group">
+          <legend>Does the customer need extra information about:</legend>
+
+          <div class="checkbox">
+            <%= f.label :supplementary_benefits do %>
+              <%= f.check_box :supplementary_benefits,
+                              class: 't-supplementary-benefits' %>
+              Benefits
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :supplementary_debt do %>
+              <%= f.check_box :supplementary_debt,
+                              class: 't-supplementary-debt' %>
+              Debt
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :supplementary_ill_health do %>
+              <%= f.check_box :supplementary_ill_health,
+                              class: 't-supplementary-ill-health' %>
+              Ill health
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :supplementary_defined_benefit_pensions do %>
+              <%= f.check_box :supplementary_defined_benefit_pensions,
+                              class: 't-supplementary-defined-benefit-pensions' %>
+              Final salary or career average pensions
+            <% end %>
+          </div>
+
+          <div class="checkbox">
+            <%= f.label :supplementary_pension_transfers do %>
+              <%= f.check_box :supplementary_pension_transfers,
+                class: 't-supplementary-pension-transfers' %>
+              Transferring a pension
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <h2>Document preferences</h2>
+
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Format</span>
+          </legend>
+          <div class="radio">
+            <%= f.label :format_preference, value: 'standard' do %>
+              <%= f.radio_button :format_preference, 'standard',
+                                 class: 't-format-preference-standard' %>
+              Standard
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :format_preference, value: 'large_text' do %>
+              <%= f.radio_button :format_preference, 'large_text',
+                                 class: 't-format-preference-large-text' %>
+              Large text
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :format_preference, value: 'braille' do %>
+              <%= f.radio_button :format_preference, 'braille',
+                                 class: 't-format-preference-braille' %>
+              Braille
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Delivery method</span>
+          </legend>
+
+          <div class="radio">
+            <label>
+              <%= f.radio_button :requested_digital, 'true',
+                                 class: 't-requested-digital' %>
+              Email
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= f.radio_button :requested_digital, 'false',
+                                 class: 't-requested-postal' %>
+              Post
+            </label>
+          </div>
+        </fieldset>
+      </div>
+      <p>
+        <%= f.submit 'Continue', class: %w(btn btn-primary t-submit) %>
+      </p>
     </div>
   </div>
 <% end %>
@@ -534,7 +526,7 @@
     <div class="form-group">
       <fieldset>
         <legend>
-          <span>How accurate is the value given by the caller?</span>
+          <span>How accurate is the value given by the customer?</span>
         </legend>
         <div class="radio">
           <label for="appointment_summary_accuracy_1">
