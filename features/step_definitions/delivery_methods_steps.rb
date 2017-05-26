@@ -30,11 +30,6 @@ When(/^I update their email address$/) do
   page.save_and_resend_email.click
 end
 
-Then(/^we should know that the customer requested a (.*) version$/) do |delivery_method|
-  appointment_summary = AppointmentSummary.first
-  expect(appointment_summary.requested_digital).to eq(delivery_method_as_boolean(delivery_method))
-end
-
 Then(/^the customer should be notified by email$/) do
   last_job = ActiveJob::Base.queue_adapter.enqueued_jobs.last
   expect(last_job).to eq(
