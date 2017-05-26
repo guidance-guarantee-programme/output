@@ -81,23 +81,6 @@ GEM
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
-    cucumber (2.4.0)
-      builder (>= 2.1.2)
-      cucumber-core (~> 1.5.0)
-      cucumber-wire (~> 0.0.1)
-      diff-lcs (>= 1.1.3)
-      gherkin (~> 4.0)
-      multi_json (>= 1.7.5, < 2.0)
-      multi_test (>= 0.1.2)
-    cucumber-core (1.5.0)
-      gherkin (~> 4.0)
-    cucumber-rails (1.4.5)
-      capybara (>= 1.1.2, < 3)
-      cucumber (>= 1.3.8, < 4)
-      mime-types (>= 1.16, < 4)
-      nokogiri (~> 1.5)
-      railties (>= 3, < 5.1)
-    cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
     database_rewinder (0.8.0)
     debug_inspector (0.0.2)
@@ -126,7 +109,6 @@ GEM
       rails (>= 4.2.4)
       warden (~> 1.2)
       warden-oauth2 (~> 0.0.1)
-    gherkin (4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     govuk_admin_template (5.0.1)
@@ -169,7 +151,6 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-    multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     net-sftp (2.1.2)
@@ -346,7 +327,6 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-kaminari-views
   bugsnag
-  cucumber-rails
   database_cleaner
   database_rewinder
   deprecated_columns
