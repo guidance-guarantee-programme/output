@@ -34,5 +34,31 @@ FactoryGirl.define do
       requested_digital true
       notification_id { SecureRandom.uuid }
     end
+
+    factory :populated_appointment_summary do
+      value_of_pension_pots_is_approximate true
+      guider_name 'Pênelopę'
+      continue_working true
+      unsure true
+      leave_inheritance true
+      wants_flexibility true
+      wants_security true
+      wants_lump_sum true
+      poor_health true
+      supplementary_benefits true
+      supplementary_debt true
+      supplementary_ill_health true
+      supplementary_defined_benefit_pensions true
+      count_of_pension_pots 1
+      retirement_income_other_state_benefits false
+      retirement_income_employment false
+      retirement_income_partner false
+      retirement_income_interest_or_savings false
+      retirement_income_property false
+      retirement_income_business false
+      retirement_income_inheritance false
+      retirement_income_other_income false
+      retirement_income_unspecified false
+    end
   end
 end

@@ -8,5 +8,3 @@ module CheckedState
     end
   end
 end
-
-World(CheckedState)

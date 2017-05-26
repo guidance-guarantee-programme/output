@@ -109,7 +109,6 @@ class AppointmentSummaryPage < SitePrism::Page
 
   private
 
-  # rubocop:disable AbcSize
   def fill_in_customer_details(appointment_summary)
     title.select appointment_summary.title
     address_line_1.set appointment_summary.address_line_1
@@ -120,7 +119,6 @@ class AppointmentSummaryPage < SitePrism::Page
     country.select appointment_summary.country
     postcode.set appointment_summary.postcode
   end
-  # rubocop:enable AbcSize
 
   def fill_in_pension_pot_details(appointment_summary)
     value_of_pension_pots.set appointment_summary.value_of_pension_pots
@@ -129,7 +127,7 @@ class AppointmentSummaryPage < SitePrism::Page
     count_of_pension_pots.set appointment_summary.count_of_pension_pots
   end
 
-  def fill_in_income_in_retirement_details(appointment_summary) # rubocop:disable AbcSize
+  def fill_in_income_in_retirement_details(appointment_summary)
     retirement_income_other_state_benefits.set appointment_summary.retirement_income_other_state_benefits
     retirement_income_employment.set appointment_summary.retirement_income_employment
     retirement_income_partner.set appointment_summary.retirement_income_partner
@@ -149,7 +147,6 @@ class AppointmentSummaryPage < SitePrism::Page
     end
   end
 
-  # rubocop:disable AbcSize
   def fill_in_circumstances(appointment_summary)
     continue_working.set appointment_summary.continue_working?
     unsure.set appointment_summary.unsure?
@@ -159,7 +156,6 @@ class AppointmentSummaryPage < SitePrism::Page
     wants_lump_sum.set appointment_summary.wants_lump_sum?
     poor_health.set appointment_summary.poor_health?
   end
-  # rubocop:enable AbcSize
 
   def fill_in_format_preference(appointment_summary)
     case appointment_summary.format_preference

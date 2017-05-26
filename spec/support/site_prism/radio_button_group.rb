@@ -21,11 +21,9 @@ module SitePrism
       end
     end
 
-    # rubocop:disable PredicateName
     def has_selected_value?(value)
       selected_value == value
     end
-    # rubocop:enable PredicateName
 
     private
 
