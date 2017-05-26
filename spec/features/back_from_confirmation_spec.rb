@@ -1,6 +1,16 @@
-# frozen_string_literal: true
-Given(/^appointment details are captured$/) do
-  @appointment_summary = fixture(:populated_appointment_summary)
+require 'rails_helper'
+
+RSpec.feature 'Revising summary details' do
+  scenario 'Going back after confirmation' do
+    given_appointment_details_are_captured
+    and_i_am_on_the_confirmation_page
+    when_i_go_back_to_the_appointment_details
+    then_the_previously_captured_details_are_prepopulated
+  end
+end
+
+def given_appointment_details_are_captured
+  @appointment_summary = build(:populated_appointment_summary)
 
   page = AppointmentSummaryPage.new
   page.load(@appointment_summary)
@@ -8,19 +18,17 @@ Given(/^appointment details are captured$/) do
   page.submit.click
 end
 
-Given(/^I'm on the confirmation page$/) do
-  page = ConfirmationPage.new
+def and_i_am_on_the_confirmation_page
+  @confirmation_page = ConfirmationPage.new
 
-  expect(page).to be_displayed
+  expect(@confirmation_page).to be_displayed
 end
 
-When(/^I go back to the appointment details$/) do
-  page = ConfirmationPage.new
-
-  page.back.click
+def when_i_go_back_to_the_appointment_details
+  @confirmation_page.back.click
 end
 
-Then(/^the previously captured details are prepopulated$/) do # rubocop:disable Metrics/BlockLength
+def then_the_previously_captured_details_are_prepopulated # rubocop:disable Metrics/MethodLength
   page = AppointmentSummaryPage.new
 
   text_fields = %i(title
