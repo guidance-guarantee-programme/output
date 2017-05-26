@@ -7,6 +7,7 @@ require 'database_rewinder'
 
 require_relative '../features/support/pages/done_page'
 require_relative '../features/support/pages/confirmation_page'
+require_relative '../features/support/pages/appointment_summaries_page'
 require_relative '../features/support/pages/appointment_summary_page'
 require_relative '../features/support/pages/appointment_summary_browser_page'
 require_relative '../features/support/pages/appointment_summary_edit_page'
