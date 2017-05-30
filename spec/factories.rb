@@ -4,7 +4,19 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@example.com" }
     name 'Rick Sanchez'
-    permissions %w(signin team_leader)
+    permissions %w(signin)
+
+    trait :analyst do
+      permissions %w(signin analyst)
+    end
+
+    trait :team_leader do
+      permissions %w(signin team_leader)
+    end
+
+    trait :phone_guider do
+      permissions %w(signin phone_bookings)
+    end
   end
 
   factory :appointment_summary do

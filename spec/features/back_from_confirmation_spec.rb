@@ -2,14 +2,19 @@ require 'rails_helper'
 
 RSpec.feature 'Revising summary details' do
   scenario 'Going back after confirmation' do
-    given_appointment_details_are_captured
+    given_i_am_logged_in_as_a_phone_guider
+    and_appointment_details_are_captured
     and_i_am_on_the_confirmation_page
     when_i_go_back_to_the_appointment_details
     then_the_previously_captured_details_are_prepopulated
   end
 end
 
-def given_appointment_details_are_captured
+def given_i_am_logged_in_as_a_phone_guider
+  create(:user, :phone_guider)
+end
+
+def and_appointment_details_are_captured
   @appointment_summary = build(:populated_appointment_summary)
 
   page = AppointmentSummaryPage.new

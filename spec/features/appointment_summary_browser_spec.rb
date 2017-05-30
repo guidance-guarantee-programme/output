@@ -19,18 +19,18 @@ RSpec.feature 'Browsing appointment summaries' do
   end
 
   scenario 'Attempting to view the Appointment Summaries' do
-    given_i_am_logged_but_not_a_pension_wise_administrator
+    given_i_am_logged_in_but_not_a_pension_wise_administrator
     when_i_visit_the_summary_browser
     then_i_am_denied_access
   end
 end
 
 def given_i_am_logged_in_as_a_pension_wise_administrator
-  create(:user, permissions: ['analyst'])
+  create(:user, :analyst)
 end
 
-def given_i_am_logged_but_not_a_pension_wise_administrator
-  create(:user, permissions: ['signon'])
+def given_i_am_logged_in_but_not_a_pension_wise_administrator
+  create(:user)
 end
 
 def and_there_are_existing_appointment_summaries

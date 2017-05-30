@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Email notification' do
   scenario 'Email notification of summary document location' do
-    given_the_customer_requested_a_digital_appointment_summary
+    given_i_am_logged_in_as_a_phone_guider
+    and_the_customer_requested_a_digital_appointment_summary
     when_i_create_their_summary_document
     then_the_customer_should_be_notified_by_email
   end
@@ -15,12 +16,16 @@ RSpec.feature 'Email notification' do
   end
 end
 
-def given_the_customer_requested_a_digital_appointment_summary
-  @appointment_summary = create(:populated_appointment_summary, requested_digital: true)
+def given_i_am_logged_in_as_a_phone_guider
+  create(:user, :phone_guider)
 end
 
 def given_i_am_logged_in_as_a_pension_wise_administrator
-  create(:user, permissions: ['analyst'])
+  create(:user, :analyst)
+end
+
+def and_the_customer_requested_a_digital_appointment_summary
+  @appointment_summary = create(:populated_appointment_summary, requested_digital: true)
 end
 
 def and_the_customer_failed_to_receive_an_email_notification_due_to_an_incorrect_email_address

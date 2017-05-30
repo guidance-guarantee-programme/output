@@ -2,6 +2,7 @@
 class AppointmentSummariesController < ApplicationController
   before_action :require_signin_permission! # this can't be in ApplicationController due to Gaffe gem
   before_action :authenticate_as_team_leader!, only: :index
+  before_action :check_can_create_appointments!, only: [:new, :confirm, :create]
   before_action :load_summary, only: %i(new email_confirmation update confirm)
 
   def index
@@ -12,10 +13,12 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def new
-    if summarisable?
-      @appointment_summary.assign_attributes(appointment_summary_params)
-    else
-      render :summarise_via_tap
+    if telephone_appointment? # rubocop:disable Style/GuardClause
+      if summarisable?
+        @appointment_summary.assign_attributes(appointment_summary_params)
+      else
+        render :summarise_via_tap
+      end
     end
   end
 
@@ -66,6 +69,10 @@ class AppointmentSummariesController < ApplicationController
 
   private
 
+  def check_can_create_appointments!
+    authorise_user!(any_of: [User::TELEPHONE_APPOINTMENT_PERMISSION, User::FACE_TO_FACE_PERMISSION])
+  end
+
   def load_summary
     @appointment_summary = AppointmentSummary.find_or_initialize_by(
       reference_number: params.dig(:appointment_summary, :reference_number)
@@ -79,6 +86,10 @@ class AppointmentSummariesController < ApplicationController
 
   def summarisable?
     params.key?(:appointment_summary)
+  end
+
+  def telephone_appointment?
+    current_user.has_permission?(User::TELEPHONE_APPOINTMENT_PERMISSION)
   end
 
   def appointment_summary_params

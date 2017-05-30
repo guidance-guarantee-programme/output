@@ -18,12 +18,12 @@ RSpec.feature 'Reprint Summary Document' do
 end
 
 def given_i_log_in_to_reprint_a_summary_document
-  @user = create(:user, permissions: ['team_leader'])
+  @user = create(:user, :team_leader)
   @appointment_summary = create(:appointment_summary)
 end
 
 def given_i_log_in_to_see_a_report_of_summary_documents_sent_by_post
-  @user = create(:user, permissions: ['team_leader'])
+  @user = create(:user, :team_leader)
 
   create(:appointment_summary, requested_digital: true)
   create(:appointment_summary, date_of_appointment: Time.zone.yesterday)

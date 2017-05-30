@@ -7,6 +7,8 @@ class AppointmentSummaryPage < SitePrism::Page
   set_url '/appointment_summaries/new{?params*}'
   set_url_matcher %r{/appointment_summaries/new}
 
+  element :use_tap_warning, '.t-use-tap'
+
   element :title, '.t-title'
   element :first_name, '.t-first-name'
   element :last_name, '.t-last-name'
@@ -69,12 +71,12 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :submit, '.t-submit'
 
-  def load(appointment_summary)
-    super(
-      {
-        params: params(appointment_summary)
-      }
-    )
+  def load(appointment_summary = nil)
+    if appointment_summary
+      super(params: params(appointment_summary))
+    else
+      super()
+    end
   end
 
   def params(appointment_summary)
