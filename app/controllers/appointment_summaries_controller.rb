@@ -91,6 +91,7 @@ class AppointmentSummariesController < ApplicationController
   def telephone_appointment?
     current_user.has_permission?(User::TELEPHONE_APPOINTMENT_PERMISSION)
   end
+  helper_method :telephone_appointment?
 
   def appointment_summary_params
     params
