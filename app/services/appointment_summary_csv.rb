@@ -3,6 +3,7 @@ class AppointmentSummaryCsv < CsvGenerator
   def attributes # rubocop:disable Metrics/MethodLength
     %w(
       id
+      telephone_appointment
       date_of_appointment
       value_of_pension_pots_is_approximate
       count_of_pension_pots

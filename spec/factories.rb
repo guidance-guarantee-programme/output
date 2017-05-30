@@ -41,6 +41,7 @@ FactoryGirl.define do
     number_of_previous_appointments 0
     requested_digital false
     email 'joe@bloggs.com'
+    telephone_appointment true
 
     factory :notify_delivered_appointment_summary do
       requested_digital true

@@ -97,7 +97,7 @@ class AppointmentSummariesController < ApplicationController
     params
       .require(:appointment_summary)
       .permit(AppointmentSummary.editable_column_names)
-      .merge(user: current_user)
+      .merge(user: current_user, telephone_appointment: telephone_appointment?)
   end
 
   def ajax_response_paths(appointment_summary)

@@ -74,6 +74,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   validates :appointment_type, inclusion: { in: %w(standard 50_54) }
   validates :number_of_previous_appointments, inclusion: { in: 0..3 }
   validates :email, format: EMAIL_REGEXP
+  validates :telephone_appointment, inclusion: { in: [true, false] }
 
   def self.editable_column_names
     column_names - %w(id created_at updated_at user_id notification_id)
