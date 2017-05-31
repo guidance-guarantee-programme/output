@@ -10,7 +10,7 @@ class NotifyDelivery
     response = client.get_notification(appointment_summary.notification_id)
 
     process_response(response, appointment_summary)
-    notify_tap(appointment_summary)
+    notify_tap(appointment_summary) if appointment_summary.telephone_appointment?
   rescue Notifications::Client::RequestError
     appointment_summary.stop_checking!
   end

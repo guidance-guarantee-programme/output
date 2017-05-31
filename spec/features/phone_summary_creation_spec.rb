@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Phone guider summary creation' do
+  before { ActiveJob::Base.queue_adapter.enqueued_jobs.clear }
+
   scenario 'attempting to create a summary from scratch' do
     given_i_am_logged_in_as_a_phone_guider
     when_i_attempt_to_load_the_blank_summary_form
@@ -9,14 +11,16 @@ RSpec.feature 'Phone guider summary creation' do
 
   scenario 'creating a summary with existing data' do
     given_i_am_logged_in_as_a_phone_guider
-    when_i_load_the_summary_form_with_preset_data
+    when_i_complete_the_summary_form_with_preset_digital_delivery_data
     and_i_fill_in_the_remaining_details
     then_i_am_able_to_submit_and_confirm_successfully
+    and_the_activity_should_be_created_on_tap
+    and_the_customer_should_be_notified_by_email
   end
 end
 
 def given_i_am_logged_in_as_a_phone_guider
-  create(:user, :phone_guider)
+  @user = create(:user, :phone_guider)
 end
 
 def when_i_attempt_to_load_the_blank_summary_form
@@ -24,8 +28,8 @@ def when_i_attempt_to_load_the_blank_summary_form
   @appointment_summary_page.load
 end
 
-def when_i_load_the_summary_form_with_preset_data
-  @appointment_summary_template = build(:populated_appointment_summary)
+def when_i_complete_the_summary_form_with_preset_digital_delivery_data
+  @appointment_summary_template = build(:populated_appointment_summary, :requested_digital)
 
   @appointment_summary_page = AppointmentSummaryPage.new
   @appointment_summary_page.load(@appointment_summary_template)
@@ -47,4 +51,27 @@ def then_i_am_able_to_submit_and_confirm_successfully
 
   @done_page = DonePage.new
   expect(@done_page).to be_displayed
+end
+
+def and_the_activity_should_be_created_on_tap
+  job = ActiveJob::Base.queue_adapter.enqueued_jobs[-2]
+  expect(job).to eq(
+    job: CreateTapActivity,
+    args: [
+      { '_aj_globalid' => "gid://output/AppointmentSummary/#{AppointmentSummary.last.id}" },
+      { '_aj_globalid' => "gid://output/User/#{User.first.id}" }
+    ],
+    queue: 'default'
+  )
+end
+
+def and_the_customer_should_be_notified_by_email
+  job = ActiveJob::Base.queue_adapter.enqueued_jobs.last
+  expect(job).to eq(
+    job: NotifyViaEmail,
+    args: [
+      { '_aj_globalid' => "gid://output/AppointmentSummary/#{AppointmentSummary.last.id}" }
+    ],
+    queue: 'default'
+  )
 end

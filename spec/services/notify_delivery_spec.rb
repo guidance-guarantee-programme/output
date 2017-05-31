@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe NotifyDelivery, '#call' do
-  let(:appointment_summary) { create(:notify_delivered_appointment_summary) }
+  let(:telephone_appointment) { false }
+  let(:appointment_summary) do
+    create(:notify_delivered_appointment_summary, telephone_appointment: telephone_appointment)
+  end
   let(:client) { instance_double(Notifications::Client) }
 
   subject { described_class.new(client).call(appointment_summary) }
@@ -29,14 +32,29 @@ RSpec.describe NotifyDelivery, '#call' do
       )
     end
 
-    it 'notifies TAP with an activity entry' do
-      expect(
-        TelephoneAppointments::DroppedSummaryDocumentActivity
-      ).to receive(:new).with(appointment_summary.reference_number) { activity }
+    context 'and the appointment was face to face' do
+      it 'does not notify TAP with an activity entry' do
+        expect(
+          TelephoneAppointments::DroppedSummaryDocumentActivity
+        ).not_to receive(:new)
 
-      subject
+        subject
 
-      expect(activity).to have_received(:save)
+        expect(activity).not_to have_received(:save)
+      end
+    end
+    context 'and the appointment was via telephone' do
+      let(:telephone_appointment) { true }
+
+      it 'notifies TAP with an activity entry' do
+        expect(
+          TelephoneAppointments::DroppedSummaryDocumentActivity
+        ).to receive(:new).with(appointment_summary.reference_number) { activity }
+
+        subject
+
+        expect(activity).to have_received(:save)
+      end
     end
   end
 

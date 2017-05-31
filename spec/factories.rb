@@ -73,5 +73,9 @@ FactoryGirl.define do
       retirement_income_other_income false
       retirement_income_unspecified false
     end
+
+    trait :requested_digital do
+      requested_digital true
+    end
   end
 end

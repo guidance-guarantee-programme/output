@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature 'Face to face guider summary creation' do
+  before { ActiveJob::Base.queue_adapter.enqueued_jobs.clear }
+
   scenario 'creating a summary' do
     given_i_am_logged_in_as_a_face_to_face_guider
     when_i_load_the_blank_summary_form
-    and_i_fill_in_the_summary_details
+    and_i_complete_the_summary_form_with_preset_digital_delivery_data
     then_i_am_able_to_submit_and_confirm_successfully
+    and_the_customer_should_be_notified_by_email
+    and_no_activity_should_be_created_on_tap
   end
 end
 
@@ -18,8 +22,8 @@ def when_i_load_the_blank_summary_form
   @appointment_summary_page.load
 end
 
-def and_i_fill_in_the_summary_details
-  template = build(:populated_appointment_summary)
+def and_i_complete_the_summary_form_with_preset_digital_delivery_data
+  template = build(:populated_appointment_summary, :requested_digital)
   @appointment_summary_page.fill_in(template, face_to_face: true)
 end
 
@@ -31,4 +35,21 @@ def then_i_am_able_to_submit_and_confirm_successfully
 
   @done_page = DonePage.new
   expect(@done_page).to be_displayed
+end
+
+def and_the_customer_should_be_notified_by_email
+  job = ActiveJob::Base.queue_adapter.enqueued_jobs.last
+  expect(job).to eq(
+    job: NotifyViaEmail,
+    args: [
+      { '_aj_globalid' => "gid://output/AppointmentSummary/#{AppointmentSummary.last.id}" }
+    ],
+    queue: 'default'
+  )
+end
+
+def and_no_activity_should_be_created_on_tap
+  ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
+    expect(job[:job]).not_to eq CreateTapActivity
+  end
 end
