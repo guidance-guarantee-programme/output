@@ -60,12 +60,5 @@ def when_i_update_their_email_address
 end
 
 def then_the_customer_should_be_notified_by_email
-  last_job = ActiveJob::Base.queue_adapter.enqueued_jobs.last
-  expect(last_job).to eq(
-    job: NotifyViaEmail,
-    args: [
-      { '_aj_globalid' => "gid://output/AppointmentSummary/#{AppointmentSummary.last.id}" }
-    ],
-    queue: 'default'
-  )
+  assert_enqueued_jobs 1, only: NotifyViaEmail
 end

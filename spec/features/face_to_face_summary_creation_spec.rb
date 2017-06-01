@@ -38,18 +38,9 @@ def then_i_am_able_to_submit_and_confirm_successfully
 end
 
 def and_the_customer_should_be_notified_by_email
-  job = ActiveJob::Base.queue_adapter.enqueued_jobs.last
-  expect(job).to eq(
-    job: NotifyViaEmail,
-    args: [
-      { '_aj_globalid' => "gid://output/AppointmentSummary/#{AppointmentSummary.last.id}" }
-    ],
-    queue: 'default'
-  )
+  assert_enqueued_jobs 1, only: NotifyViaEmail
 end
 
 def and_no_activity_should_be_created_on_tap
-  ActiveJob::Base.queue_adapter.enqueued_jobs.each do |job|
-    expect(job[:job]).not_to eq CreateTapActivity
-  end
+  assert_enqueued_jobs 0, only: CreateTapActivity
 end
