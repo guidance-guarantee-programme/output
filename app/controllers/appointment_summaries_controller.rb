@@ -13,12 +13,10 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def new
-    if telephone_appointment? # rubocop:disable Style/GuardClause
-      if summarisable?
-        @appointment_summary.assign_attributes(appointment_summary_params)
-      else
-        render :summarise_via_tap
-      end
+    if telephone_appointment? && no_summary_provided?
+      render :summarise_via_tap
+    else
+      @appointment_summary.assign_attributes(appointment_summary_params)
     end
   end
 
@@ -84,8 +82,8 @@ class AppointmentSummariesController < ApplicationController
     NotifyViaEmail.perform_later(appointment_summary) if appointment_summary.can_be_emailed?
   end
 
-  def summarisable?
-    params.key?(:appointment_summary)
+  def no_summary_provided?
+    !params.key?(:appointment_summary)
   end
 
   def telephone_appointment?
@@ -95,7 +93,7 @@ class AppointmentSummariesController < ApplicationController
 
   def appointment_summary_params
     params
-      .require(:appointment_summary)
+      .fetch(:appointment_summary, {})
       .permit(AppointmentSummary.editable_column_names)
       .merge(user: current_user, telephone_appointment: telephone_appointment?)
   end
