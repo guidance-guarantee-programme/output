@@ -11,6 +11,7 @@ RSpec.describe AppointmentSummaryCsv do
       expect(subject.first.chomp.split(separator)).to match_array(
         %w(
           id
+          telephone_appointment
           date_of_appointment
           value_of_pension_pots_is_approximate
           count_of_pension_pots
@@ -66,6 +67,7 @@ RSpec.describe AppointmentSummaryCsv do
       expect(subject.last.chomp.split(separator, -1)).to eq(
         [
           appointment.to_param,
+          appointment.telephone_appointment.to_s,
           appointment.date_of_appointment.to_s,
           appointment.value_of_pension_pots_is_approximate.to_s,
           appointment.count_of_pension_pots.to_s,

@@ -43,7 +43,7 @@
     <% @appointment_form.paginated_results.each do |summary| %>
       <tr class="t-appointment">
         <td><%= summary.reference_number %></td>
-        <td><%= summary.guider_name %></td>
+        <td><%= summary.guider_name %> (<%= summary.telephone_appointment? ? 'phone' : 'F2F' %>)</td>
         <td><%= "#{summary.title} #{summary.first_name} #{summary.last_name}" %></td>
         <td><%= summary.date_of_appointment.to_s(:gov_uk) %></td>
         <td><%= summary.requested_digital ? 'Yes' : 'No' %></td>

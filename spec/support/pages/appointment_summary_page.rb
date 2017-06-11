@@ -7,6 +7,8 @@ class AppointmentSummaryPage < SitePrism::Page
   set_url '/appointment_summaries/new{?params*}'
   set_url_matcher %r{/appointment_summaries/new}
 
+  element :use_tap_warning, '.t-use-tap'
+
   element :title, '.t-title'
   element :first_name, '.t-first-name'
   element :last_name, '.t-last-name'
@@ -69,12 +71,12 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :submit, '.t-submit'
 
-  def load(appointment_summary)
-    super(
-      {
-        params: params(appointment_summary)
-      }
-    )
+  def load(appointment_summary = nil)
+    if appointment_summary
+      super(params: params(appointment_summary))
+    else
+      super()
+    end
   end
 
   def params(appointment_summary)
@@ -96,7 +98,7 @@ class AppointmentSummaryPage < SitePrism::Page
     end
   end
 
-  def fill_in(appointment_summary)
+  def fill_in(appointment_summary, face_to_face: false)
     fill_in_customer_details(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
     fill_in_income_in_retirement_details(appointment_summary)
@@ -105,6 +107,7 @@ class AppointmentSummaryPage < SitePrism::Page
     fill_in_format_preference(appointment_summary)
     fill_in_digital_request(appointment_summary)
     fill_in_supplementary_information(appointment_summary)
+    fill_in_face_to_face_only_details(appointment_summary) if face_to_face
   end
 
   private
@@ -179,6 +182,23 @@ class AppointmentSummaryPage < SitePrism::Page
     supplementary_ill_health.set appointment_summary.supplementary_ill_health
     supplementary_defined_benefit_pensions.set appointment_summary.supplementary_defined_benefit_pensions
     supplementary_pension_transfers.set appointment_summary.supplementary_pension_transfers
+  end
+
+  def fill_in_face_to_face_only_details(appointment_summary)
+    first_name.set appointment_summary.first_name
+    last_name.set appointment_summary.last_name
+    email.set appointment_summary.email
+    reference_number.set appointment_summary.reference_number
+    guider_name.set appointment_summary.guider_name
+    date_of_appointment.set appointment_summary.date_of_appointment
+    fill_in_format_preference(appointment_summary)
+  end
+
+  def fill_in_appointment_type(appointment_summary)
+    case appointment_summary.appointment_type
+    when 'standard' then appointment_type_standard.set true
+    when 'appointment_50_54' then appointment_type_appointment_50_54.set true
+    end
   end
 end
 # rubocop:enable ClassLength

@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Appointment Summaries', js: true do
   scenario 'Regenerating an existing appointment summary' do
-    given_an_existing_appointment_summary
+    given_i_am_logged_in_as_a_phone_guider
+    and_an_existing_appointment_summary
     when_the_guider_attempts_to_regenerate_the_summary
     then_the_existing_appointment_summary_is_displayed
     and_the_details_provided_by_tap_are_displayed
@@ -12,7 +13,11 @@ RSpec.feature 'Appointment Summaries', js: true do
     then_the_existing_summary_is_updated
   end
 
-  def given_an_existing_appointment_summary
+  def given_i_am_logged_in_as_a_phone_guider
+    create(:user, :phone_guider)
+  end
+
+  def and_an_existing_appointment_summary
     @summary = create(:appointment_summary, reference_number: '123456')
   end
 

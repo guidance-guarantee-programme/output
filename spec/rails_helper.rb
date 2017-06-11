@@ -11,6 +11,7 @@ Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| requi
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include UserHelpers
+  config.include ActiveJob::TestHelper
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!

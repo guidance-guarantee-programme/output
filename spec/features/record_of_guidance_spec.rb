@@ -2,61 +2,73 @@ require 'rails_helper'
 
 RSpec.feature 'Record of guidance' do
   scenario "A customer's details are recorded" do
-    given_i_have_captured_the_customers_details_in_an_appointment_summary
+    given_i_am_logged_in_as_a_phone_guider
+    and_i_have_captured_the_customers_details_in_an_appointment_summary
     when_i_create_their_record_of_guidance
     then_the_customers_details_should_be_recorded
   end
 
   context "Recording of customers' individual circumstances" do
     scenario 'when they plan to continue working for a while' do
-      given_the_customer('plans to continue working for a while')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('plans to continue working for a while')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('plans to continue working for a while')
     end
 
     scenario 'when they are unsure about plans in retirement' do
-      given_the_customer('is unsure about plans in retirement')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('is unsure about plans in retirement')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('is unsure about plans in retirement')
     end
 
     scenario 'when they plan to leave money to someone' do
-      given_the_customer('plans to leave money to someone')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('plans to leave money to someone')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('plans to leave money to someone')
     end
 
     scenario 'when they want flexibility when taking money' do
-      given_the_customer('wants flexibility when taking money')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('wants flexibility when taking money')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('wants flexibility when taking money')
     end
 
     scenario 'when they want a guaranteed income' do
-      given_the_customer('wants a guaranteed income')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('wants a guaranteed income')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('wants a guaranteed income')
     end
 
     scenario 'when they need a certain amount of money now' do
-      given_the_customer('needs a certain amount of money now')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('needs a certain amount of money now')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('needs a certain amount of money now')
     end
 
     scenario 'when they have poor health' do
-      given_the_customer('has poor health')
+      given_i_am_logged_in_as_a_phone_guider
+      and_the_customer('has poor health')
       when_i_create_their_record_of_guidance
       then_information_it_should_be_recorded_that('has poor health')
     end
   end
 end
 
-def given_i_have_captured_the_customers_details_in_an_appointment_summary
+def given_i_am_logged_in_as_a_phone_guider
+  create(:user, :phone_guider)
+end
+
+def and_i_have_captured_the_customers_details_in_an_appointment_summary
   @appointment_summary = build(:populated_appointment_summary)
 end
 
-def given_the_customer(circumstances) # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
+def and_the_customer(circumstances) # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
   @appointment_summary = build(:populated_appointment_summary) do |summary|
     summary.continue_working = false
     summary.unsure = false

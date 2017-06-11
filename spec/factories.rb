@@ -4,7 +4,19 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@example.com" }
     name 'Rick Sanchez'
-    permissions %w(signin team_leader)
+    permissions %w(signin)
+
+    trait :analyst do
+      permissions %w(signin analyst)
+    end
+
+    trait :team_leader do
+      permissions %w(signin team_leader)
+    end
+
+    trait :phone_guider do
+      permissions %w(signin phone_bookings)
+    end
   end
 
   factory :appointment_summary do
@@ -29,6 +41,7 @@ FactoryGirl.define do
     number_of_previous_appointments 0
     requested_digital false
     email 'joe@bloggs.com'
+    telephone_appointment true
 
     factory :notify_delivered_appointment_summary do
       requested_digital true
@@ -59,6 +72,10 @@ FactoryGirl.define do
       retirement_income_inheritance false
       retirement_income_other_income false
       retirement_income_unspecified false
+    end
+
+    trait :requested_digital do
+      requested_digital true
     end
   end
 end

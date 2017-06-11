@@ -2,6 +2,9 @@ class User < ApplicationRecord
   include GDS::SSO::User
   serialize :permissions, Array
 
+  TELEPHONE_APPOINTMENT_PERMISSION = 'phone_bookings'.freeze
+  FACE_TO_FACE_PERMISSION = 'signin'.freeze
+
   deprecated_columns :admin, :first_name, :last_name, :encrypted_password, :sign_in_count, :current_sign_in_at,
                      :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :confirmation_token, :confirmed_at,
                      :confirmation_sent_at, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at,
