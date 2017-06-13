@@ -1,4 +1,4 @@
-class AddRetirementIncomeFields < ActiveRecord::Migration
+class AddRetirementIncomeFields < ActiveRecord::Migration[4.2]
   def change
     add_column :appointment_summaries, :retirement_income_other_state_benefits, :boolean, default: false, null: false
     add_column :appointment_summaries, :retirement_income_employment, :boolean, default: false, null: false

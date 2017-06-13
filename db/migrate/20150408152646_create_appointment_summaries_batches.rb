@@ -1,4 +1,4 @@
-class CreateAppointmentSummariesBatches < ActiveRecord::Migration
+class CreateAppointmentSummariesBatches < ActiveRecord::Migration[4.2]
   def change
     create_table :appointment_summaries_batches do |t|
       t.references :appointment_summary, index: true
