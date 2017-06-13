@@ -356,7 +356,7 @@ DEPENDENCIES
   rails_12factor
   retriable
   rspec-rails
-  rubocop
+  rubocop (= 0.47.1)
   sass-rails (~> 5.0)
   scss_lint
   shoulda-matchers
