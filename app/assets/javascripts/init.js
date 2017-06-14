@@ -4,6 +4,7 @@ $(function () {
   PWO.additionalAppointment.init();
   PWO.consent.init();
   PWO.eligibility.init();
+  PWO.emailValidation.init();
   PWO.pensionPotAccuracy.init();
   PWO.pensionPotInput.init();
   PWO.postcodeLookup.init();

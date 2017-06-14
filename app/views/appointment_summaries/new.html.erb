@@ -29,7 +29,9 @@
 
       <div class="form-group">
         <%= f.label :email %>
-        <%= f.text_field :email, class: %w(form-control t-email input-md-3), readonly: telephone_appointment? %>
+        <div class="email-outer input-md-3">
+          <%= f.email_field :email, class: %w(form-control js-email-validation t-email), readonly: telephone_appointment?, data: email_validation_data_attributes %>
+        </div>
       </div>
 
       <h3 id="postal-address-heading">Address</h3>
