@@ -96,6 +96,7 @@ class AppointmentSummariesController < ApplicationController
       .fetch(:appointment_summary, {})
       .permit(AppointmentSummary.editable_column_names)
       .merge(user: current_user, telephone_appointment: telephone_appointment?)
+      .reverse_merge(date_of_appointment: Date.current)
   end
 
   def ajax_response_paths(appointment_summary)
