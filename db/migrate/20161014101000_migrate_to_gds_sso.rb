@@ -1,4 +1,4 @@
-class MigrateToGdsSso < ActiveRecord::Migration
+class MigrateToGdsSso < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :name, :string, default: '', null: false
     execute "UPDATE users SET name = first_name || ' ' || last_name"

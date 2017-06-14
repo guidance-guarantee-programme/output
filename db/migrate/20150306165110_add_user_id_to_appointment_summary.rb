@@ -1,4 +1,4 @@
-class AddUserIdToAppointmentSummary < ActiveRecord::Migration
+class AddUserIdToAppointmentSummary < ActiveRecord::Migration[4.2]
   def change
     add_column :appointment_summaries, :user_id, :integer
 

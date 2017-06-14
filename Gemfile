@@ -24,10 +24,10 @@ gem 'notifications-ruby-client'
 gem 'output-templates', '~> 4.6.0', github: 'guidance-guarantee-programme/output-templates'
 gem 'pg'
 gem 'plek'
-gem 'princely', github: 'guidance-guarantee-programme/princely', branch: 'remove-alias-method-chain'
+gem 'princely', github: 'mbleigh/princely'
 gem 'puma'
-gem 'rails', '5.0.2'
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails', '5.1.1'
+gem 'rails-i18n', '~> 5.0.0'
 gem 'retriable'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
@@ -47,7 +47,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.47.1', require: false
   gem 'web-console', '~> 2.0'
 end
 

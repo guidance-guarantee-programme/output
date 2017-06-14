@@ -1,4 +1,4 @@
-class AddPreferencesToAppointmentSummaries < ActiveRecord::Migration
+class AddPreferencesToAppointmentSummaries < ActiveRecord::Migration[4.2]
   def change
     add_column :appointment_summaries, :continue_working, :boolean
     add_column :appointment_summaries, :unsure, :boolean

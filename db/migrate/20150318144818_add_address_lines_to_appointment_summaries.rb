@@ -1,4 +1,4 @@
-class AddAddressLinesToAppointmentSummaries < ActiveRecord::Migration
+class AddAddressLinesToAppointmentSummaries < ActiveRecord::Migration[4.2]
   def change
     add_column :appointment_summaries, :address_line_1, :string
     add_column :appointment_summaries, :address_line_2, :string
