@@ -7,9 +7,8 @@ GIT
       sass
 
 GIT
-  remote: https://github.com/guidance-guarantee-programme/princely.git
-  revision: 9b7170d0350e537da4491958f1977ee1a514d34b
-  branch: remove-alias-method-chain
+  remote: https://github.com/mbleigh/princely.git
+  revision: 38786246d7263c5cb567f748acc65780b16260d1
   specs:
     princely (2.0.3)
 
