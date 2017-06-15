@@ -53,6 +53,7 @@ class AppointmentSummaryPage < SitePrism::Page
                                     false: '.t-requested-postal'
 
   element :email, '.t-email'
+  element :email_suggestion, '.t-email-suggestion'
   element :supplementary_benefits, '.t-supplementary-benefits'
   element :supplementary_debt, '.t-supplementary-debt'
   element :supplementary_ill_health, '.t-supplementary-ill-health'
