@@ -29,7 +29,7 @@ gem 'puma'
 gem 'rails', '5.1.1'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'retriable'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 gem 'sidekiq'
 gem 'sinatra', require: nil # Sidekiq UI
 gem 'telephone_appointments'
