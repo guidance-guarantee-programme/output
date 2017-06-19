@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe AppointmentSummaryCsv do
-  let(:appointment) { create(:appointment_summary) }
+  let(:user) { create(:user, organisation_content_id: 'content-id') }
+  let(:appointment) { create(:appointment_summary, user: user) }
   let(:separator) { ',' }
 
   subject { described_class.new(appointment).call.lines }
@@ -12,6 +13,7 @@ RSpec.describe AppointmentSummaryCsv do
         %w(
           id
           telephone_appointment
+          organisation_id
           date_of_appointment
           value_of_pension_pots_is_approximate
           count_of_pension_pots
@@ -68,6 +70,7 @@ RSpec.describe AppointmentSummaryCsv do
         [
           appointment.to_param,
           appointment.telephone_appointment.to_s,
+          appointment.user.organisation_content_id,
           appointment.date_of_appointment.to_s,
           appointment.value_of_pension_pots_is_approximate.to_s,
           appointment.count_of_pension_pots.to_s,

@@ -4,6 +4,7 @@ class AppointmentSummaryCsv < CsvGenerator
     %w(
       id
       telephone_appointment
+      organisation_id
       date_of_appointment
       value_of_pension_pots_is_approximate
       count_of_pension_pots
