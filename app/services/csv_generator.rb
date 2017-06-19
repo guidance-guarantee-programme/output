@@ -22,10 +22,7 @@ class CsvGenerator
   private
 
   def row(record)
-    record
-      .attributes
-      .slice(*attributes)
-      .map { |key, value| format(key, value) }
+    attributes.map { |attribute| format(attribute, record.public_send(attribute)) }
   end
 
   def format(key, value)
