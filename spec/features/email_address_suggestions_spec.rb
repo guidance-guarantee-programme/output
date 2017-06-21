@@ -19,6 +19,8 @@ RSpec.feature 'Mailgun email verification service suggestions', js: true do
       when_i_enter_an_email_address_with_a_suggestion
       and_change_focus
       then_i_should_see_a_correction_suggestion
+      and_if_i_click_the_suggestion
+      then_it_should_update_the_email_address_with_the_suggestion
     end
   end
 
@@ -107,5 +109,14 @@ RSpec.feature 'Mailgun email verification service suggestions', js: true do
     }
 
     block.call
+  end
+
+  def and_if_i_click_the_suggestion
+    @suggested_email = @page.email_suggestion.text
+    @page.email_suggestion.click
+  end
+
+  def then_it_should_update_the_email_address_with_the_suggestion
+    expect(@page.email.value).to eq @suggested_email
   end
 end

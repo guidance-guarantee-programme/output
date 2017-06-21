@@ -100,7 +100,7 @@
         // Populate the suggestion and then remove the message
         this.$element.val(event.target.innerHTML);
         this.clearSuggestion();
-      });
+      }.bind(this));
     },
 
     clearSuggestion: function() {
