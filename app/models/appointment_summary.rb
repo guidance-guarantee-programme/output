@@ -1,6 +1,4 @@
 class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
-  deprecated_columns :income_in_retirement, :guider_organisation
-
   enum notify_status: %i(pending delivered failed ignoring)
 
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)

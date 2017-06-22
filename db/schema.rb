@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530133132) do
+ActiveRecord::Schema.define(version: 20170622104614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,16 +20,7 @@ ActiveRecord::Schema.define(version: 20170530133132) do
     t.datetime "updated_at", null: false
     t.date "date_of_appointment"
     t.money "value_of_pension_pots", scale: 2
-    t.string "income_in_retirement"
-    t.string "guider_organisation"
     t.string "guider_name"
-    t.boolean "continue_working"
-    t.boolean "unsure"
-    t.boolean "leave_inheritance"
-    t.boolean "wants_flexibility"
-    t.boolean "wants_security"
-    t.boolean "wants_lump_sum"
-    t.boolean "poor_health"
     t.integer "user_id"
     t.string "reference_number"
     t.string "address_line_1"
@@ -56,16 +47,6 @@ ActiveRecord::Schema.define(version: 20170530133132) do
     t.integer "count_of_pension_pots"
     t.string "email", default: ""
     t.string "notification_id", default: ""
-    t.boolean "retirement_income_other_state_benefits", default: false, null: false
-    t.boolean "retirement_income_employment", default: false, null: false
-    t.boolean "retirement_income_partner", default: false, null: false
-    t.boolean "retirement_income_interest_or_savings", default: false, null: false
-    t.boolean "retirement_income_property", default: false, null: false
-    t.boolean "retirement_income_business", default: false, null: false
-    t.boolean "retirement_income_inheritance", default: false, null: false
-    t.boolean "retirement_income_other_income", default: false, null: false
-    t.boolean "retirement_income_unspecified", default: false, null: false
-    t.boolean "retirement_income_defined_benefit", default: false, null: false
     t.boolean "supplementary_pension_transfers", default: false
     t.datetime "notify_completed_at"
     t.integer "notify_status", default: 0, null: false
