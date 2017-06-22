@@ -30,13 +30,7 @@ class AppointmentSummaryPage < SitePrism::Page
   radio_buttons :has_defined_contribution_pension, yes: '.t-has-defined-contribution-pension-yes',
                                                    no: '.t-has-defined-contribution-pension-no',
                                                    unknown: '.t-has-defined-contribution-pension-unknown'
-  element :continue_working, '.t-continue-working'
-  element :unsure, '.t-unsure'
-  element :leave_inheritance, '.t-leave-inheritance'
-  element :wants_flexibility, '.t-wants-flexibility'
-  element :wants_security, '.t-wants-security'
-  element :wants_lump_sum, '.t-wants-lump-sum'
-  element :poor_health, '.t-poor-health'
+
   radio_buttons :format_preference, standard: '.t-format-preference-standard',
                                     large_text: '.t-format-preference-large-text',
                                     braille: '.t-format-preference-braille'
@@ -59,16 +53,6 @@ class AppointmentSummaryPage < SitePrism::Page
   element :supplementary_ill_health, '.t-supplementary-ill-health'
   element :supplementary_defined_benefit_pensions, '.t-supplementary-defined-benefit-pensions'
   element :supplementary_pension_transfers, '.t-supplementary-pension-transfers'
-
-  element :retirement_income_other_state_benefits, '.t-retirement-income-other-state-benefits'
-  element :retirement_income_employment, '.t-retirement-income-employment'
-  element :retirement_income_partner, '.t-retirement-income-partner'
-  element :retirement_income_interest_or_savings, '.t-retirement-income-interest-or-savings'
-  element :retirement_income_property, '.t-retirement-income-property'
-  element :retirement_income_business, '.t-retirement-income-business'
-  element :retirement_income_inheritance, '.t-retirement-income-inheritance'
-  element :retirement_income_other_income, '.t-retirement-income-other-income'
-  element :retirement_income_unspecified, '.t-retirement-income-unspecified'
 
   element :submit, '.t-submit'
 
@@ -102,9 +86,7 @@ class AppointmentSummaryPage < SitePrism::Page
   def fill_in(appointment_summary, face_to_face: false)
     fill_in_customer_details(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
-    fill_in_income_in_retirement_details(appointment_summary)
     fill_in_has_defined_contribution_pension(appointment_summary)
-    fill_in_circumstances(appointment_summary)
     fill_in_format_preference(appointment_summary)
     fill_in_digital_request(appointment_summary)
     fill_in_supplementary_information(appointment_summary)
@@ -131,34 +113,12 @@ class AppointmentSummaryPage < SitePrism::Page
     count_of_pension_pots.set appointment_summary.count_of_pension_pots
   end
 
-  def fill_in_income_in_retirement_details(appointment_summary)
-    retirement_income_other_state_benefits.set appointment_summary.retirement_income_other_state_benefits
-    retirement_income_employment.set appointment_summary.retirement_income_employment
-    retirement_income_partner.set appointment_summary.retirement_income_partner
-    retirement_income_interest_or_savings.set appointment_summary.retirement_income_interest_or_savings
-    retirement_income_property.set appointment_summary.retirement_income_property
-    retirement_income_business.set appointment_summary.retirement_income_business
-    retirement_income_inheritance.set appointment_summary.retirement_income_inheritance
-    retirement_income_other_income.set appointment_summary.retirement_income_other_income
-    retirement_income_unspecified.set appointment_summary.retirement_income_unspecified
-  end
-
   def fill_in_has_defined_contribution_pension(appointment_summary)
     case appointment_summary.has_defined_contribution_pension
     when 'yes' then has_defined_contribution_pension_yes.set true
     when 'no' then has_defined_contribution_pension_no.set true
     when 'unknown' then has_defined_contribution_pension_unknown.set true
     end
-  end
-
-  def fill_in_circumstances(appointment_summary)
-    continue_working.set appointment_summary.continue_working?
-    unsure.set appointment_summary.unsure?
-    leave_inheritance.set appointment_summary.leave_inheritance?
-    wants_flexibility.set appointment_summary.wants_flexibility?
-    wants_security.set appointment_summary.wants_security?
-    wants_lump_sum.set appointment_summary.wants_lump_sum?
-    poor_health.set appointment_summary.poor_health?
   end
 
   def fill_in_format_preference(appointment_summary)

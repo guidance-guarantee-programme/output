@@ -30,28 +30,11 @@ class AppointmentSummaryCsv < CsvGenerator
       supplementary_ill_health
       supplementary_defined_benefit_pensions
       supplementary_pension_transfers
-      continue_working
-      unsure
-      leave_inheritance
-      wants_flexibility
-      wants_security
-      wants_lump_sum
-      poor_health
       requested_digital
       number_of_previous_appointments
       created_at
       email
       notification_id
-      retirement_income_other_state_benefits
-      retirement_income_employment
-      retirement_income_partner
-      retirement_income_interest_or_savings
-      retirement_income_property
-      retirement_income_business
-      retirement_income_inheritance
-      retirement_income_other_income
-      retirement_income_unspecified
-      retirement_income_defined_benefit
     ).freeze
   end
 
