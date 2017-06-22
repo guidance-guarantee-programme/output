@@ -42,16 +42,6 @@ class AppointmentSummaryCsv < CsvGenerator
       created_at
       email
       notification_id
-      retirement_income_other_state_benefits
-      retirement_income_employment
-      retirement_income_partner
-      retirement_income_interest_or_savings
-      retirement_income_property
-      retirement_income_business
-      retirement_income_inheritance
-      retirement_income_other_income
-      retirement_income_unspecified
-      retirement_income_defined_benefit
     ).freeze
   end
 

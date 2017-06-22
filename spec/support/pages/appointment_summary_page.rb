@@ -60,16 +60,6 @@ class AppointmentSummaryPage < SitePrism::Page
   element :supplementary_defined_benefit_pensions, '.t-supplementary-defined-benefit-pensions'
   element :supplementary_pension_transfers, '.t-supplementary-pension-transfers'
 
-  element :retirement_income_other_state_benefits, '.t-retirement-income-other-state-benefits'
-  element :retirement_income_employment, '.t-retirement-income-employment'
-  element :retirement_income_partner, '.t-retirement-income-partner'
-  element :retirement_income_interest_or_savings, '.t-retirement-income-interest-or-savings'
-  element :retirement_income_property, '.t-retirement-income-property'
-  element :retirement_income_business, '.t-retirement-income-business'
-  element :retirement_income_inheritance, '.t-retirement-income-inheritance'
-  element :retirement_income_other_income, '.t-retirement-income-other-income'
-  element :retirement_income_unspecified, '.t-retirement-income-unspecified'
-
   element :submit, '.t-submit'
 
   def load(appointment_summary = nil)
@@ -102,7 +92,6 @@ class AppointmentSummaryPage < SitePrism::Page
   def fill_in(appointment_summary, face_to_face: false)
     fill_in_customer_details(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
-    fill_in_income_in_retirement_details(appointment_summary)
     fill_in_has_defined_contribution_pension(appointment_summary)
     fill_in_circumstances(appointment_summary)
     fill_in_format_preference(appointment_summary)
@@ -129,18 +118,6 @@ class AppointmentSummaryPage < SitePrism::Page
     upper_value_of_pension_pots.set appointment_summary.upper_value_of_pension_pots
     value_of_pension_pots_is_approximate.set appointment_summary.value_of_pension_pots_is_approximate?
     count_of_pension_pots.set appointment_summary.count_of_pension_pots
-  end
-
-  def fill_in_income_in_retirement_details(appointment_summary)
-    retirement_income_other_state_benefits.set appointment_summary.retirement_income_other_state_benefits
-    retirement_income_employment.set appointment_summary.retirement_income_employment
-    retirement_income_partner.set appointment_summary.retirement_income_partner
-    retirement_income_interest_or_savings.set appointment_summary.retirement_income_interest_or_savings
-    retirement_income_property.set appointment_summary.retirement_income_property
-    retirement_income_business.set appointment_summary.retirement_income_business
-    retirement_income_inheritance.set appointment_summary.retirement_income_inheritance
-    retirement_income_other_income.set appointment_summary.retirement_income_other_income
-    retirement_income_unspecified.set appointment_summary.retirement_income_unspecified
   end
 
   def fill_in_has_defined_contribution_pension(appointment_summary)

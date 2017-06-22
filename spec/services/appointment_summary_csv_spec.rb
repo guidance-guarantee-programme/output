@@ -51,16 +51,6 @@ RSpec.describe AppointmentSummaryCsv do
           created_at
           email
           notification_id
-          retirement_income_other_state_benefits
-          retirement_income_employment
-          retirement_income_partner
-          retirement_income_interest_or_savings
-          retirement_income_property
-          retirement_income_business
-          retirement_income_inheritance
-          retirement_income_other_income
-          retirement_income_unspecified
-          retirement_income_defined_benefit
         )
       )
     end
@@ -107,17 +97,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.number_of_previous_appointments.to_s,
           appointment.created_at.getlocal.to_s(:rfc),
           appointment.email,
-          quote_empty_string(appointment.notification_id),
-          appointment.retirement_income_other_state_benefits.to_s,
-          appointment.retirement_income_employment.to_s,
-          appointment.retirement_income_partner.to_s,
-          appointment.retirement_income_interest_or_savings.to_s,
-          appointment.retirement_income_property.to_s,
-          appointment.retirement_income_business.to_s,
-          appointment.retirement_income_inheritance.to_s,
-          appointment.retirement_income_other_income.to_s,
-          appointment.retirement_income_defined_benefit.to_s,
-          appointment.retirement_income_unspecified.to_s
+          quote_empty_string(appointment.notification_id)
         ]
       )
     end

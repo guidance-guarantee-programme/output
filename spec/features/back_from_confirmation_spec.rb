@@ -61,16 +61,7 @@ def then_the_previously_captured_details_are_prepopulated # rubocop:disable Metr
                    poor_health
                    supplementary_benefits supplementary_debt
                    supplementary_ill_health
-                   supplementary_defined_benefit_pensions
-                   retirement_income_other_state_benefits
-                   retirement_income_employment
-                   retirement_income_partner
-                   retirement_income_interest_or_savings
-                   retirement_income_property
-                   retirement_income_business
-                   retirement_income_inheritance
-                   retirement_income_other_income
-                   retirement_income_unspecified)
+                   supplementary_defined_benefit_pensions)
 
   radio_button_groups = %i(has_defined_contribution_pension
                            format_preference

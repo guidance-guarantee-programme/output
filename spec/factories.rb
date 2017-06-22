@@ -63,15 +63,6 @@ FactoryGirl.define do
       supplementary_ill_health true
       supplementary_defined_benefit_pensions true
       count_of_pension_pots 1
-      retirement_income_other_state_benefits false
-      retirement_income_employment false
-      retirement_income_partner false
-      retirement_income_interest_or_savings false
-      retirement_income_property false
-      retirement_income_business false
-      retirement_income_inheritance false
-      retirement_income_other_income false
-      retirement_income_unspecified false
     end
 
     trait :requested_digital do
