@@ -30,13 +30,6 @@ class AppointmentSummaryCsv < CsvGenerator
       supplementary_ill_health
       supplementary_defined_benefit_pensions
       supplementary_pension_transfers
-      continue_working
-      unsure
-      leave_inheritance
-      wants_flexibility
-      wants_security
-      wants_lump_sum
-      poor_health
       requested_digital
       number_of_previous_appointments
       created_at

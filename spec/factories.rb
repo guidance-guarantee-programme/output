@@ -51,13 +51,6 @@ FactoryGirl.define do
     factory :populated_appointment_summary do
       value_of_pension_pots_is_approximate true
       guider_name 'Pênelopę'
-      continue_working true
-      unsure true
-      leave_inheritance true
-      wants_flexibility true
-      wants_security true
-      wants_lump_sum true
-      poor_health true
       supplementary_benefits true
       supplementary_debt true
       supplementary_ill_health true

@@ -39,13 +39,6 @@ RSpec.describe AppointmentSummaryCsv do
           supplementary_ill_health
           supplementary_defined_benefit_pensions
           supplementary_pension_transfers
-          continue_working
-          unsure
-          leave_inheritance
-          wants_flexibility
-          wants_security
-          wants_lump_sum
-          poor_health
           requested_digital
           number_of_previous_appointments
           created_at
@@ -86,13 +79,6 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.supplementary_ill_health.to_s,
           appointment.supplementary_defined_benefit_pensions.to_s,
           appointment.supplementary_pension_transfers.to_s,
-          appointment.continue_working.to_s,
-          appointment.unsure.to_s,
-          appointment.leave_inheritance.to_s,
-          appointment.wants_flexibility.to_s,
-          appointment.wants_security.to_s,
-          appointment.wants_lump_sum.to_s,
-          appointment.poor_health.to_s,
           appointment.requested_digital.to_s,
           appointment.number_of_previous_appointments.to_s,
           appointment.created_at.getlocal.to_s(:rfc),

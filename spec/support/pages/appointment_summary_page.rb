@@ -30,13 +30,7 @@ class AppointmentSummaryPage < SitePrism::Page
   radio_buttons :has_defined_contribution_pension, yes: '.t-has-defined-contribution-pension-yes',
                                                    no: '.t-has-defined-contribution-pension-no',
                                                    unknown: '.t-has-defined-contribution-pension-unknown'
-  element :continue_working, '.t-continue-working'
-  element :unsure, '.t-unsure'
-  element :leave_inheritance, '.t-leave-inheritance'
-  element :wants_flexibility, '.t-wants-flexibility'
-  element :wants_security, '.t-wants-security'
-  element :wants_lump_sum, '.t-wants-lump-sum'
-  element :poor_health, '.t-poor-health'
+
   radio_buttons :format_preference, standard: '.t-format-preference-standard',
                                     large_text: '.t-format-preference-large-text',
                                     braille: '.t-format-preference-braille'
@@ -93,7 +87,6 @@ class AppointmentSummaryPage < SitePrism::Page
     fill_in_customer_details(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
     fill_in_has_defined_contribution_pension(appointment_summary)
-    fill_in_circumstances(appointment_summary)
     fill_in_format_preference(appointment_summary)
     fill_in_digital_request(appointment_summary)
     fill_in_supplementary_information(appointment_summary)
@@ -126,16 +119,6 @@ class AppointmentSummaryPage < SitePrism::Page
     when 'no' then has_defined_contribution_pension_no.set true
     when 'unknown' then has_defined_contribution_pension_unknown.set true
     end
-  end
-
-  def fill_in_circumstances(appointment_summary)
-    continue_working.set appointment_summary.continue_working?
-    unsure.set appointment_summary.unsure?
-    leave_inheritance.set appointment_summary.leave_inheritance?
-    wants_flexibility.set appointment_summary.wants_flexibility?
-    wants_security.set appointment_summary.wants_security?
-    wants_lump_sum.set appointment_summary.wants_lump_sum?
-    poor_health.set appointment_summary.poor_health?
   end
 
   def fill_in_format_preference(appointment_summary)
