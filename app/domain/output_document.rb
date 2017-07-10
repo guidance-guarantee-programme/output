@@ -14,6 +14,8 @@ class OutputDocument
   delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode,
            to: :appointment_summary, prefix: :attendee
 
+  delegate :covering_letter_type, to: :appointment_summary
+
   def initialize(appointment_summary)
     @appointment_summary = appointment_summary
   end
