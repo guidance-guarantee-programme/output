@@ -37,6 +37,9 @@ class AppointmentSummaryPage < SitePrism::Page
 
   radio_buttons :appointment_type, standard: '.t-appointment-type-standard',
                                    appointment_50_54: '.t-appointment-type-50-54'
+  radio_buttons :covering_letter_type, section_32: '.t-covering-letter-type-section-32',
+                                       adjustable_income: '.t-covering-letter-type-adjustable-income',
+                                       inherited_pot: '.t-covering-letter-type-inherited-pot'
   radio_buttons :first_appointment, yes: '.t-first-appointment-yes',
                                     no: '.t-first-appointment-no'
   radio_buttons :number_of_previous_appointments, zero: '.t-number-of-previous-appointments-0',
@@ -86,6 +89,7 @@ class AppointmentSummaryPage < SitePrism::Page
   def fill_in(appointment_summary, face_to_face: false)
     fill_in_customer_details(appointment_summary)
     fill_in_pension_pot_details(appointment_summary)
+    fill_in_covering_letter_type(appointment_summary)
     fill_in_has_defined_contribution_pension(appointment_summary)
     fill_in_format_preference(appointment_summary)
     fill_in_digital_request(appointment_summary)
@@ -159,6 +163,14 @@ class AppointmentSummaryPage < SitePrism::Page
     case appointment_summary.appointment_type
     when 'standard' then appointment_type_standard.set true
     when 'appointment_50_54' then appointment_type_appointment_50_54.set true
+    end
+  end
+
+  def fill_in_covering_letter_type(appointment_summary)
+    case appointment_summary.covering_letter_type
+    when 'section_32' then covering_letter_type_section_32.set true
+    when 'adjustable_income' then covering_letter_type_adjustable_income.set true
+    when 'inherited_pot' then covering_letter_type_inherited_pot.set true
     end
   end
 end

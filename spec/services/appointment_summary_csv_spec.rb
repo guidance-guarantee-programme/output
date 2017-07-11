@@ -33,6 +33,7 @@ RSpec.describe AppointmentSummaryCsv do
           last_name
           format_preference
           appointment_type
+          covering_letter_type
           has_defined_contribution_pension
           supplementary_benefits
           supplementary_debt
@@ -73,6 +74,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.last_name,
           appointment.format_preference,
           appointment.appointment_type,
+          appointment.covering_letter_type,
           appointment.has_defined_contribution_pension.to_s,
           appointment.supplementary_benefits.to_s,
           appointment.supplementary_debt.to_s,

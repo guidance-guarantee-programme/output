@@ -24,6 +24,7 @@ class AppointmentSummaryCsv < CsvGenerator
       last_name
       format_preference
       appointment_type
+      covering_letter_type
       has_defined_contribution_pension
       supplementary_benefits
       supplementary_debt

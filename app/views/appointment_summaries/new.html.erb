@@ -104,6 +104,32 @@
         </fieldset>
       </div>
 
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Customer has one of the following</span>
+          </legend>
+          <div class="radio">
+            <%= f.label :covering_letter_type, value: 'section_32' do %>
+              <%= f.radio_button :covering_letter_type, 'section_32', class: 't-covering-letter-type-section-32' %>
+              Section 32 arrangement
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :covering_letter_type, value: 'adjustable_income' do %>
+              <%= f.radio_button :covering_letter_type, 'adjustable_income', class: 't-covering-letter-type-adjustable-income' %>
+              Adjustable income pot in payment
+            <% end %>
+          </div>
+          <div class="radio">
+            <%= f.label :covering_letter_type, value: 'inherited_pot' do %>
+              <%= f.radio_button :covering_letter_type, 'inherited_pot', class: 't-covering-letter-type-inherited-pot' %>
+              Inherited pension pot
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
+
       <div class="form-group if-no-js-hide">
         <fieldset>
           <legend>

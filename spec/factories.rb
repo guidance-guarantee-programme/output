@@ -38,6 +38,7 @@ FactoryGirl.define do
     value_of_pension_pots 15_000
     format_preference 'standard'
     appointment_type 'standard'
+    covering_letter_type 'section_32'
     number_of_previous_appointments 0
     requested_digital false
     email 'joe@bloggs.com'
