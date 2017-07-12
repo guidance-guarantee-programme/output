@@ -127,6 +127,12 @@
               Inherited pension pot
             <% end %>
           </div>
+          <div class="radio">
+            <%= f.label :covering_letter_type, value: '' do %>
+              <%= f.radio_button :covering_letter_type, '', class: 't-covering-letter-type-none' %>
+              None of the above
+            <% end %>
+          </div>
         </fieldset>
       </div>
 
