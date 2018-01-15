@@ -23,7 +23,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'net-sftp'
   gem 'newrelic_rpm'
   gem 'notifications-ruby-client'
-  gem 'output-templates', '~> 4.8.2', github: 'guidance-guarantee-programme/output-templates'
+  gem 'output-templates', '~> 4.9', github: 'guidance-guarantee-programme/output-templates'
   gem 'pg'
   gem 'plek'
   gem 'princely', github: 'mbleigh/princely'
