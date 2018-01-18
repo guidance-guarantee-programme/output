@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 class AppointmentSummariesController < ApplicationController
-  before_action :require_signin_permission! # this can't be in ApplicationController due to Gaffe gem
   before_action :authenticate_as_team_leader!, only: :index
   before_action :check_can_create_appointments!, only: [:new, :confirm, :create]
   before_action :load_summary, only: %i(new email_confirmation update confirm)
