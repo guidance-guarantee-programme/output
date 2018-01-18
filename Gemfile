@@ -24,7 +24,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'newrelic_rpm'
   gem 'notifications-ruby-client'
   gem 'output-templates', '~> 4.9', github: 'guidance-guarantee-programme/output-templates'
-  gem 'pg'
+  gem 'pg', '0.21.0'
   gem 'plek'
   gem 'princely'
   gem 'puma'
