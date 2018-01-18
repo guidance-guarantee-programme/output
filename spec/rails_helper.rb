@@ -9,7 +9,7 @@ ActiveRecord::Migration.maintain_test_schema!
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include UserHelpers
   config.include ActiveJob::TestHelper
 

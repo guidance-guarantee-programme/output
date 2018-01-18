@@ -9,6 +9,7 @@ end
 
 source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'autoprefixer-rails'
+  gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
   gem 'deprecated_columns'
@@ -24,11 +25,11 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'newrelic_rpm'
   gem 'notifications-ruby-client'
   gem 'output-templates', '~> 4.9', github: 'guidance-guarantee-programme/output-templates'
-  gem 'pg'
+  gem 'pg', '0.21.0'
   gem 'plek'
-  gem 'princely', github: 'mbleigh/princely'
+  gem 'princely'
   gem 'puma'
-  gem 'rails', '5.1.1'
+  gem 'rails', '5.1.4'
   gem 'rails-i18n', '~> 5.0.0'
   gem 'retriable'
   gem 'sassc-rails'
@@ -60,7 +61,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
     gem 'webrick'
   end
 
-  gem 'factory_girl_rails', group: %i(development test)
+  gem 'factory_bot_rails', group: %i(development test)
 
   group :staging, :production do
     gem 'rails_12factor'
