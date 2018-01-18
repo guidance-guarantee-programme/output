@@ -9,6 +9,7 @@ end
 
 source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'autoprefixer-rails'
+  gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
   gem 'deprecated_columns'
