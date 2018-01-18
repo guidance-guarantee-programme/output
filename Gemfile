@@ -26,7 +26,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'output-templates', '~> 4.9', github: 'guidance-guarantee-programme/output-templates'
   gem 'pg'
   gem 'plek'
-  gem 'princely', github: 'mbleigh/princely'
+  gem 'princely'
   gem 'puma'
   gem 'rails', '5.1.1'
   gem 'rails-i18n', '~> 5.0.0'

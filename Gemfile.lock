@@ -6,12 +6,6 @@ GIT
       actionview
       sass
 
-GIT
-  remote: https://github.com/mbleigh/princely.git
-  revision: 38786246d7263c5cb567f748acc65780b16260d1
-  specs:
-    princely (2.0.3)
-
 GEM
   remote: https://rails-assets.org/
   remote: https://rubygems.org/
@@ -189,6 +183,7 @@ GEM
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
+    princely (2.1.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
