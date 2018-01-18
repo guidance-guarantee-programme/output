@@ -60,7 +60,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
     gem 'webrick'
   end
 
-  gem 'factory_girl_rails', group: %i(development test)
+  gem 'factory_bot_rails', group: %i(development test)
 
   group :staging, :production do
     gem 'rails_12factor'
