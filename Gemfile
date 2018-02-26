@@ -42,7 +42,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   group :development, :test do
     gem 'database_rewinder'
     gem 'launchy'
-    gem 'phantomjs-binaries'
+    gem 'phantomjs'
     gem 'poltergeist'
     gem 'pry-byebug'
     gem 'rspec-rails'
