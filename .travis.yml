@@ -9,6 +9,7 @@ cache:
   - node_modules
   - tmp/cache/assets/test
   - vendor/assets/bower_components
+  - $HOME/.phantomjs
 env:
   global:
   - secure: ZbggxPXsIVr8W4yO7oLH0Ps+jaCcZcwvR3/wUCjwtaO/FdmHhE8LkN9If14IYyiegEmF4kmlqH03+Svb1CGOgt54kQ4wCuN8dCNH+hGS39Vn/E2ngC/h5U/wf99m4IVzBPzg0IcKN9OWCWzRRMUM+X0Zq04zuekWwUMKlERAajk=
