@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: 955e58e5d8b5dcdcdbc5ad213723c6412f14d7b0
+  revision: e6c1110de2992e1acb343c98c3d2ae15e92afe69
   specs:
-    output-templates (4.9.1)
+    output-templates (4.9.2)
       actionview
       sass
 
@@ -137,7 +137,7 @@ GEM
     kaminari-core (1.1.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.2.1)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -217,8 +217,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails-i18n (5.0.4)
       i18n (~> 0.7)
       railties (~> 5.0)
@@ -265,7 +265,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
-    sass (3.5.5)
+    sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
