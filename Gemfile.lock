@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: d9f47c0588585b7d6503593a57ded61e2350bd87
+  revision: 630ff0a222c1c2eaa55ee4539b015cefe4c58e51
   specs:
-    output-templates (4.9.4)
+    output-templates (4.9.5)
       actionview
       sass
 
@@ -94,7 +94,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.23)
+    ffi (1.9.25)
     foreman (0.84.0)
       thor (~> 0.19.1)
     gaffe (1.2.0)
