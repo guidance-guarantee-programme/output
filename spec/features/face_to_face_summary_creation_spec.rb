@@ -14,7 +14,7 @@ RSpec.feature 'Face to face guider summary creation' do
 end
 
 def given_i_am_logged_in_as_a_face_to_face_guider
-  create(:user)
+  create(:user, :face_to_face_guider)
 end
 
 def when_i_load_the_blank_summary_form

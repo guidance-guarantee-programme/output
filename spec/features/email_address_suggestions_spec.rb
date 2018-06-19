@@ -25,7 +25,7 @@ RSpec.feature 'Mailgun email verification service suggestions', js: true do
   end
 
   def given_i_am_logged_in_as_a_face_to_face_guider
-    create(:user)
+    create(:user, :face_to_face_guider)
   end
 
   def and_i_am_on_the_summary_form
