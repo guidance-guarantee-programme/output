@@ -79,7 +79,6 @@ GEM
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crass (1.0.4)
-    database_cleaner (1.6.2)
     database_rewinder (0.8.2)
     debug_inspector (0.0.3)
     deprecated_columns (0.1.1)
@@ -342,7 +341,6 @@ DEPENDENCIES
   bootsnap!
   bootstrap-kaminari-views!
   bugsnag!
-  database_cleaner!
   database_rewinder!
   deprecated_columns!
   factory_bot_rails!

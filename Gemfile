@@ -55,7 +55,6 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   end
 
   group :test do
-    gem 'database_cleaner'
     gem 'shoulda-matchers'
     gem 'site_prism'
     gem 'webrick'
