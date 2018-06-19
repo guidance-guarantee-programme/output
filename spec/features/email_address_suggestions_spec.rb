@@ -96,8 +96,7 @@ RSpec.feature 'Mailgun email verification service suggestions', js: true do
   end
 
   after(:all) do
-    @server.shutdown
-    @thread.kill
+    @thread && @thread.kill while system('lsof -t -i:9293 > /dev/null')
   end
 
   def with_mock_mailgun_response(response, block)
