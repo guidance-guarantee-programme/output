@@ -21,6 +21,10 @@ FactoryBot.define do
     trait :face_to_face_guider do
       permissions %w(signin face_to_face_bookings)
     end
+
+    trait :general_guider do
+      permissions %w(signin phone_bookings face_to_face_bookings)
+    end
   end
 
   factory :appointment_summary do

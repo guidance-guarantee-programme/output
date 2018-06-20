@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.feature 'Phone guider summary creation' do
+RSpec.feature 'Phone summary creation' do
   before { ActiveJob::Base.queue_adapter.enqueued_jobs.clear }
 
-  scenario 'attempting to create a summary from scratch' do
+  scenario 'Attempting to create a summary from scratch' do
     given_i_am_logged_in_as_a_phone_guider
     when_i_attempt_to_load_the_blank_summary_form
     then_i_am_told_to_use_tap
   end
 
-  scenario 'creating a summary with existing data' do
+  scenario 'Phone guider creates a summary via TAP' do
     given_i_am_logged_in_as_a_phone_guider
     when_i_complete_the_summary_form_with_preset_digital_delivery_data
     and_i_fill_in_the_remaining_details
@@ -17,6 +17,19 @@ RSpec.feature 'Phone guider summary creation' do
     and_the_activity_should_be_created_on_tap
     and_the_customer_should_be_notified_by_email
   end
+
+  scenario 'General purpose guider creates a summary via TAP' do
+    given_i_am_logged_in_as_a_general_guider
+    when_i_complete_the_summary_form_with_preset_digital_delivery_data
+    and_i_fill_in_the_remaining_details
+    then_i_am_able_to_submit_and_confirm_successfully
+    and_the_activity_should_be_created_on_tap
+    and_the_customer_should_be_notified_by_email
+  end
+end
+
+def given_i_am_logged_in_as_a_general_guider
+  @user = create(:user, :general_guider)
 end
 
 def given_i_am_logged_in_as_a_phone_guider
