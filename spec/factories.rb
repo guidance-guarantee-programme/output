@@ -11,11 +11,19 @@ FactoryBot.define do
     end
 
     trait :team_leader do
-      permissions %w(signin team_leader)
+      permissions %w(signin team_leader face_to_face_bookings)
     end
 
     trait :phone_guider do
       permissions %w(signin phone_bookings)
+    end
+
+    trait :face_to_face_guider do
+      permissions %w(signin face_to_face_bookings)
+    end
+
+    trait :general_guider do
+      permissions %w(signin phone_bookings face_to_face_bookings)
     end
   end
 

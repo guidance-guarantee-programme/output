@@ -67,7 +67,7 @@ class AppointmentSummaryPage < SitePrism::Page
     end
   end
 
-  def params(appointment_summary)
+  def params(appointment_summary) # rubocop:disable MethodLength
     params_from_tap = %i(
       appointment_type
       date_of_appointment
@@ -83,6 +83,8 @@ class AppointmentSummaryPage < SitePrism::Page
       params_from_tap.each do |param|
         params["appointment_summary[#{param}]"] = appointment_summary[param]
       end
+
+      params['appointment_summary[telephone_appointment]'] = 'true'
     end
   end
 

@@ -1,9 +1,18 @@
 require 'rails_helper'
 
-RSpec.feature 'Face to face guider summary creation' do
+RSpec.feature 'Face to face appointment summary creation' do
   before { ActiveJob::Base.queue_adapter.enqueued_jobs.clear }
 
-  scenario 'creating a summary' do
+  scenario 'As a general guider' do
+    given_i_am_logged_in_as_a_general_guider
+    when_i_load_the_blank_summary_form
+    and_i_complete_the_summary_form_with_preset_digital_delivery_data
+    then_i_am_able_to_submit_and_confirm_successfully
+    and_the_customer_should_be_notified_by_email
+    and_no_activity_should_be_created_on_tap
+  end
+
+  scenario 'As a face to face guider' do
     given_i_am_logged_in_as_a_face_to_face_guider
     when_i_load_the_blank_summary_form
     and_i_complete_the_summary_form_with_preset_digital_delivery_data
@@ -14,7 +23,11 @@ RSpec.feature 'Face to face guider summary creation' do
 end
 
 def given_i_am_logged_in_as_a_face_to_face_guider
-  create(:user)
+  create(:user, :face_to_face_guider)
+end
+
+def given_i_am_logged_in_as_a_general_guider
+  create(:user, :general_guider)
 end
 
 def when_i_load_the_blank_summary_form

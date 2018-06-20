@@ -1,4 +1,6 @@
 <%= form_for @appointment_summary, url: confirm_appointment_summaries_path, method: :post do |f| %>
+  <%= f.hidden_field :telephone_appointment %>
+
   <div class="page-header">
     <h1><%= title 'Create summary document' %></h1>
   </div>
@@ -19,18 +21,18 @@
 
       <div class="form-group">
         <%= f.label :first_name %>
-        <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name), readonly: telephone_appointment? %>
+        <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name), readonly: @appointment_summary.telephone_appointment? %>
       </div>
 
       <div class="form-group">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name), readonly: telephone_appointment? %>
+        <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name), readonly: @appointment_summary.telephone_appointment? %>
       </div>
 
       <div class="form-group">
         <%= f.label :email %>
         <div class="email-outer input-md-3">
-          <%= f.email_field :email, class: %w(form-control js-email-validation t-email), readonly: telephone_appointment?, data: email_validation_data_attributes %>
+          <%= f.email_field :email, class: %w(form-control js-email-validation t-email), readonly: @appointment_summary.telephone_appointment?, data: email_validation_data_attributes %>
         </div>
       </div>
 
@@ -76,12 +78,12 @@
       <div class="form-group">
         <%= f.label :date_of_appointment %>
         <%= f.date_field :date_of_appointment,
-                         class: %w(form-control input-md-2 t-date-of-appointment), readonly: telephone_appointment? %>
+                         class: %w(form-control input-md-2 t-date-of-appointment), readonly: @appointment_summary.telephone_appointment? %>
       </div>
 
       <div class="form-group">
         <%= f.label :reference_number %>
-        <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number), readonly: telephone_appointment? %>
+        <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number), readonly: @appointment_summary.telephone_appointment? %>
       </div>
 
       <div class="form-group">
@@ -91,13 +93,13 @@
           </legend>
           <div class="radio">
             <%= f.label :appointment_type, value: 'standard' do %>
-              <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', disabled: telephone_appointment? %>
+              <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', disabled: @appointment_summary.telephone_appointment? %>
               For customers aged 55 or over
             <% end %>
           </div>
           <div class="radio">
             <%= f.label :appointment_type, value: '50_54' do %>
-              <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', disabled: telephone_appointment? %>
+              <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', disabled: @appointment_summary.telephone_appointment? %>
               For customers aged 50 to 54
             <% end %>
           </div>
@@ -201,7 +203,7 @@
 
       <div class="form-group">
         <%= f.label :guider_name %>
-        <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name), readonly: telephone_appointment? %>
+        <%= f.text_field :guider_name, class: %w(form-control input-md-3 t-guider-name), readonly: @appointment_summary.telephone_appointment? %>
       </div>
 
       <hr>

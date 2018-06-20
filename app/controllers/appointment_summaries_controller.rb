@@ -12,7 +12,7 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def new
-    if telephone_appointment? && no_summary_provided?
+    if instruct?
       render :summarise_via_tap
     else
       @appointment_summary.assign_attributes(appointment_summary_params)
@@ -66,8 +66,17 @@ class AppointmentSummariesController < ApplicationController
 
   private
 
+  def instruct?
+    !current_user.has_permission?(User::FACE_TO_FACE_PERMISSION) && !params[:appointment_summary]
+  end
+
   def check_can_create_appointments!
-    authorise_user!(any_of: [User::TELEPHONE_APPOINTMENT_PERMISSION, User::FACE_TO_FACE_PERMISSION])
+    authorise_user!(
+      any_of: [
+        User::TELEPHONE_APPOINTMENT_PERMISSION,
+        User::FACE_TO_FACE_PERMISSION
+      ]
+    )
   end
 
   def load_summary
@@ -77,16 +86,13 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def send_notifications(appointment_summary)
-    CreateTapActivity.perform_later(appointment_summary, current_user) if telephone_appointment?
+    CreateTapActivity.perform_later(appointment_summary, current_user) if appointment_summary.telephone_appointment?
     NotifyViaEmail.perform_later(appointment_summary) if appointment_summary.can_be_emailed?
   end
 
-  def no_summary_provided?
-    !params.key?(:appointment_summary)
-  end
-
   def telephone_appointment?
-    current_user.has_permission?(User::TELEPHONE_APPOINTMENT_PERMISSION)
+    params.dig(:appointment_summary, :telephone_appointment) == 'true' &&
+      current_user.has_permission?(User::TELEPHONE_APPOINTMENT_PERMISSION)
   end
   helper_method :telephone_appointment?
 

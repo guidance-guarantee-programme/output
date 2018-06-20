@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
   let(:email) { 'guider@example.com' }
-  let(:user) { create(:user, email: email) }
+  let(:user) { create(:user, :face_to_face_guider, email: email) }
   let(:warden) { double('stub warden', authenticate!: true, authenticated?: true, user: user) }
 
   subject { response }
