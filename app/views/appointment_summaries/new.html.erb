@@ -93,13 +93,13 @@
           </legend>
           <div class="radio">
             <%= f.label :appointment_type, value: 'standard' do %>
-              <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', disabled: @appointment_summary.telephone_appointment? %>
+              <%= f.radio_button :appointment_type, 'standard', class: 't-appointment-type-standard', readonly: @appointment_summary.telephone_appointment? %>
               For customers aged 55 or over
             <% end %>
           </div>
           <div class="radio">
             <%= f.label :appointment_type, value: '50_54' do %>
-              <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', disabled: @appointment_summary.telephone_appointment? %>
+              <%= f.radio_button :appointment_type, '50_54', class: 't-appointment-type-50-54', readonly: @appointment_summary.telephone_appointment? %>
               For customers aged 50 to 54
             <% end %>
           </div>
