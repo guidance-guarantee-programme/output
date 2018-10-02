@@ -59,17 +59,20 @@ RSpec.describe AppointmentSummary, type: :model do
     it { is_expected.not_to allow_value('fr@ed@spaced..com').for(:email) }
     it { is_expected.not_to allow_value('"fred"@spaced.com').for(:email) }
     it { is_expected.not_to allow_value('fred;jones@spaced.com').for(:email) }
-    it { is_expected.to allow_value('').for(:email) }
   end
 
   context 'requested_digital is true' do
     before { subject.requested_digital = true }
     include_examples 'it is a valid email'
+
+    it { is_expected.not_to allow_value('').for(:email) }
   end
 
   context 'requested_digital is false' do
     before { subject.requested_digital = false }
     include_examples 'it is a valid email'
+
+    it { is_expected.to allow_value('').for(:email) }
   end
 
   describe '#country' do

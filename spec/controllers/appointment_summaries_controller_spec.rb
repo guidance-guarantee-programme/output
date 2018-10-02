@@ -43,7 +43,9 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
         it 'we should not attempt to notify the customer' do
           expect(NotifyViaEmail).not_to receive(:perform_later)
 
-          post :create, params: { appointment_summary: appointment_summary }
+          expect do
+            post :create, params: { appointment_summary: appointment_summary }
+          end.to raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
