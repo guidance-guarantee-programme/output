@@ -73,6 +73,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   validates :covering_letter_type, inclusion: { in: %w(section_32 adjustable_income inherited_pot) }, allow_blank: true
   validates :number_of_previous_appointments, inclusion: { in: 0..3 }
   validates :email, format: EMAIL_REGEXP
+  validates :email, presence: true, if: :requested_digital?
   validates :telephone_appointment, inclusion: { in: [true, false] }
 
   def self.editable_column_names
