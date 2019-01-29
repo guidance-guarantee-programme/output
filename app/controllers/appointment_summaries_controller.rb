@@ -81,7 +81,8 @@ class AppointmentSummariesController < ApplicationController
 
   def load_summary
     @appointment_summary = AppointmentSummary.find_or_initialize_by(
-      reference_number: params.dig(:appointment_summary, :reference_number)
+      reference_number: params.dig(:appointment_summary, :reference_number),
+      telephone_appointment: telephone_appointment?
     )
   end
 
