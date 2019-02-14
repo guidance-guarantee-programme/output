@@ -119,7 +119,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   end
 
   def organisation_id
-    user.organisation_content_id
+    user&.organisation_content_id
   end
 
   def supplementary_info_selected?
