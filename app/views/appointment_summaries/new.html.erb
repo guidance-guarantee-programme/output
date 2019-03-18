@@ -130,6 +130,12 @@
             <% end %>
           </div>
           <div class="radio">
+            <%= f.label :covering_letter_type, value: 'fixed_term_annuity' do %>
+              <%= f.radio_button :covering_letter_type, 'fixed_term_annuity', class: 't-fixed-term-annuity' %>
+              Fixed term annuity with maturity amount
+            <% end %>
+          </div>
+          <div class="radio">
             <%= f.label :covering_letter_type, value: '' do %>
               <%= f.radio_button :covering_letter_type, '', class: 't-covering-letter-type-none' %>
               None of the above

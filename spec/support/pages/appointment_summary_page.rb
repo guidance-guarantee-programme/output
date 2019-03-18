@@ -39,6 +39,7 @@ class AppointmentSummaryPage < SitePrism::Page
                                    appointment_50_54: '.t-appointment-type-50-54'
   radio_buttons :covering_letter_type, section_32: '.t-covering-letter-type-section-32',
                                        adjustable_income: '.t-covering-letter-type-adjustable-income',
+                                       fixed_term_annuity: '.t-fixed-term-annuity',
                                        inherited_pot: '.t-covering-letter-type-inherited-pot'
   radio_buttons :first_appointment, yes: '.t-first-appointment-yes',
                                     no: '.t-first-appointment-no'
