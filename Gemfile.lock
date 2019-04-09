@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: b0ab3fe33d8c0ea434db0af279a0fd0c9783cc3e
+  revision: 220dd0e45f4cf7fb63efb7d8fedcbd0019079a84
   specs:
-    output-templates (4.12.0)
+    output-templates (4.12.1)
       actionview
       sass
 
