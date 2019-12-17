@@ -1,9 +1,7 @@
 //= require jquery-tiny-pubsub/dist/ba-tiny-pubsub
-//= require mailgun-validator-jquery
 //= require additional-appointment
 //= require consent
 //= require eligibility
-//= require email-validation
 //= require pension-pot-accuracy
 //= require pension-pot-input
 //= require postcode-lookup

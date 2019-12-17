@@ -32,7 +32,7 @@
       <div class="form-group">
         <%= f.label :email %>
         <div class="email-outer input-md-3">
-          <%= f.email_field :email, class: %w(form-control js-email-validation t-email), readonly: @appointment_summary.telephone_appointment?, data: email_validation_data_attributes %>
+          <%= f.email_field :email, class: %w(form-control js-email-validation t-email), readonly: @appointment_summary.telephone_appointment? %>
         </div>
       </div>
 

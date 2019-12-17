@@ -18,11 +18,4 @@ module ApplicationHelper
   def error_messages_for(model)
     render partial: 'shared/errors', locals: { model: model }
   end
-
-  def email_validation_data_attributes
-    {
-      api_key: ENV.fetch('MAILGUN_VALIDATION_KEY') { 'pubkey-b37c931b1fcef90bf2d83b7cdfd6df39' },
-      api_host: Rails.env.test? ? 'http://localhost:9293' : nil
-    }
-  end
 end
