@@ -6,6 +6,10 @@ FactoryBot.define do
     name 'Rick Sanchez'
     permissions %w(signin)
 
+    trait :api_user do
+      permissions %w(signin api_user)
+    end
+
     trait :analyst do
       permissions %w(signin analyst)
     end

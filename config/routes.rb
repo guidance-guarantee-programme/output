@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   mount GovukAdminTemplate::Engine, at: '/style-guide'
   mount Sidekiq::Web => '/sidekiq', constraints: AuthenticatedUser.new
 
+  namespace :api, constraints: { format: :json } do
+    namespace :v1 do
+      resources :searches, only: :index
+    end
+  end
+
   resources :appointment_summaries, only: %i(index new create update show) do
     collection do
       get :creating

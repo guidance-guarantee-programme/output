@@ -8,6 +8,13 @@ module UserHelpers
     ENV['GDS_SSO_MOCK_INVALID'] = sso_env
   end
 
+  def given_an_api_user
+    GDS::SSO.test_user = create(:user, :api_user)
+    yield
+  ensure
+    GDS::SSO.test_user = nil
+  end
+
   def given_a_user
     GDS::SSO.test_user = create(:user)
     yield
