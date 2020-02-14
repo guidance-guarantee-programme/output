@@ -25,6 +25,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'plek'
   gem 'princely'
   gem 'puma'
+  gem 'rack-cors'
   gem 'rails', '~> 5.1.6'
   gem 'rails-i18n', '~> 5.0.0'
   gem 'retriable'
