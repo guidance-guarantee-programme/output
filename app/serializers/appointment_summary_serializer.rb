@@ -7,4 +7,8 @@ class AppointmentSummarySerializer < ActiveModel::Serializer
   attribute :url do
     edit_admin_appointment_summary_url(object)
   end
+
+  attribute :application do
+    'Summary Document Generator'
+  end
 end

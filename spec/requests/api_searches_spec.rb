@@ -35,7 +35,8 @@ RSpec.describe 'GET /api/v1/searches' do
     expect(results.first).to eq(
       'reference' => @appointment.reference_number,
       'name' => @appointment.full_name,
-      'url' => "http://localhost:3001/admin/appointment_summaries/#{@appointment.id}/edit"
+      'url' => "http://localhost:3001/admin/appointment_summaries/#{@appointment.id}/edit",
+      'application' => 'Summary Document Generator'
     )
   end
 
