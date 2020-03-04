@@ -1,8 +1,9 @@
 namespace :confidentiality do # rubocop:disable BlockLength
-  desc 'Redact customer details (REFERENCE=x)'
+  desc 'Redact customer details (REFERENCE=x TELEPHONE=true)'
   task redact: :environment do
     reference   = ENV.fetch('REFERENCE')
-    appointment = AppointmentSummary.find_by(reference_number: reference)
+    telephone   = ENV.fetch('TELEPHONE') { false }
+    appointment = AppointmentSummary.find_by(reference_number: reference, telephone_appointment: telephone)
     REDACTED    = 'REDACTED'.freeze
 
     if appointment
