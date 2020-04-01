@@ -78,6 +78,12 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   validates :email, presence: true, if: :requested_digital?
   validates :telephone_appointment, inclusion: { in: [true, false] }
 
+  def self.for_redaction
+    where
+      .not(first_name: Redactor::REDACTED)
+      .where('created_at < ?', 2.years.ago.beginning_of_day)
+  end
+
   def self.editable_column_names
     column_names - %w(id created_at updated_at user_id notification_id)
   end
