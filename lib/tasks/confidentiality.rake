@@ -1,32 +1,13 @@
-namespace :confidentiality do # rubocop:disable BlockLength
-  desc 'Redact customer details (REFERENCE=x TELEPHONE=true)'
+namespace :confidentiality do
+  desc 'Redact customer details (REFERENCE=id)'
   task redact: :environment do
-    reference   = ENV.fetch('REFERENCE')
-    telephone   = ENV.fetch('TELEPHONE') { false }
-    appointment = AppointmentSummary.find_by(reference_number: reference, telephone_appointment: telephone)
-    REDACTED    = 'REDACTED'.freeze
+    reference = ENV.fetch('REFERENCE')
 
-    if appointment
-      appointment.assign_attributes(
-        title: '',
-        first_name: REDACTED,
-        last_name: REDACTED,
-        value_of_pension_pots: 0,
-        upper_value_of_pension_pots: 0,
-        address_line_1: REDACTED,
-        address_line_2: REDACTED,
-        address_line_3: REDACTED,
-        town: REDACTED,
-        county: REDACTED,
-        postcode: REDACTED,
-        email: REDACTED
-      )
+    Redactor.new(reference).call
+  end
 
-      appointment.save(validate: false)
-
-      puts 'The appointment summary was redacted'
-    else
-      puts 'Nothing found for the given `REFERENCE`'
-    end
+  desc 'Redact records greater than 2 years old for GDPR'
+  task gdpr: :environment do
+    Redactor.redact_for_gdpr
   end
 end
