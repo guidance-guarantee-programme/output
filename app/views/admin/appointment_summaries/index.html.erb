@@ -14,14 +14,28 @@
       <%= f.label :end_date, 'To', class: 'inline' %>
       <%= f.text_field :end_date, class: 'form-control t-end', placeholder: 'dd/mm/yyyy' %>
     </div>
-    <%= f.submit 'Search', class: 'btn btn-default t-search-button' %>
+    <div class="form-group">
+      <%= f.label :telephone_appointment, 'Phone appointment', class: 'inline' %>
+      <%= f.select :telephone_appointment, [['Yes', 'true'], ['No', 'false']], { include_blank: '' }, { class: 'form-control t-telephone-appointment' } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :requested_digital, 'Requested digital', class: 'inline' %>
+      <%= f.select :requested_digital, [['Yes', 'true'], ['No', 'false']], { include_blank: '' }, { class: 'form-control t-requested-digital' } %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Search', class: 'btn btn-default t-search-button' %>
+    </div>
   <% end %>
 
   <%= form_for @appointment_form, url: admin_appointment_summaries_path(format: :csv), method: :get, html: { class: 'inline form-inline' } do |f| %>
     <%= f.hidden_field :start_date %>
     <%= f.hidden_field :end_date %>
     <%= f.hidden_field :search_string %>
-    <%= f.submit 'Export CSV', class: 'btn btn-default t-export' %>
+    <%= f.hidden_field :telephone_appointment %>
+    <%= f.hidden_field :requested_digital %>
+    <div class="form-group">
+      <%= f.submit 'Export CSV', class: 'btn btn-default t-export' %>
+    </div>
   <% end %>
 </div>
 
