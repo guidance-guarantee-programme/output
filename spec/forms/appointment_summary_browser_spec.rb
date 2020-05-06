@@ -2,7 +2,19 @@ require 'rails_helper'
 
 RSpec.describe AppointmentSummaryBrowser do
   let(:search_string) { nil }
-  subject { described_class.new(page: nil, start_date: nil, end_date: nil, search_string: search_string) }
+  let(:telephone_appointment) { '' }
+  let(:requested_digital) { '' }
+
+  subject do
+    described_class.new(
+      page: nil,
+      start_date: nil,
+      end_date: nil,
+      search_string: search_string,
+      telephone_appointment: telephone_appointment,
+      requested_digital: requested_digital
+    )
+  end
 
   context 'when initializing' do
     it 'defaults the start and end dates' do
@@ -19,6 +31,28 @@ RSpec.describe AppointmentSummaryBrowser do
       create(:appointment_summary, date_of_appointment: 1.year.ago)
 
       expect(subject.results).to eq([present])
+    end
+
+    context 'with telephone appointment specified' do
+      let(:telephone_appointment) { 'true' }
+
+      it 'matches values specified' do
+        present = create(:appointment_summary, telephone_appointment: true)
+        create(:appointment_summary, telephone_appointment: false)
+
+        expect(subject.results).to eq([present])
+      end
+    end
+
+    context 'with requested digital specified' do
+      let(:requested_digital) { 'true' }
+
+      it 'matches values specified' do
+        present = create(:appointment_summary, requested_digital: true)
+        create(:appointment_summary, requested_digital: false)
+
+        expect(subject.results).to eq([present])
+      end
     end
 
     context 'with search string filter for reference_number' do
