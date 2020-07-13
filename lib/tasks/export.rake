@@ -11,10 +11,10 @@ namespace :export do
              'appointment_summaries.created_at >= :ts  or appointment_summaries.updated_at >= :ts', ts: from_timestamp
            )
            .select(
-             'appointment_summaries.id, telephone_appointment, users.organisation_content_id as organisation_id,
-              date_of_appointment, left(postcode, 2) as postcode,
+             "appointment_summaries.id, telephone_appointment, users.organisation_content_id as organisation_id,
+              date_of_appointment, substring(postcode from '([A-z]{1,2})[0-9]') as postcode,
               country, appointment_type, has_defined_contribution_pension,
-              requested_digital, appointment_summaries.created_at, appointment_summaries.updated_at'
+              requested_digital, appointment_summaries.created_at, appointment_summaries.updated_at"
            ).order(:created_at).copy_to_string
 
     client = Azure::Storage::Blob::BlobService.create_from_connection_string(
