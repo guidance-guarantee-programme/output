@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: ed2be9cfc734a5625d6431dc81b80876589d4a99
+  revision: e472e5e36d1267cc30d15068942c21c3331763e0
   specs:
-    output-templates (4.19.0)
+    output-templates (4.20.0)
       actionview
       sass
 
@@ -158,7 +158,7 @@ GEM
     kaminari-core (1.2.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.5.0)
+    loofah (2.6.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -178,7 +178,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
     nio4r (2.3.1)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     notifications-ruby-client (2.6.0)
       jwt (>= 1.5, < 3)
@@ -261,7 +261,7 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.3.3)
-    rb-fsevent (0.10.3)
+    rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.0.1)
