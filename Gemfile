@@ -6,6 +6,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'active_model_serializers'
   gem 'autoprefixer-rails'
+  gem 'azure-storage-blob'
   gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
@@ -23,6 +24,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'output-templates', '~> 4.9', github: 'guidance-guarantee-programme/output-templates'
   gem 'pg', '0.21.0'
   gem 'plek'
+  gem 'postgres-copy'
   gem 'princely'
   gem 'puma'
   gem 'rack-cors'
