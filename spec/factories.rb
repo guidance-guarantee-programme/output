@@ -56,6 +56,12 @@ FactoryBot.define do
     email 'joe@bloggs.com'
     telephone_appointment true
 
+    trait :has_defined_benefit_pension do
+      has_defined_contribution_pension 'no'
+      has_defined_benefit_pension 'yes'
+      considering_transferring_to_dc_pot 'no'
+    end
+
     factory :notify_delivered_appointment_summary do
       requested_digital true
       notification_id { SecureRandom.uuid }

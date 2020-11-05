@@ -137,6 +137,18 @@ RSpec.describe AppointmentSummary, type: :model do
 
     it { is_expected.to_not validate_numericality_of(:value_of_pension_pots) }
     it { is_expected.to_not validate_numericality_of(:upper_value_of_pension_pots) }
+
+    it 'requires an answer to `has_defined_benefit_pension`' do
+      expect(subject).to validate_inclusion_of(:has_defined_benefit_pension).in_array(%w(yes no))
+    end
+
+    context 'when `has_defined_benefit_pension` is yes' do
+      it 'requires an answer to `considering_transferring_to_dc_pot`' do
+        subject.has_defined_benefit_pension = 'yes'
+
+        expect(subject).to validate_inclusion_of(:considering_transferring_to_dc_pot).in_array(%w(yes no))
+      end
+    end
   end
 
   context 'when eligible for guidance' do

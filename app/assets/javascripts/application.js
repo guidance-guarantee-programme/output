@@ -5,4 +5,5 @@
 //= require pension-pot-accuracy
 //= require pension-pot-input
 //= require postcode-lookup
+//= require govuk-admin-template/modules/radio_toggle
 //= require init

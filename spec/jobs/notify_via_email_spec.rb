@@ -39,7 +39,9 @@ RSpec.describe NotifyViaEmail do
   end
 
   context 'when the customer does not have a DC pension' do
-    let(:appointment_summary) { create(:appointment_summary, has_defined_contribution_pension: 'no') }
+    let(:appointment_summary) do
+      create(:appointment_summary, :has_defined_benefit_pension)
+    end
 
     it 'sends an ineligible email notification' do
       expect(client).to receive(:send_email).with(
