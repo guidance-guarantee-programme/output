@@ -41,11 +41,11 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   group :development, :test do
     gem 'database_rewinder'
     gem 'launchy'
-    gem 'phantomjs'
-    gem 'poltergeist'
     gem 'pry-byebug'
     gem 'rspec-rails'
     gem 'scss_lint', require: false
+    gem 'selenium-webdriver'
+    gem 'webdrivers'
   end
 
   group :development do
