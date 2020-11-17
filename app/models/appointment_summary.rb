@@ -111,7 +111,8 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   end
 
   def eligible_for_guidance?
-    %w(yes unknown).include?(has_defined_contribution_pension)
+    %w(yes unknown).include?(has_defined_contribution_pension) ||
+      has_defined_benefit_pension == 'yes'
   end
 
   def can_be_emailed?

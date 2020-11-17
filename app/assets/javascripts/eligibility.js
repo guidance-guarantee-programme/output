@@ -10,7 +10,7 @@
     },
     cache: function () {
       this.$wrapper = $('.display_if_eligible');
-      this.$input = $('input[name="appointment_summary[has_defined_contribution_pension]"]');
+      this.$input = $('input[name="appointment_summary[has_defined_contribution_pension]"], input[name="appointment_summary[considering_transferring_to_dc_pot]"]');
     },
     bindEvents: function () {
       var that = this;

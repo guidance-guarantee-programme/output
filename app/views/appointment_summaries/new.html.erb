@@ -240,7 +240,7 @@
               <div class="form-group" data-module="radio-toggle">
                 <fieldset>
                   <legend>
-                    <span>Does customer have a defined contribution pension?</span>
+                    <span>Does customer have a defined benefit pension?</span>
                   </legend>
                   <div class="radio">
                     <%= f.label :has_defined_benefit_pension, value: 'yes' do %>
@@ -294,7 +294,7 @@
         </fieldset>
       </div>
 
-      <div class="display_if_eligible">
+      <div class="display_if_eligible" id="display-if-eligible">
         <div class="row">
           <div class="col-md-4" id="col-pension-pot-value">
             <div class="form-group form-inline">
