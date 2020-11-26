@@ -138,6 +138,14 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
       supplementary_pension_transfers
   end
 
+  def braille_notification?
+    eligible_for_guidance? && braille? && !requested_digital?
+  end
+
+  def braille?
+    format_preference == 'braille'
+  end
+
   private
 
   def uk_address?

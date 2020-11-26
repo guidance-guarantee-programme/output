@@ -144,4 +144,17 @@ RSpec.describe AppointmentSummary, type: :model do
 
     it { is_expected.to be_eligible_for_guidance }
   end
+
+  describe '#braille_notification?' do
+    it 'returns true when braille notification is needed' do
+      summary = build_stubbed(:appointment_summary)
+
+      expect(summary).not_to be_braille_notification
+
+      summary.requested_digital = false
+      summary.format_preference = 'braille'
+
+      expect(summary).to be_braille_notification
+    end
+  end
 end
