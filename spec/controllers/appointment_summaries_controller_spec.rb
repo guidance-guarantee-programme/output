@@ -24,6 +24,16 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
       build(:appointment_summary, requested_digital: requested_digital, email: email).attributes
     end
 
+    context 'when the customer requests braille' do
+      it 'notifies the admins' do
+        summary = build_stubbed(:appointment_summary, format_preference: 'braille').attributes
+
+        expect(BrailleNotification).to receive(:perform_later).with(an_instance_of(AppointmentSummary))
+
+        post :create, params: { appointment_summary: summary }
+      end
+    end
+
     context 'when the customer has requested a digital summary document' do
       let(:requested_digital) { true }
 
