@@ -14,7 +14,7 @@ def given_i_am_logged_in_as_a_phone_guider
 end
 
 def and_the_customer_does_not_have_a_defined_contribution_pension_pot
-  @appointment_summary = create(:populated_appointment_summary, has_defined_contribution_pension: 'no')
+  @appointment_summary = create(:populated_appointment_summary, :has_defined_benefit_pension)
 end
 
 def when_they_have_had_a_pension_wise_appointment

@@ -68,6 +68,20 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
               message: '%{value} is not a valid value'
             }
 
+  validates :has_defined_benefit_pension,
+            inclusion: {
+              in: %w(yes no),
+              message: '%{value} is not a valid value'
+            },
+            if: -> { has_defined_contribution_pension == 'no' }
+
+  validates :considering_transferring_to_dc_pot,
+            inclusion: {
+              in: %w(yes no),
+              message: '%{value} is not a valid value'
+            },
+            if: -> { has_defined_benefit_pension == 'yes' }
+
   validates :format_preference, inclusion: { in: %w(standard large_text braille) }
   validates :appointment_type, inclusion: { in: %w(standard 50_54) }
   validates :covering_letter_type,
@@ -97,7 +111,8 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   end
 
   def eligible_for_guidance?
-    %w(yes unknown).include?(has_defined_contribution_pension)
+    %w(yes unknown).include?(has_defined_contribution_pension) ||
+      has_defined_benefit_pension == 'yes'
   end
 
   def can_be_emailed?

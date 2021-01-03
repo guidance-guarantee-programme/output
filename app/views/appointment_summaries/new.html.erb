@@ -216,7 +216,7 @@
 
       <h2>Pension pot details</h2>
 
-      <div class="form-group">
+      <div class="form-group" data-module="radio-toggle">
         <fieldset>
           <legend>
             <span>Does customer have a defined contribution pension?</span>
@@ -228,12 +228,61 @@
               Yes
             <% end %>
           </div>
-          <div class="radio">
+          <div class="radio" >
             <%= f.label :has_defined_contribution_pension, value: 'no' do %>
               <%= f.radio_button :has_defined_contribution_pension, 'no',
-                                 class: 't-has-defined-contribution-pension-no' %>
+                class: 't-has-defined-contribution-pension-no',
+                data: { target: 'dc-pot-no' } %>
               No
             <% end %>
+
+            <div class="col-xs-offset-1" id="dc-pot-no">
+              <div class="form-group" data-module="radio-toggle">
+                <fieldset>
+                  <legend>
+                    <span>Does customer have a defined benefit pension only?</span>
+                  </legend>
+                  <div class="radio">
+                    <%= f.label :has_defined_benefit_pension, value: 'yes' do %>
+                      <%= f.radio_button :has_defined_benefit_pension, 'yes', class: 't-has-defined-benefit-pension-yes', data: { target: 'db-pot-yes' } %>
+                      Yes
+                    <% end %>
+
+                    <div class="col-xs-offset-1" id="db-pot-yes">
+                      <div class="form-group" data-module="radio-toggle">
+                        <fieldset>
+                          <legend>
+                            <span>Is the customer considering transferring out to a DC pot?</span>
+                          </legend>
+                          <div class="radio">
+                            <%= f.label :considering_transferring_to_dc_pot, value: 'yes' do %>
+                              <%= f.radio_button :considering_transferring_to_dc_pot, 'yes', class: 't-considering-transferring-to-dc-pot-yes' %>
+                              Yes
+                            <% end %>
+                          </div>
+
+                          <div class="radio">
+                            <%= f.label :considering_transferring_to_dc_pot, value: 'no' do %>
+                              <%= f.radio_button :considering_transferring_to_dc_pot, 'no', class: 't-considering-transferring-to-dc-pot-no' %>
+                              No
+                            <% end %>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="radio">
+                    <%= f.label :has_defined_benefit_pension, value: 'no' do %>
+                      <%= f.radio_button :has_defined_benefit_pension, 'no', class: 't-has-defined-benefit-pension-no' %>
+                      No
+                    <% end %>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+
           </div>
           <div class="radio">
             <%= f.label :has_defined_contribution_pension, value: 'unknown' do %>
@@ -245,7 +294,7 @@
         </fieldset>
       </div>
 
-      <div class="display_if_eligible">
+      <div class="display_if_eligible" id="display-if-eligible">
         <div class="row">
           <div class="col-md-4" id="col-pension-pot-value">
             <div class="form-group form-inline">
