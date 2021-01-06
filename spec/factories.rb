@@ -59,7 +59,7 @@ FactoryBot.define do
     trait :has_defined_benefit_pension do
       has_defined_contribution_pension 'no'
       has_defined_benefit_pension 'yes'
-      considering_transferring_to_dc_pot 'no'
+      considering_transferring_to_dc_pot 'yes'
     end
 
     factory :notify_delivered_appointment_summary do
