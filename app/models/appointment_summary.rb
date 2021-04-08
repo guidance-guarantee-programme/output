@@ -34,7 +34,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
     end
   end
 
-  TITLES = %w(Mr Mrs Miss Ms Mx Dr Reverend).freeze
+  TITLES = %w(Mr Mrs Miss Ms Mx Dr Reverend Sir Dame).freeze
 
   belongs_to :user
 
