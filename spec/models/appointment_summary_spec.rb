@@ -5,6 +5,32 @@ RSpec.describe AppointmentSummary, type: :model do
     described_class.new(has_defined_contribution_pension: has_defined_contribution_pension)
   end
 
+  it 'defaults to the Pension Wise schedule type' do
+    expect(subject).to be_pension_wise
+  end
+
+  context 'when due diligence' do
+    before do
+      subject.schedule_type = 'due_diligence'
+    end
+
+    it 'can be categorised as a due diligence appointment' do
+      expect(subject).to be_due_diligence
+    end
+
+    it 'defaults `has_defined_contribution_pension` to unknown' do
+      expect(subject.has_defined_contribution_pension).to eq('unknown')
+    end
+
+    it 'does not validate presence of guider name' do
+      subject.guider_name = ''
+
+      subject.validate
+
+      expect(subject.errors[:guider_name]).to be_empty
+    end
+  end
+
   let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }

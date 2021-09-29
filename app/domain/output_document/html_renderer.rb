@@ -18,6 +18,7 @@ class OutputDocument
     def template
       template_id = case output_document.variant
                     when 'other' then 'ineligible'
+                    when 'due_diligence' then 'due_diligence'
                     else 'base'
                     end
 

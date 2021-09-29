@@ -78,11 +78,20 @@ class AppointmentSummaryPage < SitePrism::Page
       guider_name
       number_of_previous_appointments
       reference_number
+      schedule_type
+      unique_reference_number
+      address_line_1
+      address_line_2
+      address_line_3
+      town
+      county
+      postcode
+      country
     )
 
     {}.tap do |params|
       params_from_tap.each do |param|
-        params["appointment_summary[#{param}]"] = appointment_summary[param]
+        params["appointment_summary[#{param}]"] = appointment_summary[param] if appointment_summary[param].present?
       end
 
       params['appointment_summary[telephone_appointment]'] = 'true'
