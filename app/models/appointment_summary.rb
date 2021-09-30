@@ -52,13 +52,13 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   validates :guider_name, presence: true, if: :pension_wise?
 
-  validates :address_line_1, presence: true, length: { maximum: 50 }
-  validates :address_line_2, length: { maximum: 50 }
-  validates :address_line_3, length: { maximum: 50 }
-  validates :town, presence: true, length: { maximum: 50 }
-  validates :county, length: { maximum: 50 }
+  validates :address_line_1, presence: true, length: { maximum: 50 }, unless: :requested_digital?
+  validates :address_line_2, length: { maximum: 50 }, unless: :requested_digital?
+  validates :address_line_3, length: { maximum: 50 }, unless: :requested_digital?
+  validates :town, presence: true, length: { maximum: 50 }, unless: :requested_digital?
+  validates :county, length: { maximum: 50 }, unless: :requested_digital?
   validates :postcode, presence: true, postcode: true, if: :uk_address?
-  validates :country, presence: true, inclusion: { in: Countries.all }
+  validates :country, presence: true, inclusion: { in: Countries.all }, unless: :requested_digital?
 
   validates :has_defined_contribution_pension,
             presence: true,
