@@ -9,6 +9,15 @@ RSpec.feature 'Due diligence appointment summary', js: true do
     then_the_appointment_summary_is_created
   end
 
+  scenario 'Generating and sending an email summary via a completed TAP record' do
+    given_a_logged_in_phone_guider
+    when_they_attempt_to_generate_a_summary_via_tap
+    then_the_summary_is_presented_with_the_correct_fields
+    when_they_complete_the_email_summary_document
+    then_the_appointment_summary_is_created
+    and_the_email_summary_is_dispatched
+  end
+
   def given_a_logged_in_phone_guider
     create(:user, :phone_guider)
   end
@@ -61,5 +70,20 @@ RSpec.feature 'Due diligence appointment summary', js: true do
       schedule_type: 'due_diligence',
       unique_reference_number: '123456/100321'
     )
+  end
+
+  def when_they_complete_the_email_summary_document
+    @page.title.select('Ms')
+    @page.requested_digital_false.set(true)
+    @page.requested_digital_true.set(true)
+    @page.submit.click
+
+    @page = ConfirmationPage.new
+    expect(@page).to be_displayed
+    @page.confirm.click
+  end
+
+  def and_the_email_summary_is_dispatched
+    assert_enqueued_jobs 1, only: NotifyDueDiligenceViaEmail
   end
 end

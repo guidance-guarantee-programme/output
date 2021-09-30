@@ -80,5 +80,10 @@ FactoryBot.define do
     trait :requested_digital do
       requested_digital true
     end
+
+    trait :due_diligence do
+      schedule_type 'due_diligence'
+      unique_reference_number '123456/010121'
+    end
   end
 end
