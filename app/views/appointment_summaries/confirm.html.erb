@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= title 'Confirm details' %></h1>
+  <h1><%= title 'Confirm details' %><% if @appointment_summary.due_diligence? %> <small class="t-due-diligence-banner">Due Diligence</small><% end %></h1>
 </div>
 
 <div class="row">
@@ -32,8 +32,15 @@
           <td class="active" width="35%"><b>Date of appointment</b></td>
           <td><%= @appointment_summary.date_of_appointment.to_s(:govuk_date) %></td>
         </tr>
+        <% if @appointment_summary.due_diligence? %>
         <tr>
-          <td class="active" width="35%"><b>Guider Name</b></td>
+          <td class="active t-unique-reference-number" width="35%"><b>Unique reference number</b></td>
+          <td><%= @appointment_summary.unique_reference_number %></td>
+        </tr>
+        <% end %>
+        <% if @appointment_summary.pension_wise? %>
+        <tr>
+          <td class="active t-guider-name" width="35%"><b>Guider Name</b></td>
           <td><%= @appointment_summary.guider_name %></td>
         </tr>
         <tr>
@@ -52,6 +59,7 @@
             <% end %>
           </td>
         </tr>
+        <% end %>
       </tbody>
     </table>
     <div class="confirm-submit-buttons">

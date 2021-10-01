@@ -8,6 +8,7 @@ class AppointmentSummaryPage < SitePrism::Page
   set_url_matcher %r{/appointment_summaries/new}
 
   element :use_tap_warning, '.t-use-tap'
+  element :due_diligence_banner, '.t-due-diligence-banner'
 
   element :title, '.t-title'
   element :first_name, '.t-first-name'

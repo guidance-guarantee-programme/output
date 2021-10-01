@@ -50,6 +50,7 @@ RSpec.feature 'Due diligence appointment summary', js: true do
   def then_the_summary_is_presented_with_the_correct_fields
     expect(@page).to be_displayed
 
+    expect(@page).to have_due_diligence_banner
     expect(@page).to have_no_value_of_pension_pots
     expect(@page).to have_no_first_appointment_yes
     expect(@page).to have_no_has_defined_contribution_pension_yes
@@ -62,6 +63,8 @@ RSpec.feature 'Due diligence appointment summary', js: true do
 
     @page = ConfirmationPage.new
     expect(@page).to be_displayed
+    expect(@page).to have_no_guider_name
+    expect(@page).to have_unique_reference_number
     @page.confirm.click
   end
 
