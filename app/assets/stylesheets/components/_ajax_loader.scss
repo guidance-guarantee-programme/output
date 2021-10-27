@@ -1,13 +1,23 @@
-$loader-color: #000;
+$color-black: #000;
+
+$loader-color: $color-black;
 $number-of-circles: 8;
 $sin-of-forty-five-degrees: .70711;
 $circle-animation-length: .8s;
-
 $ajax-loaders: 24px 48px;
+
+@function createCircle($num, $circles) {
+    $line: null;
+
+    @each $circle in $circles {
+      $line: append($line, map-get($circle, "x") map-get($circle, "y") 0 nth(map-get($circle, "spread"), $num) $loader-color, "comma");
+    }
+
+    @return $line;
+}
 
 .ajax-loader {
   position: relative;
-
   &:after {
     content: "";
     display: block;
@@ -33,16 +43,6 @@ $ajax-loaders: 24px 48px;
     (x: $loader-size-half, y: 0, spread: 0 0 0 0 0 0 $circle-size-half $circle-size-half / 2),
     (x: $loader-size-half - $forty-five-degrees-in-pixels, y: $loader-size-half - $forty-five-degrees-in-pixels, spread: $circle-size-half / 2 0 0 0 0 0 0 $circle-size-half);
 
-  @function circle($num) {
-    $line: null;
-
-    @each $circle in $circles {
-      $line: append($line, map-get($circle, "x") map-get($circle, "y") 0 nth(map-get($circle, "spread"), $num) $loader-color, "comma");
-    }
-
-    @return $line;
-  }
-
   .ajax-loader--#{$loader-size} {
     width: $loader-size;
     height: $loader-size;
@@ -53,18 +53,18 @@ $ajax-loaders: 24px 48px;
       top: $loader-size-half - $circle-size-half;
       left: $loader-size-half - $circle-size-half;
       animation: loader-pulse-#{$loader-size} $circle-animation-length infinite;
-      box-shadow: circle(1);
+      box-shadow: createCircle(1, $circles);
     }
   }
 
   @keyframes loader-pulse-#{$loader-size} {
-    0% { box-shadow: circle(1); }
+    0% { box-shadow: createCircle(1, $circles); }
 
     @for $i from 1 through ($number-of-circles - 1) {
-      #{(($i - 1) * 100/$number-of-circles) + 100/$number-of-circles}% { box-shadow: circle($i); }
-      #{(($i - 1) * 100/$number-of-circles) + 100/$number-of-circles + .001}% { box-shadow: circle($i + 1); }
+      #{(($i - 1) * 100/$number-of-circles) + 100/$number-of-circles}% { box-shadow: createCircle($i, $circles); }
+      #{(($i - 1) * 100/$number-of-circles) + 100/$number-of-circles + .001}% { box-shadow: createCircle($i + 1, $circles); }
     }
 
-    99.999% { box-shadow: circle($number-of-circles); }
+    99.999% { box-shadow: createCircle($number-of-circles, $circles); }
   }
 }

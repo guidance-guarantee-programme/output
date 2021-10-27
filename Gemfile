@@ -12,6 +12,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'bugsnag'
   gem 'deprecated_columns'
   gem 'faraday'
+  gem 'ffi', '~> 1.15.0'
   gem 'foreman'
   gem 'gaffe'
   gem 'gds-sso'
@@ -34,6 +35,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'sassc-rails'
   gem 'sidekiq'
   gem 'sinatra', require: nil # Sidekiq UI
+  gem 'sprockets', '~> 3.7.2'
   gem 'telephone_appointments'
   gem 'uglifier', '>= 1.3.0'
   gem 'uk_postcode'
