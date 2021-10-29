@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: 56f73bdf928a85e0a44a45a7116f6a882a3b51f1
+  revision: 1819c8ab1143b706a694537db1f8d4bd5fc37d0b
   specs:
-    output-templates (5.0.0)
+    output-templates (5.1.0)
       actionview
-      sass
+      sassc
 
 GEM
   remote: https://rubygems.org/
@@ -70,7 +70,7 @@ GEM
       nokogiri (~> 1.6, >= 1.6.8)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    bootsnap (1.3.0)
+    bootsnap (1.9.1)
       msgpack (~> 1.0)
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
@@ -169,7 +169,7 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
-    msgpack (1.2.4)
+    msgpack (1.4.2)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -312,10 +312,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    shoulda-matchers (3.1.2)
-      activesupport (>= 4.0.0)
-    sidekiq (5.2.0)
-      connection_pool (~> 2.2, >= 2.2.2)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
+    sidekiq (5.1.3)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
     sinatra (2.0.3)
@@ -420,7 +421,7 @@ DEPENDENCIES
   webrick!
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.7.3p183
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

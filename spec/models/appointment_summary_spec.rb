@@ -100,7 +100,9 @@ RSpec.describe AppointmentSummary, type: :model do
 
   it do
     is_expected
-      .to validate_inclusion_of(:has_defined_contribution_pension).in_array(%w(yes no unknown))
+      .to validate_inclusion_of(:has_defined_contribution_pension)
+      .in_array(%w(yes no unknown))
+      .with_message('shoulda-matchers test string is not a valid value')
   end
 
   it do
@@ -139,14 +141,18 @@ RSpec.describe AppointmentSummary, type: :model do
     it { is_expected.to_not validate_numericality_of(:upper_value_of_pension_pots) }
 
     it 'requires an answer to `has_defined_benefit_pension`' do
-      expect(subject).to validate_inclusion_of(:has_defined_benefit_pension).in_array(%w(yes no))
+      expect(subject).to validate_inclusion_of(:has_defined_benefit_pension)
+        .in_array(%w(yes no))
+        .with_message('shoulda-matchers test string is not a valid value')
     end
 
     context 'when `has_defined_benefit_pension` is yes' do
       it 'requires an answer to `considering_transferring_to_dc_pot`' do
         subject.has_defined_benefit_pension = 'yes'
 
-        expect(subject).to validate_inclusion_of(:considering_transferring_to_dc_pot).in_array(%w(yes no))
+        expect(subject).to validate_inclusion_of(:considering_transferring_to_dc_pot)
+          .in_array(%w(yes no))
+          .with_message('shoulda-matchers test string is not a valid value')
       end
     end
   end
