@@ -19,10 +19,6 @@ env:
   - DATABASE_URL=postgres://postgres@localhost:5432/travis_ci_test
 node_js:
 - '0.10'
-before_install:
-- echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
-- gem update --system 3.0.6
-- gem install bundler
 before_script:
 - '[ -d .downloads ] || mkdir .downloads'
 - '(cd .downloads; [ -d prince-9.0r5-linux-amd64-static ] || curl -s https://www.princexml.com/download/prince-9.0r5-linux-amd64-static.tar.gz | tar xzf -)'
