@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201105164411) do
+ActiveRecord::Schema.define(version: 20210927104120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20201105164411) do
     t.string "covering_letter_type", default: "", null: false
     t.string "has_defined_benefit_pension"
     t.string "considering_transferring_to_dc_pot"
+    t.string "schedule_type", default: "pension_wise", null: false
+    t.string "unique_reference_number", default: "", null: false
     t.index ["user_id"], name: "index_appointment_summaries_on_user_id"
   end
 

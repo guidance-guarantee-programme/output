@@ -114,6 +114,14 @@ RSpec.describe OutputDocument do
   describe '#variant' do
     let(:eligible_for_guidance) { true }
 
+    context 'when due diligence' do
+      it 'is the due diligence variant' do
+        allow(appointment_summary).to receive(:schedule_type).and_return('due_diligence')
+
+        expect(subject).to eq('due_diligence')
+      end
+    end
+
     before do
       allow(appointment_summary).to receive_messages(
         eligible_for_guidance?: eligible_for_guidance

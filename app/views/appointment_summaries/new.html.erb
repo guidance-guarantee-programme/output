@@ -1,8 +1,10 @@
 <%= form_for @appointment_summary, url: confirm_appointment_summaries_path, method: :post do |f| %>
   <%= f.hidden_field :telephone_appointment %>
+  <%= f.hidden_field :schedule_type %>
+  <%= f.hidden_field :unique_reference_number %>
 
   <div class="page-header">
-    <h1><%= title 'Create summary document' %></h1>
+    <h1><%= title 'Create summary document' %><% if @appointment_summary.due_diligence? %> <small class="t-due-diligence-banner">Pension Safeguarding Guidance</small><% end %></h1>
   </div>
 
   <div class="row">
@@ -86,6 +88,7 @@
         <%= f.text_field :reference_number, class: %w(form-control input-md-2 t-reference-number), readonly: @appointment_summary.telephone_appointment? %>
       </div>
 
+      <% if @appointment_summary.pension_wise? %>
       <div class="form-group">
         <fieldset>
           <legend>
@@ -390,6 +393,8 @@
           </div>
         </div>
       </div>
+
+      <% end %>
 
       <h2>Document preferences</h2>
 

@@ -5,6 +5,62 @@ RSpec.describe AppointmentSummary, type: :model do
     described_class.new(has_defined_contribution_pension: has_defined_contribution_pension)
   end
 
+  it 'defaults to the Pension Wise schedule type' do
+    expect(subject).to be_pension_wise
+  end
+
+  context 'when due diligence' do
+    before do
+      subject.schedule_type = 'due_diligence'
+      subject.title = 'Mr'
+      subject.last_name = 'James'
+      subject.date_of_appointment = '2021-09-29'
+      subject.reference_number = '123456'
+      subject.email = 'dave@example.com'
+    end
+
+    it 'can be categorised as a due diligence appointment' do
+      expect(subject).to be_due_diligence
+    end
+
+    it 'defaults `has_defined_contribution_pension` to unknown' do
+      expect(subject.has_defined_contribution_pension).to eq('unknown')
+    end
+
+    it 'does not validate presence of guider name' do
+      subject.guider_name = ''
+
+      subject.validate
+
+      expect(subject.errors[:guider_name]).to be_empty
+    end
+
+    context 'when digital summary' do
+      it 'only requires the postcode part of the address' do
+        subject.requested_digital = true
+
+        subject.address_line_1 = ''
+        subject.address_line_2 = ''
+        subject.address_line_3 = ''
+        subject.town = ''
+        subject.county = ''
+        subject.postcode = 'RM1 1AA'
+
+        expect(subject).to be_valid
+      end
+    end
+
+    context 'when postal summary' do
+      it 'requires the whole address' do
+        subject.requested_digital = false
+
+        subject.address_line_1 = ''
+
+        expect(subject).to be_invalid
+      end
+    end
+  end
+
   let(:has_defined_contribution_pension) { 'yes' }
 
   it { is_expected.to belong_to(:user) }
@@ -32,18 +88,23 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to allow_value('').for(:upper_value_of_pension_pots) }
   it { is_expected.to validate_presence_of(:guider_name) }
 
-  it { is_expected.to validate_presence_of(:address_line_1) }
-  it { is_expected.to validate_length_of(:address_line_1).is_at_most(50) }
-  it { is_expected.to_not validate_presence_of(:address_line_2) }
-  it { is_expected.to validate_length_of(:address_line_2).is_at_most(50) }
-  it { is_expected.to_not validate_presence_of(:address_line_3) }
-  it { is_expected.to validate_length_of(:address_line_3).is_at_most(50) }
-  it { is_expected.to validate_presence_of(:town) }
-  it { is_expected.to validate_length_of(:town).is_at_most(50) }
-  it { is_expected.to_not validate_presence_of(:county) }
-  it { is_expected.to validate_length_of(:county).is_at_most(50) }
-  it { is_expected.to validate_presence_of(:country) }
-  it { is_expected.to validate_inclusion_of(:country).in_array(Countries.all) }
+  context 'when requesting postal' do
+    before { subject.requested_digital = false }
+
+    it { is_expected.to validate_presence_of(:address_line_1) }
+    it { is_expected.to validate_length_of(:address_line_1).is_at_most(50) }
+    it { is_expected.to_not validate_presence_of(:address_line_2) }
+    it { is_expected.to validate_length_of(:address_line_2).is_at_most(50) }
+    it { is_expected.to_not validate_presence_of(:address_line_3) }
+    it { is_expected.to validate_length_of(:address_line_3).is_at_most(50) }
+    it { is_expected.to validate_presence_of(:town) }
+    it { is_expected.to validate_length_of(:town).is_at_most(50) }
+    it { is_expected.to_not validate_presence_of(:county) }
+    it { is_expected.to validate_length_of(:county).is_at_most(50) }
+    it { is_expected.to validate_presence_of(:country) }
+    it { is_expected.to validate_inclusion_of(:country).in_array(Countries.all) }
+  end
+
   it { is_expected.to validate_presence_of(:postcode) }
   it { is_expected.to validate_inclusion_of(:number_of_previous_appointments).in_range(0..3) }
 

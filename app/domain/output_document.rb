@@ -9,6 +9,7 @@ class OutputDocument
            :supplementary_defined_benefit_pensions,
            :supplementary_pension_transfers,
            :format_preference, :appointment_type,
+           :unique_reference_number, :schedule_type,
            to: :appointment_summary
 
   delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode,
@@ -48,6 +49,8 @@ class OutputDocument
   end
 
   def variant
+    return appointment_summary.schedule_type if appointment_summary.due_diligence?
+
     if appointment_summary.eligible_for_guidance?
       appointment_type
     else

@@ -50,15 +50,15 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
     eligible.validates :upper_value_of_pension_pots
   end
 
-  validates :guider_name, presence: true
+  validates :guider_name, presence: true, if: :pension_wise?
 
-  validates :address_line_1, presence: true, length: { maximum: 50 }
-  validates :address_line_2, length: { maximum: 50 }
-  validates :address_line_3, length: { maximum: 50 }
-  validates :town, presence: true, length: { maximum: 50 }
-  validates :county, length: { maximum: 50 }
+  validates :address_line_1, presence: true, length: { maximum: 50 }, unless: :requested_digital?
+  validates :address_line_2, length: { maximum: 50 }, unless: :requested_digital?
+  validates :address_line_3, length: { maximum: 50 }, unless: :requested_digital?
+  validates :town, presence: true, length: { maximum: 50 }, unless: :requested_digital?
+  validates :county, length: { maximum: 50 }, unless: :requested_digital?
   validates :postcode, presence: true, postcode: true, if: :uk_address?
-  validates :country, presence: true, inclusion: { in: Countries.all }
+  validates :country, presence: true, inclusion: { in: Countries.all }, unless: :requested_digital?
 
   validates :has_defined_contribution_pension,
             presence: true,
@@ -66,7 +66,8 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
               in: %w(yes no unknown),
               allow_blank: true,
               message: '%{value} is not a valid value'
-            }
+            },
+            if: :pension_wise?
 
   validates :has_defined_benefit_pension,
             inclusion: {
@@ -100,6 +101,12 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   def self.editable_column_names
     column_names - %w(id created_at updated_at user_id notification_id)
+  end
+
+  def has_defined_contribution_pension # rubocop:disable PredicateName
+    return 'unknown' if due_diligence?
+
+    super
   end
 
   def format_preference
@@ -159,6 +166,14 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   def braille?
     format_preference == 'braille'
+  end
+
+  def pension_wise?
+    schedule_type == 'pension_wise'
+  end
+
+  def due_diligence?
+    schedule_type == 'due_diligence'
   end
 
   private
