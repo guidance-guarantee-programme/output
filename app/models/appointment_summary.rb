@@ -52,13 +52,13 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   validates :guider_name, presence: true, if: :pension_wise?
 
-  validates :address_line_1, presence: true, length: { maximum: 50 }, unless: :requested_digital?
-  validates :address_line_2, length: { maximum: 50 }, unless: :requested_digital?
-  validates :address_line_3, length: { maximum: 50 }, unless: :requested_digital?
-  validates :town, presence: true, length: { maximum: 50 }, unless: :requested_digital?
-  validates :county, length: { maximum: 50 }, unless: :requested_digital?
-  validates :postcode, presence: true, postcode: true, if: :uk_address?
-  validates :country, presence: true, inclusion: { in: Countries.all }, unless: :requested_digital?
+  validates :address_line_1, presence: true, length: { maximum: 50 }, if: :requested_postal?
+  validates :address_line_2, length: { maximum: 50 }, if: :requested_postal?
+  validates :address_line_3, length: { maximum: 50 }, if: :requested_postal?
+  validates :town, presence: true, length: { maximum: 50 }, if: :requested_postal?
+  validates :county, length: { maximum: 50 }, if: :requested_postal?
+  validates :postcode, presence: true, postcode: true, if: :postcode_required?
+  validates :country, presence: true, inclusion: { in: Countries.all }, if: :requested_postal?
 
   validates :has_defined_contribution_pension,
             presence: true,
@@ -101,6 +101,10 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   def self.editable_column_names
     column_names - %w(id created_at updated_at user_id notification_id)
+  end
+
+  def requested_postal?
+    !requested_digital?
   end
 
   def has_defined_contribution_pension # rubocop:disable PredicateName
@@ -178,7 +182,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   private
 
-  def uk_address?
-    Countries.uk?(country)
+  def postcode_required?
+    requested_digital? || Countries.uk?(country)
   end
 end

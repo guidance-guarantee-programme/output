@@ -142,7 +142,17 @@ RSpec.describe AppointmentSummary, type: :model do
     end
   end
 
-  describe 'postcode validation' do
+  context 'when digital delivery' do
+    describe 'postcode validation' do
+      before { subject.requested_digital = true }
+
+      it { is_expected.to validate_presence_of(:postcode) }
+    end
+  end
+
+  context 'for postal delivery' do
+    before { subject.requested_digital = false }
+
     context 'for UK addresses' do
       before { subject.country = Countries.uk }
 
