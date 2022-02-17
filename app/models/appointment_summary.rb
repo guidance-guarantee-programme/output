@@ -57,7 +57,8 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   validates :address_line_3, length: { maximum: 50 }, if: :requested_postal?
   validates :town, presence: true, length: { maximum: 50 }, if: :requested_postal?
   validates :county, length: { maximum: 50 }, if: :requested_postal?
-  validates :postcode, presence: true, postcode: true, if: :postcode_required?
+  validates :postcode, presence: true
+  validates :postcode, postcode: true, if: :postcode_format_required?
   validates :country, presence: true, inclusion: { in: Countries.all }, if: :requested_postal?
 
   validates :has_defined_contribution_pension,
@@ -182,7 +183,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   private
 
-  def postcode_required?
-    requested_digital? || Countries.uk?(country)
+  def postcode_format_required?
+    requested_postal? && Countries.uk?(country)
   end
 end

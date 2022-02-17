@@ -164,7 +164,7 @@ RSpec.describe AppointmentSummary, type: :model do
     context 'for non-UK addresses' do
       before { subject.country = Countries.non_uk.sample }
 
-      it { is_expected.to_not validate_presence_of(:postcode) }
+      it { is_expected.to validate_presence_of(:postcode) }
       it { is_expected.to allow_value('nonsense').for(:postcode) }
     end
   end
