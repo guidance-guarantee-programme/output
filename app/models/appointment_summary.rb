@@ -104,6 +104,14 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
     column_names - %w(id created_at updated_at user_id notification_id)
   end
 
+  def self.for_tap_reissue(tap_reference)
+    where(
+      reference_number: tap_reference,
+      requested_digital: true,
+      telephone_appointment: true
+    ).order(created_at: :desc).first
+  end
+
   def requested_postal?
     !requested_digital?
   end
