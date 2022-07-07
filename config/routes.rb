@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :api, constraints: { format: :json } do
     namespace :v1 do
       resources :searches, only: :index
-      resources :appointment_summaries, only: :show
+      resources :appointment_summaries, only: %i(show update)
     end
   end
 

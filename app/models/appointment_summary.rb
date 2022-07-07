@@ -189,6 +189,18 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
     schedule_type == 'due_diligence'
   end
 
+  def notify_via_email(current_user = nil)
+    return unless can_be_emailed?
+
+    if due_diligence?
+      NotifyDueDiligenceViaEmail.perform_later(self)
+    else
+      NotifyViaEmail.perform_later(self)
+    end
+
+    CreateTapActivity.perform_later(self, current_user) if telephone_appointment?
+  end
+
   private
 
   def postcode_format_required?

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class AppointmentSummariesController < ApplicationController # rubocop:disable ClassLength
+class AppointmentSummariesController < ApplicationController
   before_action :authenticate_as_team_leader!, only: :index
   before_action :check_can_create_appointments!, only: [:new, :confirm, :create]
   before_action :load_summary, only: %i(new email_confirmation update confirm)
@@ -95,20 +95,9 @@ class AppointmentSummariesController < ApplicationController # rubocop:disable C
   end
 
   def send_notifications(appointment_summary)
-    notify_via_email(appointment_summary)
+    appointment_summary.notify_via_email(current_user)
 
-    CreateTapActivity.perform_later(appointment_summary, current_user) if appointment_summary.telephone_appointment?
     BrailleNotification.perform_later(appointment_summary) if appointment_summary.braille_notification?
-  end
-
-  def notify_via_email(appointment_summary)
-    return unless appointment_summary.can_be_emailed?
-
-    if appointment_summary.due_diligence?
-      NotifyDueDiligenceViaEmail.perform_later(appointment_summary)
-    else
-      NotifyViaEmail.perform_later(appointment_summary)
-    end
   end
 
   def telephone_appointment?

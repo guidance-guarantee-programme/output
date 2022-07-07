@@ -36,6 +36,21 @@ RSpec.describe CreateTapActivity do
 
       described_class.perform_now(appointment_summary, owner)
     end
+
+    context 'when a TAP reissue request is made with a given initiator UID' do
+      let(:owner) { SecureRandom.uuid }
+
+      it 'sends back the given UID to the TAP API' do
+        expect(TelephoneAppointments::SummaryDocumentActivity).to receive(:new).with(
+          appointment_id: '1234',
+          owner_uid: owner,
+          delivery_method: 'digital'
+        )
+        expect(summary_document_activity).to receive(:save)
+
+        described_class.perform_now(appointment_summary, owner)
+      end
+    end
   end
 
   context 'when the summary document fails to save' do

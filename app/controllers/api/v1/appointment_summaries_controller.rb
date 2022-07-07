@@ -14,6 +14,18 @@ module Api
           head :not_found
         end
       end
+
+      def update
+        @appointment_summary = AppointmentSummary.for_tap_reissue(params[:id])
+
+        if @appointment_summary.update(email: params[:email])
+          @appointment_summary.notify_via_email(params[:initiator_uid])
+
+          head :ok
+        else
+          head :unprocessable_entity
+        end
+      end
     end
   end
 end
