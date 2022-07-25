@@ -179,7 +179,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
     nio4r (2.5.8)
-    nokogiri (1.13.4)
+    nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     notifications-ruby-client (2.6.0)
