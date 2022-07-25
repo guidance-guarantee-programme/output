@@ -7,6 +7,7 @@ class AppointmentSummaryPage < SitePrism::Page
   set_url '/appointment_summaries/new{?params*}'
   set_url_matcher %r{/appointment_summaries/new}
 
+  element :tap_permission_warning, '.t-no-permission'
   element :use_tap_warning, '.t-use-tap'
   element :due_diligence_banner, '.t-due-diligence-banner'
 

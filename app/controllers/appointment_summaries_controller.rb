@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class AppointmentSummariesController < ApplicationController
+class AppointmentSummariesController < ApplicationController # rubocop:disable ClassLength
   before_action :authenticate_as_team_leader!, only: :index
   before_action :check_can_create_appointments!, only: [:new, :confirm, :create]
   before_action :load_summary, only: %i(new email_confirmation update confirm)
@@ -14,6 +14,8 @@ class AppointmentSummariesController < ApplicationController
   def new
     if instruct?
       render :summarise_via_tap
+    elsif tap_user_needs_phone_permission?
+      render :tap_user_needs_phone_permission
     else
       @appointment_summary.assign_attributes(appointment_summary_params)
     end
@@ -65,6 +67,12 @@ class AppointmentSummariesController < ApplicationController
   end
 
   private
+
+  def tap_user_needs_phone_permission?
+    params.dig(:appointment_summary, :telephone_appointment) == 'true' &&
+      !current_user.has_permission?(User::TELEPHONE_APPOINTMENT_PERMISSION) &&
+      !current_user.team_leader?
+  end
 
   def instruct?
     !current_user.has_permission?(User::FACE_TO_FACE_PERMISSION) && !params[:appointment_summary]
