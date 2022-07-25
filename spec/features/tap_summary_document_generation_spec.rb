@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature 'Appointment Summaries', js: true do
+  scenario 'Attempting to summarise a phone appointment without the correct permissions' do
+    given_i_am_logged_in_as_a_face_to_face_guider
+    when_the_guider_follows_the_tap_summary_link
+    then_they_are_told_they_do_not_have_the_correct_permissions
+  end
+
   scenario 'Regenerating an existing appointment summary' do
     given_i_am_logged_in_as_a_phone_guider
     and_an_existing_appointment_summary
@@ -11,6 +17,29 @@ RSpec.feature 'Appointment Summaries', js: true do
     then_the_confirmation_is_displayed
     when_the_guider_confirms_the_details
     then_the_existing_summary_is_updated
+  end
+
+  def given_i_am_logged_in_as_a_face_to_face_guider
+    create(:user, :face_to_face_guider)
+  end
+
+  def when_the_guider_follows_the_tap_summary_link
+    @page = AppointmentSummaryPage.new.tap do |page|
+      page.load(
+        date_of_appointment: '2017-02-02',
+        email: 'george@example.com',
+        first_name: 'George',
+        last_name: 'Georgeson',
+        guider_name: 'Jan Janson',
+        number_of_previous_appointments: '0',
+        reference_number: '123456',
+        telephone_appointment: 'true'
+      )
+    end
+  end
+
+  def then_they_are_told_they_do_not_have_the_correct_permissions
+    expect(@page).to have_tap_permission_warning
   end
 
   def given_i_am_logged_in_as_a_phone_guider
