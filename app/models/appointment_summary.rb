@@ -104,6 +104,14 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
     column_names - %w(id created_at updated_at user_id notification_id)
   end
 
+  def self.for_tap_reissue(tap_reference)
+    where(
+      reference_number: tap_reference,
+      requested_digital: true,
+      telephone_appointment: true
+    ).order(created_at: :desc).first
+  end
+
   def requested_postal?
     !requested_digital?
   end
@@ -179,6 +187,18 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
 
   def due_diligence?
     schedule_type == 'due_diligence'
+  end
+
+  def notify_via_email(current_user = nil)
+    return unless can_be_emailed?
+
+    if due_diligence?
+      NotifyDueDiligenceViaEmail.perform_later(self)
+    else
+      NotifyViaEmail.perform_later(self)
+    end
+
+    CreateTapActivity.perform_later(self, current_user) if telephone_appointment?
   end
 
   private

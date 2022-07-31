@@ -12,7 +12,7 @@ class CreateTapActivity < ApplicationJob
   def perform(appointment_summary, owner)
     telephone_appointment = TelephoneAppointments::SummaryDocumentActivity.new(
       appointment_id: appointment_summary.reference_number,
-      owner_uid: owner.uid,
+      owner_uid: owner_uid(owner),
       delivery_method: appointment_summary.requested_digital ? 'digital' : 'postal'
     )
 
@@ -22,5 +22,15 @@ class CreateTapActivity < ApplicationJob
       Appointment: #{appointment_summary.reference_number}
       Errors: #{telephone_appointment.errors.inspect}
     MESSAGE
+  end
+
+  private
+
+  def owner_uid(owner)
+    if owner.respond_to?(:uid)
+      owner.uid
+    else
+      owner
+    end
   end
 end
