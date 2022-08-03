@@ -95,8 +95,9 @@ class AppointmentSummariesController < ApplicationController
   end
 
   def send_notifications(appointment_summary)
-    appointment_summary.notify_via_email(current_user)
+    appointment_summary.notify_via_email
 
+    CreateTapActivity.perform_later(appointment_summary, current_user) if telephone_appointment?
     BrailleNotification.perform_later(appointment_summary) if appointment_summary.braille_notification?
   end
 

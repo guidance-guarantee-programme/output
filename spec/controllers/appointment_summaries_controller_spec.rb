@@ -45,6 +45,19 @@ RSpec.describe AppointmentSummariesController, 'GET #new', type: :controller do
 
           post :create, params: { appointment_summary: appointment_summary }
         end
+
+        context 'when they are a phone user' do
+          let(:user) { create(:user, :phone_guider, email: email) }
+
+          it 'also notifies tap' do
+            expect(CreateTapActivity).to receive(:perform_later).with(
+              an_instance_of(AppointmentSummary),
+              user
+            )
+
+            post :create, params: { appointment_summary: appointment_summary }
+          end
+        end
       end
 
       context 'and has not provided a valid email address' do
