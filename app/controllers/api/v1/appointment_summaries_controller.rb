@@ -19,7 +19,8 @@ module Api
         @appointment_summary = AppointmentSummary.for_tap_reissue(params[:id])
 
         if @appointment_summary.update(email: params[:email])
-          @appointment_summary.notify_via_email(params[:initiator_uid])
+          @appointment_summary.notify_via_email
+          CreateTapActivity.perform_later(@appointment_summary, params[:initiator_uid])
 
           head :ok
         else
