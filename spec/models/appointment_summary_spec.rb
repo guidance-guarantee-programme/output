@@ -110,6 +110,7 @@ RSpec.describe AppointmentSummary, type: :model do
 
   shared_examples 'it is a valid email' do
     it { is_expected.to allow_value('fred.jones@pensionwise.gov.uk').for(:email) }
+    it { is_expected.to allow_value('FRED@PENSIONWISE.GOV.UK').for(:email) }
     it { is_expected.not_to allow_value('fred.jones').for(:email) }
     it { is_expected.not_to allow_value('fred@no-extension').for(:email) }
     it { is_expected.not_to allow_value('  fred@spaced.com  ').for(:email) }
