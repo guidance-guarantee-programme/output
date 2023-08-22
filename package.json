@@ -1,9 +1,15 @@
 {
   "name": "record_of_guidance",
+  "engines": {
+    "node": "16.20.2"
+  },
   "dependencies": {
     "bower": "*"
   },
   "scripts": {
     "postinstall": "./node_modules/.bin/bower install"
+  },
+  "devDependencies": {
+    "@puppeteer/browsers": "^1.7.0"
   }
 }
