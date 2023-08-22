@@ -49,7 +49,6 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
     gem 'rspec-rails'
     gem 'scss_lint', require: false
     gem 'selenium-webdriver'
-    gem 'webdrivers'
   end
 
   group :development do
