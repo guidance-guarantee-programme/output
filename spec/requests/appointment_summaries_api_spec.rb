@@ -79,7 +79,7 @@ RSpec.describe 'External summary API' do
   end
 
   def the_service_responds_404
-    expect(response).to be_missing
+    expect(response).to be_not_found
   end
 
   def when_an_unauthorized_request_is_made
