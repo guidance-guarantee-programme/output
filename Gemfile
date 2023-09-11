@@ -8,7 +8,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'active_model_serializers'
   gem 'autoprefixer-rails'
-  gem 'azure-storage-blob'
+  gem 'azure-storage-blob', '~> 2.0.3'
   gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
@@ -22,6 +22,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'jc-validates_timeliness'
   gem 'kaminari'
   gem 'meta-tags'
+  gem 'net-http'
   gem 'net-sftp'
   gem 'notifications-ruby-client'
   gem 'output-templates', github: 'guidance-guarantee-programme/output-templates'
