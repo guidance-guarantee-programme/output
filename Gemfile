@@ -31,14 +31,16 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'princely'
   gem 'puma'
   gem 'rack-cors'
-  gem 'rails', '~> 5.1.6'
-  gem 'rails-i18n', '~> 5.0.0'
+  gem 'rails', '~> 5.2.8'
+  gem 'rails-i18n'
   gem 'retriable'
   gem 'sassc-rails'
   gem 'sidekiq', '~> 5.2.0'
   gem 'sinatra', require: nil # Sidekiq UI
   gem 'sprockets', '~> 3.7.2'
-  gem 'telephone_appointments'
+  gem 'telephone_appointments',
+      github: 'guidance-guarantee-programme/telephone_appointments',
+      branch: 'relax-dependencies'
   gem 'uglifier', '>= 1.3.0'
   gem 'uk_postcode'
 
