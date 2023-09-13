@@ -140,7 +140,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
   end
 
   def stop_checking!
-    update_attributes(
+    update(
       notify_completed_at: Time.zone.now,
       notify_status: :ignoring
     )
