@@ -82,7 +82,11 @@ RSpec.feature 'Appointment Summaries', js: true do
   end
 
   def when_the_guider_modifies_the_summary
-    @page.address_line_1.set('5 Grange Hill')
+    # https://stackoverflow.com/a/45332510
+    while @page.address_line_1.value != '5 Grange Hill'
+      @page.address_line_1.set('5 Grange Hill')
+      sleep 0.25
+    end
 
     @page.submit.click
   end
