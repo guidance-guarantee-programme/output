@@ -1,4 +1,4 @@
-class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
+class AppointmentSummary < ApplicationRecord # rubocop:disable Metrics/ClassLength
   enum notify_status: %i(pending delivered failed ignoring)
 
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
@@ -116,7 +116,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable ClassLength
     !requested_digital?
   end
 
-  def has_defined_contribution_pension # rubocop:disable PredicateName
+  def has_defined_contribution_pension # rubocop:disable Naming/PredicateName
     return 'unknown' if due_diligence?
 
     super

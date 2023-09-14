@@ -6,7 +6,7 @@ class Redactor
   end
 
   def call
-    return unless appointment_summary = AppointmentSummary.find(reference) # rubocop:disable AssignmentInCondition
+    return unless appointment_summary = AppointmentSummary.find(reference) # rubocop:disable Lint/AssignmentInCondition
 
     ActiveRecord::Base.transaction do
       appointment_summary.assign_attributes(redacted_attributes)

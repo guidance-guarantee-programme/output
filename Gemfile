@@ -50,12 +50,10 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
     gem 'launchy'
     gem 'pry-byebug'
     gem 'rspec-rails'
+    gem 'rubocop', require: false
+    gem 'rubocop-rails', require: false
     gem 'scss_lint', require: false
     gem 'selenium-webdriver'
-  end
-
-  group :development do
-    gem 'rubocop', '0.47.1', require: false
   end
 
   group :test do
