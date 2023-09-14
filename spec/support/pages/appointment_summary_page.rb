@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require_relative '../site_prism/radio_button_container'
 
-# rubocop:disable ClassLength
+# rubocop:disable Metrics/ClassLength
 class AppointmentSummaryPage < SitePrism::Page
   extend SitePrism::RadioButtonContainer
   set_url '/appointment_summaries/new{?params*}'
@@ -70,7 +70,7 @@ class AppointmentSummaryPage < SitePrism::Page
     end
   end
 
-  def params(appointment_summary) # rubocop:disable MethodLength
+  def params(appointment_summary) # rubocop:disable Metrics/MethodLength
     params_from_tap = %i(
       appointment_type
       date_of_appointment
@@ -188,4 +188,4 @@ class AppointmentSummaryPage < SitePrism::Page
     end
   end
 end
-# rubocop:enable ClassLength
+# rubocop:enable Metrics/ClassLength

@@ -15,7 +15,7 @@ class NotifyViaEmail < ApplicationJob
     payload  = notification(appointment_summary, template_id(appointment_summary, config))
     response = Notifications::Client.new(config.secret_id).send_email(payload)
 
-    appointment_summary.update_attributes(
+    appointment_summary.update(
       notification_id: response.id,
       notify_completed_at: nil,
       notify_status: :pending

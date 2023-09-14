@@ -18,7 +18,7 @@ class NotifyDelivery
   private
 
   def process_response(response, appointment_summary)
-    appointment_summary.update_attributes(
+    appointment_summary.update(
       notify_completed_at: response.completed_at,
       notify_status: map_status(response)
     )

@@ -22,7 +22,7 @@ RSpec.feature 'Due diligence appointment summary', js: true do
     create(:user, :phone_guider)
   end
 
-  def when_they_attempt_to_generate_a_summary_via_tap # rubocop:disable MethodLength
+  def when_they_attempt_to_generate_a_summary_via_tap # rubocop:disable Metrics/MethodLength
     @page = AppointmentSummaryPage.new.tap do |page|
       page.load(
         first_name: 'Daisy',

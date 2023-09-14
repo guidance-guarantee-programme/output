@@ -8,7 +8,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'active_model_serializers'
   gem 'autoprefixer-rails'
-  gem 'azure-storage-blob'
+  gem 'azure-storage-blob', '~> 2.0.3'
   gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
@@ -19,41 +19,41 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'gaffe'
   gem 'gds-sso'
   gem 'govuk_admin_template'
-  gem 'jc-validates_timeliness'
   gem 'kaminari'
-  gem 'meta-tags'
+  gem 'meta-tags', '~> 2.12'
+  gem 'net-http'
   gem 'net-sftp'
   gem 'notifications-ruby-client'
   gem 'output-templates', github: 'guidance-guarantee-programme/output-templates'
-  gem 'pg', '0.21.0'
+  gem 'pg'
   gem 'plek'
   gem 'postgres-copy'
   gem 'princely'
   gem 'puma'
   gem 'rack-cors'
-  gem 'rails', '~> 5.1.6'
-  gem 'rails-i18n', '~> 5.0.0'
+  gem 'rails', '~> 6.1.7'
+  gem 'rails-i18n'
   gem 'retriable'
   gem 'sassc-rails'
   gem 'sidekiq', '~> 5.2.0'
   gem 'sinatra', require: nil # Sidekiq UI
   gem 'sprockets', '~> 3.7.2'
-  gem 'telephone_appointments'
+  gem 'telephone_appointments',
+      github: 'guidance-guarantee-programme/telephone_appointments',
+      branch: 'relax-dependencies'
   gem 'uglifier', '>= 1.3.0'
   gem 'uk_postcode'
+  gem 'validates_timeliness'
 
   group :development, :test do
     gem 'database_rewinder'
     gem 'launchy'
     gem 'pry-byebug'
     gem 'rspec-rails'
+    gem 'rubocop', require: false
+    gem 'rubocop-rails', require: false
     gem 'scss_lint', require: false
     gem 'selenium-webdriver'
-  end
-
-  group :development do
-    gem 'rubocop', '0.47.1', require: false
-    gem 'web-console', '~> 2.0'
   end
 
   group :test do

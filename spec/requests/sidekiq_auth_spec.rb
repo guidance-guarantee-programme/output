@@ -20,7 +20,7 @@ RSpec.describe 'Sidekiq control panel' do
   end
 
   def then_the_existence_of_the_route_is_never_leaked
-    expect(response).to be_missing
+    expect(response).to be_not_found
   end
 
   def then_they_are_authenticated
