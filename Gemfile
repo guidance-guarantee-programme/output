@@ -19,7 +19,6 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'gaffe'
   gem 'gds-sso'
   gem 'govuk_admin_template'
-  gem 'jc-validates_timeliness'
   gem 'kaminari'
   gem 'meta-tags', '~> 2.12'
   gem 'net-http'
@@ -44,6 +43,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
       branch: 'relax-dependencies'
   gem 'uglifier', '>= 1.3.0'
   gem 'uk_postcode'
+  gem 'validates_timeliness'
 
   group :development, :test do
     gem 'database_rewinder'
@@ -56,7 +56,6 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
 
   group :development do
     gem 'rubocop', '0.47.1', require: false
-    gem 'web-console', '~> 2.0'
   end
 
   group :test do
