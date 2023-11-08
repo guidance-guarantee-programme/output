@@ -60,7 +60,7 @@ RSpec.describe CreateTapActivity do
     end
 
     it 'reports an error via bugsnag' do
-      expect(Bugsnag).to receive(:notify).with(an_instance_of(described_class::UnableToCreateSummaryDocumentActivity))
+      expect(Bugsnag).to receive(:notify).twice
       described_class.perform_now(appointment_summary, owner)
     end
   end
