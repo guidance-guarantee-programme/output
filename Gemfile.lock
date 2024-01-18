@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: 5026641a7a35857db894cb21166f5e4554447d49
+  revision: d1efec4614dc50fbd6f11c55c1ec8286ff57e0b7
   specs:
-    output-templates (6.10.0)
+    output-templates (6.11.0)
       actionview
       sassc
 
@@ -119,7 +119,7 @@ GEM
     case_transform (0.2)
       activesupport
     coderay (1.1.3)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     connection_pool (2.2.5)
     crass (1.0.6)
     database_rewinder (0.9.8)
@@ -203,7 +203,7 @@ GEM
     language_server-protocol (3.17.0.3)
     launchy (2.4.3)
       addressable (~> 2.3)
-    loofah (2.21.4)
+    loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -218,7 +218,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.20.0)
+    minitest (5.21.2)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -242,7 +242,7 @@ GEM
       net-protocol
     net-ssh (5.0.2)
     nio4r (2.5.9)
-    nokogiri (1.15.4)
+    nokogiri (1.16.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     notifications-ruby-client (2.6.0)
@@ -282,7 +282,7 @@ GEM
     public_suffix (5.0.3)
     puma (6.3.1)
       nio4r (~> 2.0)
-    racc (1.7.1)
+    racc (1.7.3)
     rack (2.2.8)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
