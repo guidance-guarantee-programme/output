@@ -23,18 +23,18 @@
 
       <div class="form-group">
         <%= f.label :first_name %>
-        <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name), readonly: @appointment_summary.telephone_appointment? %>
+        <%= f.text_field :first_name, class: %w(form-control input-md-3 t-first-name) %>
       </div>
 
       <div class="form-group">
         <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name), readonly: @appointment_summary.telephone_appointment? %>
+        <%= f.text_field :last_name, class: %w(form-control input-md-3 t-last-name) %>
       </div>
 
       <div class="form-group">
         <%= f.label :email %>
         <div class="email-outer input-md-3">
-          <%= f.email_field :email, class: %w(form-control js-email-validation t-email), readonly: @appointment_summary.telephone_appointment? %>
+          <%= f.email_field :email, class: %w(form-control js-email-validation t-email) %>
         </div>
       </div>
 
