@@ -1,4 +1,4 @@
-<%= form_for @appointment_summary, url: confirm_appointment_summaries_path, method: :post do |f| %>
+<%= form_for @appointment_summary, url: confirm_appointment_summaries_path, method: :post, html: { autocomplete: 'off' } do |f| %>
   <%= f.hidden_field :telephone_appointment %>
   <%= f.hidden_field :schedule_type %>
   <%= f.hidden_field :unique_reference_number %>
