@@ -10,6 +10,6 @@
     "postinstall": "./node_modules/.bin/bower install"
   },
   "devDependencies": {
-    "@puppeteer/browsers": "^1.7.0"
+    "@puppeteer/browsers": "^2.2.0"
   }
 }
