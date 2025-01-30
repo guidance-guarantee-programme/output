@@ -20,7 +20,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'gds-sso'
   gem 'govuk_admin_template'
   gem 'kaminari'
-  gem 'meta-tags', '~> 2.12'
+  gem 'meta-tags', '~> 2.22'
   gem 'net-http'
   gem 'net-sftp'
   gem 'notifications-ruby-client'
@@ -31,13 +31,13 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'princely'
   gem 'puma'
   gem 'rack-cors'
-  gem 'rails', '~> 6.1.7'
+  gem 'rails', '~> 8.0.1'
   gem 'rails-i18n'
   gem 'retriable'
   gem 'sassc-rails'
-  gem 'sidekiq', '~> 6.5.10'
+  gem 'sidekiq', '~> 7.3.8'
   gem 'sinatra', require: nil # Sidekiq UI
-  gem 'sprockets', '~> 3.7.2'
+  gem 'sprockets', '~> 4.2.1'
   gem 'telephone_appointments',
       github: 'guidance-guarantee-programme/telephone_appointments',
       branch: 'relax-dependencies'
