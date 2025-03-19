@@ -94,6 +94,20 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable Metrics/ClassLeng
   validates :email, presence: true, if: :requested_digital?
   validates :telephone_appointment, inclusion: { in: [true, false] }
 
+  with_options presence: true, if: :requires_next_steps? do
+    validates :updated_beneficiaries
+    validates :regulated_financial_advice
+    validates :kept_track_of_all_pensions
+    validates :interested_in_pension_transfer
+    validates :created_retirement_budget
+    validates :know_how_much_state_pension
+    validates :received_state_benefits
+    validates :pension_to_pay_off_debts
+    validates :living_or_planning_overseas
+    validates :finalised_a_will
+    validates :setup_power_of_attorney
+  end
+
   def self.for_redaction
     where
       .not(first_name: Redactor::REDACTED)
@@ -197,6 +211,10 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable Metrics/ClassLeng
     else
       NotifyViaEmail.perform_later(self)
     end
+  end
+
+  def requires_next_steps?
+    eligible_for_guidance? && pension_wise?
   end
 
   private

@@ -346,6 +346,67 @@
         </div>
       </div>
 
+      <% unless @appointment_summary.due_diligence? %>
+      <div class="display_if_eligible">
+        <h2>Next steps</h2>
+
+        <div class="form-group">
+          <legend>Has the customer updated the beneficiaries on their pensions?</legend>
+          <%= next_steps_radio_options(f, :updated_beneficiaries, yes: true, no: true, unsure: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Is the customer interested in getting regulated financial advice?</legend>
+          <%= next_steps_radio_options(f, :regulated_financial_advice, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer kept track of all their pensions?</legend>
+          <%= next_steps_radio_options(f, :kept_track_of_all_pensions, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Is the customer interested in transferring their pension?</legend>
+          <%= next_steps_radio_options(f, :interested_in_pension_transfer, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer created a retirement budget?</legend>
+          <%= next_steps_radio_options(f, :created_retirement_budget, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Does the customer know how much State Pension they’ll get and when?</legend>
+          <%= next_steps_radio_options(f, :know_how_much_state_pension, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer or anyone in their household received state benefits in last 12 months?</legend>
+          <%= next_steps_radio_options(f, :received_state_benefits, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Is the customer thinking of using their pension to pay off any debts? (not including mortgage as a debt) </legend>
+          <%= next_steps_radio_options(f, :pension_to_pay_off_debts, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Does the customer live overseas, or are they planning to live overseas?</legend>
+          <%= next_steps_radio_options(f, :living_or_planning_overseas, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer finalised a will?</legend>
+          <%= next_steps_radio_options(f, :finalised_a_will, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer set up a power of attorney for their money and property?</legend>
+          <%= next_steps_radio_options(f, :setup_power_of_attorney, yes: true, no: true, not_applicable: true) %>
+        </div>
+      </div>
+      <% end %>
+
       <div class="display_if_eligible">
         <h2>Extra information</h2>
 
