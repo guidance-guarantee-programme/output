@@ -32,13 +32,11 @@ class NotifyViaEmail < ApplicationJob
         reference_number: appointment_summary.reference_number,
         title: appointment_summary.title,
         last_name: appointment_summary.last_name,
-        guider_name: appointment_summary.guider_name,
-        date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
         section_32: covering_letter_content(appointment_summary, 'section_32'), # rubocop:disable Naming/VariableNumber
         adjustable_income: covering_letter_content(appointment_summary, 'adjustable_income'),
         inherited_pot: covering_letter_content(appointment_summary, 'inherited_pot'),
         fixed_term_annuity: covering_letter_content(appointment_summary, 'fixed_term_annuity')
-      }
+      }.merge(SummaryDocumentNextStepsPresenter.new(appointment_summary).to_h)
     }.to_json
   end
 
