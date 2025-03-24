@@ -8,7 +8,9 @@ RSpec.describe NotifyViaEmail do
       service_id: 'service',
       secret_id: 'secret',
       appointment_summary_template_id: 'template',
-      ineligible_template_id: 'ineligible_template'
+      ineligible_template_id: 'ineligible_template',
+      standard_pdf_download_url: 'https://example.com/standard.pdf',
+      non_standard_pdf_download_url: 'https://example.com/non-standard.pdf'
     )
   end
   let(:client) { double('Notifications::Client', send_email: response) }
@@ -25,6 +27,7 @@ RSpec.describe NotifyViaEmail do
           email_address: appointment_summary.email,
           template_id: 'template',
           personalisation: {
+            pdf_download_url: 'https://example.com/standard.pdf',
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,
@@ -62,6 +65,7 @@ RSpec.describe NotifyViaEmail do
           email_address: appointment_summary.email,
           template_id: 'template',
           personalisation: {
+            pdf_download_url: 'https://example.com/standard.pdf',
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,

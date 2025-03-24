@@ -126,6 +126,10 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable Metrics/ClassLeng
     ).order(created_at: :desc).first
   end
 
+  def standard?
+    appointment_type == 'standard'
+  end
+
   def requested_postal?
     !requested_digital?
   end

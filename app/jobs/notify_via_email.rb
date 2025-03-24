@@ -12,7 +12,7 @@ class NotifyViaEmail < ApplicationJob
   queue_as :default
 
   def perform(appointment_summary, config: Rails.configuration.x.notify)
-    payload  = notification(appointment_summary, template_id(appointment_summary, config))
+    payload  = notification(appointment_summary, template_id(appointment_summary, config), config)
     response = Notifications::Client.new(config.secret_id).send_email(payload)
 
     appointment_summary.update(
@@ -24,11 +24,12 @@ class NotifyViaEmail < ApplicationJob
 
   private
 
-  def notification(appointment_summary, template_id)
+  def notification(appointment_summary, template_id, config)
     {
       email_address: appointment_summary.email,
       template_id: template_id,
       personalisation: {
+        pdf_download_url: pdf_download_url(appointment_summary, config),
         reference_number: appointment_summary.reference_number,
         title: appointment_summary.title,
         last_name: appointment_summary.last_name,
@@ -38,6 +39,16 @@ class NotifyViaEmail < ApplicationJob
         fixed_term_annuity: covering_letter_content(appointment_summary, 'fixed_term_annuity')
       }.merge(SummaryDocumentNextStepsPresenter.new(appointment_summary).to_h)
     }.to_json
+  end
+
+  def pdf_download_url(appointment_summary, config)
+    return '' unless appointment_summary.eligible_for_guidance?
+
+    if appointment_summary.standard?
+      config.standard_pdf_download_url
+    else
+      config.non_standard_pdf_download_url
+    end
   end
 
   def covering_letter_content(appointment_summary, type)
