@@ -75,7 +75,7 @@
         <%= f.select :country, Countries.all, {}, class: %w(form-control input-md-3 t-country) %>
       </div>
 
-      <h3>Appointment</h3>
+      <h3>Appointment details</h3>
 
       <div class="form-group">
         <%= f.label :date_of_appointment %>
@@ -348,7 +348,7 @@
 
       <% unless @appointment_summary.due_diligence? %>
       <div class="display_if_eligible">
-        <h2>Next steps</h2>
+        <h2>Customer next steps</h2>
 
         <div class="form-group">
           <legend>Has the customer updated the beneficiaries on their pensions?</legend>
