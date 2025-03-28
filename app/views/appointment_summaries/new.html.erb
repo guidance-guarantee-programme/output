@@ -412,46 +412,19 @@
 
         <div class="form-group">
           <legend>Does the customer need extra information about:</legend>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_benefits do %>
-              <%= f.check_box :supplementary_benefits,
-                              class: 't-supplementary-benefits' %>
-              Benefits
-            <% end %>
-          </div>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_debt do %>
-              <%= f.check_box :supplementary_debt,
-                              class: 't-supplementary-debt' %>
-              Debt
-            <% end %>
-          </div>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_ill_health do %>
-              <%= f.check_box :supplementary_ill_health,
-                              class: 't-supplementary-ill-health' %>
-              Ill health
-            <% end %>
-          </div>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_defined_benefit_pensions do %>
-              <%= f.check_box :supplementary_defined_benefit_pensions,
-                              class: 't-supplementary-defined-benefit-pensions' %>
-              Final salary or career average pensions
-            <% end %>
-          </div>
+          <%= f.hidden_field :supplementary_benefits, value: '1' %>
+          <%= f.hidden_field :supplementary_debt, value: '1' %>
+          <%= f.hidden_field :supplementary_ill_health, value: '1' %>
+          <%= f.hidden_field :supplementary_defined_benefit_pensions, value: '1' %>
 
           <div class="checkbox">
             <%= f.label :supplementary_pension_transfers do %>
               <%= f.check_box :supplementary_pension_transfers,
-                class: 't-supplementary-pension-transfers' %>
-              Transferring a pension
+                              class: 't-supplementary-pension-transfers' %>
+              Transferring a Final Salary or Career Average Pension
             <% end %>
           </div>
+
         </div>
       </div>
 

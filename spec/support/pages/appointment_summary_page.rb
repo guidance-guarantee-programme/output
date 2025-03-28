@@ -54,10 +54,6 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :email, '.t-email'
   element :email_suggestion, '.t-email-suggestion'
-  element :supplementary_benefits, '.t-supplementary-benefits'
-  element :supplementary_debt, '.t-supplementary-debt'
-  element :supplementary_ill_health, '.t-supplementary-ill-health'
-  element :supplementary_defined_benefit_pensions, '.t-supplementary-defined-benefit-pensions'
   element :supplementary_pension_transfers, '.t-supplementary-pension-transfers'
 
   OPTIONS = %w[yes no not_applicable].freeze
@@ -179,10 +175,6 @@ class AppointmentSummaryPage < SitePrism::Page
   end
 
   def fill_in_supplementary_information(appointment_summary)
-    supplementary_benefits.set appointment_summary.supplementary_benefits
-    supplementary_debt.set appointment_summary.supplementary_debt
-    supplementary_ill_health.set appointment_summary.supplementary_ill_health
-    supplementary_defined_benefit_pensions.set appointment_summary.supplementary_defined_benefit_pensions
     supplementary_pension_transfers.set appointment_summary.supplementary_pension_transfers
   end
 
