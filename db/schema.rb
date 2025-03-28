@@ -2,17 +2,18 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210927104120) do
+ActiveRecord::Schema.define(version: 2025_03_18_201234) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "appointment_summaries", id: :serial, force: :cascade do |t|
@@ -56,6 +57,17 @@ ActiveRecord::Schema.define(version: 20210927104120) do
     t.string "considering_transferring_to_dc_pot"
     t.string "schedule_type", default: "pension_wise", null: false
     t.string "unique_reference_number", default: "", null: false
+    t.string "updated_beneficiaries", default: "", null: false
+    t.string "regulated_financial_advice", default: "", null: false
+    t.string "kept_track_of_all_pensions", default: "", null: false
+    t.string "interested_in_pension_transfer", default: "", null: false
+    t.string "created_retirement_budget", default: "", null: false
+    t.string "know_how_much_state_pension", default: "", null: false
+    t.string "received_state_benefits", default: "", null: false
+    t.string "pension_to_pay_off_debts", default: "", null: false
+    t.string "living_or_planning_overseas", default: "", null: false
+    t.string "finalised_a_will", default: "", null: false
+    t.string "setup_power_of_attorney", default: "", null: false
     t.index ["user_id"], name: "index_appointment_summaries_on_user_id"
   end
 
