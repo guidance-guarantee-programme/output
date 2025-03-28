@@ -23,7 +23,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'net-http'
   gem 'net-sftp'
   gem 'notifications-ruby-client'
-  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: 'a6bb64b'
+  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: 'a9fa1fa'
   gem 'pg'
   gem 'plek'
   gem 'postgres-copy'

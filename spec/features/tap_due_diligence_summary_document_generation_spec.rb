@@ -69,6 +69,9 @@ RSpec.feature 'Due diligence appointment summary', js: true do
   end
 
   def then_the_appointment_summary_is_created
+    @page = DonePage.new
+    expect(@page).to be_displayed
+
     expect(AppointmentSummary.last).to have_attributes(
       schedule_type: 'due_diligence',
       unique_reference_number: '123456/100321'
