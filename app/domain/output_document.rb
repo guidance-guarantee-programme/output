@@ -17,6 +17,11 @@ class OutputDocument
 
   delegate :covering_letter_type, to: :appointment_summary
 
+  delegate :updated_beneficiaries?, :regulated_financial_advice?, :kept_track_of_all_pensions?,
+           :interested_in_pension_transfer?, :created_retirement_budget?, :know_how_much_state_pension?,
+           :received_state_benefits?, :pension_to_pay_off_debts?, :living_or_planning_overseas?,
+           :finalised_a_will?, :setup_power_of_attorney?, to: :next_steps
+
   def initialize(appointment_summary)
     @appointment_summary = appointment_summary
   end
@@ -78,6 +83,10 @@ class OutputDocument
     appointment_summary.guider_name
   end
 
+  def next_steps?
+    next_steps.to_h.values.any? { |v| v == 'yes' }
+  end
+
   def html
     HTMLRenderer.new(self).render
   end
@@ -87,6 +96,10 @@ class OutputDocument
   end
 
   private
+
+  def next_steps
+    SummaryDocumentNextStepsPresenter.new(appointment_summary)
+  end
 
   def to_currency(number)
     return '' if number.blank?
