@@ -415,12 +415,12 @@
           <%= f.hidden_field :supplementary_benefits, value: '1' %>
           <%= f.hidden_field :supplementary_debt, value: '1' %>
           <%= f.hidden_field :supplementary_ill_health, value: '1' %>
-          <%= f.hidden_field :supplementary_defined_benefit_pensions, value: '1' %>
+          <%= f.hidden_field :supplementary_pension_transfers, value: '1' %>
 
           <div class="checkbox">
-            <%= f.label :supplementary_pension_transfers do %>
-              <%= f.check_box :supplementary_pension_transfers,
-                              class: 't-supplementary-pension-transfers' %>
+            <%= f.label :supplementary_defined_benefit_pensions do %>
+              <%= f.check_box :supplementary_defined_benefit_pensions,
+                              class: 't-supplementary-defined-benefit-pensions' %>
               Transferring a Final Salary or Career Average Pension
             <% end %>
           </div>

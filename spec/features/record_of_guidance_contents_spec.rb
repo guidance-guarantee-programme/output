@@ -64,8 +64,8 @@ def and_the_customer_requires_supplementary_information_about(topic)
   end
 
   case topic
-  when 'transfer of pension pot'
-    @appointment_summary.supplementary_pension_transfers = true
+  when 'final salary or career average pensions'
+    @appointment_summary.supplementary_defined_benefit_pensions = true
   end
 end
 
@@ -89,8 +89,8 @@ def then_it_should_include_supplementary_information_about(topic) # rubocop:disa
     supplementary_benefits: true,
     supplementary_debt: true,
     supplementary_ill_health: true,
-    supplementary_defined_benefit_pensions: true,
-    supplementary_pension_transfers: false
+    supplementary_defined_benefit_pensions: false,
+    supplementary_pension_transfers: true
   }
 
   supplementary_section = case topic

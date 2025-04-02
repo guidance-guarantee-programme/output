@@ -52,7 +52,7 @@ def then_the_previously_captured_details_are_prepopulated # rubocop:disable Metr
                    guider_name)
 
   check_boxes = %i(value_of_pension_pots_is_approximate
-                   supplementary_pension_transfers)
+                   supplementary_defined_benefit_pensions)
 
   radio_button_groups = %i(has_defined_contribution_pension
                            format_preference
