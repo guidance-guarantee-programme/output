@@ -8,7 +8,9 @@ RSpec.describe NotifyViaEmail do
       service_id: 'service',
       secret_id: 'secret',
       appointment_summary_template_id: 'template',
-      ineligible_template_id: 'ineligible_template'
+      ineligible_template_id: 'ineligible_template',
+      standard_pdf_download_url: 'https://example.com/standard.pdf',
+      non_standard_pdf_download_url: 'https://example.com/non-standard.pdf'
     )
   end
   let(:client) { double('Notifications::Client', send_email: response) }
@@ -25,15 +27,25 @@ RSpec.describe NotifyViaEmail do
           email_address: appointment_summary.email,
           template_id: 'template',
           personalisation: {
+            pdf_download_url: 'https://example.com/standard.pdf',
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,
-            guider_name: appointment_summary.guider_name,
-            date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
             section_32: 'yes', # rubocop:disable Naming/VariableNumber
             adjustable_income: 'no',
             inherited_pot: 'no',
-            fixed_term_annuity: 'no'
+            fixed_term_annuity: 'no',
+            updated_beneficiaries: 'no',
+            regulated_financial_advice: 'yes',
+            kept_track_of_all_pensions: 'no',
+            interested_in_pension_transfer: 'yes',
+            created_retirement_budget: 'no',
+            know_how_much_state_pension: 'no',
+            received_state_benefits: 'yes',
+            pension_to_pay_off_debts: 'yes',
+            living_or_planning_overseas: 'yes',
+            finalised_a_will: 'no',
+            setup_power_of_attorney: 'no'
           }
         }.to_json
       )
@@ -53,15 +65,25 @@ RSpec.describe NotifyViaEmail do
           email_address: appointment_summary.email,
           template_id: 'template',
           personalisation: {
+            pdf_download_url: 'https://example.com/standard.pdf',
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,
-            guider_name: appointment_summary.guider_name,
-            date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
             section_32: 'no', # rubocop:disable Naming/VariableNumber
             adjustable_income: 'yes',
             inherited_pot: 'no',
-            fixed_term_annuity: 'no'
+            fixed_term_annuity: 'no',
+            updated_beneficiaries: 'no',
+            regulated_financial_advice: 'yes',
+            kept_track_of_all_pensions: 'no',
+            interested_in_pension_transfer: 'yes',
+            created_retirement_budget: 'no',
+            know_how_much_state_pension: 'no',
+            received_state_benefits: 'yes',
+            pension_to_pay_off_debts: 'yes',
+            living_or_planning_overseas: 'yes',
+            finalised_a_will: 'no',
+            setup_power_of_attorney: 'no'
           }
         }.to_json
       )

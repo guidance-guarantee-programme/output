@@ -54,11 +54,29 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :email, '.t-email'
   element :email_suggestion, '.t-email-suggestion'
-  element :supplementary_benefits, '.t-supplementary-benefits'
-  element :supplementary_debt, '.t-supplementary-debt'
-  element :supplementary_ill_health, '.t-supplementary-ill-health'
   element :supplementary_defined_benefit_pensions, '.t-supplementary-defined-benefit-pensions'
-  element :supplementary_pension_transfers, '.t-supplementary-pension-transfers'
+
+  OPTIONS = %w[yes no not_applicable].freeze
+
+  NEXT_STEPS = %i[
+    updated_beneficiaries
+    regulated_financial_advice
+    kept_track_of_all_pensions
+    interested_in_pension_transfer
+    created_retirement_budget
+    know_how_much_state_pension
+    received_state_benefits
+    pension_to_pay_off_debts
+    living_or_planning_overseas
+    finalised_a_will
+    setup_power_of_attorney
+  ].freeze
+
+  NEXT_STEPS.each do |field|
+    OPTIONS.each do |option|
+      element "#{field}_#{option}", ".t-#{field.to_s.dasherize}-#{option.dasherize}"
+    end
+  end
 
   element :submit, '.t-submit'
 
@@ -108,6 +126,7 @@ class AppointmentSummaryPage < SitePrism::Page
     fill_in_format_preference(appointment_summary)
     fill_in_digital_request(appointment_summary)
     fill_in_supplementary_information(appointment_summary)
+    fill_in_next_steps(appointment_summary)
     fill_in_face_to_face_only_details(appointment_summary) if face_to_face
   end
 
@@ -156,11 +175,15 @@ class AppointmentSummaryPage < SitePrism::Page
   end
 
   def fill_in_supplementary_information(appointment_summary)
-    supplementary_benefits.set appointment_summary.supplementary_benefits
-    supplementary_debt.set appointment_summary.supplementary_debt
-    supplementary_ill_health.set appointment_summary.supplementary_ill_health
     supplementary_defined_benefit_pensions.set appointment_summary.supplementary_defined_benefit_pensions
-    supplementary_pension_transfers.set appointment_summary.supplementary_pension_transfers
+  end
+
+  def fill_in_next_steps(appointment_summary)
+    return unless appointment_summary.requires_next_steps?
+
+    NEXT_STEPS.each do |step|
+      public_send("#{step}_#{appointment_summary.public_send(step)}").set(true)
+    end
   end
 
   def fill_in_face_to_face_only_details(appointment_summary)

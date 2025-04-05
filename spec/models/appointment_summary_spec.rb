@@ -19,6 +19,14 @@ RSpec.describe AppointmentSummary, type: :model do
       subject.email = 'dave@example.com'
     end
 
+    it 'does not require the next steps' do
+      subject.updated_beneficiaries = ''
+
+      subject.validate
+
+      expect(subject.errors[:updated_beneficiaries]).to be_empty
+    end
+
     it 'can be categorised as a due diligence appointment' do
       expect(subject).to be_due_diligence
     end
@@ -87,6 +95,24 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to validate_numericality_of(:upper_value_of_pension_pots) }
   it { is_expected.to allow_value('').for(:upper_value_of_pension_pots) }
   it { is_expected.to validate_presence_of(:guider_name) }
+
+  context 'when Pension Wise eligible' do
+    before do
+      allow(subject).to receive(:eligible_for_guidance?).and_return(true)
+    end
+
+    it { is_expected.to validate_presence_of(:updated_beneficiaries) }
+    it { is_expected.to validate_presence_of(:regulated_financial_advice) }
+    it { is_expected.to validate_presence_of(:kept_track_of_all_pensions) }
+    it { is_expected.to validate_presence_of(:interested_in_pension_transfer) }
+    it { is_expected.to validate_presence_of(:created_retirement_budget) }
+    it { is_expected.to validate_presence_of(:know_how_much_state_pension) }
+    it { is_expected.to validate_presence_of(:received_state_benefits) }
+    it { is_expected.to validate_presence_of(:pension_to_pay_off_debts) }
+    it { is_expected.to validate_presence_of(:living_or_planning_overseas) }
+    it { is_expected.to validate_presence_of(:finalised_a_will) }
+    it { is_expected.to validate_presence_of(:setup_power_of_attorney) }
+  end
 
   context 'when requesting postal' do
     before { subject.requested_digital = false }

@@ -75,7 +75,7 @@
         <%= f.select :country, Countries.all, {}, class: %w(form-control input-md-3 t-country) %>
       </div>
 
-      <h3>Appointment</h3>
+      <h3>Appointment details</h3>
 
       <div class="form-group">
         <%= f.label :date_of_appointment %>
@@ -346,51 +346,85 @@
         </div>
       </div>
 
+      <% unless @appointment_summary.due_diligence? %>
+      <div class="display_if_eligible">
+        <h2>Customer next steps</h2>
+
+        <div class="form-group">
+          <legend>Has the customer updated the beneficiaries on their pensions?</legend>
+          <%= next_steps_radio_options(f, :updated_beneficiaries, yes: true, no: true, unsure: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Is the customer interested in getting regulated financial advice?</legend>
+          <%= next_steps_radio_options(f, :regulated_financial_advice, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer kept track of all their pensions?</legend>
+          <%= next_steps_radio_options(f, :kept_track_of_all_pensions, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Is the customer interested in transferring their pension?</legend>
+          <%= next_steps_radio_options(f, :interested_in_pension_transfer, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer created a retirement budget?</legend>
+          <%= next_steps_radio_options(f, :created_retirement_budget, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Does the customer know how much State Pension they’ll get and when?</legend>
+          <%= next_steps_radio_options(f, :know_how_much_state_pension, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer or anyone in their household received state benefits in last 12 months?</legend>
+          <%= next_steps_radio_options(f, :received_state_benefits, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Is the customer thinking of using their pension to pay off any debts? (not including mortgage as a debt) </legend>
+          <%= next_steps_radio_options(f, :pension_to_pay_off_debts, yes: true, no: true, doesnt_know: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Does the customer live overseas, or are they planning to live overseas?</legend>
+          <%= next_steps_radio_options(f, :living_or_planning_overseas, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer finalised a will?</legend>
+          <%= next_steps_radio_options(f, :finalised_a_will, yes: true, no: true, not_applicable: true) %>
+        </div>
+
+        <div class="form-group">
+          <legend>Has the customer set up a power of attorney for their money and property?</legend>
+          <%= next_steps_radio_options(f, :setup_power_of_attorney, yes: true, no: true, not_applicable: true) %>
+        </div>
+      </div>
+      <% end %>
+
       <div class="display_if_eligible">
         <h2>Extra information</h2>
 
         <div class="form-group">
           <legend>Does the customer need extra information about:</legend>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_benefits do %>
-              <%= f.check_box :supplementary_benefits,
-                              class: 't-supplementary-benefits' %>
-              Benefits
-            <% end %>
-          </div>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_debt do %>
-              <%= f.check_box :supplementary_debt,
-                              class: 't-supplementary-debt' %>
-              Debt
-            <% end %>
-          </div>
-
-          <div class="checkbox">
-            <%= f.label :supplementary_ill_health do %>
-              <%= f.check_box :supplementary_ill_health,
-                              class: 't-supplementary-ill-health' %>
-              Ill health
-            <% end %>
-          </div>
+          <%= f.hidden_field :supplementary_benefits, value: '1' %>
+          <%= f.hidden_field :supplementary_debt, value: '1' %>
+          <%= f.hidden_field :supplementary_ill_health, value: '1' %>
+          <%= f.hidden_field :supplementary_pension_transfers, value: '1' %>
 
           <div class="checkbox">
             <%= f.label :supplementary_defined_benefit_pensions do %>
               <%= f.check_box :supplementary_defined_benefit_pensions,
                               class: 't-supplementary-defined-benefit-pensions' %>
-              Final salary or career average pensions
+              Transferring a Final Salary or Career Average Pension
             <% end %>
           </div>
 
-          <div class="checkbox">
-            <%= f.label :supplementary_pension_transfers do %>
-              <%= f.check_box :supplementary_pension_transfers,
-                class: 't-supplementary-pension-transfers' %>
-              Transferring a pension
-            <% end %>
-          </div>
         </div>
       </div>
 

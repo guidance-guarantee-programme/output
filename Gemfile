@@ -12,7 +12,6 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
-  gem 'deprecated_columns'
   gem 'faraday'
   gem 'ffi', '~> 1.15.0'
   gem 'foreman'
@@ -24,7 +23,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'net-http'
   gem 'net-sftp'
   gem 'notifications-ruby-client'
-  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: '4e5fe3e'
+  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: 'aa49996'
   gem 'pg'
   gem 'plek'
   gem 'postgres-copy'

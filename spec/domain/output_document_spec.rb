@@ -163,6 +163,70 @@ RSpec.describe OutputDocument do
     end
   end
 
+  describe 'additional next steps' do
+    context 'when no answer was given' do
+      %i[
+        updated_beneficiaries?
+        regulated_financial_advice?
+        kept_track_of_all_pensions?
+        interested_in_pension_transfer?
+        created_retirement_budget?
+        know_how_much_state_pension?
+        received_state_benefits?
+        pension_to_pay_off_debts?
+        living_or_planning_overseas?
+        finalised_a_will?
+        setup_power_of_attorney?
+      ].each do |predicate|
+        it "#{predicate} is false" do
+          expect(output_document.public_send(predicate)).to be false
+        end
+      end
+
+      it '#next_steps? is false' do
+        expect(output_document).not_to be_next_steps
+      end
+    end
+
+    context 'when positive answers were given' do
+      before do
+        appointment_summary.updated_beneficiaries = 'no'
+        appointment_summary.regulated_financial_advice = 'yes'
+        appointment_summary.kept_track_of_all_pensions = 'no'
+        appointment_summary.interested_in_pension_transfer = 'yes'
+        appointment_summary.created_retirement_budget = 'no'
+        appointment_summary.know_how_much_state_pension = 'no'
+        appointment_summary.received_state_benefits = 'yes'
+        appointment_summary.pension_to_pay_off_debts = 'yes'
+        appointment_summary.living_or_planning_overseas = 'yes'
+        appointment_summary.finalised_a_will = 'no'
+        appointment_summary.setup_power_of_attorney = 'no'
+      end
+
+      %i[
+        updated_beneficiaries?
+        regulated_financial_advice?
+        kept_track_of_all_pensions?
+        interested_in_pension_transfer?
+        created_retirement_budget?
+        know_how_much_state_pension?
+        received_state_benefits?
+        pension_to_pay_off_debts?
+        living_or_planning_overseas?
+        finalised_a_will?
+        setup_power_of_attorney?
+      ].each do |predicate|
+        it "#{predicate} is true" do
+          expect(output_document.public_send(predicate)).to be true
+        end
+
+        it '#next_steps? is true' do
+          expect(output_document).to be_next_steps
+        end
+      end
+    end
+  end
+
   describe '#html' do
     let(:html) { 'html' }
     let(:renderer) { double(render: html) }
