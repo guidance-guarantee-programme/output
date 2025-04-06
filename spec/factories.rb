@@ -55,6 +55,17 @@ FactoryBot.define do
     requested_digital false
     email 'joe@bloggs.com'
     telephone_appointment true
+    updated_beneficiaries 'yes'
+    regulated_financial_advice 'yes'
+    kept_track_of_all_pensions 'yes'
+    interested_in_pension_transfer 'yes'
+    created_retirement_budget 'yes'
+    know_how_much_state_pension 'yes'
+    received_state_benefits 'yes'
+    pension_to_pay_off_debts 'yes'
+    living_or_planning_overseas 'yes'
+    finalised_a_will 'yes'
+    setup_power_of_attorney 'yes'
 
     trait :has_defined_benefit_pension do
       has_defined_contribution_pension 'no'
@@ -84,6 +95,17 @@ FactoryBot.define do
     trait :due_diligence do
       schedule_type 'due_diligence'
       unique_reference_number '123456/010121'
+      updated_beneficiaries ''
+      regulated_financial_advice ''
+      kept_track_of_all_pensions ''
+      interested_in_pension_transfer ''
+      created_retirement_budget ''
+      know_how_much_state_pension ''
+      received_state_benefits ''
+      pension_to_pay_off_debts ''
+      living_or_planning_overseas ''
+      finalised_a_will ''
+      setup_power_of_attorney ''
     end
   end
 end

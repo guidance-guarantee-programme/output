@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: 4e5fe3e5e86433e748db847a72a9f291f3ade238
-  ref: 4e5fe3e
+  revision: aa4999603c061ca4cf3d3460aa227602acc6f81e
+  ref: aa49996
   specs:
-    output-templates (6.15.0)
+    output-templates (7.0.0)
       actionview
       sassc
 
@@ -125,8 +125,6 @@ GEM
     crass (1.0.6)
     database_rewinder (0.9.8)
     date (3.4.0)
-    deprecated_columns (0.1.1)
-      rails (>= 4.0)
     diff-lcs (1.5.0)
     erubi (1.13.0)
     execjs (2.9.1)
@@ -430,7 +428,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     uk_postcode (2.1.2)
     unicode-display_width (2.4.2)
-    uri (0.12.2)
+    uri (1.0.3)
     validates_timeliness (6.0.1)
       activemodel (>= 6.0.0, < 7)
       timeliness (>= 0.3.10, < 1)
@@ -458,7 +456,6 @@ DEPENDENCIES
   bootstrap-kaminari-views!
   bugsnag!
   database_rewinder!
-  deprecated_columns!
   factory_bot_rails!
   faraday!
   ffi (~> 1.15.0)!

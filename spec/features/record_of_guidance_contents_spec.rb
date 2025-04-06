@@ -54,7 +54,7 @@ def and_i_have_captured_the_customers_details_in_an_appointment_summary
   @appointment_summary = create(:populated_appointment_summary)
 end
 
-def and_the_customer_requires_supplementary_information_about(topic) # rubocop:disable Metrics/MethodLength
+def and_the_customer_requires_supplementary_information_about(topic)
   @appointment_summary = build(:populated_appointment_summary) do |summary|
     summary.supplementary_benefits = false
     summary.supplementary_debt = false
@@ -64,16 +64,8 @@ def and_the_customer_requires_supplementary_information_about(topic) # rubocop:d
   end
 
   case topic
-  when 'benefits and pension income'
-    @appointment_summary.supplementary_benefits = true
-  when 'debt and pensions'
-    @appointment_summary.supplementary_debt = true
-  when 'pensions and ill health'
-    @appointment_summary.supplementary_ill_health = true
   when 'final salary or career average pensions'
     @appointment_summary.supplementary_defined_benefit_pensions = true
-  when 'transfer of pension pot'
-    @appointment_summary.supplementary_pension_transfers = true
   end
 end
 
@@ -94,11 +86,11 @@ end
 
 def then_it_should_include_supplementary_information_about(topic) # rubocop:disable Metrics/MethodLength
   supplementary_sections = {
-    supplementary_benefits: false,
-    supplementary_debt: false,
-    supplementary_ill_health: false,
+    supplementary_benefits: true,
+    supplementary_debt: true,
+    supplementary_ill_health: true,
     supplementary_defined_benefit_pensions: false,
-    supplementary_pension_transfers: false
+    supplementary_pension_transfers: true
   }
 
   supplementary_section = case topic

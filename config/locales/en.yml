@@ -1,33 +1,15 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      appointment_summary:
+        updated_beneficiaries: "Has the customer updated the beneficiaries on their pensions?"
+        regulated_financial_advice: "Is the customer interested in getting regulated financial advice?"
+        kept_track_of_all_pensions: "Has the customer kept track of all their pensions?"
+        interested_in_pension_transfer: "Is the customer interested in transferring their pension?"
+        created_retirement_budget: "Has the customer created a retirement budget?"
+        know_how_much_state_pension: "Does the customer know how much State Pension they’ll get and when?"
+        received_state_benefits: "Has the customer or anyone in their household received state benefits in last 12 months?"
+        pension_to_pay_off_debts: "Is the customer thinking of using their pension to pay off any debts? (not including mortgage as a debt) "
+        living_or_planning_overseas: "Does the customer live overseas, or are they planning to live overseas?"
+        finalised_a_will: "Has the customer finalised a will?"
+        setup_power_of_attorney: "Has the customer set up a power of attorney for their money and property?"

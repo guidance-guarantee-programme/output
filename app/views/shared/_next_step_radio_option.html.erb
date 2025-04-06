@@ -1,0 +1,6 @@
+<div class="radio">
+  <%= form.label field, value: value do %>
+    <%= form.radio_button field, value, class: "t-#{field.to_s.dasherize}-#{value.to_s.dasherize}" %>
+    <%= custom_value || value.to_s.humanize %>
+  <% end %>
+</div>
