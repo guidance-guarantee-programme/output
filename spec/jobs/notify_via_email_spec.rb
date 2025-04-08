@@ -10,7 +10,9 @@ RSpec.describe NotifyViaEmail do
       appointment_summary_template_id: 'template',
       ineligible_template_id: 'ineligible_template',
       standard_pdf_download_url: 'https://example.com/standard.pdf',
-      non_standard_pdf_download_url: 'https://example.com/non-standard.pdf'
+      non_standard_pdf_download_url: 'https://example.com/non-standard.pdf',
+      standard_db_pdf_download_url: 'https://example.com/standard-db.pdf',
+      non_standard_db_pdf_download_url: 'https://example.com/non-standard-db.pdf'
     )
   end
   let(:client) { double('Notifications::Client', send_email: response) }
@@ -58,7 +60,12 @@ RSpec.describe NotifyViaEmail do
 
   context 'when the customer does not have a DC pension' do
     let(:appointment_summary) do
-      create(:appointment_summary, :has_defined_benefit_pension, covering_letter_type: 'adjustable_income')
+      create(
+        :appointment_summary,
+        :has_defined_benefit_pension,
+        covering_letter_type: 'adjustable_income',
+        supplementary_defined_benefit_pensions: true
+      )
     end
 
     it 'sends an eligible email notification' do
@@ -67,7 +74,7 @@ RSpec.describe NotifyViaEmail do
           email_address: appointment_summary.email,
           template_id: 'template',
           personalisation: {
-            pdf_download_url: 'https://example.com/standard.pdf',
+            pdf_download_url: 'https://example.com/standard-db.pdf',
             reference_number: appointment_summary.reference_number,
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,

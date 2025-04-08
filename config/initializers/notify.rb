@@ -9,4 +9,6 @@ Rails.configuration.x.notify.tap do |notify|
 
   notify.standard_pdf_download_url = ENV['STANDARD_PDF_DOWNLOAD_URL']
   notify.non_standard_pdf_download_url = ENV['NON_STANDARD_PDF_DOWNLOAD_URL']
+  notify.standard_db_pdf_download_url = ENV['STANDARD_DB_PDF_DOWNLOAD_URL']
+  notify.non_standard_db_pdf_download_url = ENV['NON_STANDARD_DB_PDF_DOWNLOAD_URL']
 end
