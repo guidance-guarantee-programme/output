@@ -47,7 +47,13 @@ class NotifyViaEmail < ApplicationJob
     return '' unless appointment_summary.eligible_for_guidance?
 
     if appointment_summary.standard?
-      config.standard_pdf_download_url
+      if appointment_summary.supplementary_defined_benefit_pensions
+        config.standard_db_pdf_download_url
+      else
+        config.standard_pdf_download_url
+      end
+    elsif appointment_summary.supplementary_defined_benefit_pensions
+      config.non_standard_db_pdf_download_url
     else
       config.non_standard_pdf_download_url
     end
