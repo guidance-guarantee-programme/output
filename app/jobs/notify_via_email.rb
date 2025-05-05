@@ -34,7 +34,7 @@ class NotifyViaEmail < ApplicationJob
         title: appointment_summary.title,
         last_name: appointment_summary.last_name,
         guider_name: appointment_summary.guider_name,
-        date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
+        date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
         section_32: covering_letter_content(appointment_summary, 'section_32'), # rubocop:disable Naming/VariableNumber
         adjustable_income: covering_letter_content(appointment_summary, 'adjustable_income'),
         inherited_pot: covering_letter_content(appointment_summary, 'inherited_pot'),

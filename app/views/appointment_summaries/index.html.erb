@@ -48,8 +48,8 @@
         <td class="t-reference-number"><%= summary.reference_number %></td>
         <td><%= summary.guider_name %> (<%= summary.telephone_appointment? ? 'phone' : 'F2F' %>)</td>
         <td><%= "#{summary.title} #{summary.first_name} #{summary.last_name}" %></td>
-        <td><%= summary.date_of_appointment.to_s(:gov_uk) %></td>
-        <td><%= summary.created_at.to_s(:govuk_date) %></td>
+        <td><%= summary.date_of_appointment.to_fs(:gov_uk) %></td>
+        <td><%= summary.created_at.to_fs(:govuk_date) %></td>
         <td><%= summary.requested_digital ? 'Yes' : 'No' %></td>
         <td><%= summary.email %></td>
         <td>

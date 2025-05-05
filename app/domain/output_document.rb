@@ -50,7 +50,7 @@ class OutputDocument
   end
 
   def appointment_date
-    appointment_summary.date_of_appointment.to_s(:gov_uk)
+    appointment_summary.date_of_appointment.to_fs(:gov_uk)
   end
 
   def variant

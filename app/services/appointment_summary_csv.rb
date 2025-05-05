@@ -39,7 +39,11 @@ class AppointmentSummaryCsv < CsvGenerator
     ).freeze
   end
 
+  def date_of_appointment_formatter(value)
+    value.to_fs
+  end
+
   def created_at_formatter(value)
-    value.getlocal.to_s(:rfc)
+    value.getlocal.to_fs(:rfc)
   end
 end

@@ -83,7 +83,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.supplementary_pension_transfers.to_s,
           appointment.requested_digital.to_s,
           appointment.number_of_previous_appointments.to_s,
-          appointment.created_at.getlocal.to_s(:rfc),
+          appointment.created_at.getlocal.to_fs(:rfc),
           appointment.email,
           quote_empty_string(appointment.notification_id)
         ]
