@@ -88,7 +88,7 @@ class OutputDocument
   end
 
   def html
-    HTMLRenderer.new(self).render
+    HtmlRenderer.new(self).render
   end
 
   def pdf

@@ -12,6 +12,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
+  gem 'concurrent-ruby', '1.3.4'
   gem 'faraday'
   gem 'ffi', '~> 1.15.0'
   gem 'foreman'
@@ -30,7 +31,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'princely'
   gem 'puma'
   gem 'rack-cors'
-  gem 'rails', '~> 6.1.7'
+  gem 'rails', '~> 7.0'
   gem 'rails-i18n'
   gem 'retriable'
   gem 'sassc-rails'

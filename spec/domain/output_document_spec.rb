@@ -234,7 +234,7 @@ RSpec.describe OutputDocument do
     subject { output_document.html }
 
     before do
-      allow(OutputDocument::HTMLRenderer).to receive(:new)
+      allow(OutputDocument::HtmlRenderer).to receive(:new)
         .with(output_document)
         .and_return(renderer)
     end
