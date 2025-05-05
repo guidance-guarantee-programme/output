@@ -55,7 +55,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.to_param,
           appointment.telephone_appointment.to_s,
           appointment.user.organisation_content_id,
-          appointment.date_of_appointment.to_s,
+          appointment.date_of_appointment.to_fs,
           appointment.value_of_pension_pots_is_approximate.to_s,
           appointment.count_of_pension_pots.to_s,
           appointment.value_of_pension_pots.to_s,

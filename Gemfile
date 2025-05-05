@@ -31,7 +31,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'princely'
   gem 'puma'
   gem 'rack-cors'
-  gem 'rails', '~> 7.0'
+  gem 'rails', '~> 7.2'
   gem 'rails-i18n'
   gem 'retriable'
   gem 'sassc-rails'
