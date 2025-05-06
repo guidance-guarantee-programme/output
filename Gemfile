@@ -26,6 +26,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'net-sftp'
   gem 'notifications-ruby-client'
   gem 'observer'
+  gem 'ostruct'
   gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: 'aa49996'
   gem 'pg'
   gem 'plek'
