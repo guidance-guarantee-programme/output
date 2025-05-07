@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OutputDocument::HTMLRenderer do
+RSpec.describe OutputDocument::HtmlRenderer do
   describe '#render' do
     shared_examples 'renders html' do |variant|
       context "with a '#{variant}' output document" do

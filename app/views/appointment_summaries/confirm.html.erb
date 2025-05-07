@@ -30,7 +30,7 @@
         <% end %>
         <tr>
           <td class="active" width="35%"><b>Date of appointment</b></td>
-          <td><%= @appointment_summary.date_of_appointment.to_s(:govuk_date) %></td>
+          <td><%= @appointment_summary.date_of_appointment.to_fs(:govuk_date) %></td>
         </tr>
         <% if @appointment_summary.due_diligence? %>
         <tr>

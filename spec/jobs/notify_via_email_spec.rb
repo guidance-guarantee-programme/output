@@ -34,7 +34,7 @@ RSpec.describe NotifyViaEmail do
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,
             guider_name: appointment_summary.guider_name,
-            date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
+            date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
             section_32: 'yes', # rubocop:disable Naming/VariableNumber
             adjustable_income: 'no',
             inherited_pot: 'no',
@@ -79,7 +79,7 @@ RSpec.describe NotifyViaEmail do
             title: appointment_summary.title,
             last_name: appointment_summary.last_name,
             guider_name: appointment_summary.guider_name,
-            date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
+            date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
             section_32: 'no', # rubocop:disable Naming/VariableNumber
             adjustable_income: 'yes',
             inherited_pot: 'no',

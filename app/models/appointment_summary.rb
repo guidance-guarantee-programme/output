@@ -1,5 +1,5 @@
 class AppointmentSummary < ApplicationRecord # rubocop:disable Metrics/ClassLength
-  enum notify_status: %i(pending delivered failed ignoring)
+  enum :notify_status, %i(pending delivered failed ignoring)
 
   DIGITAL_BY_DEFAULT_START_DATE = Date.new(2016, 6, 21)
   # bassed off: https://github.com/alphagov/notifications-utils/blob/master/notifications_utils/recipients.py#L22

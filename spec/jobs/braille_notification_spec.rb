@@ -17,7 +17,7 @@ RSpec.describe BrailleNotification do
         personalisation: {
           reference_number: appointment_summary.reference_number,
           guider_name: appointment_summary.guider_name,
-          date_of_appointment: appointment_summary.date_of_appointment.to_s(:pw_date_long),
+          date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
           date_of_creation: appointment_summary.created_at.in_time_zone('London')
         }
       }.to_json

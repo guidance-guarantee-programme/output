@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include GDS::SSO::User
-  serialize :permissions, Array
+  serialize :permissions, type: Array
 
   TELEPHONE_APPOINTMENT_PERMISSION = 'phone_bookings'.freeze
   FACE_TO_FACE_PERMISSION = 'face_to_face_bookings'.freeze

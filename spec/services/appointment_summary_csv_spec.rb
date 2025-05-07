@@ -55,7 +55,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.to_param,
           appointment.telephone_appointment.to_s,
           appointment.user.organisation_content_id,
-          appointment.date_of_appointment.to_s,
+          appointment.date_of_appointment.to_fs,
           appointment.value_of_pension_pots_is_approximate.to_s,
           appointment.count_of_pension_pots.to_s,
           appointment.value_of_pension_pots.to_s,
@@ -83,7 +83,7 @@ RSpec.describe AppointmentSummaryCsv do
           appointment.supplementary_pension_transfers.to_s,
           appointment.requested_digital.to_s,
           appointment.number_of_previous_appointments.to_s,
-          appointment.created_at.getlocal.to_s(:rfc),
+          appointment.created_at.getlocal.to_fs(:rfc),
           appointment.email,
           quote_empty_string(appointment.notification_id)
         ]

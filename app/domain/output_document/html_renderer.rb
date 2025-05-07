@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class OutputDocument
-  class HTMLRenderer
+  class HtmlRenderer
     include ActionView::Helpers::TextHelper
 
     attr_accessor :output_document
