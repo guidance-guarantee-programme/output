@@ -36,7 +36,8 @@ RSpec.describe OutputDocument do
       value_of_pension_pots: value_of_pension_pots,
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       value_of_pension_pots_is_approximate: value_of_pension_pots_is_approximate,
-      guider_name: guider_name
+      guider_name: guider_name,
+      welsh: false
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }
@@ -44,6 +45,7 @@ RSpec.describe OutputDocument do
   subject(:output_document) { described_class.new(appointment_summary) }
 
   specify { expect(output_document.attendee_name).to eq(attendee_name) }
+  specify { expect(output_document.welsh?).to eq(false) }
   specify { expect(output_document.appointment_date).to eq(appointment_date) }
 
   describe '#attendee_country' do

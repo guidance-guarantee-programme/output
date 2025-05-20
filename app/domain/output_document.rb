@@ -10,6 +10,7 @@ class OutputDocument
            :supplementary_pension_transfers,
            :format_preference, :appointment_type,
            :unique_reference_number, :schedule_type, :reference_number,
+           :welsh?,
            to: :appointment_summary
 
   delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode,
