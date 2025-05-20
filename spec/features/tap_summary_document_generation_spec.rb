@@ -33,7 +33,8 @@ RSpec.feature 'Appointment Summaries', js: true do
         guider_name: 'Jan Janson',
         number_of_previous_appointments: '0',
         reference_number: '123456',
-        telephone_appointment: 'true'
+        telephone_appointment: 'true',
+        welsh: 'false'
       )
     end
   end
@@ -60,7 +61,8 @@ RSpec.feature 'Appointment Summaries', js: true do
         last_name: 'Georgeson',
         guider_name: 'Jan Janson',
         number_of_previous_appointments: '0',
-        reference_number: '123456'
+        reference_number: '123456',
+        welsh: 'false'
       )
     end
   end
@@ -79,15 +81,11 @@ RSpec.feature 'Appointment Summaries', js: true do
     expect(@page.first_name.value).to eq('George')
     expect(@page.last_name.value).to eq('Georgeson')
     expect(@page.guider_name.value).to eq('Jan Janson')
+    expect(@page.welsh.selected_value).to eq('false')
   end
 
   def when_the_guider_modifies_the_summary
-    # https://stackoverflow.com/a/45332510
-    while @page.address_line_1.value != '5 Grange Hill'
-      @page.address_line_1.set('5 Grange Hill')
-      sleep 0.25
-    end
-
+    @page.address_line_1.set('5 Grange Hill')
     @page.submit.click
   end
 
