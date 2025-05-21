@@ -69,7 +69,17 @@ class OutputDocument
   end
 
   def lead
-    "You recently had a Pension Wise guidance appointment with #{guider_first_name} on #{appointment_date}."
+    if appointment_summary.welsh?
+      @appointment_date = I18n.l(
+        appointment_summary.date_of_appointment,
+        locale: :cy,
+        format: Date::DATE_FORMATS[:gov_uk]
+      )
+
+      "Yn ddiweddar, cawsoch apwyntiad arweiniad Pension Wise gyda #{guider_first_name} ar #{@appointment_date}."
+    else
+      "You recently had a Pension Wise guidance appointment with #{guider_first_name} on #{appointment_date}."
+    end
   end
 
   def appointment_reference

@@ -19,6 +19,7 @@ RSpec.describe OutputDocument do
   let(:date_of_appointment) { Date.new(2015, 3, 9) }
   let(:appointment_date) { '9 March 2015' }
   let(:reference_number) { '123456789' }
+  let(:welsh) { false }
   let(:params) do
     {
       title: title,
@@ -37,7 +38,7 @@ RSpec.describe OutputDocument do
       upper_value_of_pension_pots: upper_value_of_pension_pots,
       value_of_pension_pots_is_approximate: value_of_pension_pots_is_approximate,
       guider_name: guider_name,
-      welsh: false
+      welsh: welsh
     }
   end
   let(:appointment_summary) { AppointmentSummary.new(params) }
@@ -146,10 +147,22 @@ RSpec.describe OutputDocument do
   describe '#lead' do
     subject { output_document.lead }
 
-    it do
-      is_expected.to eq(
-        "You recently had a Pension Wise guidance appointment with James on #{appointment_date}."
-      )
+    context 'when English' do
+      it do
+        is_expected.to eq(
+          "You recently had a Pension Wise guidance appointment with James on #{appointment_date}."
+        )
+      end
+    end
+
+    context 'when Welsh' do
+      let(:welsh) { true }
+
+      it do
+        is_expected.to eq(
+          'Yn ddiweddar, cawsoch apwyntiad arweiniad Pension Wise gyda James ar 9 Mawrth 2015.'
+        )
+      end
     end
   end
 

@@ -12,6 +12,8 @@ Bundler.require(*Rails.groups)
 
 module Output
   class Application < Rails::Application
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = %i[en cy]
     config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'] }
     config.active_job.queue_adapter = :sidekiq
 
