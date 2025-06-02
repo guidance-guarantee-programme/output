@@ -13,7 +13,7 @@ class NotifyViaEmail < ApplicationJob
 
   def perform(appointment_summary, config: Rails.configuration.x.notify)
     payload  = notification(appointment_summary, template_id(appointment_summary, config), config)
-    response = Notifications::Client.new(config.secret_id).send_email(payload)
+    response = Notifications::Client.new(config.secret_id).send_email(**payload)
 
     appointment_summary.update(
       notification_id: response.id,
@@ -40,7 +40,7 @@ class NotifyViaEmail < ApplicationJob
         inherited_pot: covering_letter_content(appointment_summary, 'inherited_pot'),
         fixed_term_annuity: covering_letter_content(appointment_summary, 'fixed_term_annuity')
       }.merge(SummaryDocumentNextStepsPresenter.new(appointment_summary).to_h)
-    }.to_json
+    }
   end
 
   def pdf_download_url(appointment_summary, config)
@@ -64,6 +64,10 @@ class NotifyViaEmail < ApplicationJob
   end
 
   def template_id(appointment_summary, config)
-    appointment_summary.eligible_for_guidance? ? config.appointment_summary_template_id : config.ineligible_template_id
+    if appointment_summary.eligible_for_guidance?
+      appointment_summary.welsh? ? config.welsh_appointment_summary_template_id : config.appointment_summary_template_id
+    else
+      appointment_summary.welsh? ? config.welsh_ineligible_template_id : config.ineligible_template_id
+    end
   end
 end
