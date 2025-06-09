@@ -29,7 +29,7 @@ class NotifyViaEmail < ApplicationJob
       email_address: appointment_summary.email,
       template_id: template_id,
       personalisation: {
-        pdf_download_url: pdf_download_url(appointment_summary, config),
+        pdf_download_url: PdfDownloadUrlPresenter.new(appointment_summary, config).call,
         reference_number: appointment_summary.reference_number,
         title: appointment_summary.title,
         last_name: appointment_summary.last_name,
@@ -41,22 +41,6 @@ class NotifyViaEmail < ApplicationJob
         fixed_term_annuity: covering_letter_content(appointment_summary, 'fixed_term_annuity')
       }.merge(SummaryDocumentNextStepsPresenter.new(appointment_summary).to_h)
     }
-  end
-
-  def pdf_download_url(appointment_summary, config)
-    return '' unless appointment_summary.eligible_for_guidance?
-
-    if appointment_summary.standard?
-      if appointment_summary.supplementary_defined_benefit_pensions
-        config.standard_db_pdf_download_url
-      else
-        config.standard_pdf_download_url
-      end
-    elsif appointment_summary.supplementary_defined_benefit_pensions
-      config.non_standard_db_pdf_download_url
-    else
-      config.non_standard_pdf_download_url
-    end
   end
 
   def covering_letter_content(appointment_summary, type)

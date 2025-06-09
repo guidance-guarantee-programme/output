@@ -11,10 +11,7 @@ RSpec.describe NotifyViaEmail do
       welsh_appointment_summary_template_id: 'welsh_template',
       ineligible_template_id: 'ineligible_template',
       welsh_ineligible_template_id: 'welsh_ineligible_template',
-      standard_pdf_download_url: 'https://example.com/standard.pdf',
-      non_standard_pdf_download_url: 'https://example.com/non-standard.pdf',
-      standard_db_pdf_download_url: 'https://example.com/standard-db.pdf',
-      non_standard_db_pdf_download_url: 'https://example.com/non-standard-db.pdf'
+      pdf_download_host: 'https://example.com'
     )
   end
   let(:personalisation) do
