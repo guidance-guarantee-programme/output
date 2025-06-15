@@ -8,18 +8,84 @@ RSpec.describe NotifyViaEmail do
       service_id: 'service',
       secret_id: 'secret',
       appointment_summary_template_id: 'template',
+      welsh_appointment_summary_template_id: 'welsh_template',
       ineligible_template_id: 'ineligible_template',
-      standard_pdf_download_url: 'https://example.com/standard.pdf',
-      non_standard_pdf_download_url: 'https://example.com/non-standard.pdf',
-      standard_db_pdf_download_url: 'https://example.com/standard-db.pdf',
-      non_standard_db_pdf_download_url: 'https://example.com/non-standard-db.pdf'
+      welsh_ineligible_template_id: 'welsh_ineligible_template',
+      pdf_download_host: 'https://example.com'
     )
+  end
+  let(:personalisation) do
+    {
+      pdf_download_url: 'https://example.com/standard.pdf',
+      reference_number: appointment_summary.reference_number,
+      title: appointment_summary.title,
+      last_name: appointment_summary.last_name,
+      guider_name: appointment_summary.guider_name,
+      date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
+      section_32: 'yes', # rubocop:disable Naming/VariableNumber
+      adjustable_income: 'no',
+      inherited_pot: 'no',
+      fixed_term_annuity: 'no',
+      updated_beneficiaries: 'no',
+      regulated_financial_advice: 'yes',
+      kept_track_of_all_pensions: 'no',
+      interested_in_pension_transfer: 'yes',
+      created_retirement_budget: 'no',
+      know_how_much_state_pension: 'no',
+      received_state_benefits: 'yes',
+      pension_to_pay_off_debts: 'yes',
+      living_or_planning_overseas: 'yes',
+      finalised_a_will: 'no',
+      setup_power_of_attorney: 'no'
+    }
   end
   let(:client) { double('Notifications::Client', send_email: response) }
   let(:response) { double('Notifications::Client', id: '12345') }
 
   before do
     allow(Notifications::Client).to receive(:new).and_return(client)
+  end
+
+  describe 'Notify template selection' do
+    context 'when eligible and Welsh' do
+      it 'selects the correct template ID' do
+        appointment_summary.welsh = true
+
+        expect(client).to receive(:send_email).with(hash_including(
+                                                      email_address: appointment_summary.email,
+                                                      template_id: 'welsh_template'
+                                                    ))
+
+        described_class.perform_now(appointment_summary, config: config)
+      end
+    end
+
+    context 'when ineligible and Welsh' do
+      it 'selects the correct template ID' do
+        appointment_summary.welsh = true
+        appointment_summary.has_defined_contribution_pension = 'no'
+
+        expect(client).to receive(:send_email).with(hash_including(
+                                                      email_address: appointment_summary.email,
+                                                      template_id: 'welsh_ineligible_template'
+                                                    ))
+
+        described_class.perform_now(appointment_summary, config: config)
+      end
+    end
+
+    context 'when ineligible' do
+      it 'selects the correct template ID' do
+        appointment_summary.has_defined_contribution_pension = 'no'
+
+        expect(client).to receive(:send_email).with(hash_including(
+                                                      email_address: appointment_summary.email,
+                                                      template_id: 'ineligible_template'
+                                                    ))
+
+        described_class.perform_now(appointment_summary, config: config)
+      end
+    end
   end
 
   context 'when the customer has a DC pension' do
@@ -51,7 +117,7 @@ RSpec.describe NotifyViaEmail do
             finalised_a_will: 'no',
             setup_power_of_attorney: 'no'
           }
-        }.to_json
+        }
       )
 
       described_class.perform_now(appointment_summary, config: config)
@@ -96,7 +162,7 @@ RSpec.describe NotifyViaEmail do
             finalised_a_will: 'no',
             setup_power_of_attorney: 'no'
           }
-        }.to_json
+        }
       )
 
       described_class.perform_now(appointment_summary, config: config)

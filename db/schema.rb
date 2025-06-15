@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2025_03_18_201234) do
-
+ActiveRecord::Schema[8.0].define(version: 2025_05_19_132353) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
-  enable_extension "plpgsql"
 
   create_table "appointment_summaries", id: :serial, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.date "date_of_appointment"
     t.money "value_of_pension_pots", scale: 2
     t.string "guider_name"
@@ -49,7 +48,7 @@ ActiveRecord::Schema[6.1].define(version: 2025_03_18_201234) do
     t.string "email", default: ""
     t.string "notification_id", default: ""
     t.boolean "supplementary_pension_transfers", default: false
-    t.datetime "notify_completed_at"
+    t.datetime "notify_completed_at", precision: nil
     t.integer "notify_status", default: 0, null: false
     t.boolean "telephone_appointment", default: true
     t.string "covering_letter_type", default: "", null: false
@@ -68,6 +67,7 @@ ActiveRecord::Schema[6.1].define(version: 2025_03_18_201234) do
     t.string "living_or_planning_overseas", default: "", null: false
     t.string "finalised_a_will", default: "", null: false
     t.string "setup_power_of_attorney", default: "", null: false
+    t.boolean "welsh", default: false, null: false
     t.index ["user_id"], name: "index_appointment_summaries_on_user_id"
   end
 
@@ -79,33 +79,33 @@ ActiveRecord::Schema[6.1].define(version: 2025_03_18_201234) do
   end
 
   create_table "batches", id: :serial, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "uploaded_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "uploaded_at", precision: nil
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: ""
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "locked_at", precision: nil
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "organisation"
     t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_created_at", precision: nil
+    t.datetime "invitation_sent_at", precision: nil
+    t.datetime "invitation_accepted_at", precision: nil
     t.integer "invitation_limit"
     t.integer "invited_by_id"
     t.string "invited_by_type"
@@ -113,7 +113,7 @@ ActiveRecord::Schema[6.1].define(version: 2025_03_18_201234) do
     t.string "first_name"
     t.string "last_name"
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.datetime "reset_password_sent_at", precision: nil
     t.string "role", default: "", null: false
     t.string "name", default: ""
     t.string "uid", default: "", null: false

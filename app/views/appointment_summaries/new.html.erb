@@ -483,6 +483,29 @@
           </div>
         </fieldset>
       </div>
+
+      <div class="form-group">
+        <fieldset>
+          <legend>
+            <span>Document language</span>
+          </legend>
+
+          <div class="radio">
+            <label>
+              <%= f.radio_button :welsh, false,
+                                 class: 't-requested-english' %>
+              English
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <%= f.radio_button :welsh, true,
+                                 class: 't-requested-welsh' %>
+              Welsh
+            </label>
+          </div>
+        </fieldset>
+      </div>
       <p>
         <%= f.submit 'Continue', class: %w(btn btn-primary t-submit) %>
       </p>
