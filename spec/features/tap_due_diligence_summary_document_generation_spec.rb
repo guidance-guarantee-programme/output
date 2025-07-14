@@ -55,6 +55,7 @@ RSpec.feature 'Due diligence appointment summary', js: true do
     expect(@page).to have_no_first_appointment_yes
     expect(@page).to have_no_has_defined_contribution_pension_yes
     expect(@page).to have_no_guider_name
+    expect(@page).to have_no_document_language
   end
 
   def when_they_complete_the_summary_document
