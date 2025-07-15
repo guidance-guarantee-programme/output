@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/guidance-guarantee-programme/output-templates.git
-  revision: aa4999603c061ca4cf3d3460aa227602acc6f81e
-  ref: aa49996
+  revision: 2e1bed589ead268228d0704e075e003b629adcf2
+  ref: 2e1bed5
   specs:
-    output-templates (7.0.0)
+    output-templates (7.2.0)
       actionview
       sassc
 
@@ -108,8 +108,8 @@ GEM
       net-http-persistent (~> 4.0)
       nokogiri (~> 1, >= 1.10.8)
     base64 (0.1.2)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.2)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     bootstrap-kaminari-views (0.0.5)
@@ -141,7 +141,7 @@ GEM
     database_rewinder (1.1.0)
     date (3.4.1)
     diff-lcs (1.5.0)
-    drb (2.2.1)
+    drb (2.2.3)
     erubi (1.13.1)
     execjs (2.9.1)
     factory_bot (4.10.0)
@@ -224,7 +224,7 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     logger (1.7.0)
-    loofah (2.24.0)
+    loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -238,7 +238,7 @@ GEM
       actionpack (>= 6.0.0, < 8.1)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.8)
+    mini_portile2 (2.8.9)
     minitest (5.25.5)
     msgpack (1.7.2)
     multi_json (1.15.0)
@@ -338,7 +338,7 @@ GEM
       activesupport (= 8.0.2)
       bundler (>= 1.15.0)
       railties (= 8.0.2)
-    rails-dom-testing (2.2.0)
+    rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)

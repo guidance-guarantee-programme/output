@@ -51,6 +51,8 @@ class AppointmentSummaryPage < SitePrism::Page
                                                   three: '.t-number-of-previous-appointments-3'
   radio_buttons :requested_digital, true: '.t-requested-digital',
                                     false: '.t-requested-postal'
+  radio_buttons :welsh, true: '.t-requested-welsh', false: '.t-requested-english'
+  element :document_language, '.t-document-language'
 
   element :email, '.t-email'
   element :email_suggestion, '.t-email-suggestion'

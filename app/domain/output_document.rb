@@ -10,6 +10,7 @@ class OutputDocument
            :supplementary_pension_transfers,
            :format_preference, :appointment_type,
            :unique_reference_number, :schedule_type, :reference_number,
+           :welsh?,
            to: :appointment_summary
 
   delegate :address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode,
@@ -68,7 +69,17 @@ class OutputDocument
   end
 
   def lead
-    "You recently had a Pension Wise guidance appointment with #{guider_first_name} on #{appointment_date}."
+    if appointment_summary.welsh?
+      @appointment_date = I18n.l(
+        appointment_summary.date_of_appointment,
+        locale: :cy,
+        format: Date::DATE_FORMATS[:gov_uk]
+      )
+
+      "Yn ddiweddar, cawsoch apwyntiad arweiniad Pension Wise gyda #{guider_first_name} ar #{@appointment_date}."
+    else
+      "You recently had a Pension Wise guidance appointment with #{guider_first_name} on #{appointment_date}."
+    end
   end
 
   def appointment_reference
