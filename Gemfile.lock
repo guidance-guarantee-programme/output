@@ -263,7 +263,7 @@ GEM
       net-protocol
     net-ssh (5.0.2)
     nio4r (2.7.4)
-    nokogiri (1.18.8)
+    nokogiri (1.18.9)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     notifications-ruby-client (2.6.0)
@@ -312,7 +312,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.14)
+    rack (2.2.17)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-protection (2.2.3)
