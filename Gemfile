@@ -38,9 +38,9 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'rails-i18n'
   gem 'retriable'
   gem 'sassc-rails'
-  gem 'sidekiq', '~> 6.5.10'
+  gem 'sidekiq', '~> 8.0.8'
   gem 'sinatra', require: nil # Sidekiq UI
-  gem 'sprockets', '~> 3.7.2'
+  gem 'sprockets', '~> 4.2.2'
   gem 'telephone_appointments',
       github: 'guidance-guarantee-programme/telephone_appointments',
       branch: 'relax-dependencies'
