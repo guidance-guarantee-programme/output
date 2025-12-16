@@ -27,7 +27,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'notifications-ruby-client'
   gem 'observer'
   gem 'ostruct'
-  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: 'f6cf949'
+  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: '27a757d'
   gem 'pg'
   gem 'plek'
   gem 'postgres-copy'
