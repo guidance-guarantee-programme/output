@@ -39,26 +39,24 @@
         </tr>
         <% end %>
         <% if @appointment_summary.pension_wise? %>
-        <tr>
-          <td class="active t-guider-name" width="35%"><b>Guider Name</b></td>
-          <td><%= @appointment_summary.guider_name %></td>
-        </tr>
-        <tr>
-          <td class="active" width="35%"><b>Supplementary info</b></td>
-          <td>
-            <% if @appointment_summary.supplementary_info_selected? %>
-              <ul>
-                <%= content_tag(:li, 'Benefits') if @appointment_summary.supplementary_benefits %>
-                <%= content_tag(:li, 'Debt') if @appointment_summary.supplementary_debt %>
-                <%= content_tag(:li, 'Ill Health') if @appointment_summary.supplementary_ill_health %>
-                <%= content_tag(:li, 'Defined Benefit Pensions') if @appointment_summary.supplementary_defined_benefit_pensions %>
-                <%= content_tag(:li, 'Pension Transfers') if @appointment_summary.supplementary_pension_transfers %>
-              </ul>
-            <% else %>
-              None selected
-            <% end %>
-          </td>
-        </tr>
+          <tr>
+            <td class="active t-guider-name" width="35%"><b>Guider Name</b></td>
+            <td><%= @appointment_summary.guider_name %></td>
+          </tr>
+          <% if @appointment_summary.eligible_for_guidance? %>
+            <tr class="t-supplementary-info">
+              <td class="active" width="35%"><b>Supplementary info</b></td>
+              <td>
+                <% if @appointment_summary.supplementary_info_selected? %>
+                  <ul>
+                    <%= content_tag(:li, 'Transferring a Final Salary or Career Average Pension') if @appointment_summary.supplementary_defined_benefit_pensions %>
+                  </ul>
+                <% else %>
+                  None selected
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

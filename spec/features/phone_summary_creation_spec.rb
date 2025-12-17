@@ -59,6 +59,8 @@ RSpec.feature 'Phone summary creation' do
     @appointment_summary_page.submit.click
 
     @confirmation_page = ConfirmationPage.new
+    expect(@confirmation_page).to have_supplementary_info
+    expect(@confirmation_page.supplementary_info).to have_text('Transferring a')
     @confirmation_page.confirm.click
 
     @done_page = DonePage.new
