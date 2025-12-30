@@ -471,7 +471,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     uk_postcode (2.1.2)
     unicode-display_width (2.4.2)
-    uri (1.0.3)
+    uri (1.0.4)
     useragent (0.16.11)
     validates_timeliness (8.0.0)
       activemodel (>= 8.0.0, < 9)
