@@ -5,6 +5,7 @@ class ConfirmationPage < SitePrism::Page
   element :unique_reference_number, '.t-unique-reference-number'
   element :guider_name, '.t-guider-name'
   element :name, '.name'
+  element :supplementary_info, '.t-supplementary-info'
   element :confirm, '.t-confirm'
   element :back, '.t-back'
 end

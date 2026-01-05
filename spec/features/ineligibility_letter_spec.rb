@@ -14,7 +14,11 @@ def given_i_am_logged_in_as_a_phone_guider
 end
 
 def and_the_customer_does_not_have_a_defined_contribution_pension_pot
-  @appointment_summary = create(:populated_appointment_summary, :has_defined_benefit_pension)
+  @appointment_summary = create(
+    :populated_appointment_summary,
+    :has_defined_benefit_pension,
+    considering_transferring_to_dc_pot: 'no'
+  )
 end
 
 def when_they_have_had_a_pension_wise_appointment
@@ -25,6 +29,7 @@ def when_they_have_had_a_pension_wise_appointment
   appointment_summary_page.submit.click
 
   confirmation_page = ConfirmationPage.new
+  expect(confirmation_page).to have_no_supplementary_info
   confirmation_page.confirm.click
 end
 
