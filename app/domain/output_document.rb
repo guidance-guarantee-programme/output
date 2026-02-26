@@ -28,7 +28,11 @@ class OutputDocument
   end
 
   def attendee_name
-    "#{appointment_summary.title} #{appointment_summary.last_name}".squish
+    if appointment_summary.title.present?
+      "#{appointment_summary.title} #{appointment_summary.last_name}".squish
+    else
+      appointment_summary.first_name
+    end
   end
 
   def attendee_full_name

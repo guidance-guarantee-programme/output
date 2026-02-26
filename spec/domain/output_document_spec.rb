@@ -45,7 +45,18 @@ RSpec.describe OutputDocument do
 
   subject(:output_document) { described_class.new(appointment_summary) }
 
-  specify { expect(output_document.attendee_name).to eq(attendee_name) }
+  describe '#attendee_name' do
+    context 'when they have provided a salutation' do
+      specify { expect(output_document.attendee_name).to eq(attendee_name) }
+    end
+
+    context 'when there is no salutation provided' do
+      let(:title) { '' }
+
+      specify { expect(output_document.attendee_name).to eq('Joe') }
+    end
+  end
+
   specify { expect(output_document.welsh?).to eq(false) }
   specify { expect(output_document.appointment_date).to eq(appointment_date) }
 
