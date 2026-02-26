@@ -24,15 +24,14 @@ class NotifyViaEmail < ApplicationJob
 
   private
 
-  def notification(appointment_summary, template_id, config) # rubocop:disable Metrics/MethodLength
+  def notification(appointment_summary, template_id, config)
     {
       email_address: appointment_summary.email,
       template_id: template_id,
       personalisation: {
         pdf_download_url: PdfDownloadUrlPresenter.new(appointment_summary, config).call,
         reference_number: appointment_summary.reference_number,
-        title: appointment_summary.title,
-        last_name: appointment_summary.last_name,
+        first_name: appointment_summary.first_name,
         guider_name: appointment_summary.guider_name,
         date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
         section_32: covering_letter_content(appointment_summary, 'section_32'), # rubocop:disable Naming/VariableNumber

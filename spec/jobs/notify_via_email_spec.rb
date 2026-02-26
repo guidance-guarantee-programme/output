@@ -18,8 +18,7 @@ RSpec.describe NotifyViaEmail do
     {
       pdf_download_url: 'https://example.com/standard.pdf',
       reference_number: appointment_summary.reference_number,
-      title: appointment_summary.title,
-      last_name: appointment_summary.last_name,
+      first_name: appointment_summary.first_name,
       guider_name: appointment_summary.guider_name,
       date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
       section_32: 'yes', # rubocop:disable Naming/VariableNumber
@@ -97,8 +96,7 @@ RSpec.describe NotifyViaEmail do
           personalisation: {
             pdf_download_url: 'https://example.com/standard.pdf',
             reference_number: appointment_summary.reference_number,
-            title: appointment_summary.title,
-            last_name: appointment_summary.last_name,
+            first_name: appointment_summary.first_name,
             guider_name: appointment_summary.guider_name,
             date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
             section_32: 'yes', # rubocop:disable Naming/VariableNumber
@@ -142,8 +140,7 @@ RSpec.describe NotifyViaEmail do
           personalisation: {
             pdf_download_url: 'https://example.com/standard-db.pdf',
             reference_number: appointment_summary.reference_number,
-            title: appointment_summary.title,
-            last_name: appointment_summary.last_name,
+            first_name: appointment_summary.first_name,
             guider_name: appointment_summary.guider_name,
             date_of_appointment: appointment_summary.date_of_appointment.to_fs(:pw_date_long),
             section_32: 'no', # rubocop:disable Naming/VariableNumber
