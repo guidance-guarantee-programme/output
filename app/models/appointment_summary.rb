@@ -38,7 +38,7 @@ class AppointmentSummary < ApplicationRecord # rubocop:disable Metrics/ClassLeng
 
   belongs_to :user
 
-  validates :title, presence: true, inclusion: { in: TITLES, allow_blank: true }
+  validates :title, inclusion: { in: TITLES }, allow_blank: true
   validates :last_name, presence: true
   validates :date_of_appointment, timeliness: { on_or_before: -> { Time.zone.today },
                                                 on_or_after: Date.new(2015),
