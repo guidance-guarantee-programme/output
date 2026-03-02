@@ -13,6 +13,7 @@ RSpec.describe AppointmentSummary, type: :model do
     before do
       subject.schedule_type = 'due_diligence'
       subject.title = 'Mr'
+      subject.first_name = 'David'
       subject.last_name = 'James'
       subject.date_of_appointment = '2021-09-29'
       subject.reference_number = '123456'
@@ -74,7 +75,7 @@ RSpec.describe AppointmentSummary, type: :model do
   it { is_expected.to belong_to(:user) }
 
   it { is_expected.to allow_value('').for(:title) }
-  it { is_expected.to_not validate_presence_of(:first_name) }
+  it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_presence_of(:last_name) }
 
   it { is_expected.to validate_inclusion_of(:title).in_array(%w(Mr Mrs Miss Ms Mx Dr Reverend)) }
