@@ -8,7 +8,7 @@
 <% if user_signed_in? %>
   <%= content_for :navbar_right do %>
     <div class='session-details-panel'>
-      <%= link_to current_user.name, Plek.current.find('signon') %>
+      <%= link_to current_user.name, Plek.find('signon') %>
       &bull; <%= link_to 'Sign out', gds_sign_out_path %>
     </div>
   <% end %>
