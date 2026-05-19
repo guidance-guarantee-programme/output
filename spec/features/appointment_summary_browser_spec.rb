@@ -46,7 +46,7 @@ def when_i_visit_the_summary_browser
 end
 
 def then_i_am_denied_access
-  expect(@page).to_not be_displayed
+  expect(@page.status_code).to eq(403)
 end
 
 def and_i_export_the_results_to_csv

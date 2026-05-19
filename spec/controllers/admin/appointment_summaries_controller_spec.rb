@@ -19,7 +19,9 @@ RSpec.describe Admin::AppointmentSummariesController, type: :controller do
         put :update, params: { id: appointment_summary.id }
       end
 
-      it { is_expected.to redirect_to(root_path) }
+      it 'responds 403' do
+        expect(response).to be_forbidden
+      end
     end
 
     context 'when authenticated' do
