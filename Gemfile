@@ -12,7 +12,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'bootsnap', require: false
   gem 'bootstrap-kaminari-views'
   gem 'bugsnag'
-  gem 'concurrent-ruby', '1.3.4'
+  gem 'concurrent-ruby', '1.3.7'
   gem 'csv'
   gem 'faraday'
   gem 'ffi', '~> 1.15.0'
