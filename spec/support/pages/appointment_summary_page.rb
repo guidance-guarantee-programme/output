@@ -9,6 +9,7 @@ class AppointmentSummaryPage < SitePrism::Page
 
   element :tap_permission_warning, '.t-no-permission'
   element :use_tap_warning, '.t-use-tap'
+  element :use_planner_warning, '.t-use-planner'
   element :due_diligence_banner, '.t-due-diligence-banner'
 
   element :title, '.t-title'
@@ -92,6 +93,7 @@ class AppointmentSummaryPage < SitePrism::Page
 
   def params(appointment_summary) # rubocop:disable Metrics/MethodLength
     params_from_tap = %i(
+      telephone_appointment
       appointment_type
       date_of_appointment
       email
@@ -115,8 +117,6 @@ class AppointmentSummaryPage < SitePrism::Page
       params_from_tap.each do |param|
         params["appointment_summary[#{param}]"] = appointment_summary[param] if appointment_summary[param].present?
       end
-
-      params['appointment_summary[telephone_appointment]'] = 'true'
     end
   end
 

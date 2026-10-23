@@ -15,6 +15,9 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'concurrent-ruby', '1.3.7'
   gem 'csv'
   gem 'faraday'
+  gem 'faraday-conductivity'
+  gem 'faraday_middleware'
+  gem 'faraday-net_http'
   gem 'ffi', '~> 1.15.0'
   gem 'foreman'
   gem 'gaffe'
@@ -27,7 +30,7 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   gem 'notifications-ruby-client'
   gem 'observer'
   gem 'ostruct'
-  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: 'cc54340'
+  gem 'output-templates', github: 'guidance-guarantee-programme/output-templates', ref: '8c2baee'
   gem 'pg'
   gem 'plek'
   gem 'postgres-copy'
@@ -62,6 +65,8 @@ source 'https://rubygems.org' do # rubocop:disable Metrics/BlockLength
   group :test do
     gem 'shoulda-matchers'
     gem 'site_prism'
+    gem 'vcr'
+    gem 'webmock'
     gem 'webrick'
   end
 

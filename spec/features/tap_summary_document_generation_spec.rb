@@ -62,7 +62,8 @@ RSpec.feature 'Appointment Summaries', js: true do
         guider_name: 'Jan Janson',
         number_of_previous_appointments: '0',
         reference_number: '123456',
-        welsh: 'false'
+        welsh: 'false',
+        telephone_appointment: 'true'
       )
     end
   end

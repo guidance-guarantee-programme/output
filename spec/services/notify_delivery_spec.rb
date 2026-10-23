@@ -33,16 +33,17 @@ RSpec.describe NotifyDelivery, '#call' do
     end
 
     context 'and the appointment was face to face' do
-      it 'does not notify TAP with an activity entry' do
-        expect(
-          TelephoneAppointments::DroppedSummaryDocumentActivity
-        ).not_to receive(:new)
+      it 'Notifies the Planner with an activity entry' do
+        expect(TelephoneAppointments::DroppedSummaryDocumentActivity).not_to receive(:new)
+        expect(Planner::DroppedSummaryDocumentActivity)
+          .to receive(:new).with(appointment_summary.reference_number) { activity }
 
         subject
 
-        expect(activity).not_to have_received(:save)
+        expect(activity).to have_received(:save)
       end
     end
+
     context 'and the appointment was via telephone' do
       let(:telephone_appointment) { true }
 
