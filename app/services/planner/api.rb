@@ -7,6 +7,13 @@ module Planner
       false
     end
 
+    def create_dropped_summary_document_activity(booking_request_id)
+      response = connection.post "/api/v1/booking_requests/#{booking_request_id}/dropped_summary_document"
+      response.success?
+    rescue HttpConnection::UnprocessableEntity
+      false
+    end
+
     private
 
     def connection

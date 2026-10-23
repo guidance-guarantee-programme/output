@@ -10,7 +10,7 @@ class NotifyDelivery
     response = client.get_notification(appointment_summary.notification_id)
 
     process_response(response, appointment_summary)
-    notify_tap(appointment_summary) if appointment_summary.telephone_appointment?
+    notify(appointment_summary)
   rescue Notifications::Client::RequestError
     appointment_summary.stop_checking!
   end
@@ -24,12 +24,14 @@ class NotifyDelivery
     )
   end
 
-  def notify_tap(appointment_summary)
+  def notify(appointment_summary)
     return unless appointment_summary.failed? && appointment_summary.notify_completed_at?
 
-    TelephoneAppointments::DroppedSummaryDocumentActivity.new(
-      appointment_summary.reference_number
-    ).save
+    if appointment_summary.telephone_appointment?
+      TelephoneAppointments::DroppedSummaryDocumentActivity.new(appointment_summary.reference_number).save
+    else
+      Planner::DroppedSummaryDocumentActivity.new(appointment_summary.reference_number).save
+    end
   end
 
   def map_status(response)
