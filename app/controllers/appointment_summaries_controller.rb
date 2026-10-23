@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class AppointmentSummariesController < ApplicationController
+class AppointmentSummariesController < ApplicationController # rubocop:disable Metrics/ClassLength
   before_action :authenticate_as_team_leader!, only: :index
   before_action :check_can_create_appointments!, only: [:new, :confirm, :create]
   before_action :load_summary, only: %i(new email_confirmation update confirm)
@@ -16,6 +16,8 @@ class AppointmentSummariesController < ApplicationController
       render :summarise_via_tap
     elsif tap_user_needs_phone_permission?
       render :tap_user_needs_phone_permission
+    elsif planner_user_needs_f2f_permission?
+      render :planner_user_needs_f2f_permission
     else
       @appointment_summary.assign_attributes(appointment_summary_params)
     end
@@ -74,8 +76,14 @@ class AppointmentSummariesController < ApplicationController
       !current_user.team_leader?
   end
 
+  def planner_user_needs_f2f_permission?
+    params.dig(:appointment_summary, :telephone_appointment) == 'false' &&
+      !current_user.has_permission?(User::FACE_TO_FACE_PERMISSION) &&
+      !current_user.team_leader?
+  end
+
   def instruct?
-    !current_user.has_permission?(User::FACE_TO_FACE_PERMISSION) && !params[:appointment_summary]
+    !params[:appointment_summary]
   end
 
   def check_can_create_appointments!
@@ -97,7 +105,12 @@ class AppointmentSummariesController < ApplicationController
   def send_notifications(appointment_summary)
     appointment_summary.notify_via_email
 
-    CreateTapActivity.perform_later(appointment_summary, current_user) if telephone_appointment?
+    if telephone_appointment?
+      CreateTapActivity.perform_later(appointment_summary, current_user)
+    else
+      CreatePlannerActivity.perform_later(appointment_summary, current_user)
+    end
+
     BrailleNotification.perform_later(appointment_summary) if appointment_summary.braille_notification?
   end
 
