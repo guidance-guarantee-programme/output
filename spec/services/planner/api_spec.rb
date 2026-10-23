@@ -14,4 +14,14 @@ RSpec.describe Planner::Api, vcr: true do
       end
     end
   end
+
+  describe '#create_dropped_summary_document_activity' do
+    context 'when successful' do
+      it 'returns true' do
+        result = described_class.new.create_dropped_summary_document_activity(9)
+
+        expect(result).to be true
+      end
+    end
+  end
 end
