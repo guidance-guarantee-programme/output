@@ -15,7 +15,7 @@ module Output
     config.i18n.enforce_available_locales = false
     config.i18n.available_locales = %i[en cy]
     config.action_mailer.default_url_options = { host: ENV['APPLICATION_HOST'] }
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :inline
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do

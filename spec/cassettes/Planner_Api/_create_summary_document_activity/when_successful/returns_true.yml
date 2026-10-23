@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:3002/api/v1/booking_requests/9/summary_document
+    body:
+      encoding: UTF-8
+      string: '{"booking_request_id":9,"owner_uid":"33f81237-eeb1-43ac-93dd-eb42cf23a86c","delivery_method":"digital"}'
+    headers:
+      User-Agent:
+      - PensionWise/1.0 (birdperson2; benlovell; 46540) ruby/3.4.2 (28; arm64-darwin24)
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Content-Type:
+      - application/json
+      Cache-Control:
+      - no-cache
+      Set-Cookie:
+      - _planner_session=8fh4ViOiHvfGjW5rzYO0m%2FD5otXocswujgc3ddb67jnoOLQWp5qG5bfrnX43fR5QJBbBD%2FM%2F9Fgw2LwCtfy77B26J8NqIW%2BR6M%2BGECDNFlu2bcW6cwa9d%2B9N36LrFz9zdi2hp0RyhvzO8oWmHOl5Y%2FsdctpI8p4qEpx%2FTJYBjQ4ZKtHn3AVfdZUSmssuxiP0l6Tvj1ZZoiroCoubMnqj1jBRkoC6sV5n6kICXAMVYwqM%2B8gjhnd2PhNXc%2FZPWQNW%2BUeP6%2BGblswrCANNeqJnrm2%2BqI6CXrWq037LlvXpB%2B1l%2Fk8DHWRKqkWvV2E49XD71H2xFAjtp4sG3YmCnxFsYA%3D%3D--bUPKdEt0RknQHRwL--TgIlkFd7bx81sxxVNV9nHQ%3D%3D;
+        path=/; HttpOnly
+      X-Request-Id:
+      - 0534223c-201b-49cf-a2cb-dd967c7fff14
+      X-Runtime:
+      - '0.010413'
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 22 Oct 2026 17:45:43 GMT
+recorded_with: VCR 6.4.0
